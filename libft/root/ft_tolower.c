@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaji <jaji@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 03:20:51 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/20 03:20:51 by jaji             ###   ########.fr       */
+/*   Created: 2023/03/20 19:15:33 by jaji              #+#    #+#             */
+/*   Updated: 2023/03/20 19:15:33 by jaji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    *ft_bzero(void *ptr, size_t num)
+int  ft_tolower(int c)
 {
-    size_t          idx;
-    unsigned char   *str;
-
-    idx = 0;
-    str = (unsigned char *)ptr;
-    while (idx < num)
-    {
-        str[idx] = 0;
-        ++idx;
-    }
-    return (ptr);
+    if ('A' <= c && c <= 'Z')
+        c += 'a' - 'A';
+    return (c);
 }

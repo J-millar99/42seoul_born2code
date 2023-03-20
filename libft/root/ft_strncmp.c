@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaji <jaji@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 03:20:51 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/20 03:20:51 by jaji             ###   ########.fr       */
+/*   Created: 2023/03/20 21:10:44 by jaji              #+#    #+#             */
+/*   Updated: 2023/03/20 21:10:44 by jaji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    *ft_bzero(void *ptr, size_t num)
+int    ft_strncmp(const char *str1, const char *str2, size_t len)
 {
-    size_t          idx;
-    unsigned char   *str;
+    size_t i;
 
-    idx = 0;
-    str = (unsigned char *)ptr;
-    while (idx < num)
+    i = 0;
+    while (*str1 != '\0' &&  i < len)
     {
-        str[idx] = 0;
-        ++idx;
+        if (*str1 != *str2)
+            break;
+        str1++;
+        str2++;
+        i++;
     }
-    return (ptr);
+    return (*str1 - *str2);
 }

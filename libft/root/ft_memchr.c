@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaji <jaji@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 03:20:51 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/20 03:20:51 by jaji             ###   ########.fr       */
+/*   Created: 2023/03/20 21:37:47 by jaji              #+#    #+#             */
+/*   Updated: 2023/03/20 21:37:47 by jaji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    *ft_bzero(void *ptr, size_t num)
+void    *ft_memchr(const void *ptr, int c, size_t size)
 {
-    size_t          idx;
     unsigned char   *str;
 
-    idx = 0;
     str = (unsigned char *)ptr;
-    while (idx < num)
+    while (size-- > 0)
     {
-        str[idx] = 0;
-        ++idx;
+        if (*str == (unsigned char)c)
+            return (str);
+        str++;
     }
-    return (ptr);
+    return (NULL);
 }
