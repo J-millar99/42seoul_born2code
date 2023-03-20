@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaji <jaji@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 23:57:39 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/19 23:57:39 by jaji             ###   ########.fr       */
+/*   Created: 2023/03/20 03:20:51 by jaji              #+#    #+#             */
+/*   Updated: 2023/03/20 03:20:51 by jaji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stdlib.h>
+void    *ft_bzero(void *ptr, size_t num)
+{
+    size_t          idx;
+    unsigned char   *str;
 
-size_t  ft_strlen(const char *str);
-
-#endif
+    if (ptr == NULL)
+        return (NULL);
+    idx = 0;
+    str = (unsigned char *)ptr;
+    while (idx < num)
+    {
+        str[idx] = 0;
+        ++idx;
+    }
+    return (ptr);
+}
