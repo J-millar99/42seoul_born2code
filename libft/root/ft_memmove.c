@@ -29,7 +29,7 @@ void    *ft_memmove(void *dest, const void *src, size_t num)
     else
     {
         while (num-- > 0)
-            *temp_dest++ = *temp_src++
+            *temp_dest++ = *temp_src++;
     }
     return (dest);
 }
