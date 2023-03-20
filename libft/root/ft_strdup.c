@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaji <jaji@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 23:57:39 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/19 23:57:39 by jaji             ###   ########.fr       */
+/*   Created: 2023/03/20 23:04:18 by jaji              #+#    #+#             */
+/*   Updated: 2023/03/20 23:04:18 by jaji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <ctype.h>
+#include "libft.h"
 
-size_t  ft_strlen(const char *str);
-void    *ft_bzero(void *ptr, size_t num);
+char    *ft_strdup(const char *str)
+{
+    size_t  str_len;
+    char    *dupstr;
 
-#endif
+    str_len = ft_strlen(str);
+    dupstr = (char *)malloc(sizeof(char) * (str_len + 1));
+    if (!dupstr)
+        return (NULL);
+    ft_memcpy(dupstr, str, str_len + 1);
+    return (dupstr);
+}
