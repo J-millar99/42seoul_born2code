@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaji <jaji@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: jaji <jaji@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:40:55 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/19 23:40:55 by jaji             ###   ########.fr       */
+/*   Updated: 2023/03/21 23:06:12 by jaji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 int	ft_isalpha(int c)
 {
-	c = (unsigned char)c;
 	if ('a' <= c && c <= 'z')
-		return (2);
+		return (1);
 	else if ('A' <= c && c <= 'Z')
 		return (1);
 	else
