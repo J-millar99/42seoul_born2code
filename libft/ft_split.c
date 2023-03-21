@@ -6,7 +6,7 @@
 /*   By: jaji <jaji@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:36:27 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/21 22:12:10 by jaji             ###   ########.fr       */
+/*   Updated: 2023/03/22 01:26:26 by jaji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ char	**ft_split(char const *s, char c)
 	int				word_cnt;
 	unsigned int	start;
 
-	if (s == NULL || c == '\0')
-		return (NULL);
 	word_cnt = word_count(s, c);
 	word_arr = (char **)malloc(sizeof(char *) * (word_cnt + 1));
 	if (word_arr == NULL)
