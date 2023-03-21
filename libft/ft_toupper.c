@@ -14,6 +14,7 @@
 
 int	ft_toupper(int c)
 {
+	c = (unsigned char)c;
 	if ('a' <= c && c <= 'z')
 		c -= 'a' - 'A';
 	return (c);
