@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 23:04:18 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/23 21:44:37 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/23 16:30:05 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/23 20:00:28 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+t_list	*ft_lstlast(t_list *lst)
 {
-	size_t	s1_len;
-	char	*dupstr;
-
-	s1_len = ft_strlen(s1);
-	dupstr = (char *)malloc(sizeof(char) * (s1_len + 1));
-	if (!dupstr)
+	if (lst == NULL)
 		return (NULL);
-	ft_memcpy(dupstr, s1, s1_len + 1);
-	return (dupstr);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }

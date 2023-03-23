@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 23:04:18 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/23 21:44:37 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/23 15:50:55 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/23 18:00:02 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	s1_len;
-	char	*dupstr;
+	t_list	*new_elemnet;
 
-	s1_len = ft_strlen(s1);
-	dupstr = (char *)malloc(sizeof(char) * (s1_len + 1));
-	if (!dupstr)
+	new_elemnet = (t_list *)malloc(sizeof(t_list));
+	if (new_elemnet == NULL)
 		return (NULL);
-	ft_memcpy(dupstr, s1, s1_len + 1);
-	return (dupstr);
+	new_elemnet->content = content;
+	(*new_elemnet).next = NULL;
+	return (new_elemnet);
 }
