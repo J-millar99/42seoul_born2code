@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:57:39 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/23 19:58:43 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/03/24 04:11:32 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
+# include <stddef.h>
 
 typedef struct s_list
 {

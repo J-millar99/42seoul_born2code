@@ -72,9 +72,9 @@ re :
 	make all
 
 $(NAME) : $(OBJS_P)
-	ar crs $@ $?
+	ar crs $@ $^
 
-bonus :	$(OBJS_P) $(OBJS_B)
-	ar crs $(NAME) $?
+bonus : $(OBJS)
+	ar crs $(NAME) $^
 
 .PHONY : all clean fclean re

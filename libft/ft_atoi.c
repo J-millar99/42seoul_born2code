@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaji <jaji@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:41:56 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/20 22:41:56 by jaji             ###   ########.fr       */
+/*   Updated: 2023/03/24 05:39:41 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,9 @@ int	ft_atoi(const char *str)
 		++idx;
 	}
 	return (sign * result);
+}
+#include <stdio.h>
+int main()
+{
+	printf("%d\n", ft_atoi("-2147483648"));
 }
