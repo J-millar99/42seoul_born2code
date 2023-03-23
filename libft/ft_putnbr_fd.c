@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 04:01:55 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/24 01:13:25 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/03/24 01:14:40 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_putnbr_fd(int n, int fd)
 		n /= 10;
 		cnt--;
 	}
-	while(numarr[cnt])
+	while (numarr[cnt])
 	{
 		write(fd, &numarr[cnt], 1);
 		cnt++;

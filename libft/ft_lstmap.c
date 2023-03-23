@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:17:18 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/24 00:44:44 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/03/24 02:16:48 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	while (lst->next != NULL)
 	{
 		temp_lst->next = (t_list *)malloc(sizeof(t_list));
-		if (temp_lst == NULL)
+		if (temp_lst == NULL || temp_lst->next == NULL)
 		{
 			ft_lstclear(&start, del);
 			return (NULL);
