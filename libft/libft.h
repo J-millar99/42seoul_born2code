@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 23:57:39 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/24 04:11:32 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/03/25 00:25:54 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ char	*ft_substr(char const *str, unsigned int start, size_t len);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_itoa(int n);
+int		ft_atoi(const char *str);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-int		ft_atoi(const char *str);
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);

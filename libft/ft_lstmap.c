@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:17:18 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/24 03:37:41 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/03/25 02:04:37 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,26 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*temp_lst;
+	t_list	*tlst;
 	t_list	*start;
+	void	*tcontent;
 
 	if (lst == NULL || f == NULL)
 		return (NULL);
-	temp_lst = (t_list *)malloc(sizeof(t_list));
-	if (temp_lst == NULL)
-		return (NULL);
-	start = temp_lst;
-	while (lst->next != NULL)
+	start = NULL;
+	while (lst)
 	{
-		temp_lst->next = (t_list *)malloc(sizeof(t_list));
-		if (temp_lst->next == NULL)
+		tcontent = f(lst->content);
+		tlst = ft_lstnew(tcontent);
+		if (tlst == NULL)
 		{
+			del(tcontent);
 			ft_lstclear(&start, del);
 			return (NULL);
 		}
-		temp_lst->content = (*f)(lst->content);
-		temp_lst = temp_lst->next;
+		ft_lstadd_back(&start, tlst);
+		tlst = tlst->next;
 		lst = lst->next;
 	}
-	temp_lst->content = (*f)(lst->content);
-	temp_lst->next = NULL;
 	return (start);
 }

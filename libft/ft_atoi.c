@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 22:41:56 by jaji              #+#    #+#             */
-/*   Updated: 2023/03/24 05:39:41 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/03/25 00:25:07 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,4 @@ int	ft_atoi(const char *str)
 		++idx;
 	}
 	return (sign * result);
-}
-#include <stdio.h>
-int main()
-{
-	printf("%d\n", ft_atoi("-2147483648"));
 }
