@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 16:24:08 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/25 02:56:14 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 02:03:05 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 02:03:05 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	int		lst_cnt;
-
-	lst_cnt = 0;
-	while (lst != NULL)
-	{
-		++lst_cnt;
-		lst = lst->next;
-	}
-	return (lst_cnt);
+	if (lst == NULL || new == NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

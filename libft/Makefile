@@ -3,75 +3,45 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
+#    By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/25 02:59:48 by jaehyji           #+#    #+#              #
-#    Updated: 2023/03/25 17:51:02 by jaehyji          ###   ########.fr        #
+#    Created: 2023/03/26 02:01:07 by jaehyji           #+#    #+#              #
+#    Updated: 2023/03/26 02:01:07 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+CC = cc
+CFLAG = -Wall -Wextra -Werror -I.
 
-CC = gcc
-CFLAG = -Wall -Wextra -Werror
+SRCS_P =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c	\
+			ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c	\
+			ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c	\
+			ft_putendl_fd.c	ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c	\
+			ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c	\
+			ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c	\
+			ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c	\
 
-HEADER = libft.h
+SRCS_B =	ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c	\
+			ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c	\
+			ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c	\
 
-SRCS_P1 = ft_isalpha.c		\
-			ft_isdigit.c	\
-			ft_isalnum.c	\
-			ft_isascii.c	\
-			ft_isprint.c	\
-			ft_strlen.c		\
-			ft_memset.c		\
-			ft_bzero.c		\
-			ft_memcpy.c		\
-			ft_memmove.c	\
-			ft_strlcpy.c	\
-			ft_strlcat.c	\
-			ft_strncmp.c	\
-			ft_toupper.c	\
-			ft_tolower.c	\
-			ft_strchr.c		\
-			ft_strrchr.c	\
-			ft_memchr.c		\
-			ft_memcmp.c		\
-			ft_strnstr.c	\
-			ft_atoi.c		\
-			ft_calloc.c		\
-			ft_strdup.c		\
-
-SRCS_P2 = ft_substr.c		\
-		  	ft_strjoin.c	\
-		  	ft_strtrim.c	\
-		  	ft_split.c		\
-			ft_striteri.c	\
-		  	ft_strmapi.c	\
-		  	ft_itoa.c		\
-		  	ft_putchar_fd.c	\
-		  	ft_putstr_fd.c	\
-		  	ft_putendl_fd.c	\
-		  	ft_putnbr_fd.c	\
-
-SRCS_B = ft_lstnew.c		\
-			ft_lstsize.c	\
-			ft_lstadd_front.c	\
-		  	ft_lstadd_back.c	\
-		  	ft_lstclear.c	\
-		  	ft_lstlast.c	\
-		  	ft_lstiter.c	\
-		  	ft_lstmap.c		\
-		  	ft_lstdelone.c	\
-
-SRCS_P = $(SRCS_P1) $(SRCS_P2)
 OBJS_P = $(SRCS_P:.c=.o)
 OBJS_B = $(SRCS_B:.c=.o)
-OBJS = $(OBJS_P) $(OBJS_B)
 
-all : $(NAME)
+ifdef FLAG
+    OBJS = $(OBJS_P) $(OBJS_B)
+else
+    OBJS = $(OBJS_P)
+endif
 
 %.o : %.c
 	$(CC) $(CFLAG) -c $< -o $@
+
+$(NAME) : $(OBJS)
+	ar crs $@ $^
+	
+all : $(NAME)
 
 clean :
 	rm -rf $(OBJS_P) $(OBJS_B)
@@ -83,10 +53,7 @@ re :
 	make fclean
 	make all
 
-$(NAME) : $(OBJS_P)
-	ar crs $@ $?
-
-bonus : $(OBJS)
-	@make OBJS_P='$(OBJS)'
+bonus :
+	@make FLAG=1 all
 
 .PHONY : all clean fclean re bonus
