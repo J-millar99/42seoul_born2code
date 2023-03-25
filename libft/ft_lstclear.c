@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 16:49:27 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/25 02:55:57 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/03/25 17:51:05 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		del((*lst)->content);
 		free(*lst);
 		*lst = temp;
-		temp = temp->next;
+		temp = (*lst)->next;
 	}
 	del((*lst)->content);
 	free(*lst);
