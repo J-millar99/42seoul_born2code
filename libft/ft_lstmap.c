@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 17:17:18 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/25 02:56:10 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/03/25 17:54:54 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*start;
 	void	*tcontent;
 
-	if (lst == NULL || f == NULL)
+	if (lst == NULL)
 		return (NULL);
 	start = NULL;
 	while (lst)
