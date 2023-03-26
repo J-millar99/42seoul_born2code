@@ -6,14 +6,14 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 02:01:07 by jaehyji           #+#    #+#              #
-#    Updated: 2023/03/26 09:51:21 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/03/26 15:17:19 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 CC = cc
 CFLAG = -Wall -Wextra -Werror
-HEADER = ./libft.h
+
 
 SRCS_P =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c	\
 			ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c	\
@@ -36,8 +36,8 @@ else
     OBJS = $(OBJS_P)
 endif
 
-%.o : %.c $(HEADER)
-	$(CC) $(CFLAG) -c $< -o $@
+%.o : %.c
+	$(CC) $(CFLAG) -c $< -o $@ -I./
 
 $(NAME) : $(OBJS)
 	ar crs $@ $^
