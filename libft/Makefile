@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+         #
+#    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 02:01:07 by jaehyji           #+#    #+#              #
-#    Updated: 2023/03/26 02:01:07 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/03/26 09:51:21 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 CC = cc
-CFLAG = -Wall -Wextra -Werror -I.
+CFLAG = -Wall -Wextra -Werror
+HEADER = ./libft.h
 
 SRCS_P =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c	\
 			ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c	\
@@ -35,7 +36,7 @@ else
     OBJS = $(OBJS_P)
 endif
 
-%.o : %.c
+%.o : %.c $(HEADER)
 	$(CC) $(CFLAG) -c $< -o $@
 
 $(NAME) : $(OBJS)
