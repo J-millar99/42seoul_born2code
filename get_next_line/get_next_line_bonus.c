@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 11:17:58 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/26 18:03:37 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 18:04:11 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 18:09:09 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*make_oneline(char **backup)
 {
