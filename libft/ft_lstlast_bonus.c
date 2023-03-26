@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 17:15:30 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/25 02:56:05 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 02:03:22 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 02:03:22 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+t_list	*ft_lstlast(t_list *lst)
 {
 	if (lst == NULL)
-		return ;
+		return (NULL);
 	while (lst->next != NULL)
-	{
-		f(lst->content);
 		lst = lst->next;
-	}
-	f(lst->content);
+	return (lst);
 }

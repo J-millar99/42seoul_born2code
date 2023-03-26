@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 15:54:37 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/25 02:55:55 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 02:03:09 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 02:03:09 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (lst == NULL || new == NULL)
+	t_list	*temp;
+
+	if (lst == NULL || *lst == NULL)
 		return ;
-	new->next = *lst;
-	*lst = new;
+	temp = (*lst)->next;
+	while (temp != NULL)
+	{
+		del((*lst)->content);
+		free(*lst);
+		*lst = temp;
+		temp = (*lst)->next;
+	}
+	del((*lst)->content);
+	free(*lst);
+	*lst = NULL;
 }
