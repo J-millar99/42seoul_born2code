@@ -12,79 +12,86 @@
 
 #include "get_next_line.h"
 
-char	*make_oneline(char **backup)
+void	fptr(char **ptr)
 {
-	int		idx;
-	char	*line;
-	char	*old_backup;
-
-	idx = 0;
-	while ((*backup)[idx] != '\n')
-		idx++;
-	old_backup = *backup;
-	line = ft_substr(old_backup, 0, idx + 1);
-	*backup = ft_strdup(&(*backup)[idx + 1]);
-	free(old_backup);
-	return (line);
+	free(*ptr);
+	*ptr = NULL;
 }
 
-void	free_backup(char **backup)
+char	*make_line(char **backup)
 {
-	free(*backup);
-	*backup = NULL;
-}
+	size_t	i;
+	char	*optr;
+	char	*rstr;
 
-int	get_line(int fd, char **buff, char **backup)
-{
-	int		read_size;
-	char	*old_backup;
-
-	read_size = 1;
-	while (!ft_strchr(*backup, '\n') && read_size)
+	i = 0;
+	if (ft_strchr(*backup, '\n'))
 	{
-		read_size = read(fd, *buff, BUFFER_SIZE);
-		if (read_size < 0)
-			return (-1);
-		(*buff)[read_size] = '\0';
-		old_backup = *backup;
-		*backup = ft_strjoin(old_backup, *buff);
-		free(old_backup);
+		while ((*backup)[i] != '\n')
+			++i;
+		optr = *backup;
+		rstr = ft_substr(optr, 0, i + 1);
+		*backup = ft_strdup(*backup + i + 1);
+		if (!*backup && rstr)
+			fptr(&rstr);
+		free(optr);
+		return (rstr);
 	}
-	return (read_size);
+	rstr = ft_strdup(*backup);
+	fptr(backup);
+	return (rstr);
 }
 
-char	*read_line(int fd, char **buff, char **backup)
+char	*read_file(int fd, char **backup, char **buff)
 {
-	int		flag;
-	char	*lastline;
+	int		rbyte;
+	char	*tptr;
 
-	flag = get_line(fd, buff, backup);
-	if (flag < 0 || !**backup)
+	rbyte = BUFFER_SIZE;
+	while (!ft_strchr(*backup, '\n') && rbyte)
 	{
-		free_backup(backup);
+		rbyte = read(fd, *buff, BUFFER_SIZE);
+		if (rbyte < 0)
+		{
+			fptr(backup);
+			return (NULL);
+		}
+		(*buff)[rbyte] = '\0';
+		tptr = *backup;
+		*backup = ft_strjoin(*backup, *buff);
+		free(tptr);
+	}
+	if (*backup == NULL)
+		return (NULL);
+	if (!**backup)
+	{
+		fptr(backup);
 		return (NULL);
 	}
-	if (ft_strchr(*backup, '\n'))
-		return (make_oneline(backup));
-	lastline = ft_strdup(*backup);
-	free_backup(backup);
-	return (lastline);
+	return (make_line(&(*backup)));
 }
 
 char	*get_next_line(int fd)
 {
-	char		*result;
-	static char	*backup[OPEN_MAX];
-	char		*buff;
+	static char		*backup;
+	char			*buff;
+	char			*rstr;
 
-	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
+	if (BUFFER_SIZE < 1 || OPEN_MAX < fd || fd < 2)
 		return (NULL);
-	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (buff == NULL)
 		return (NULL);
-	if (!backup[fd])
-		backup[fd] = ft_strdup("\0");
-	result = read_line(fd, &buff, &backup[fd]);
+	if (backup == NULL)
+	{
+		backup = ft_strdup("\0");
+		if (backup == NULL)
+		{
+			free(buff);
+			return (NULL);
+		}
+	}
+	rstr = read_file(fd, &backup, &buff);
 	free(buff);
-	return (result);
+	return (rstr);
 }
