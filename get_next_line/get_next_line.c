@@ -44,8 +44,8 @@ char	*make_line(char **backup)
 
 char	*read_file(int fd, char **backup, char **buff)
 {
-	int		rbyte;
-	char	*tptr;
+	ssize_t		rbyte;
+	char		*tptr;
 
 	rbyte = BUFFER_SIZE;
 	while (!ft_strchr(*backup, '\n') && rbyte)
