@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 18:04:05 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/26 18:06:05 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/04/04 16:38:46 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/04/04 16:38:46 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

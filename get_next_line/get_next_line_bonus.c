@@ -3,88 +3,100 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 18:04:11 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/26 18:09:09 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/04/04 16:38:55 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/04/04 16:38:55 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*make_oneline(char **backup)
+void	fptr(char **ptr)
 {
-	int		idx;
-	char	*line;
-	char	*old_backup;
-
-	idx = 0;
-	while ((*backup)[idx] != '\n')
-		idx++;
-	old_backup = *backup;
-	line = ft_substr(old_backup, 0, idx + 1);
-	*backup = ft_strdup(&(*backup)[idx + 1]);
-	free(old_backup);
-	return (line);
+	free(*ptr);
+	*ptr = NULL;
 }
 
-void	free_backup(char **backup)
+char	*make_line(char **backup)
 {
-	free(*backup);
-	*backup = NULL;
-}
+	size_t	i;
+	char	*optr;
+	char	*rstr;
 
-int	get_line(int fd, char **buff, char **backup)
-{
-	int		read_size;
-	char	*old_backup;
-
-	read_size = 1;
-	while (!ft_strchr(*backup, '\n') && read_size)
-	{
-		read_size = read(fd, *buff, BUFFER_SIZE);
-		if (read_size < 0)
-			return (-1);
-		(*buff)[read_size] = '\0';
-		old_backup = *backup;
-		*backup = ft_strjoin(old_backup, *buff);
-		free(old_backup);
-	}
-	return (read_size);
-}
-
-char	*read_line(int fd, char **buff, char **backup)
-{
-	int		flag;
-	char	*lastline;
-
-	flag = get_line(fd, buff, backup);
-	if (flag < 0 || !**backup)
-	{
-		free_backup(backup);
-		return (NULL);
-	}
+	i = 0;
 	if (ft_strchr(*backup, '\n'))
-		return (make_oneline(backup));
-	lastline = ft_strdup(*backup);
-	free_backup(backup);
-	return (lastline);
+	{
+		while ((*backup)[i] != '\n')
+			++i;
+		optr = *backup;
+		rstr = ft_substr(optr, 0, i + 1);
+		*backup = ft_strdup(*backup + i + 1);
+		if (!*backup && rstr)
+			fptr(&rstr);
+		free(optr);
+		return (rstr);
+	}
+	rstr = ft_strdup(*backup);
+	if (!rstr)
+	{
+		fptr(backup);
+		return (0);
+	}
+	fptr(backup);
+	return (rstr);
+}
+
+char	*read_file(int fd, char **backup, char **buff)
+{
+	int		rbyte;
+	char	*tptr;
+
+	rbyte = BUFFER_SIZE;
+	while (!ft_strchr(*backup, '\n') && rbyte)
+	{
+		rbyte = read(fd, *buff, BUFFER_SIZE);
+		if (rbyte < 0)
+		{
+			fptr(backup);
+			return (0);
+		}
+		(*buff)[rbyte] = '\0';
+		tptr = *backup;
+		*backup = ft_strjoin(*backup, *buff);
+		free(tptr);
+		if (!*backup)
+			return (0);
+	}
+	if (!**backup)
+	{
+		fptr(backup);
+		return (0);
+	}
+	return (make_line(&(*backup)));
 }
 
 char	*get_next_line(int fd)
 {
-	char		*result;
-	static char	*backup[OPEN_MAX];
-	char		*buff;
+	static char		*backup[OPEN_MAX];
+	char			*buff;
+	char			*result;
 
-	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
-		return (NULL);
-	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (buff == NULL)
-		return (NULL);
+	if (BUFFER_SIZE < 1 || OPEN_MAX < fd || fd < 0)
+		return (0);
+	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!buff)
+		return (0);
 	if (!backup[fd])
-		backup[fd] = ft_strdup("\0");
-	result = read_line(fd, &buff, &backup[fd]);
+	{
+		backup[fd] = ft_strdup("");
+		if (!backup[fd])
+		{
+			free(buff);
+			return (0);
+		}
+	}
+	result = read_file(fd, &backup[fd], &buff);
 	free(buff);
 	return (result);
 }

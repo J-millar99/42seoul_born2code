@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 11:17:58 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/26 18:03:37 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/04/04 16:39:13 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/04/04 16:39:13 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,19 @@ char	*make_line(char **backup)
 		return (rstr);
 	}
 	rstr = ft_strdup(*backup);
+	if (!rstr)
+	{
+		fptr(backup);
+		return (0);
+	}
 	fptr(backup);
 	return (rstr);
 }
 
 char	*read_file(int fd, char **backup, char **buff)
 {
-	ssize_t		rbyte;
-	char		*tptr;
+	int		rbyte;
+	char	*tptr;
 
 	rbyte = BUFFER_SIZE;
 	while (!ft_strchr(*backup, '\n') && rbyte)
@@ -54,19 +59,19 @@ char	*read_file(int fd, char **backup, char **buff)
 		if (rbyte < 0)
 		{
 			fptr(backup);
-			return (NULL);
+			return (0);
 		}
 		(*buff)[rbyte] = '\0';
 		tptr = *backup;
 		*backup = ft_strjoin(*backup, *buff);
 		free(tptr);
+		if (!*backup)
+			return (0);
 	}
-	if (*backup == NULL)
-		return (NULL);
 	if (!**backup)
 	{
 		fptr(backup);
-		return (NULL);
+		return (0);
 	}
 	return (make_line(&(*backup)));
 }
@@ -75,23 +80,23 @@ char	*get_next_line(int fd)
 {
 	static char		*backup;
 	char			*buff;
-	char			*rstr;
+	char			*result;
 
-	if (BUFFER_SIZE < 1 || OPEN_MAX < fd || fd < 2)
-		return (NULL);
+	if (BUFFER_SIZE < 1 || OPEN_MAX < fd || fd < 0)
+		return (0);
 	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (buff == NULL)
-		return (NULL);
-	if (backup == NULL)
+	if (!buff)
+		return (0);
+	if (!backup)
 	{
-		backup = ft_strdup("\0");
-		if (backup == NULL)
+		backup = ft_strdup("");
+		if (!backup)
 		{
 			free(buff);
-			return (NULL);
+			return (0);
 		}
 	}
-	rstr = read_file(fd, &backup, &buff);
+	result = read_file(fd, &backup, &buff);
 	free(buff);
-	return (rstr);
+	return (result);
 }

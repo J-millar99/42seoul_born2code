@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 18:09:11 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/26 18:02:07 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/04/04 16:39:18 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/04/04 16:39:18 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 100
 # endif
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
 # include <limits.h>
-# define OPEN_MAX 10000
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);

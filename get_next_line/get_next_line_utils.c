@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 15:35:27 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/03/26 17:47:52 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/04/04 16:39:05 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/04/04 16:39:05 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*ft_strchr(const char *s, int c)
 {
+	if (!s)
+		return (NULL);
 	while (*s != (char)c)
 	{
 		if (!*s)
@@ -47,6 +49,8 @@ char	*ft_strdup(const char *s1)
 	size_t	s1_len;
 	char	*dupstr;
 
+	if (!s1)
+		return (NULL);
 	s1_len = 0;
 	while (s1[s1_len] != 0)
 		s1_len++;
@@ -63,7 +67,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	s2_len;
 	char	*jstr;
 
-	if (!s1 && !s2)
+	if (!s1 || !s2)
 		return (NULL);
 	s1_len = 0;
 	s2_len = 0;
@@ -74,8 +78,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	jstr = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (!jstr)
 		return (NULL);
-	ft_memcpy(jstr, s1, s1_len);
-	ft_memcpy(jstr + s1_len, s2, s2_len);
+	if (s1)
+		ft_memcpy(jstr, s1, s1_len);
+	if (s2)
+		ft_memcpy(jstr + s1_len, s2, s2_len);
 	jstr[s1_len + s2_len] = '\0';
 	return (jstr);
 }
