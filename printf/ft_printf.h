@@ -16,8 +16,15 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
 
 size_t	ft_strlen(const char *s);
+void	p_char(va_list *vlist);
+void	p_str(va_list *vlist);
+void	p_pointer(va_list *vlist);
+void	p_decimal(va_list *vlist);
+void	p_unsigned(va_list *vlist);
+void	p_hex(va_list *vlist);
+void	p_capital_hex(va_list *vlist);
+void	p_percent_sign(va_list *vlist);
 
 #endif

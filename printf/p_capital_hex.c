@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_pointer.c                                        :+:      :+:    :+:   */
+/*   p_capital_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 00:25:33 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/08 00:25:33 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/04/08 01:06:33 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/04/08 01:06:33 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	check_cnt(unsigned long long n)
+static int	check_cnt(int n)
 {
 	int		cnt;
 
@@ -27,18 +27,17 @@ static int	check_cnt(unsigned long long n)
 	return (cnt);
 }
 
-void	make_address(unsigned long long addr)
+void	make_hex_uppercase(unsigned int n)
 {
 	char	numarr[8];
 	int		cnt;
 
-	cnt = check_cnt(addr);
+	cnt = check_cnt(n);
 	numarr[cnt] = '\0';
-	write(1, "0x", 2);
 	while (cnt > 0)
 	{
-		numarr[cnt - 1] = "0123456789abcdef"[addr % 16];
-		addr /= 10;
+		numarr[cnt - 1] = "0123456789ABCDEF"[n % 16];
+		n /= 10;
 		cnt--;
 	}
 	while (numarr[cnt])
@@ -48,10 +47,10 @@ void	make_address(unsigned long long addr)
 	}
 }
 
-void	p_pointer(va_list *vlist)
+void	p_capital_hex(va_list *vlist)
 {
-	unsigned long long	addr;
+	unsigned int	num;
 
-	addr = va_arg(*vlist, unsigned long long);
-	make_address(addr);
+	num = va_arg(*vlist, unsigned int);
+	make_hex_uppercase(num);
 }

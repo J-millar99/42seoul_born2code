@@ -15,25 +15,18 @@ CC = cc
 CFLAG = -Wall -Wextra -Werror
 
 
-SRCS_P =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c	\
-			ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c	\
-			ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c	\
-			ft_putendl_fd.c	ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c	\
-			ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c	\
-			ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c	\
-			ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c	\
+SRCS_M = ft_printf.c p_char.c p_str.c p_pointer.c p_decimal.c p_unsigned.c \
+		p_hex.c p_capital_hex.c p_percent_sign.c
 
-SRCS_B =	ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c	\
-			ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c	\
-			ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c	\
+#SRCS_B
 
-OBJS_P = $(SRCS_P:.c=.o)
-OBJS_B = $(SRCS_B:.c=.o)
+OBJS_M = $(SRCS_M:.c=.o)
+#OBJS_B = $(SRCS_B:.c=.o)
 
 ifdef FLAG
-    OBJS = $(OBJS_P) $(OBJS_B)
+    OBJS = $(OBJS_M) $(OBJS_B)
 else
-    OBJS = $(OBJS_P)
+    OBJS = $(OBJS_M)
 endif
 
 %.o : %.c
@@ -45,7 +38,7 @@ $(NAME) : $(OBJS)
 all : $(NAME)
 
 clean :
-	rm -rf $(OBJS_P) $(OBJS_B)
+	rm -rf $(OBJS_M) $(OBJS_B)
 
 fclean : clean
 	rm -rf $(NAME)

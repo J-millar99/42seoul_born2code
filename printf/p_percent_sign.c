@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_str.c                                            :+:      :+:    :+:   */
+/*   p_percent_sign.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 00:04:40 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/08 00:04:40 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/04/08 01:07:36 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/04/08 01:07:36 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	p_str(va_list *vlist)
+void	p_percent_sign(va_list *vlist)
 {
-	char	*str;
+	char	p_sign;
 
-	str = va_arg(*vlist, char *);
-	write(1, str, ft_strlen(str));
+	p_sign = va_arg(*vlist, int);
+	write(1, &p_sign, 1);
 }

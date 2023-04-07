@@ -36,18 +36,25 @@ size_t	read_format(const char **format)
 	return (2);
 }
 
-void	p_char(va_list *vlist)
-{
-	int		c;
-
-	c = va_arg(*vlist, char *);
-	write(1, c, 3);
-}
-
 void	print_format(va_list *vlist, const char **format)
 {
-	if (**format == 's')
+	if (**format == 'c')
 		p_char(&(*vlist));
+	else if (**format == 's')
+		p_str(&(*vlist));
+	else if (**format == 'p')
+		p_pointer(&(*vlist));
+	else if (**format == 'd' || **format == 'i')
+		p_decimal(&(*vlist));
+	else if (**format == 'u')
+		p_unsigned(&(*vlist));
+	else if (**format == 'x')
+		p_hex(&(*vlist));
+	else if (**format == 'X')
+		p_capital_hex(&(*vlist));
+	else if (**format == '%')
+		p_percent_sign(&(*vlist));
+	return ;
 }
 
 int	ft_printf(const char *format, ...)
@@ -62,11 +69,4 @@ int	ft_printf(const char *format, ...)
 	print_format(&vlist, &format);
 	va_end(vlist);
 	return (plen);
-}
-
-int main()
-{
-	char	*ptr = "123";
-	ft_printf("%s", ptr);
-	return 0;
 }
