@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static int	check_cnt(int n)
+int	check_len(int n)
 {
 	int		cnt;
 
@@ -27,35 +27,27 @@ static int	check_cnt(int n)
 	return (cnt);
 }
 
-void	ft_putnbr(int n)
+void	print_num(int num)
 {
-	char	numarr[11];
-	int		cnt;
-
-	cnt = check_cnt(n);
-	if (n < 0)
-		write(1, "-", 1);
-	numarr[cnt] = '\0';
-	while (cnt > 0)
+	while (num != 0)
 	{
-		if (n >= 0)
-			numarr[cnt - 1] = (n % 10) + '0';
+		if (num >= 10)
+			print_pointer(num / 10);
 		else
-			numarr[cnt - 1] = (n % 10 * -1) + '0';
-		n /= 10;
-		cnt--;
-	}
-	while (numarr[cnt])
-	{
-		write(1, &numarr[cnt], 1);
-		cnt++;
+			write(1, &"0123456789"[num % 10], 1);
+		num /= 10;
 	}
 }
 
-void	p_decimal(va_list *vlist)
+int	p_decimal(int num)
 {
-	int		num;
+	int		num_len;
 
-	num = va_arg(*vlist, int);
-	ft_putnbr(num);
+	if (num >= 0)
+		num_len = 0;
+	else
+		num_len = write(1, "-", 1);
+	num_len += check_len(num);
+	print_num(num);
+	return (num_len);
 }

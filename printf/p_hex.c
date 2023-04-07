@@ -12,45 +12,55 @@
 
 #include "ft_printf.h"
 
-static int	check_cnt(int n)
+static int	check_len(int num)
 {
 	int		cnt;
 
 	cnt = 0;
-	if (n == 0)
+	if (num == 0)
 		return (1);
-	while (n != 0)
+	while (num != 0)
 	{
-		n /= 16;
+		num /= 16;
 		cnt++;
 	}
 	return (cnt);
 }
 
-void	make_hex_lowercase(unsigned int n)
+void	print_lowercase_hex_num(unsigned int num)
 {
-	char	numarr[8];
-	int		cnt;
-
-	cnt = check_cnt(n);
-	numarr[cnt] = '\0';
-	while (cnt > 0)
+	while (num != 0)
 	{
-		numarr[cnt - 1] = "0123456789abcdef"[n % 16];
-		n /= 10;
-		cnt--;
+		if (num >= 16)
+			print_pointer(num / 16);
+		else
+			write(1, "0123456789abcdef"[num % 16], 1);
+		num /= 16;
 	}
-	while (numarr[cnt])
+
+}
+
+void	print_uppercase_hex_num(unsigned int num)
+{
+	while (num != 0)
 	{
-		write(1, &numarr[cnt], 1);
-		cnt++;
+		if (num >= 16)
+			print_pointer(num / 16);
+		else
+			write(1, "0123456789ABCDEF"[num % 16], 1);
+		num /= 16;
 	}
 }
 
-void	p_hex(va_list *vlist)
+int	p_hex(unsigned int num, const char c_s)
 {
-	unsigned int	num;
+	int	hex_len;
 
-	num = va_arg(*vlist, unsigned int);
-	make_hex_lowercase(num);
+	hex_len = 0;
+	hex_len += check_len(num);
+	if (c_s == 'x')
+		print_lowercase_hex_num(num);
+	else
+		print_uppercase_hex_num(num);
+	return (hex_len);
 }

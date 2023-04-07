@@ -12,13 +12,11 @@
 
 #include "ft_printf.h"
 
-static int	check_cnt(unsigned long long n)
+int	check_len(unsigned long long n)
 {
 	int		cnt;
 
 	cnt = 0;
-	if (n == 0)
-		return (1);
 	while (n != 0)
 	{
 		n /= 16;
@@ -27,31 +25,33 @@ static int	check_cnt(unsigned long long n)
 	return (cnt);
 }
 
-void	make_address(unsigned long long addr)
+void	print_pointer(unsigned long long num)
 {
-	char	numarr[8];
-	int		cnt;
-
-	cnt = check_cnt(addr);
-	numarr[cnt] = '\0';
-	write(1, "0x", 2);
-	while (cnt > 0)
+	while (num != 0)
 	{
-		numarr[cnt - 1] = "0123456789abcdef"[addr % 16];
-		addr /= 10;
-		cnt--;
-	}
-	while (numarr[cnt])
-	{
-		write(1, &numarr[cnt], 1);
-		cnt++;
+		if (num >= 16)
+			print_pointer(num / 16);
+		else
+			write(1, "0123456789abcdef"[num % 16], 1);
+		num /= 16;
 	}
 }
 
-void	p_pointer(va_list *vlist)
+int	p_pointer(unsigned long long num)
 {
-	unsigned long long	addr;
+	int	pointer_len;
 
-	addr = va_arg(*vlist, unsigned long long);
-	make_address(addr);
+	pointer_len = 0;
+	pointer_len += check_len(num);
+	if (pointer_len == 0)
+	{
+		write(1, "(nil)", 5);
+		pointer_len = 5;
+	}
+	else
+	{
+		pointer_len += write(1, "0x", 2);
+		print_pointer(num);
+	}
+	return (pointer_len);
 }

@@ -12,10 +12,9 @@
 
 #include "ft_printf.h"
 
-void	p_str(va_list *vlist)
+int	p_str(char *str)
 {
-	char	*str;
-
-	str = va_arg(*vlist, char *);
-	write(1, str, ft_strlen(str));
+	while (!*str)
+		write(1, *str, 1);
+	return (ft_strlen(str));
 }

@@ -12,45 +12,39 @@
 
 #include "ft_printf.h"
 
-static int	check_cnt(unsigned int n)
+int	check_len(unsigned int num)
 {
 	int		cnt;
 
 	cnt = 0;
-	if (n == 0)
+	if (num == 0)
 		return (1);
-	while (n != 0)
+	while (num != 0)
 	{
-		n /= 10;
+		num /= 10;
 		cnt++;
 	}
 	return (cnt);
 }
 
-void	ft_putnbr(unsigned int n)
+void	print_unsigned_num(unsigned int num)
 {
-	char	numarr[11];
-	int		cnt;
-
-	cnt = check_cnt(n);
-	numarr[cnt] = '\0';
-	while (cnt > 0)
+	while (num != 0)
 	{
-		numarr[cnt - 1] = (n % 10) + '0';
-		n /= 10;
-		cnt--;
-	}
-	while (numarr[cnt])
-	{
-		write(1, &numarr[cnt], 1);
-		cnt++;
+		if (num >= 10)
+			print_pointer(num / 10);
+		else
+			write(1, &"0123456789"[num % 10], 1);
+		num /= 10;
 	}
 }
 
-void	p_insigned(va_list *vlist)
+int	p_unsigned(unsigned int num)
 {
-	unsigned int	num;
+	unsigned int	num_len;
 
-	num = va_arg(*vlist, unsigned int);
-	ft_putnbr(num);
+	num_len = 0;
+	num_len += check_len(num);
+	print_unsigned_num(num);
+	return (num_len);
 }

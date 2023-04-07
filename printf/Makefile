@@ -15,8 +15,7 @@ CC = cc
 CFLAG = -Wall -Wextra -Werror
 
 
-SRCS_M = ft_printf.c p_char.c p_str.c p_pointer.c p_decimal.c p_unsigned.c \
-		p_hex.c p_capital_hex.c p_percent_sign.c
+SRCS_M = ft_printf.c p_str.c p_pointer.c p_decimal.c p_unsigned.c p_hex.c
 
 #SRCS_B
 

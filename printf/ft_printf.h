@@ -18,13 +18,10 @@
 # include <stdarg.h>
 
 size_t	ft_strlen(const char *s);
-void	p_char(va_list *vlist);
-void	p_str(va_list *vlist);
-void	p_pointer(va_list *vlist);
-void	p_decimal(va_list *vlist);
-void	p_unsigned(va_list *vlist);
-void	p_hex(va_list *vlist);
-void	p_capital_hex(va_list *vlist);
-void	p_percent_sign(va_list *vlist);
+int	p_str(char *str);
+int	p_pointer(unsigned long long num);
+int	p_decimal(int num);
+int	p_unsigned(unsigned int num);
+int	p_hex(unsigned int num, const char c_s);
 
 #endif

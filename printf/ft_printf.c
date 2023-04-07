@@ -12,61 +12,53 @@
 
 #include "ft_printf.h"
 
-int	check_conversion_specifier(char c)
+int	p_char(int c)
 {
-	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u'\
-	|| c == 'x' || c == 'X' || c == '%')
-		return (c);
-	return (0);
+	write(1, &c, 1);
+	return (1);
 }
 
-size_t	read_format(const char **format)
+int	p_conversion_specifier(va_list vlist, const char c_s)
 {
-	if (!**format)
-	{
-		write(1, "\n", 1);
-		return (0);
-	}
-	if (**format == '%')
-		(*format)++;
-	else
-		return (-1);
-	if (!check_conversion_specifier(**format))
-		return (-1);
-	return (2);
-}
+	int	print_num;
 
-void	print_format(va_list *vlist, const char **format)
-{
-	if (**format == 'c')
-		p_char(&(*vlist));
-	else if (**format == 's')
-		p_str(&(*vlist));
-	else if (**format == 'p')
-		p_pointer(&(*vlist));
-	else if (**format == 'd' || **format == 'i')
-		p_decimal(&(*vlist));
-	else if (**format == 'u')
-		p_unsigned(&(*vlist));
-	else if (**format == 'x')
-		p_hex(&(*vlist));
-	else if (**format == 'X')
-		p_capital_hex(&(*vlist));
-	else if (**format == '%')
-		p_percent_sign(&(*vlist));
-	return ;
+	if (c_s == 'c' || c_s == '%')
+		print_num = p_char(va_arg(vlist, int));
+	else if (c_s == 's')
+		print_num = p_str(va_arg(vlist, char *));
+	else if (c_s == 'p')
+		print_num = p_pointer(va_arg(vlist, unsigned long long));
+	else if (c_s == 'd' || c_s == 'i')
+		print_num = p_decimal(va_arg(vlist, int));
+	else if (c_s == 'u')
+		print_num = p_unsigned(va_arg(vlist, unsigned int));
+	else if (c_s == 'x' || c_s == 'X')
+		print_num = p_hex(va_arg(vlist, unsigned int), const char c_s);
+	return (print_num);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	vlist;
-	size_t	plen;
+	int		plen;
+	int		i;
 
-	if (!format)
-		return (-1);
+	i = 0;
+	plen = 0;
 	va_start(vlist, format);
-	plen = read_format(&format);
-	print_format(&vlist, &format);
+	while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			++i;
+			plen += p_conversion_specifier(vlist, format[i]);
+		}
+		else
+		{
+			plen += p_char(format[i]);
+			++i;
+		}
+	}
 	va_end(vlist);
 	return (plen);
 }
