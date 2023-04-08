@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	check_len(int n)
+int	check_decimal_len(int n)
 {
 	int		cnt;
 
@@ -27,15 +27,27 @@ int	check_len(int n)
 	return (cnt);
 }
 
-void	print_num(int num)
+void	print_decimal_num(int num)
 {
-	while (num != 0)
+	if (num >= 0)
 	{
 		if (num >= 10)
-			print_pointer(num / 10);
+		{
+			print_decimal_num(num / 10);
+			print_decimal_num(num % 10);
+		}
 		else
 			write(1, &"0123456789"[num % 10], 1);
-		num /= 10;
+	}
+	else
+	{
+		if (num <= -10)
+		{
+			print_decimal_num(num / 10);
+			print_decimal_num(num % 10);
+		}
+		else
+			write(1, &"0123456789"[num % 10 * -1], 1);
 	}
 }
 
@@ -47,7 +59,7 @@ int	p_decimal(int num)
 		num_len = 0;
 	else
 		num_len = write(1, "-", 1);
-	num_len += check_len(num);
-	print_num(num);
+	num_len += check_decimal_len(num);
+	print_decimal_num(num);
 	return (num_len);
 }

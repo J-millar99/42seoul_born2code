@@ -14,7 +14,15 @@
 
 int	p_str(char *str)
 {
-	while (!*str)
-		write(1, *str, 1);
-	return (ft_strlen(str));
+	ssize_t	idx;
+
+	if (!str)
+		return (write(1, "(null)", 6));
+	idx = 0;
+	while (str[idx])
+	{
+		write(1, &str[idx], 1);
+		++idx;
+	}
+	return (idx);
 }

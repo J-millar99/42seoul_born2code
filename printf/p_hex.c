@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static int	check_len(int num)
+int	check_hex_len(int num)
 {
 	int		cnt;
 
@@ -29,27 +29,24 @@ static int	check_len(int num)
 
 void	print_lowercase_hex_num(unsigned int num)
 {
-	while (num != 0)
+	if (num >= 16)
 	{
-		if (num >= 16)
-			print_pointer(num / 16);
-		else
-			write(1, "0123456789abcdef"[num % 16], 1);
-		num /= 16;
+		print_lowercase_hex_num(num / 16);
+		print_lowercase_hex_num(num % 16);
 	}
-
+	else
+		write(1, &"0123456789abcdef"[num % 16], 1);
 }
 
 void	print_uppercase_hex_num(unsigned int num)
 {
-	while (num != 0)
+	if (num >= 16)
 	{
-		if (num >= 16)
-			print_pointer(num / 16);
-		else
-			write(1, "0123456789ABCDEF"[num % 16], 1);
-		num /= 16;
+		print_uppercase_hex_num(num / 16);
+		print_uppercase_hex_num(num % 16);
 	}
+	else
+		write(1, &"0123456789ABCDEF"[num % 16], 1);
 }
 
 int	p_hex(unsigned int num, const char c_s)
@@ -57,7 +54,7 @@ int	p_hex(unsigned int num, const char c_s)
 	int	hex_len;
 
 	hex_len = 0;
-	hex_len += check_len(num);
+	hex_len += check_hex_len(num);
 	if (c_s == 'x')
 		print_lowercase_hex_num(num);
 	else

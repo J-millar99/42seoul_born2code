@@ -14,15 +14,14 @@
 
 int	p_char(int c)
 {
-	write(1, &c, 1);
-	return (1);
+	return (write(1, &c, 1));
 }
 
 int	p_conversion_specifier(va_list vlist, const char c_s)
 {
 	int	print_num;
 
-	if (c_s == 'c' || c_s == '%')
+	if (c_s == 'c')
 		print_num = p_char(va_arg(vlist, int));
 	else if (c_s == 's')
 		print_num = p_str(va_arg(vlist, char *));
@@ -33,7 +32,9 @@ int	p_conversion_specifier(va_list vlist, const char c_s)
 	else if (c_s == 'u')
 		print_num = p_unsigned(va_arg(vlist, unsigned int));
 	else if (c_s == 'x' || c_s == 'X')
-		print_num = p_hex(va_arg(vlist, unsigned int), const char c_s);
+		print_num = p_hex(va_arg(vlist, unsigned int), c_s);
+	else if (c_s == '%')
+		print_num = write(1, "%", 1);
 	return (print_num);
 }
 
@@ -54,10 +55,8 @@ int	ft_printf(const char *format, ...)
 			plen += p_conversion_specifier(vlist, format[i]);
 		}
 		else
-		{
 			plen += p_char(format[i]);
-			++i;
-		}
+		i++;
 	}
 	va_end(vlist);
 	return (plen);
