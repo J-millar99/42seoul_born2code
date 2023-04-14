@@ -46,10 +46,7 @@ int	ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] == '%')
-		{
-			++i;
-			plen += p_conversion_specifier(vlist, format[i]);
-		}
+			plen += p_conversion_specifier(vlist, format[++i]);
 		else
 			plen += p_char(format[i]);
 		i++;

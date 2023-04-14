@@ -15,9 +15,8 @@ CC = cc
 CFLAG = -Wall -Wextra -Werror
 
 
-SRCS_M = ft_printf.c p_str.c p_pointer.c p_decimal.c p_unsigned.c p_hex.c
-
-#SRCS_B
+SRCS_M = ft_printf.c p_char.c p_str.c p_pointer.c p_decimal.c p_unsigned.c \
+		p_hex.c
 
 OBJS_M = $(SRCS_M:.c=.o)
 #OBJS_B = $(SRCS_B:.c=.o)

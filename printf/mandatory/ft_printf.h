@@ -19,8 +19,8 @@
 
 int		ft_printf(const char *format, ...);
 int		p_conversion_specifier(va_list vlist, const char c_s);
-int		p_char(int c);
 size_t	ft_strlen(const char *s);
+int		p_char(int c);
 int		check_decimal_len(int n);
 void	print_decimal_num(int num);
 int		p_decimal(int num);
