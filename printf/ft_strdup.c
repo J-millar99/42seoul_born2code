@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_c_bonus.c                                     :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 15:17:37 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/16 15:17:37 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 01:59:27 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 01:59:27 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "libft.h"
 
-/*
-	%c에 동작하는 flag는 'width', '-'
-	다른 플래그는 무시된다
-	'-'가 존재하지 않으면 앞에 패딩, 존재하면 뒤에 패딩
-*/
-
-void	type_c(t_print *ps)
+char	*ft_strdup(const char *s1)
 {
-	char	c;
+	size_t	s1_len;
+	char	*dupstr;
 
-	c = va_arg(ps->vlist, int);
-	if (ps->width && !ps->minus)
-		padding(ps, 1);
-	ps->plen += ft_putchar_fd(c, 1);
-	if (ps->width && ps->minus)
-		padding(ps, 1);
+	s1_len = ft_strlen(s1);
+	dupstr = (char *)malloc(sizeof(char) * (s1_len + 1));
+	if (!dupstr)
+		return (NULL);
+	ft_memcpy(dupstr, s1, s1_len + 1);
+	return (dupstr);
 }

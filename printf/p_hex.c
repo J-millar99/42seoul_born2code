@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	check_hex_len(int num)
+int	check_hex_len(unsigned int num)
 {
 	int		cnt;
 

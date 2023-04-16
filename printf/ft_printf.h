@@ -24,7 +24,7 @@ int		p_char(int c);
 int		check_decimal_len(int n);
 void	print_decimal_num(int num);
 int		p_decimal(int num);
-int		check_hex_len(int num);
+int		check_hex_len(unsigned int num);
 void	print_lowercase_hex_num(unsigned int num);
 void	print_uppercase_hex_num(unsigned int num);
 int		p_hex(unsigned int num, const char c_s);

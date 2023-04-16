@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_c_bonus.c                                     :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 15:17:37 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/16 15:17:37 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 01:58:50 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 01:58:50 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "libft.h"
 
-/*
-	%c에 동작하는 flag는 'width', '-'
-	다른 플래그는 무시된다
-	'-'가 존재하지 않으면 앞에 패딩, 존재하면 뒤에 패딩
-*/
-
-void	type_c(t_print *ps)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char	c;
+	size_t			idx;
+	unsigned char	*temp_dst;
+	unsigned char	*temp_src;
 
-	c = va_arg(ps->vlist, int);
-	if (ps->width && !ps->minus)
-		padding(ps, 1);
-	ps->plen += ft_putchar_fd(c, 1);
-	if (ps->width && ps->minus)
-		padding(ps, 1);
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	idx = 0;
+	temp_dst = (unsigned char *)dst;
+	temp_src = (unsigned char *)src;
+	while (idx < n)
+	{
+		temp_dst[idx] = temp_src[idx];
+		++idx;
+	}
+	return (dst);
 }

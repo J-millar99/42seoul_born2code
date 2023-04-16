@@ -1,8 +1,10 @@
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
+#include <stdio.h>
 
 int main()
 {
-	char	*str;
-	str = NULL;
-	printf("%012p\n", str);
+	char	c;
+
+	printf(" :%d\n", printf("%x", -1));
+	printf(" :%d\n", ft_printf("%x",-1));
 }

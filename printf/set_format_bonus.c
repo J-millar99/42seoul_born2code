@@ -15,10 +15,12 @@
 /*
 	%기호 다음 기호(플래그)를 확인한다
 	플래그가 맞다면 print_Info구조체의 변수를 조작하고
-	숫자라면 '.'을 기준으로 width와 precision을 조정한다
+	숫자라면 '.'을 만나기 전과 후로 width와 precision을 조정한다
 
-	'0'은 '.', '-'에 의해 무시되므로, '.'와 '-'가 모두 0일때만 조정한다
-	' '은 '+'에 의해 무시되므로 '+'가 0일때 동작할 수 있도록 한다
+	37: '0'은 '.', '-'에 의해 무시되므로, '.'와 '-'가 모두 0일때만 조정한다
+		"0-", "-0" 주의
+	41: ' '은 '+'에 의해 무시되므로 '+'가 0일때 동작할 수 있도록 한다
+		" +", "+ " 주의
 */
 
 const char	*set_flags(t_print *print_Info, const char *f)
@@ -42,7 +44,7 @@ const char	*set_flags(t_print *print_Info, const char *f)
 			f = handle_width(print_Info, f);
 		f++;
 	}
-	if ((!check_type(print_Info, *f)))
+	if (*f && (!check_type(print_Info, *f)))
 		print_Info->plen += ft_putchar_fd(*f, 1);
 	return (f);
 }
@@ -75,20 +77,20 @@ const char	*handle_width(t_print *print_Info, const char *f)
 	return (f);
 }
 
+/*
+	90, 92: 무시되는 플래그 재초기화
+*/
+
 int	check_type(t_print *print_Info, const char sp)
 {
-	t_type_ptr	type_arr[9];
-	int			idx;
+	static t_type_ptr	type_arr[9] = {type_c, type_s, type_p, type_d,
+		type_i, type_u, type_lower_x, type_upper_x, type_percent};
+	int					idx;
 
-	type_arr[0] = type_c;
-	type_arr[1] = type_s;
-	type_arr[2] = type_p;
-	type_arr[3] = type_d;
-	type_arr[4] = type_i;
-	type_arr[5] = type_u;
-	type_arr[6] = type_lower_x;
-	type_arr[7] = type_upper_x;
-	type_arr[8] = type_percent;
+	if (print_Info->zero && (print_Info->dot || print_Info->minus))
+		print_Info->zero = 0;
+	if (print_Info->space && print_Info->plus)
+		print_Info->space = 0;
 	if (ft_strchr(TYPE, sp))
 	{
 		idx = type_num(TYPE, sp);
@@ -98,7 +100,7 @@ int	check_type(t_print *print_Info, const char sp)
 		return (1);
 	}
 	else
-		return(0);
+		return (0);
 }
 
 int	type_num(char *type, char sp)

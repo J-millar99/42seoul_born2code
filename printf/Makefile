@@ -18,9 +18,10 @@ CFLAG = -Wall -Wextra -Werror
 SRCS_M = ft_printf.c p_char.c p_str.c p_pointer.c p_decimal.c p_unsigned.c \
 		p_hex.c
 SRCS_B = type_c_bonus.c type_d_bonus.c type_i_bonus.c type_p_bonus.c \
-		type_s_bonus.c type_x_bonus.c type_percent_bonus.c utils_bonus.c \
+		type_s_bonus.c type_x_bonus.c type_percent_bonus.c  utils_bonus.c \
 		set_format_bonus.c padding_bonus.c ft_atoi.c ft_isdigit.c ft_strlen.c \
-		ft_substr.c ft_strchr.c ft_putchar_fd.c ft_putnbr_fd.c ft_putstr_fd.c
+		ft_substr.c ft_strchr.c ft_putchar_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
+		ft_strdup.c ft_memcpy.c
 
 OBJS_M = $(SRCS_M:.c=.o)
 OBJS_B = $(SRCS_B:.c=.o)
