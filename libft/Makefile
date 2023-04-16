@@ -27,8 +27,8 @@ SRCS_B =	ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c	\
 			ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c	\
 			ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c	\
 
-OBJS_P = $(SRCS_P:.c=.o)
-OBJS_B = $(SRCS_B:.c=.o)
+OBJS_P = $(addprefix mandatory/srcs/, ${SRCS_P:.c=.o})
+OBJS_B = $(addprefix bonus/srcs/, ${SRCS_B:.c=.o})
 
 ifdef FLAG
     OBJS = $(OBJS_P) $(OBJS_B)
@@ -37,7 +37,7 @@ else
 endif
 
 %.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@ -I./
+	$(CC) $(CFLAG) -c $< -o $@ -I./bonus/includes
 
 $(NAME) : $(OBJS)
 	ar crs $@ $^
@@ -52,7 +52,7 @@ fclean : clean
 
 re :
 	make fclean
-	make all
+	make FLAG=1 all
 
 bonus :
 	@make FLAG=1 all
