@@ -14,26 +14,30 @@ NAME = libftprintf.a
 CC = cc
 CFLAG = -Wall -Wextra -Werror
 
+SRCS_M = ft_printf.c p_char.c p_str.c p_pointer.c p_decimal.c p_unsigned.c p_hex.c
 
-SRCS_M = ft_printf.c p_char.c p_str.c p_pointer.c p_decimal.c p_unsigned.c \
-		p_hex.c
-SRCS_B = ft_printf_bonus.c ft_putchar_fd.c ft_putstr_fd.c ft_atoi.c ft_isdigit.c \
-		ft_memcpy.c ft_strchr.c ft_strdup.c ft_strlen.c ft_substr.c \
-		padding_bonus.c set_format_bonus.c utils_bonus.c type_percent_bonus.c \
-		type_c_bonus.c type_s_bonus.c type_d_bonus.c type_i_bonus.c type_p_bonus.c \
-		type_u_bonus.c type_lower_x_bonus.c type_upper_x_bonus.c
+SRCS_B = ft_printf_bonus.c ft_putchar_fd_bonus.c ft_putstr_fd_bonus.c ft_atoi_bonus.c \
+		ft_isdigit_bonus.c ft_memcpy_bonus.c ft_strchr_bonus.c ft_strdup_bonus.c \
+		ft_strlen_bonus.c ft_substr_bonus.c	padding_bonus.c set_format_bonus.c \
+		utils_bonus.c type_percent_bonus.c type_c_bonus.c type_s_bonus.c \
+		type_d_bonus.c type_i_bonus.c type_p_bonus.c type_u_bonus.c \
+		type_lower_x_bonus.c type_upper_x_bonus.c type_d_flag_bonus.c
 
-OBJS_M = $(SRCS_M:.c=.o)
-OBJS_B = $(SRCS_B:.c=.o)
+OBJS_M = $(addprefix mandatory/srcs/, ${SRCS_M:.c=.o})
+OBJS_B = $(addprefix bonus/srcs/, ${SRCS_B:.c=.o})
+INC_M = -I./mandatory/includes
+INC_B = -I./bonus/includes
 
 ifdef FLAG
-    OBJS = $(OBJS_M) $(OBJS_B)
+    OBJS = $(OBJS_B)
+	INC = $(INC_B)
 else
     OBJS = $(OBJS_M)
+	INC = $(INC_M)
 endif
 
 %.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@
+	$(CC) $(CFLAG) -c $< -o $@ $(INC)
 
 $(NAME) : $(OBJS)
 	ar crs $@ $^
@@ -51,7 +55,6 @@ re :
 	make all
 
 bonus :
-	sleep 5
 	@make FLAG=1 all
 
 .PHONY : all clean fclean re bonus
