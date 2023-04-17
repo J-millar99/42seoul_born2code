@@ -12,23 +12,12 @@
 
 #include "../includes/ft_printf_bonus.h"
 
-/*
-	%가 존재하면 서식 지정자에 맞게 출력할 준비를 하고
-	그렇지 않다면 문자열로 취급해 그대로 출력시킨다
-	
-	33:	printf("%")는 아무것도 출력하지 않기 때문에
-		*(format + 1)와 같이 확인해버리면 else 분기점에서 잘못 출력될 수 있다
-		그래서 %기호가 발견되면 반드시 set_format에서 플래그 여부를 확인한다
-*/
-
-int	check_format(const char *f)
+int	non_sp(const char *f)
 {
 	int		i;
-	int		cnt;
 
-	if (!f)
-		return (0);
-	while (f[i]) // %다음 널문자면 끝
+	i = 0;
+	while (f[i])
 	{
 		if (f[i] == '%')
 		{
@@ -36,7 +25,16 @@ int	check_format(const char *f)
 			if (f[i] == '\0')
 				return (0);
 		}
+		i++;
 	}
+	return (1);
+}
+
+int	not_sp(const char *f)
+{
+	int		i;
+
+	i = 0;
 	while (f[i])
 	{
 		if (f[i] == '%')
@@ -47,7 +45,19 @@ int	check_format(const char *f)
 			if (!ft_strchr(TYPE, f[i]))
 				return (0);
 		}
+		i++;
 	}
+	return (1);
+}
+
+int	check_format(const char *f)
+{
+	int		result;
+
+	if (!f)
+		return (0);
+	if (!not_sp(f) || !non_sp(f))
+		return (0);
 	return (1);
 }
 

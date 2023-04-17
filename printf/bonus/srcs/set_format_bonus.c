@@ -44,8 +44,7 @@ const char	*set_flags(t_print *ps, const char *f)
 			f = handle_width(ps, f);
 		f++;
 	}
-	if (*f && check_type(ps, *f) == 0)
-		ps->plen += ft_putchar_fd(*f, 1);
+	check_type(ps, *f);
 	return (f);
 }
 
@@ -81,7 +80,7 @@ const char	*handle_width(t_print *ps, const char *f)
 	90, 92: 무시되는 플래그 재초기화
 */
 
-int	check_type(t_print *ps, const char sp)
+void	check_type(t_print *ps, const char sp)
 {
 	static t_type_ptr	type_arr[9] = {type_c, type_s, type_p, type_d,
 		type_i, type_u, type_lower_x, type_upper_x, type_percent};
@@ -91,13 +90,8 @@ int	check_type(t_print *ps, const char sp)
 		ps->zero = 0;
 	if (ps->space && ps->plus)
 		ps->space = 0;
-	if (ft_strchr(TYPE, sp))
-	{
-		idx = type_num(TYPE, sp);
-		type_arr[idx](ps);
-		return (1);
-	}
-	return (0);
+	idx = type_num(TYPE, sp);
+	type_arr[idx](ps);
 }
 
 int	type_num(char *type, char sp)
