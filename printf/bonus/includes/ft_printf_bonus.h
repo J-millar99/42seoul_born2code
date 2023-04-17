@@ -44,8 +44,10 @@ void		init_flags(t_print *ps);
 int			type_num(char *type, char sp);
 const char	*set_flags(t_print *ps, const char *f);
 const char	*handle_width(t_print *ps, const char *f);
-int			check_type(t_print *ps, const char sp);
+void		check_type(t_print *ps, const char sp);
 int			check_format(const char *f);
+int			not_sp(const char *f);
+int			non_sp(const char *f);
 
 /*				padding				*/
 void		padding(t_print *ps, int occupied_len);
