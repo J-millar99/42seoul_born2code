@@ -51,10 +51,7 @@ void	ft_putnbr_base_fd(long n, char *base, int fd)
 		return ;
 	base_len = ft_strlen(base);
 	if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
 		n = -n;
-	}
 	if (n >= base_len)
 	{
 		ft_putnbr_base_fd(n / base_len, base, fd);
@@ -64,7 +61,7 @@ void	ft_putnbr_base_fd(long n, char *base, int fd)
 		ft_putchar_fd(base[n], fd);
 }
 
-static int	flag_unbr_len_base(t_print *ps, unsigned int nb, unsigned int base)
+int	flag_unbr_len_base(t_print *ps, unsigned int nb, unsigned int base)
 {
 	int	nb_len;
 
@@ -74,19 +71,15 @@ static int	flag_unbr_len_base(t_print *ps, unsigned int nb, unsigned int base)
 	return (nb_len);
 }
 
-void	unbr_left_padding(t_print *ps, int nb_len, unsigned int nb)
+int	flag_nbr_len_base(int nb, int base)
 {
-	if (ps->dot && ps->zero)
-		ps->zero = 0;
-	if (ps->hash && ps->width && ps->dot && nb > 0 && !ps->minus)
-		ps->width -= 2;
-	if ((ps->width && !ps->minus && !ps->zero)
-		|| (ps->width && ps->dot && !ps->precision && !ps->minus))
+	int		nb_len;
+
+	nb_len = 1;
+	while (nb / base)
 	{
-		if ((ps->dot && ps->precision > nb_len))
-			ps->width -= ps->precision - nb_len;
-		if (ps->width && ps->hash && nb && !ps->dot)
-			nb_len += 2;
-		padding(ps, nb_len);
+		nb = nb / base;
+		nb_len++;
 	}
+	return (nb_len);
 }

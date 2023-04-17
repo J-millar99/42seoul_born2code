@@ -5,6 +5,6 @@ int main()
 {
 	char	c;
 
-	printf(" :%d\n", printf("%x", -1));
-	printf(" :%d\n", ft_printf("%x",-1));
+	printf(" :%d\n", printf("%.c", 'a'));
+	printf(" :%d\n", ft_printf("%.c", 'a'));
 }

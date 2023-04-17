@@ -16,17 +16,17 @@
 	padding은 width만큼 문자를 채우는데, 차지된 길이만큼은 제외한다
 */
 
-void	padding(t_print *print_Info, int occupied_len)
+void	padding(t_print *print_info, int occupied_len)
 {
 	char	space;
 
 	space = ' ';
-	if (print_Info->zero)
+	if (print_info->zero)
 		space = '0';
-	while (occupied_len < print_Info->width)
+	while (print_info->width > occupied_len)
 	{
-		print_Info->plen += ft_putchar_fd(space, 1);
-		occupied_len--;
+		print_info->plen += ft_putchar_fd(space, 1);
+		occupied_len++;
 	}
 }
 
@@ -37,4 +37,9 @@ void	zero_padding(t_print *ps, int max, int min)
 		ps->plen += ft_putchar_fd('0', 1);
 		min++;
 	}
+}
+
+void	nb_zero_padding(t_print *ps)
+{
+	padding(ps, ps->precision);
 }

@@ -52,7 +52,7 @@ void	type_s(t_print	*ps)
 	slen = 0;
 	s = va_arg(ps->vlist, char *);
 	if (!s)
-		return (spec_ston(ps, "(null)"));
+		return (type_ston(ps, "(null)"));
 	if (ps->dot && (ps->precision < (int)ft_strlen(s)))
 		slen = ps->precision;
 	else

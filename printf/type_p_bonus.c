@@ -45,13 +45,13 @@ void	type_p(t_print *ps)
 	ptr = va_arg(ps->vlist, void *);
 	if (ptr == 0)
 		return (type_pton(ps, "(nil)"));
-	ptrlen = unbrlen_base((unsigned long)ptr, 8) + 2;
+	ptrlen = ft_unbrlen_base((unsigned long)ptr, 8) + 2;
 	if (ps->width && !ps->zero && ps->minus)
 		padding(ps, ptrlen);
 	ft_putstr_fd("0x", 1);
 	if (ps->zero)
 		padding(ps, ptrlen);
-	putptr_base_fd((unsigned long)ptr, HEXA, 1);
+	ft_putnbr_base_fd((unsigned long)ptr, HEXA, 1);
 	ps->plen += ptrlen;
 	if (ps->width && ps->minus)
 		padding(ps, ptrlen);

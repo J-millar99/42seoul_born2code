@@ -43,11 +43,6 @@ void	type_u_nminus(t_print *ps, int nb_len, unsigned int nb)
 	ft_putnbr_base_fd(nb, DECI, 1);
 }
 
-void	type_u_zero(t_print *ps)
-{
-	padding(ps, ps->precision);
-}
-
 void	type_u(t_print *ps)
 {
 	unsigned int	nb;
@@ -55,7 +50,7 @@ void	type_u(t_print *ps)
 
 	nb = va_arg(ps->vlist, unsigned int);
 	if (nb == 0 && ps->dot && ps->precision == 0)
-		return (type_u_zero(ps));
+		return (nb_zero_padding(ps));
 	nb_len = flag_unbr_len_base(ps, nb, 10);
 	if (ps->minus)
 		type_u_minus(ps, nb_len, nb);

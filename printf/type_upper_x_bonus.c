@@ -47,7 +47,7 @@ void	type_upper_x(t_print *ps)
 
 	nb = va_arg(ps->vlist, unsigned int);
 	if (nb == 0 && ps->dot && ps->precision == 0)
-		return (type_x_zero(ps));
+		return (nb_zero_padding(ps));
 	nb_len = flag_unbr_len_base(ps, nb, 16);
 	if (ps->minus)
 		type_upper_x_minus(ps, nb_len, nb);

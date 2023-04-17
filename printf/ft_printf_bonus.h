@@ -43,10 +43,12 @@ void		init_flags(t_print *print_info);
 int			type_num(char *type, char sp);
 const char	*set_flags(t_print *print_info, const char *f);
 const char	*handle_width(t_print *print_info, const char *f);
+int			check_type(t_print *print_info, const char sp);
 
 /*				padding				*/
 void		padding(t_print *print_info, int occupied_len);
 void		zero_padding(t_print *ps, int max, int min);
+void		nb_zero_padding(t_print *ps);
 
 /*				type_c				*/
 void		type_c(t_print *print_info);
@@ -57,6 +59,9 @@ void		type_ston(t_print *ps, char *null);
 
 /*				type_d				*/
 void		type_d(t_print *print_info);
+void		type_d_minus(t_print *ps, int nb_len, int nb);
+void		type_d_nminus(t_print *ps, int nb_len, int nb);
+void		check_nb_flag(t_print *ps, int nb);
 
 /*				type_i				*/
 void		type_i(t_print *print_info);
@@ -65,7 +70,6 @@ void		type_i(t_print *print_info);
 void		type_u(t_print *ps);
 void		type_u_nminus(t_print *ps, int nb_len, unsigned int nb);
 void		type_u_minus(t_print *ps, int nb_len, unsigned int nb);
-void		type_u_zero(t_print *ps);
 
 /*				type_p				*/
 void		type_p(t_print *ps);
@@ -73,7 +77,6 @@ void		type_pton(t_print *ps, char *nil);
 
 /*				type_x				*/
 void		type_lower_x(t_print *ps);
-void		type_x_zero(t_print *ps);
 
 /*				type_X				*/
 void		type_upper_x(t_print *ps);
@@ -96,7 +99,6 @@ char		*ft_substr(char const *str, unsigned int start, size_t len);
 size_t		ft_unbrlen_base(unsigned long n, unsigned int base);
 void		ft_put_unbr_base_fd(unsigned long n, char *base, int fd);
 void		ft_putnbr_base_fd(long n, char *base, int fd);
-static int	flag_unbr_len_base(t_print *ps, unsigned int nb, unsigned int base);
-void		unbr_left_padding(t_print *ps, int nb_len, unsigned int nb);
-
+int			flag_unbr_len_base(t_print *ps, unsigned int nb, unsigned int base);
+int			flag_nbr_len_base(int nb, int base);
 #endif

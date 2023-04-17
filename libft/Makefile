@@ -14,8 +14,7 @@ NAME = libft.a
 CC = cc
 CFLAG = -Wall -Wextra -Werror
 
-
-SRCS_P =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c	\
+SRCS_M =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c	\
 			ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c	\
 			ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c	\
 			ft_putendl_fd.c	ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c	\
@@ -27,17 +26,22 @@ SRCS_B =	ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c	\
 			ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c	\
 			ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c	\
 
-OBJS_P = $(addprefix mandatory/srcs/, ${SRCS_P:.c=.o})
+OBJS_M = $(addprefix mandatory/srcs/, ${SRCS_M:.c=.o})
 OBJS_B = $(addprefix bonus/srcs/, ${SRCS_B:.c=.o})
 
+INC_M = -I./mandatory/includes
+INC_B = -I./bonus/includes
+
 ifdef FLAG
-    OBJS = $(OBJS_P) $(OBJS_B)
+    OBJS = $(OBJS_M) $(OBJS_B)
+	INC = $(INC_B)
 else
-    OBJS = $(OBJS_P)
+    OBJS = $(OBJS_M)
+	INC = $(INC_M)
 endif
 
 %.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@ -I./bonus/includes
+	$(CC) $(CFLAG) -c $< -o $@ $(INC)
 
 $(NAME) : $(OBJS)
 	ar crs $@ $^
@@ -45,7 +49,7 @@ $(NAME) : $(OBJS)
 all : $(NAME)
 
 clean :
-	rm -rf $(OBJS_P) $(OBJS_B)
+	rm -rf $(OBJS_M) $(OBJS_B)
 
 fclean : clean
 	rm -rf $(NAME)

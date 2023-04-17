@@ -12,84 +12,57 @@
 
 #include "ft_printf_bonus.h"
 
-void	type_d(t_print *print_Info)
+void	check_nb_flag(t_print *ps, int nb)
 {
-	int		n;
-	int		nlen;
+	if (nb < 0)
+	{
+		ps->plen += ft_putchar_fd('-', 1);
+		ps->plus = 0;
+		ps->space = 0;
+	}
+	if (ps->plus)
+		ps->plen += ft_putchar_fd('+', 1);
+	if (ps->space)
+		ps->plen += ft_putchar_fd(' ', 1);
+}
 
-	n = va_arg(print_Info->vlist, int);
-	if (n == 0 && print_Info->dot && print_Info->precision == 0)
-		nlen = 0;
+void	type_d_minus(t_print *ps, int nb_len, int nb)
+{
+	zero_padding(ps, ps->precision, nb_len);
+	ft_putnbr_base_fd(nb, DECI, 1);
+	if (ps->width > ps->precision && ps->precision >= nb_len)
+		padding(ps, ps->precision);
+	else if (ps->dot && ps->width > ps->precision && nb_len >= ps->precision)
+		padding(ps, nb_len);
+	if (!ps->dot && ps->width > nb_len)
+		padding(ps, nb_len);
+}
+
+void	type_d_nminus(t_print *ps, int nb_len, int nb)
+{
+	if (ps->width > ps->precision && ps->precision >= nb_len)
+		padding(ps, ps->precision);
+	else if (ps->dot && ps->width > ps->precision && nb_len >= ps->precision)
+		padding(ps, nb_len);
+	zero_padding(ps, ps->precision, nb_len);
+	if (!ps->dot && ps->width > nb_len)
+		padding(ps, nb_len);
+	ft_putnbr_base_fd(nb, DECI, 1);
+}
+
+void	type_d(t_print *ps)
+{
+	int		nb;
+	int		nb_len;
+
+	nb = va_arg(ps->vlist, int);
+	if (nb == 0 && ps->dot && ps->precision == 0)
+		return (nb_zero_padding(ps));
+	check_nb_flag(ps, nb);
+	nb_len = flag_nbr_len_base(nb, 10);
+	if (ps->minus)
+		type_d_minus(ps, nb_len, nb);
 	else
-		nlen = nbrlen_base(n, 10);
-	if (n >= 0 && print_Info->plus)
-		nlen += 1;
-	if (n >= 0 && print_Info->space && !print_Info->plus)
-		nlen += ft_putchar_fd(' ', 1);
-	print_int(print_Info, (long)n, nlen);
-	print_Info->plen += nlen;
-}
-
-void	print_int(t_print *ps, long n, int nlen)
-{
-	int_left_padding(ps, n, nlen);
-	if ((ps->space && ps->precision && n >= 0)
-		|| (ps->plus && ps->precision && n >= 0))
-		ps->precision += 1;
-	if (n < 0)
-	{
-		ft_putchar_fd('-', 1);
-		if (ps->dot && ps->precision > nlen && !ps->minus)
-			ps->width -= ps->precision - nlen;
-		else if (ps->minus && ps->width && ps->precision >= nlen)
-			ps->width -= 1;
-		n = -n;
-		if (ps->width && !ps->minus && ps->zero)
-			padding(ps, nlen);
-		if (!ps->minus || (ps->minus && ps->precision >= nlen))
-			nlen--;
-	}
-	else if (n >= 0 && ps->plus)
-		ft_putchar_fd('+', 1);
-	else if (ps->width && !ps->minus && ps->zero)
-		padding(ps, nlen);
-	zero_padding(ps, nlen);
-	int_right_padding(ps, n, nlen);
-}
-
-void	int_left_padding(t_print *ps, int n, int nlen)
-{
-	if (ps->dot && ps->zero)
-		ps->zero = 0;
-	if ((ps->width && !ps->minus && !ps->zero)
-		|| (ps->width && ps->dot && (ps->precision == 0)))
-	{
-		if (ps->dot && ps->precision >= nlen)
-		{
-			ps->width -= ps->precision - nlen;
-			if ((n < 0) || (ps->space && ps->dot) || (ps->plus && ps->dot))
-				ps->width -= 1;
-		}
-		if (!ps->minus)
-			padding(ps, nlen);
-	}
-}
-
-void	int_right_padding(t_print *ps, long n, int nlen)
-{
-	if ((ps->dot && !ps->precision && !nlen && !ps->minus && !ps->plus)
-		|| (ps->dot && ps->plus && (ps->precision - nlen == 0) && !ps->minus)
-		|| (ps->dot && ps->plus && !ps->precision && !n && !ps->minus))
-		return ;
-	else if (!n && ps->dot && !ps->precision)
-	{
-		padding(ps, nlen);
-		return ;
-	}
-	else
-	{
-		ft_putnbr_base_fd(n, DECI, 1);
-		if (ps->width && ps->minus)
-			padding(ps, nlen);
-	}
+		type_d_nminus(ps, nb_len, nb);
+	ps->plen += nb_len;
 }
