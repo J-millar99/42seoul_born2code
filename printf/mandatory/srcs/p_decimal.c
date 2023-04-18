@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_decimal.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 00:09:42 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/08 00:09:42 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/18 22:10:32 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ int	check_decimal_len(int n)
 {
 	int		cnt;
 
-	cnt = 0;
-	if (n == 0)
-		return (1);
-	while (n != 0)
+	cnt = 1;
+	while (n / 10)
 	{
 		n /= 10;
 		cnt++;

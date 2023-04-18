@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_hex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 01:21:25 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/08 01:21:25 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/18 22:07:29 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ int	check_hex_len(unsigned int num)
 {
 	int		cnt;
 
-	cnt = 0;
-	if (num == 0)
-		return (1);
-	while (num != 0)
+	cnt = 1;
+	while (num / 16)
 	{
 		num /= 16;
 		cnt++;
