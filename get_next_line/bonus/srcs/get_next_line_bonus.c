@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:38:55 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/04 16:38:55 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/19 22:57:44 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line_bonus.h"
-#define OPEN_MAX 100
+#include "get_next_line_bonus.h"
 
 void	fptr(char **ptr)
 {
@@ -21,9 +20,9 @@ void	fptr(char **ptr)
 
 char	*make_line(char **backup)
 {
-	size_t	i;
-	char	*optr;
-	char	*rstr;
+	unsigned int	i;
+	char			*optr;
+	char			*rstr;
 
 	i = 0;
 	if (ft_strchr(*backup, '\n'))
@@ -35,29 +34,26 @@ char	*make_line(char **backup)
 		*backup = ft_strdup(*backup + i + 1);
 		if (!*backup && rstr)
 			fptr(&rstr);
+		if (!rstr)
+			fptr(backup);
 		free(optr);
 		return (rstr);
 	}
 	rstr = ft_strdup(*backup);
-	if (!rstr)
-	{
-		fptr(backup);
-		return (0);
-	}
 	fptr(backup);
 	return (rstr);
 }
 
 char	*read_file(int fd, char **backup, char **buff)
 {
-	int		rbyte;
+	ssize_t	rbyte;
 	char	*tptr;
 
-	rbyte = BUFFER_SIZE;
-	while (!ft_strchr(*backup, '\n') && rbyte)
+	rbyte = 1;
+	while (!ft_strchr(*backup, '\n') && rbyte > 0)
 	{
 		rbyte = read(fd, *buff, BUFFER_SIZE);
-		if (rbyte < 0)
+		if (rbyte == -1)
 		{
 			fptr(backup);
 			return (0);
@@ -79,11 +75,11 @@ char	*read_file(int fd, char **backup, char **buff)
 
 char	*get_next_line(int fd)
 {
-	static char		*backup[OPEN_MAX];
+	static char		*backup[2147483648];
 	char			*buff;
 	char			*result;
 
-	if (BUFFER_SIZE < 1 || OPEN_MAX < fd || fd < 0)
+	if (BUFFER_SIZE < 1 || fd < 0)
 		return (0);
 	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buff)

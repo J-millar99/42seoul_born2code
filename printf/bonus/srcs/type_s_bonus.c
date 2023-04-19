@@ -3,26 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   type_s_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 15:47:27 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/16 15:47:27 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/18 22:16:31 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
-
 /*
-	24: s가 널일때 "(null)"이 되고 precision보다 길이가 작으면 출력 자체가 되지않음
-		precision은 애초에 0이기 때문에 '.'이 존재할 경우에만 조건판별
-*/
-
 void	type_ston(t_print *ps, char *null)
 {
 	int		slen;
 
-	if (ps->dot && ps->precision < (int)ft_strlen(null))
-		null = "\0";
 	slen = ft_strlen(null);
 	if (ps->minus)
 	{
@@ -37,7 +30,7 @@ void	type_ston(t_print *ps, char *null)
 		ps->plen += ft_putstr_fd(null, 1);
 	}
 }
-
+*/
 /*
 	57: '.'가 존재할 때 precision은 문자열의 길이를 제한한다
 	60, 70: '-'여부를 따져서 앞 혹은 뒤에 padding을 한다
@@ -52,7 +45,7 @@ void	type_s(t_print	*ps)
 	slen = 0;
 	s = va_arg(ps->vlist, char *);
 	if (!s)
-		return (type_ston(ps, "(null)"));
+		s = "(null)";
 	if (ps->dot && (ps->precision < (int)ft_strlen(s)))
 		slen = ps->precision;
 	else

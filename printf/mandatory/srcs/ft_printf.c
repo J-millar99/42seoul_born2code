@@ -6,12 +6,12 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:09:25 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/18 22:03:04 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/19 21:16:41 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
+#include <stdio.h>
 int	p_conversion_specifier(va_list vlist, const char c_s)
 {
 	int	print_num;
@@ -38,18 +38,24 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	vlist;
 	int		plen;
-	int		i;
+	int		temp;
 
-	i = 0;
 	plen = 0;
 	va_start(vlist, format);
-	while (format[i])
+	if (!format)
+		return (-1);
+	while (*format)
 	{
-		if (format[i] == '%')
-			plen += p_conversion_specifier(vlist, format[++i]);
+		if (*format == '%')
+		{
+			temp = p_conversion_specifier(vlist, *(format + 1));
+			if (temp == -1)
+				return (temp);
+			plen += temp;
+		}
 		else
-			plen += p_char(format[i]);
-		i++;
+			plen += p_char(*format);
+		format++;
 	}
 	va_end(vlist);
 	return (plen);

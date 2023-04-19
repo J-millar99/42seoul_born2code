@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   type_p_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:16:34 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/16 16:16:34 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/18 21:37:42 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
 
 /*
-	type_s의 type_ston과 유사하다
-	널포인터일 경우 "(nil)"이 되버린다
-	'.'는 무시된다
-*/
-
 void	type_pton(t_print *ps, char *nil)
 {
 	int		s_len;
@@ -31,6 +26,7 @@ void	type_pton(t_print *ps, char *nil)
 	if (ps->width && ps->minus)
 		padding(ps, s_len);
 }
+*/
 
 /*
 	45: ptr이 널일경우 분기점
@@ -45,8 +41,6 @@ void	type_p(t_print *ps)
 	int		ptrlen;
 
 	ptr = va_arg(ps->vlist, void *);
-	if (ptr == 0)
-		return (type_pton(ps, "(nil)"));
 	ptrlen = ft_unbrlen_base((unsigned long)ptr, 16) + 2;
 	if (ps->width && !ps->zero && !ps->minus)
 		padding(ps, ptrlen);
