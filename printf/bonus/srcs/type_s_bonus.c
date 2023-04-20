@@ -6,31 +6,12 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 15:47:27 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/18 22:16:31 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/20 17:16:09 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
-/*
-void	type_ston(t_print *ps, char *null)
-{
-	int		slen;
 
-	slen = ft_strlen(null);
-	if (ps->minus)
-	{
-		ps->plen += ft_putstr_fd(null, 1);
-		if (ps->width > slen)
-			padding(ps, slen);
-	}
-	else
-	{
-		if (ps->width > slen)
-			padding(ps, slen);
-		ps->plen += ft_putstr_fd(null, 1);
-	}
-}
-*/
 /*
 	57: '.'가 존재할 때 precision은 문자열의 길이를 제한한다
 	60, 70: '-'여부를 따져서 앞 혹은 뒤에 padding을 한다

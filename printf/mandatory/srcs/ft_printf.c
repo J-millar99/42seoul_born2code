@@ -6,15 +6,16 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:09:25 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/19 21:16:41 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/20 16:54:24 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include <stdio.h>
+
 int	p_conversion_specifier(va_list vlist, const char c_s)
 {
-	int	print_num;
+	int		print_num;
 
 	print_num = -1;
 	if (c_s == 'c')
@@ -38,7 +39,6 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	vlist;
 	int		plen;
-	int		temp;
 
 	plen = 0;
 	va_start(vlist, format);
@@ -48,10 +48,8 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			temp = p_conversion_specifier(vlist, *(format + 1));
-			if (temp == -1)
-				return (temp);
-			plen += temp;
+			format++;
+			plen += p_conversion_specifier(vlist, *(format));
 		}
 		else
 			plen += p_char(*format);

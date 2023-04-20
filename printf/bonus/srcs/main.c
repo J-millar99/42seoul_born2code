@@ -4,6 +4,8 @@
 
 int	main()
 {
-	printf(" %d\n", printf(""));
-	printf(" %d\n", ft_printf(""));
+	printf("===printf===\n");
+	printf(" %d\n", printf("%#x", 0));
+
+	printf("===ft_printf===\n");
 }

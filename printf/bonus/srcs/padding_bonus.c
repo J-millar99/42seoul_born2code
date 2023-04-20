@@ -6,15 +6,11 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 15:33:33 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/19 04:34:17 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/20 17:48:35 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
-
-/*
-	padding은 width만큼 문자를 채우는데, 차지된 길이만큼은 제외한다
-*/
 
 void	padding(t_print *ps, int occupied_len)
 {
@@ -38,6 +34,10 @@ void	zero_padding(t_print *ps, int max, int min)
 		min++;
 	}
 }
+
+/*
+	dot은 type x에서 사용
+*/
 
 void	nb_zero_padding(t_print *ps)
 {
