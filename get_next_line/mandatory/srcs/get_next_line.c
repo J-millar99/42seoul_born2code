@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:39:13 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/04 16:39:13 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/19 23:01:18 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
-#define OPEN_MAX 100
+#include "get_next_line.h"
 
 void	fptr(char **ptr)
 {
@@ -35,29 +34,26 @@ char	*make_line(char **backup)
 		*backup = ft_strdup(*backup + i + 1);
 		if (!*backup && rstr)
 			fptr(&rstr);
+		if (!rstr)
+			fptr(backup);
 		free(optr);
 		return (rstr);
 	}
 	rstr = ft_strdup(*backup);
-	if (!rstr)
-	{
-		fptr(backup);
-		return (0);
-	}
 	fptr(backup);
 	return (rstr);
 }
 
 char	*read_file(int fd, char **backup, char **buff)
 {
-	int		rbyte;
+	ssize_t	rbyte;
 	char	*tptr;
 
-	rbyte = BUFFER_SIZE;
-	while (!ft_strchr(*backup, '\n') && rbyte)
+	rbyte = 1;
+	while (!ft_strchr(*backup, '\n') && rbyte > 0)
 	{
 		rbyte = read(fd, *buff, BUFFER_SIZE);
-		if (rbyte < 0)
+		if (rbyte == -1)
 		{
 			fptr(backup);
 			return (0);
@@ -83,7 +79,7 @@ char	*get_next_line(int fd)
 	char			*buff;
 	char			*result;
 
-	if (BUFFER_SIZE < 1 || OPEN_MAX < fd || fd < 0)
+	if (BUFFER_SIZE < 1 || fd < 0)
 		return (0);
 	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buff)

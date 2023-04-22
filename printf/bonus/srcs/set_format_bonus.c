@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_format_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 18:06:54 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/15 18:06:54 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/19 00:14:40 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ const char	*handle_width(t_print *ps, const char *f)
 void	check_type(t_print *ps, const char sp)
 {
 	static t_type_ptr	type_arr[9] = {type_c, type_s, type_p, type_d,
-		type_i, type_u, type_lower_x, type_upper_x, type_percent};
+		type_i, type_u, type_lx, type_ux, type_percent};
 	int					idx;
 
 	if (ps->zero && (ps->dot || ps->minus))
@@ -91,6 +91,8 @@ void	check_type(t_print *ps, const char sp)
 	if (ps->space && ps->plus)
 		ps->space = 0;
 	idx = type_num(TYPE, sp);
+	if (idx != 6 && idx != 7)
+		ps->hash = 0;
 	type_arr[idx](ps);
 }
 

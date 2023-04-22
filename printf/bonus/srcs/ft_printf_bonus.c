@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:41:42 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/17 18:41:42 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/20 17:12:37 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
-
-int	non_sp(const char *f)
-{
-	int		i;
-
-	i = 0;
-	while (f[i])
-	{
-		if (f[i] == '%')
-		{
-			i++;
-			if (f[i] == '\0')
-				return (0);
-		}
-		i++;
-	}
-	return (1);
-}
 
 int	not_sp(const char *f)
 {
@@ -52,11 +34,9 @@ int	not_sp(const char *f)
 
 int	check_format(const char *f)
 {
-	int		result;
-
 	if (!f)
 		return (0);
-	if (!not_sp(f) || !non_sp(f))
+	if (!not_sp(f))
 		return (0);
 	return (1);
 }

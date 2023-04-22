@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   type_d_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:32:13 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/16 20:32:13 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/20 17:30:11 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
+
+/*
+	nb가 음수면 '+', '-'동작 x
+	' '는 동작되면 항상 먼저
+*/
 
 void	check_ign_flag(t_print *ps, int nb)
 {
@@ -37,9 +42,11 @@ void	type_d_minus(t_print *ps, int nb_len, int nb)
 		return (type_d_minus_dot(ps, nb_len, nb));
 	check_sign(ps, nb);
 	ft_putnbr_base_fd(nb, DECI, 1);
-	if (!ps->dot && ps->width > nb_len)
+	if (ps->width > nb_len)
 	{
 		if (ps->plus || nb < 0)
+			padding(ps, nb_len + 1);
+		else if (ps->space)
 			padding(ps, nb_len + 1);
 		else
 			padding(ps, nb_len);
@@ -52,9 +59,11 @@ void	type_d_nminus(t_print *ps, int nb_len, int nb)
 		return (type_d_nminus_dot(ps, nb_len, nb));
 	if (ps->zero)
 		return (type_d_zero(ps, nb_len, nb));
-	if (!ps->dot && ps->width > nb_len)
+	if (ps->width > nb_len)
 	{
 		if (ps->plus || nb < 0)
+			padding(ps, nb_len + 1);
+		else if (ps->space)
 			padding(ps, nb_len + 1);
 		else
 			padding(ps, nb_len);
@@ -63,14 +72,21 @@ void	type_d_nminus(t_print *ps, int nb_len, int nb)
 	ft_putnbr_base_fd(nb, DECI, 1);
 }
 
+/*
+	padding은 precision과 nb_len에 의해 결정된다
+	두 값이 width보다 작으면 공백으로 채운다
+	precision이 nb_len보다 크면 '-'에 따라 '0'으로 채운다
+	width는 제한선이지만 nb_len과 precision보다 작으면 역할을 못한다.
+*/
+
 void	type_d(t_print *ps)
 {
 	int		nb;
 	int		nb_len;
 
 	nb = va_arg(ps->vlist, int);
-	if (nb == 0 && ps->dot && ps->precision == 0)
-		return (nb_zero_padding(ps));
+	if (nb == 0)
+		return (d_nb_zero(ps));
 	check_ign_flag(ps, nb);
 	nb_len = flag_nbr_len_base(nb, 10);
 	if (ps->minus)

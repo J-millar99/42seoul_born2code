@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd_bonus.c                               :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 18:42:29 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/18 22:58:48 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/04/19 01:54:30 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/04/19 02:45:05 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft_bonus.h"
+#include "../includes/ft_printf.h"
 
-ssize_t	ft_putstr_fd(char *s, int fd)
+size_t	ft_strlen(const char *s)
 {
-	return (write(fd, s, ft_strlen(s)));
+	int		idx;
+	ssize_t	len;
+
+	idx = 0;
+	len = 0;
+	while (s[idx++] != 0)
+		++len;
+	return (len);
 }

@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:09:25 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/04 17:09:25 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/20 16:54:24 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <stdio.h>
 
 int	p_conversion_specifier(va_list vlist, const char c_s)
 {
-	int	print_num;
+	int		print_num;
 
 	print_num = -1;
 	if (c_s == 'c')
@@ -22,7 +23,7 @@ int	p_conversion_specifier(va_list vlist, const char c_s)
 	else if (c_s == 's')
 		print_num = p_str(va_arg(vlist, char *));
 	else if (c_s == 'p')
-		print_num = p_pointer(va_arg(vlist, unsigned long long));
+		print_num = p_pointer(va_arg(vlist, void *));
 	else if (c_s == 'd' || c_s == 'i')
 		print_num = p_decimal(va_arg(vlist, int));
 	else if (c_s == 'u')
@@ -37,25 +38,22 @@ int	p_conversion_specifier(va_list vlist, const char c_s)
 int	ft_printf(const char *format, ...)
 {
 	va_list	vlist;
-	int		temp;
 	int		plen;
-	int		i;
 
-	i = 0;
 	plen = 0;
 	va_start(vlist, format);
-	while (format[i])
+	if (!format)
+		return (-1);
+	while (*format)
 	{
-		if (format[i] == '%')
+		if (*format == '%')
 		{
-			temp = p_conversion_specifier(vlist, format[++i]);
-			if (temp == -1)
-				return (-1);
+			format++;
+			plen += p_conversion_specifier(vlist, *(format));
 		}
 		else
-			temp = p_char(format[i]);
-		plen += temp;
-		i++;
+			plen += p_char(*format);
+		format++;
 	}
 	va_end(vlist);
 	return (plen);
