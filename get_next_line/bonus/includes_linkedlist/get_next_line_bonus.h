@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:51:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/21 14:51:50 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/23 08:56:28 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_list
 char	*get_next_line(int fd);
 char	*read_file(t_list *node, char **buff);
 char	*make_oneline(t_list *node);
-void	ft_free(t_list *node);
+void	free_node(t_list *node);
 t_list	*find_fd_list(t_list **list, int fd);
 void	del_fd_list(t_list **list, t_list *node);
 t_list	*new_list(int fd);

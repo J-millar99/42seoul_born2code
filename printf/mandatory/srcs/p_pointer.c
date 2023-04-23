@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 00:25:33 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/18 22:11:56 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/23 13:00:13 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,37 @@ int	check_pointer_len(unsigned long n)
 	return (cnt);
 }
 
-void	print_pointer(unsigned long num)
+void	print_pointer(unsigned long num, int *flag)
 {
+	int		temp;
+
+	if (*flag)
+		return ;
+	temp = 0;
 	if (num >= 16)
 	{
-		print_pointer(num / 16);
-		print_pointer(num % 16);
+		print_pointer(num / 16, flag);
+		print_pointer(num % 16, flag);
 	}
 	else
-		write(1, &"0123456789abcdef"[num % 16], 1);
+		temp = write(1, &"0123456789abcdef"[num % 16], 1);
+	if (temp == -1)
+		*flag = 1;
 }
 
-int	p_pointer(void *pointer)
+int	p_pointer(void *pointer, int *flag)
 {
-	int	pointer_len;
+	int		plen;
+	int		temp;
 
-	pointer_len = 0;
+	plen = 0;
 	if (!pointer)
 		return (write(1, "0x0", 3));
-	pointer_len += write(1, "0x", 2);
-	pointer_len += check_pointer_len((unsigned long) pointer);
-	print_pointer((unsigned long) pointer);
-	return (pointer_len);
+	temp = write(1, "0x", 2);
+	if (temp == -1)
+		return (-1);
+	plen += temp;
+	plen += check_pointer_len((unsigned long) pointer);
+	print_pointer((unsigned long) pointer, flag);
+	return (plen);
 }
