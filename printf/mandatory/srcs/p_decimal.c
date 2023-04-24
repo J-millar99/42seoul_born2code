@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 00:09:42 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/24 22:38:22 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/24 22:42:34 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	print_decimal_num_negative(int num)
 	if (num <= -10)
 	{
 		print_decimal_num_negative(num / 10);
-		print_decimal_num_negative(num % 10;
+		print_decimal_num_negative(num % 10);
 	}
 	else
 		write(1, &"0123456789"[num % 10 * -1], 1);
