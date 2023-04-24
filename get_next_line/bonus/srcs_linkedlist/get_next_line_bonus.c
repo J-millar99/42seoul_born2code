@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 14:50:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/21 14:50:53 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/24 22:36:19 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,6 @@ char	*read_file(t_list *node, char **buff)
 		return (make_oneline(node));
 	return (NULL);
 }
-
-/*
-	한줄이 완성되는 경우는 줄바꿈이 존재하거나
-	마지막 글자를 읽었을 때 반환
-*/
 
 char	*make_oneline(t_list *node)
 {

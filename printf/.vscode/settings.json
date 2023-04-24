@@ -17,6 +17,7 @@
 		"ratio": "c",
 		"tuple": "c",
 		"utility": "c",
-		"cstdarg": "c"
+		"cstdarg": "c",
+		"__locale": "c"
 	}
 }
