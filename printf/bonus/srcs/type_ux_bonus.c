@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:07:01 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/19 03:53:54 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/25 21:22:07 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	type_ux(t_print *ps)
 	nb = va_arg(ps->vlist, unsigned int);
 	if (nb == 0 && ps->precision == 0)
 		return (nb_zero_padding(ps));
-	nb_len = flag_unbr_len_base(ps, nb, 16);
+	nb_len = ft_unbrlen_base(nb, 16);
 	if (ps->hash)
 		type_ux_hash(ps, nb_len, nb);
 	else

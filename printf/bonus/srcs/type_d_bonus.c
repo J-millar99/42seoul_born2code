@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:32:13 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/20 17:30:11 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/25 20:30:35 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	type_d(t_print *ps)
 	if (nb == 0)
 		return (d_nb_zero(ps));
 	check_ign_flag(ps, nb);
-	nb_len = flag_nbr_len_base(nb, 10);
+	nb_len = ft_nbrlen_base(nb, 10);
 	if (ps->minus)
 		type_d_minus(ps, nb_len, nb);
 	else

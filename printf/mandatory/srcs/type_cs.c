@@ -1,48 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_unsigned.c                                       :+:      :+:    :+:   */
+/*   type_cs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 00:32:25 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/24 22:40:11 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/04/10 23:45:38 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/04/29 03:19:15 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	check_unsigned_len(unsigned int num)
+int	type_c(va_list vlist)
 {
-	int		cnt;
+	int	c;
 
-	cnt = 1;
-	while (num / 10)
-	{
-		num /= 10;
-		cnt++;
-	}
-	return (cnt);
+	c = va_arg(vlist, int);
+	return (write(1, &c, 1));
 }
 
-void	print_unsigned_num(unsigned int num)
+int	type_s(va_list vlist)
 {
-	if (num >= 10)
-	{
-		print_unsigned_num(num / 10);
-		print_unsigned_num(num % 10);
-	}
-	else
-		write(1, &"0123456789"[num % 10], 1);
+	char	*str;
 
+	str = va_arg(vlist, char *);
+	if (!str)
+		return (write(1, "(null)", 6));
+	return (write(1, str, ft_strlen(str)));
 }
 
-int	p_unsigned(unsigned int num)
+int	type_percent(void)
 {
-	unsigned int	num_len;
-
-	num_len = 0;
-	num_len += check_unsigned_len(num);
-	print_unsigned_num(num);
-	return (num_len);
+	return (write(1, "%", 1));
 }

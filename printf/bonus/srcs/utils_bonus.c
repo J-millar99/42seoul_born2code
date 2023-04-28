@@ -6,15 +6,15 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:33:35 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/18 22:58:32 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/25 20:53:53 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
 
-size_t	ft_unbrlen_base(unsigned long n, unsigned int base)
+int	ft_unbrlen_base(unsigned long n, unsigned int base)
 {
-	size_t	nb_len;
+	int		nb_len;
 
 	if (!base)
 		return (0);
@@ -61,17 +61,7 @@ void	ft_putnbr_base_fd(long n, char *base, int fd)
 		ft_putchar_fd(base[n], fd);
 }
 
-int	flag_unbr_len_base(t_print *ps, unsigned int nb, unsigned int base)
-{
-	int	nb_len;
-
-	if (nb == 0 && ps->dot)
-		nb_len = 1;
-	nb_len = ft_unbrlen_base(nb, base);
-	return (nb_len);
-}
-
-int	flag_nbr_len_base(int nb, int base)
+int	ft_nbrlen_base(int nb, int base)
 {
 	int		nb_len;
 

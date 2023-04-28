@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 22:11:46 by jaehyji           #+#    #+#              #
-#    Updated: 2023/04/19 03:46:25 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/04/29 03:09:57 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ NAME = libftprintf.a
 CC = cc
 CFLAG = -Wall -Wextra -Werror
 
-SRCS_M = ft_printf.c p_char.c p_str.c p_pointer.c p_decimal.c p_unsigned.c p_hex.c \
-		ft_strlen.c
+SRCS_M = ft_printf.c type_cs.c type_di.c type_p.c type_u.c type_x.c utils.c
 
 SRCS_B = ft_printf_bonus.c ft_putchar_fd_bonus.c ft_putstr_fd_bonus.c ft_atoi_bonus.c \
 		ft_isdigit_bonus.c ft_memcpy_bonus.c ft_strchr_bonus.c ft_strdup_bonus.c \

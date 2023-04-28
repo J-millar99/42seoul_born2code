@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:49:35 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/20 17:53:51 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/25 20:28:40 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	type_u(t_print *ps)
 	nb = va_arg(ps->vlist, unsigned int);
 	if (nb == 0 && ps->precision == 0)
 		return (nb_zero_padding(ps));
-	nb_len = flag_unbr_len_base(ps, nb, 10);
+	nb_len = ft_unbrlen_base(nb, 10);
 	if (ps->minus)
 		type_u_minus(ps, nb_len, nb);
 	else

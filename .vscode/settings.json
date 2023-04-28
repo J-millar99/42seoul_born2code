@@ -1,11 +1,12 @@
 {
 	"files.associations": {
-		"libft.h": "c",
-		"limits.h": "c",
-		"stdio.h": "c",
-		"stdlib.h": "c",
-		"ft_printf.h": "c",
-		"ft_printf_bonus.h": "c",
-		"libft_bonus.h": "c"
-	}
+        "libft.h": "c",
+        "limits.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "ft_printf.h": "c",
+        "ft_printf_bonus.h": "c",
+        "libft_bonus.h": "c",
+        "ratio": "c"
+    }
 }

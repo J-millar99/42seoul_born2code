@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 17:46:55 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/19 04:31:13 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/25 21:44:18 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void		type_u_minus(t_print *ps, int nb_len, unsigned int nb);
 
 /*				type_p				*/
 void		type_p(t_print *ps);
+void		type_p_null(t_print *ps);
+void		type_p_null_minus(t_print *ps);
 
 /*				type_x				*/
 void		type_lx(t_print *ps);
@@ -106,9 +108,8 @@ void		type_ux_hash_nminus_zero(t_print *ps, int nb_len, unsigned int nb);
 void		type_percent(t_print *ps);
 
 /*				utlis				*/
-size_t		ft_unbrlen_base(unsigned long n, unsigned int base);
+int			ft_unbrlen_base(unsigned long n, unsigned int base);
 void		ft_put_unbr_base_fd(unsigned long n, char *base, int fd);
 void		ft_putnbr_base_fd(long n, char *base, int fd);
-int			flag_unbr_len_base(t_print *ps, unsigned int nb, unsigned int base);
-int			flag_nbr_len_base(int nb, int base);
+int			ft_nbrlen_base(int nb, int base);
 #endif

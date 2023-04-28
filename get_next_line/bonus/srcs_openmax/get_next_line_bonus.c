@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:38:55 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/19 22:57:44 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/04/29 02:20:44 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*read_file(int fd, char **backup, char **buff)
 
 char	*get_next_line(int fd)
 {
-	static char		*backup[2147483648];
+	static char		*backup[65536];
 	char			*buff;
 	char			*result;
 
