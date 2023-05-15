@@ -6,11 +6,11 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:39:05 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/18 17:33:32 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/05/11 21:56:08 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
+#include "get_next_line.h"
 
 char	*ft_strchr(const char *s, int c)
 {
