@@ -2,6 +2,7 @@
 # define SORT_ALGORITHM_H
 # include <stdlib.h>
 # include <stdio.h>
+# include <string.h>
 
 int *origin;
 int on;
