@@ -6,11 +6,12 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:59:43 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/26 12:54:22 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/05/26 13:14:20 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 char	*make_str(int ac, char *av[])
 {
 	int		i;

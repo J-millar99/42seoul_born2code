@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:28:28 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/26 15:05:31 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/05/26 13:18:24 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/05/26 15:04:28 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int ac, char *av[])
+void	make_stack(t_node **lst, char **str)
 {
-	char			**str;
-	static t_node	*lst;
+	t_node	*node;
 
-	str = input_check(ac, av);
-	make_stack(&lst, str);
-	
-	return (0);
+	while (*str != NULL)
+	{
+		node = lstnew(ft_atoi(*str));
+		lstadd_back(lst, node);
+		str++;
+	}
+	(*lst)->prev = lstlast(*lst);
+	lstlast(*lst)->next = *lst;
 }
