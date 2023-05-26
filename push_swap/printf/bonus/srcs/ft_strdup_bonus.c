@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_strdup_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:28:28 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/26 13:11:57 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/04/17 18:42:40 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/05/24 12:43:36 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/libft_bonus.h"
 
-int	main(int ac, char *av[])
+char	*ft_strdup(const char *s1)
 {
-	char			**str;
-	static t_node	*lst;
-	t_node			*node;
+	size_t	s1_len;
+	char	*dupstr;
 
-	str = input_check(ac, av);
-	while (*str != NULL)
-	{
-		node = lstnew(ft_atoi(*str));
-		lstadd_back(&lst, node);
-		str++;
-	}
-	while (lst)
-	{
-		ft_printf("%d\n", lst->value);
-		lst = lst->next;
-	}
-	return (0);
+	s1_len = ft_strlen(s1);
+	dupstr = (char *)malloc(sizeof(char) * (s1_len + 1));
+	if (!dupstr)
+		return (NULL);
+	ft_memcpy(dupstr, s1, s1_len + 1);
+	return (dupstr);
 }

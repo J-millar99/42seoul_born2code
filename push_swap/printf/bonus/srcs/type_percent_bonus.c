@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   type_percent_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:28:28 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/26 13:11:57 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/04/16 21:02:09 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/04/25 18:26:16 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/ft_printf_bonus.h"
 
-int	main(int ac, char *av[])
+void	type_percent(t_print *ps)
 {
-	char			**str;
-	static t_node	*lst;
-	t_node			*node;
-
-	str = input_check(ac, av);
-	while (*str != NULL)
-	{
-		node = lstnew(ft_atoi(*str));
-		lstadd_back(&lst, node);
-		str++;
-	}
-	while (lst)
-	{
-		ft_printf("%d\n", lst->value);
-		lst = lst->next;
-	}
-	return (0);
+	if (ps->width && !ps->minus)
+		padding(ps, 1);
+	ps->plen += ft_putchar_fd('%', 1);
+	if (ps->width && ps->minus)
+		padding(ps, 1);
 }

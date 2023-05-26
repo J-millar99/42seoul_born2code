@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:28:28 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/26 13:11:57 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/04/17 18:42:29 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/04/18 22:58:48 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/libft_bonus.h"
 
-int	main(int ac, char *av[])
+ssize_t	ft_putstr_fd(char *s, int fd)
 {
-	char			**str;
-	static t_node	*lst;
-	t_node			*node;
-
-	str = input_check(ac, av);
-	while (*str != NULL)
-	{
-		node = lstnew(ft_atoi(*str));
-		lstadd_back(&lst, node);
-		str++;
-	}
-	while (lst)
-	{
-		ft_printf("%d\n", lst->value);
-		lst = lst->next;
-	}
-	return (0);
+	return (write(fd, s, ft_strlen(s)));
 }
