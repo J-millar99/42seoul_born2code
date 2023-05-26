@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:36 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/26 13:20:31 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/05/26 16:06:17 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "printf/bonus/includes/ft_printf_bonus.h"
 # include "libft/mandatory/includes/libft.h"
 # include "libft/mandatory/includes/libft_bonus.h"
+# include <stdio.h>
 
 typedef struct s_node
 {
@@ -38,5 +39,11 @@ char	*make_str(int ac, char *av[]);
 void	print_error(void);
 int		ft_strcmp(const char *x, const char *y);
 char	**input_check(int ac, char *av[]);
+
+/*		algorithm		*/
+void	swap(t_node **lst);
+void	push(t_node **lst);
+void	rotate(t_node **lst);
+void	rotate_reverse(t_node **lst);
 
 #endif
