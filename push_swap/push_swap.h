@@ -33,6 +33,8 @@ void	lstclear(t_node **lst);
 
 /*		stack		*/
 void	make_stack(t_node **lst, char **str);
+void	process_bot(t_node **bot, t_node **top);
+void	process_top(t_node **bot, t_node **top);
 
 /*		error		*/
 char	*make_str(int ac, char *av[]);
@@ -42,7 +44,7 @@ char	**input_check(int ac, char *av[]);
 
 /*		algorithm		*/
 void	swap(t_node **lst);
-void	push(t_node **lst);
+void	push(t_node **bot, t_node **top);
 void	rotate(t_node **lst);
 void	rotate_reverse(t_node **lst);
 

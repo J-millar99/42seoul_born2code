@@ -14,29 +14,36 @@
 
 void	swap(t_node **lst)
 {
-	t_node	*fnode_prev;
-	t_node	*fnode_next;
-	t_node	*bnode_prev;
-	t_node	*bnode_next;
-	t_node	*bnode;
+	t_node	*lastnode;
+	t_node	*secondnode;
 
-	bnode = (*lst)->next;
-	fnode_prev = (*lst)->prev;
-	fnode_next = (*lst)->next;
-	bnode_prev = bnode->prev;
-	bnode_next = bnode->next;
-	(*lst)->prev = fnode_next;
-	(*lst)->next = bnode_next;
-	bnode->prev = fnode_prev;
-	bnode->next = bnode_prev;
-	*lst = bnode;
+	if (*lst == NULL || (*lst)->next == NULL || (*lst)->prev == NULL)
+		return ;
+	secondnode = (*lst)->next;
+	lastnode = (*lst)->prev;
+	if (secondnode->value != lastnode->value)
+	{
+		(*lst)->prev = secondnode;
+		(*lst)->next = secondnode->next;
+		secondnode->next = secondnode->prev;
+		secondnode->prev = lastnode;
+	}
+	*lst = secondnode;
+	if (secondnode->value != lastnode->value)
+		lastnode->next = *lst;
 }
 
-void	push(t_node **lst)
+void	push(t_node **bot, t_node **top)
 {
-	if (!*lst)
-		return ;
+	t_node	*bot_lastnode;
+	t_node	*bot_secondnode;
+	t_node	*top_lastnode;
+	t_node	*top_secondnode;
 
+	if (*top == NULL)
+		return ;
+	process_top(&bot, &top);
+	process_bot(&bot, &top);
 }
 
 void	rotate(t_node **lst)

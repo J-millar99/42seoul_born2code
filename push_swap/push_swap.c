@@ -15,15 +15,16 @@
 int	main(int ac, char *av[])
 {
 	char			**str;
-	static t_node	*lst;
+	static t_node	*alst;
+	static t_node	*blst;
 
 	str = input_check(ac, av);
-	make_stack(&lst, str);
-	rotate_reverse(&lst);
-	for (int i = 0; i < 4; i++)
+	make_stack(&alst, str);
+	push(&blst, &alst);
+	for (int i = 0; i < 9; i++)
 	{
-		printf("%d\n", lst->value);
-		lst = lst->next;
+		printf("%d\n", alst->value);
+		alst = alst->next;
 	}
 	return (0);
 }
