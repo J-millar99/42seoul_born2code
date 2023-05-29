@@ -33,14 +33,16 @@ void	lstclear(t_node **lst);
 
 /*		stack		*/
 void	make_stack(t_node **lst, char **str);
-void	process_bot(t_node **bot, t_node **top);
-void	process_top(t_node **bot, t_node **top);
+void	process(t_node **bot, t_node **top);
+void	put_on(t_node **bot, t_node **top);
 
 /*		error		*/
 char	*make_str(int ac, char *av[]);
 void	print_error(void);
 int		ft_strcmp(const char *x, const char *y);
 char	**input_check(int ac, char *av[]);
+int		check_sorted(t_node *lst);
+void	free_split(char **str);
 
 /*		algorithm		*/
 void	swap(t_node **lst);

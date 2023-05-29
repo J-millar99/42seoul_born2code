@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
-# define LLONG_MAX 9223372036854775807LL
 # define FT_INT_MAX 2147483647
 # define FT_INT_MIN 2147483648
 

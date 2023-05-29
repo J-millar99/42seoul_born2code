@@ -1,4 +1,1 @@
 gcc *.c libft/mandatory/srcs/*.c printf/bonus/srcs/*.c
-
-"123 2 3 4 1a" "a2" 4 5 6 
-"123 2 3 4 5 1a" "a2" 4 5 6

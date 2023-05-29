@@ -54,3 +54,13 @@ int	ft_strcmp(const char *x, const char *y)
 	}
 	return (*(const unsigned char *)x - *(const unsigned char *)y);
 }
+
+void	free_split(char **str)
+{
+	while (*str != NULL)
+	{
+		free(*str);
+		str++;
+	}
+	free(str);
+}

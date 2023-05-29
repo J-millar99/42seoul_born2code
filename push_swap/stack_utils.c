@@ -26,39 +26,50 @@ void	make_stack(t_node **lst, char **str)
 	lstlast(*lst)->next = *lst;
 }
 
-void	process_top(t_node **bot, t_node **top)
+void	process(t_node **bot, t_node **top)
 {
-	t_node	*top_lastnode;
-	t_node	*top_secondnode;
+	t_node	*top_snode;
+	t_node	*top_lnode;
 
-	if ((*top)->prev == NULL || (*top)->next == NULL)
-		return ;
-	top_secondnode = (*top)->next;
-	top_lastnode =  (*top)->prev;
-	top_secondnode->prev = top_lastnode;
-	top_lastnode->next = top_secondnode;
-	top = top_secondnode;
+	top_snode = (*top)->next;
+	top_lnode =  (*top)->prev;
+	(*top)->next = NULL;
+	(*top)->prev = NULL;
+	if (top_snode != NULL && (top_snode->value != top_lnode->value))
+	{
+		top_snode->prev = top_lnode;
+		top_lnode->next = top_snode;
+	}
+	if (top_snode != NULL && (top_snode->value == top_lnode->value))
+	{
+		top_snode->prev = NULL;
+		top_lnode->next = NULL;
+	}
+	put_on(bot, top);
+	*top = top_snode;
 }
 
-void	process_bot(t_node **bot, t_node **top)
+void	put_on(t_node **bot, t_node **top)
 {
-	t_node	*bot_lastnode;
-	t_node	*bot_secondnode;
+	t_node	*bot_lnode;
 
-	if (bot == NULL)
+	if (*bot != NULL)
 	{
-		(*top)->prev = NULL;
-		(*top)->next = NULL;
+		bot_lnode = (*bot)->prev;
+		if (bot_lnode == NULL)
+		{
+			(*bot)->prev = *top;
+			(*bot)->next = *top;
+			(*top)->prev = *bot;
+			(*top)->next = *bot;
+		}
+		else
+		{
+			(*top)->prev = (*bot)->prev;
+			(*top)->next = *bot;
+			(*bot)->prev = *top;
+			bot_lnode->next = *top;
+		}
 	}
-	bot_secondnode = (*bot)->next;
-	bot_lastnode = (*bot)->prev;
-	if (bot_secondnode == NULL || bot_lastnode == NULL)
-	{
-
-	}
-	bot_secondnode->prev = *top;
-	bot_lastnode->next = *top;
-	(*top)->prev = (*bot)->prev;
-	(*top)->next = (*bot)->next;
 	*bot = *top;
 }

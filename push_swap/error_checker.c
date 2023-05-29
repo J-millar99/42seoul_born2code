@@ -12,7 +12,22 @@
 
 #include "push_swap.h"
 
-void	check_integer(char **str_array)
+void	check_novalue(int ac, char *av[])
+{
+	int		i;
+
+	i = 1;
+	while (i < ac)
+	{
+		while ((*(av[i]) == 32 || (9 <= *(av[i]) && *(av[i]) <= 13)))
+			*av[i]++;
+		if (!*av[i])
+			print_error();
+		i++;
+	}
+}
+
+int	check_integer(char **str_array)
 {
 	int		flag;
 
@@ -21,12 +36,13 @@ void	check_integer(char **str_array)
 	{
 		ft_atoi_flag(*str_array, &flag);
 		if (!flag)
-			print_error();
+			return (0);
 		str_array++;
 	}
+	return (1);
 }
 
-void	duplicate_check(char **str_array)
+int	duplicate_check(char **str_array)
 {
 	int		i;
 	int		j;
@@ -40,38 +56,56 @@ void	duplicate_check(char **str_array)
 			if (!str_array[j])
 				break ;
 			if (ft_strcmp(str_array[i], str_array[j]) == 0)
-				print_error();
+				return (0);
 			j++;
 		}
 		i++;
 		if (!str_array[i])
 			break ;
 	}
+	return (1);
 }
 
 char	**input_check(int ac, char *av[])
 {
 	char	**str_array;
 	char	*array_oneline;
-	int		i;
 
-	i = 1;
 	if (ac < 2)
 		print_error();
-	while (i < ac)
-	{
-		while ((*(av[i]) == 32 || (9 <= *(av[i]) && *(av[i]) <= 13)))
-			av[i]++;
-		if (!*av[i])
-			print_error();
-		i++;
-	}
+	check_novalue(ac, av);
 	array_oneline = make_str(ac, av);
 	str_array = ft_split(array_oneline, ' ');
 	free(array_oneline);
 	if (!str_array)
 		print_error();
-	check_integer(str_array);
-	duplicate_check(str_array);
+	if (!check_integer(str_array) || !duplicate_check(str_array))
+	{
+		free_split(str_array);
+		print_error();
+	}
 	return (str_array);
+}
+
+int	check_sorted(t_node *lst)
+{
+	int		min;
+	t_node	*lnode;
+
+	lnode = lst->prev;
+	min = lst->value;
+	while (1)
+	{
+		if (min > lst->value)
+			return (0);
+		min = lst->value;
+		lst = lst->next;
+		if (lst == lnode)
+		{
+			if (min > lst->value)
+				return (0);
+			break;
+		}
+	}
+	return (1);
 }
