@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   lst_utils1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 11:20:01 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/26 14:47:12 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/01 12:48:16 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,6 @@ void	lstadd_back(t_node **lst, t_node *newnode)
 {
 	t_node	*temp_lst;
 
-	if (newnode == NULL)
-	{
-		lstclear(lst);
-		print_error();
-	}
 	if (*lst == NULL)
 	{
 		*lst = newnode;
@@ -66,4 +61,23 @@ void	lstclear(t_node **lst)
 	}
 	free(*lst);
 	*lst = NULL;
+}
+
+int	lstsize(t_node *lst)
+{
+	int		size;
+	int		value;
+
+	if (!lst)
+		return (0);
+	size = 1;
+	value = lst->value;
+	while (lst->next)
+	{
+		lst = lst->next;
+		if (value == lst->value)
+			break ;
+		size++;
+	}
+	return (size);
 }

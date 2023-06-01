@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:36:11 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/26 13:11:44 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/05/30 11:40:03 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_novalue(int ac, char *av[])
 	while (i < ac)
 	{
 		while ((*(av[i]) == 32 || (9 <= *(av[i]) && *(av[i]) <= 13)))
-			*av[i]++;
+			av[i]++;
 		if (!*av[i])
 			print_error();
 		i++;
@@ -104,7 +104,7 @@ int	check_sorted(t_node *lst)
 		{
 			if (min > lst->value)
 				return (0);
-			break;
+			break ;
 		}
 	}
 	return (1);

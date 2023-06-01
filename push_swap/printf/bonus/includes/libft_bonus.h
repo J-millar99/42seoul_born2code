@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:47:45 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/24 13:13:25 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/05/30 11:39:49 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stddef.h>
 # define FT_INT_MAX 2147483647
 # define FT_INT_MIN 2147483648
+# define LLONG_MAX 9223372036854775807
 
 int		ft_isdigit(int c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);

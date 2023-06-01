@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:18:24 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/26 15:04:28 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/01 18:33:42 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ void	make_stack(t_node **lst, char **str)
 	while (*str != NULL)
 	{
 		node = lstnew(ft_atoi(*str));
+		if (node == NULL)
+		{
+			lstclear(lst);
+			free_split(str);
+			print_error();
+		}
 		lstadd_back(lst, node);
 		str++;
 	}
@@ -30,17 +36,19 @@ void	process(t_node **bot, t_node **top)
 {
 	t_node	*top_snode;
 	t_node	*top_lnode;
+	int		topsize;
 
+	topsize = lstsize(*top);
 	top_snode = (*top)->next;
-	top_lnode =  (*top)->prev;
+	top_lnode = (*top)->prev;
 	(*top)->next = NULL;
 	(*top)->prev = NULL;
-	if (top_snode != NULL && (top_snode->value != top_lnode->value))
+	if (topsize > 2)
 	{
 		top_snode->prev = top_lnode;
 		top_lnode->next = top_snode;
 	}
-	if (top_snode != NULL && (top_snode->value == top_lnode->value))
+	if (topsize == 2)
 	{
 		top_snode->prev = NULL;
 		top_lnode->next = NULL;
@@ -52,11 +60,13 @@ void	process(t_node **bot, t_node **top)
 void	put_on(t_node **bot, t_node **top)
 {
 	t_node	*bot_lnode;
+	int		botsize;
 
-	if (*bot != NULL)
+	botsize = lstsize(*bot);
+	if (botsize > 0)
 	{
 		bot_lnode = (*bot)->prev;
-		if (bot_lnode == NULL)
+		if (botsize == 1)
 		{
 			(*bot)->prev = *top;
 			(*bot)->next = *top;
