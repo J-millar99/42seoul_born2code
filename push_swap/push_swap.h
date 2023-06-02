@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:36 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/01 17:56:28 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/02 15:26:03 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,13 @@ int		rarb_push(t_node **alst, t_node **blst, int value, char lst);
 int		rrarrb_push(t_node **alst, t_node **blst, int value, char lst);
 int		rarrb_push(t_node **alst, t_node **blst, int value, char lst);
 int		rrarb_push(t_node **alst, t_node **blst, int value, char lst);
+
+/*		checker		*/
+void	read_standard_input(t_node **alst, t_node **blst);
+char	*check_command_line(t_node **alst, t_node **blst, char *line);
+void	execute_command_line(t_node **alst, t_node **blst, char *line);
+void	push_command(t_node **alst, t_node **blst, char *command);
+void	swap_command(t_node **alst, t_node **blst, char *command);
+void	rotate_command(t_node **alst, t_node **blst, char *command);
 
 #endif

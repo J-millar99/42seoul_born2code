@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 13:18:24 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/01 18:33:42 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/02 18:20:08 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ void	make_stack(t_node **lst, char **str)
 		node = lstnew(ft_atoi(*str));
 		if (node == NULL)
 		{
-			lstclear(lst);
 			free_split(str);
+			if (*lst)
+				lstclear(lst);
 			print_error();
 		}
 		lstadd_back(lst, node);

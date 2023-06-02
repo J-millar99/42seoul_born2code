@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 00:15:15 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/20 18:16:45 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/02 15:15:09 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ void	type_lx_hash(t_print *ps, int nb_len, unsigned int nb)
 	else
 		return (type_lx_hash_nminus(ps, nb_len, nb));
 }
-
-/*
-	nb = 0이면 '#'의 0x가 동작하지 않음
-*/
 
 void	type_lx_hash_minus(t_print *ps, int nb_len, unsigned int nb)
 {

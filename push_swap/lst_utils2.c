@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:53:13 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/01 18:58:11 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/02 17:17:10 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_node	*bi_lstlast(t_node *lst)
 {
+	if (!lst)
+		return (lst);
 	return (lst->prev);
 }
 

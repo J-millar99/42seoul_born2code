@@ -6,16 +6,11 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 03:27:38 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/20 22:04:25 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/02 15:14:36 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
-
-/*
-	nb의 길이는 1, '.'가 존재하면 0
-	36: nb_len보다 긴 '.'플래그 패딩
-*/
 
 void	d_nb_zero(t_print *ps)
 {

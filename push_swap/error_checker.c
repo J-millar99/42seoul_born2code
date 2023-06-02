@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:36:11 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/30 11:40:03 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/02 15:56:35 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,19 +93,14 @@ int	check_sorted(t_node *lst)
 	t_node	*lnode;
 
 	lnode = lst->prev;
-	min = lst->value;
 	while (1)
 	{
-		if (min > lst->value)
-			return (0);
 		min = lst->value;
 		lst = lst->next;
+		if (min > lst->value)
+			return (0);
 		if (lst == lnode)
-		{
-			if (min > lst->value)
-				return (0);
 			break ;
-		}
 	}
 	return (1);
 }

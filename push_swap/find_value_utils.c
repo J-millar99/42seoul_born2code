@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:31:43 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/01 18:57:48 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/02 18:14:58 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	find_right_place_alst(t_node *alst, int value)
 	int		i;
 	t_node	*tmp;
 
-	i = 0;
-	if (bi_lstlast(alst)->value < value && value < alst->value)
+	i = 1;
+	if (value < alst->value && bi_lstlast(alst)->value < value)
 		i = 0;
 	else if (lst_max(alst) < value || value < lst_min(alst))
 		i = find_idx(alst, lst_max(alst));
@@ -53,11 +53,9 @@ int	find_right_place_blst(t_node *blst, int value)
 	int		i;
 	t_node	*tmp;
 
-	i = 0;
-	if (blst->value < value && value < bi_lstlast(blst)->value) /* 터진지점 */
-	{
+	i = 1;
+	if (blst->value < value && value < bi_lstlast(blst)->value)
 		i = 0;
-	}
 	else if (lst_max(blst) < value || value < lst_min(blst))
 		i = find_idx(blst, lst_max(blst));
 	else

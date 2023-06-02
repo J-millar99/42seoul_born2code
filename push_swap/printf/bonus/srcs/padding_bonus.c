@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 15:33:33 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/20 17:48:35 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/02 15:14:52 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ void	zero_padding(t_print *ps, int max, int min)
 		min++;
 	}
 }
-
-/*
-	dot은 type x에서 사용
-*/
 
 void	nb_zero_padding(t_print *ps)
 {

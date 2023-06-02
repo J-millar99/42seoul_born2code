@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:28:19 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/01 18:55:53 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/02 18:15:32 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	sort_algorithm(t_node **alst)
 		swap_a(alst);
 	else
 	{
-		blst = setting_blst(alst); /* 터진 지점 */
+		blst = setting_blst(alst);
 		alst = setting_alst(alst, &blst);
 		idx = find_idx(*alst, lst_min(*alst));
 		if (idx < lstsize(*alst) - idx)
@@ -66,10 +66,10 @@ t_node	**setting_alst(t_node **alst, t_node **blst)
 		{
 			if (type == case_rarb_btoa(*alst, *blst, tmp->value))
 				type = rarb_push(alst, blst, tmp->value, 'b');
-			else if (type == case_rrarrb_btoa(*alst, *blst, tmp->value))
-				type = rrarrb_push(alst, blst, tmp->value, 'b');
 			else if (type == case_rarrb_btoa(*alst, *blst, tmp->value))
 				type = rarrb_push(alst, blst, tmp->value, 'b');
+			else if (type == case_rrarrb_btoa(*alst, *blst, tmp->value))
+				type = rrarrb_push(alst, blst, tmp->value, 'b');
 			else if (type == case_rrarb_btoa(*alst, *blst, tmp->value))
 				type = rrarb_push(alst, blst, tmp->value, 'b');
 			else
@@ -87,7 +87,7 @@ void	operate_remaining_alst3(t_node **blst, t_node **alst)
 	while (lstsize(*alst) > 3 && !check_sorted(*alst))
 	{
 		tmp = *alst;
-		type = check_rotate_type_atob(*alst, *blst); /* 터진 지점 */
+		type = check_rotate_type_atob(*alst, *blst);
 		while (type >= 0)
 		{
 			if (type == case_rarb_atob(*alst, *blst, tmp->value))

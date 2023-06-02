@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_utils.c                                       :+:      :+:    :+:   */
+/*   swap_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 15:12:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/02 16:33:02 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/06/02 14:44:03 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/06/02 15:26:31 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	swap_a(t_node **alst)
+void	swap_a_np(t_node **alst)
 {
 	t_node	*lnode;
 	t_node	*snode;
@@ -33,10 +33,9 @@ void	swap_a(t_node **alst)
 	*alst = snode;
 	if (size > 2)
 		lnode->next = *alst;
-	ft_printf("sa\n");
 }
 
-void	swap_b(t_node **blst)
+void	swap_b_np(t_node **blst)
 {
 	t_node	*lnode;
 	t_node	*snode;
@@ -57,12 +56,22 @@ void	swap_b(t_node **blst)
 	*blst = snode;
 	if (size > 2)
 		lnode->next = *blst;
-	ft_printf("sb\n");
 }
 
-void	swap_swap(t_node **alst, t_node **blst)
+void	swap_swap_np(t_node **alst, t_node **blst)
 {
 	swap_a(alst);
 	swap_b(blst);
-	ft_printf("ss\n");
+}
+
+void	swap_command(t_node **alst, t_node **blst, char *command)
+{
+	if (ft_strcmp(command, "sa\n"))
+		swap_a_np(alst);
+	else if (ft_strcmp(command, "sb\n"))
+		swap_b_np(blst);
+	else if (ft_strcmp(command, "ss\n"))
+		swap_swap_np(alst, blst);
+	else
+		print_error();
 }

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:33:03 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/01 17:56:02 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/01 20:35:27 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@ int	rarb_push(t_node **alst, t_node **blst, int value, char lst)
 {
 	if (lst == 'a')
 	{
-		while ((*alst)->value != value && find_right_place_alst(*blst, value) > 0)
+		while ((*alst)->value != value && \
+		find_right_place_blst(*blst, value) > 0)
 			rotate_rotate(alst, blst);
 		while ((*alst)->value != value)
 			rotate_a(alst);
-		while (find_right_place_alst(*blst, value) > 0)
+		while (find_right_place_blst(*blst, value) > 0)
 			rotate_b(blst);
 		push_b(blst, alst);
 	}
 	else
 	{
-		while ((*blst)->value != value && find_right_place_blst(*alst, value) > 0)
+		while ((*blst)->value != value && \
+		find_right_place_alst(*alst, value) > 0)
 			rotate_rotate(alst, blst);
 		while ((*blst)->value != value)
 			rotate_b(blst);
@@ -41,7 +43,8 @@ int	rrarrb_push(t_node **alst, t_node **blst, int value, char lst)
 {
 	if (lst == 'a')
 	{
-		while ((*alst)->value != value && find_right_place_alst(*blst, value) > 0)
+		while ((*alst)->value != value && \
+		find_right_place_blst(*blst, value) > 0)
 			rotate_rotate_reverse(alst, blst);
 		while ((*alst)->value != value)
 			rotate_reverse_a(alst);
@@ -51,11 +54,12 @@ int	rrarrb_push(t_node **alst, t_node **blst, int value, char lst)
 	}
 	else
 	{
-		while ((*blst)->value != value && find_right_place_blst(*alst, value) > 0)
+		while ((*blst)->value != value && \
+		find_right_place_alst(*alst, value) > 0)
 			rotate_rotate_reverse(alst, blst);
 		while ((*blst)->value != value)
 			rotate_reverse_b(blst);
-		while (find_right_place_blst(*blst, value) > 0)
+		while (find_right_place_alst(*alst, value) > 0)
 			rotate_reverse_a(alst);
 		push_a(alst, blst);
 	}

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:59:43 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/26 13:14:20 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/02 14:48:24 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*make_str(int ac, char *av[])
 void	print_error(void)
 {
 	ft_printf("Error\n");
-	exit(0);
+	exit(1);
 }
 
 int	ft_strcmp(const char *x, const char *y)
@@ -57,10 +57,13 @@ int	ft_strcmp(const char *x, const char *y)
 
 void	free_split(char **str)
 {
+	void	**tmp;
+
+	tmp = (void **)str;
 	while (*str != NULL)
 	{
 		free(*str);
 		str++;
 	}
-	free(str);
+	free(tmp);
 }

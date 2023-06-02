@@ -6,16 +6,11 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:32:13 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/25 20:30:35 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/02 15:15:18 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
-
-/*
-	nb가 음수면 '+', '-'동작 x
-	' '는 동작되면 항상 먼저
-*/
 
 void	check_ign_flag(t_print *ps, int nb)
 {
@@ -71,13 +66,6 @@ void	type_d_nminus(t_print *ps, int nb_len, int nb)
 	check_sign(ps, nb);
 	ft_putnbr_base_fd(nb, DECI, 1);
 }
-
-/*
-	padding은 precision과 nb_len에 의해 결정된다
-	두 값이 width보다 작으면 공백으로 채운다
-	precision이 nb_len보다 크면 '-'에 따라 '0'으로 채운다
-	width는 제한선이지만 nb_len과 precision보다 작으면 역할을 못한다.
-*/
 
 void	type_d(t_print *ps)
 {

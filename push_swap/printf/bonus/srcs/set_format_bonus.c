@@ -6,22 +6,11 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 18:06:54 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/25 17:48:11 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/02 15:15:27 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf_bonus.h"
-
-/*
-	%기호 다음 기호(플래그)를 확인한다
-	플래그가 맞다면 ps구조체의 변수를 조작하고
-	숫자라면 '.'을 만나기 전과 후로 width와 precision을 조정한다
-
-	37: '0'은 '.', '-'에 의해 무시되므로, '.'와 '-'가 모두 0일때만 조정한다
-		"0-", "-0" 주의
-	41: ' '은 '+'에 의해 무시되므로 '+'가 0일때 동작할 수 있도록 한다
-		" +", "+ " 주의
-*/
 
 const char	*set_flags(t_print *ps, const char *f)
 {
@@ -60,11 +49,6 @@ void	init_flags(t_print *ps)
 	ps->width = 0;
 }
 
-/*
-	f는 숫자가 시작하는 지점 문자열
-	'.'를 만나기 전이면 width, 만난 후면 precision처리
-*/
-
 const char	*handle_width(t_print *ps, const char *f)
 {
 	if (ps->dot)
@@ -75,10 +59,6 @@ const char	*handle_width(t_print *ps, const char *f)
 		f++;
 	return (f);
 }
-
-/*
-	90, 92: 무시되는 플래그 재초기화
-*/
 
 void	check_type(t_print *ps, const char sp)
 {
