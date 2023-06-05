@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 01:57:04 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/05 13:46:49 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/05 15:14:12 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void	skip_space_sign(const char **str, int *sign)
 
 int	ft_atoi(const char *str)
 {
-	unsigned long	num;
-	int				sign;
+	long long	num;
+	int			sign;
 
 	num = 0;
 	sign = 1;
@@ -46,8 +46,8 @@ int	ft_atoi(const char *str)
 
 int	ft_atoi_flag(const char *str, int *flag)
 {
-	unsigned long	num;
-	int				sign;
+	long long	num;
+	int			sign;
 
 	num = 0;
 	sign = 1;
