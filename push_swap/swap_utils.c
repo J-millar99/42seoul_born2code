@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:12:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/02 16:33:02 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/05 11:50:55 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ void	swap_a(t_node **alst)
 		snode->next = snode->prev;
 		snode->prev = lnode;
 	}
-	*alst = snode;
 	if (size > 2)
-		lnode->next = *alst;
+	{
+		lnode->next = snode;
+		lnode->prev = *alst;
+	}
+	*alst = snode;
 	ft_printf("sa\n");
 }
 
@@ -54,9 +57,12 @@ void	swap_b(t_node **blst)
 		snode->next = snode->prev;
 		snode->prev = lnode;
 	}
-	*blst = snode;
 	if (size > 2)
-		lnode->next = *blst;
+	{
+		lnode->next = snode;
+		lnode->prev = *blst;
+	}
+	*blst = snode;
 	ft_printf("sb\n");
 }
 
