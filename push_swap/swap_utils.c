@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:12:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/05 11:50:55 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/05 13:26:19 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	swap_a(t_node **alst)
 		lnode->prev = *alst;
 	}
 	*alst = snode;
-	ft_printf("sa\n");
+	write(1, "sa\n", 3);
 }
 
 void	swap_b(t_node **blst)
@@ -63,12 +63,12 @@ void	swap_b(t_node **blst)
 		lnode->prev = *blst;
 	}
 	*blst = snode;
-	ft_printf("sb\n");
+	write(1, "sb\n", 3);
 }
 
 void	swap_swap(t_node **alst, t_node **blst)
 {
 	swap_a(alst);
 	swap_b(blst);
-	ft_printf("ss\n");
+	write(1, "ss\n", 3);
 }

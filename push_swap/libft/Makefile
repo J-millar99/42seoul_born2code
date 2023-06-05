@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 02:01:07 by jaehyji           #+#    #+#              #
-#    Updated: 2023/03/26 19:28:00 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/06/05 13:45:54 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,22 +26,16 @@ SRCS_B =	ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c	\
 			ft_lstdelone_bonus.c ft_lstiter_bonus.c ft_lstlast_bonus.c	\
 			ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c	\
 
-OBJS_M = $(addprefix mandatory/srcs/, ${SRCS_M:.c=.o})
-OBJS_B = $(addprefix bonus/srcs/, ${SRCS_B:.c=.o})
-
-INC_M = -I./mandatory/includes
-INC_B = -I./bonus/includes
-
+OBJS_M = $(addprefix srcs/, ${SRCS_M:.c=.o})
+OBJS_B = $(addprefix srcs/, ${SRCS_B:.c=.o})
 ifdef FLAG
     OBJS = $(OBJS_M) $(OBJS_B)
-	INC = $(INC_B)
 else
     OBJS = $(OBJS_M)
-	INC = $(INC_M)
 endif
 
 %.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@ $(INC)
+	$(CC) $(CFLAG) -c $< -o $@
 
 $(NAME) : $(OBJS)
 	ar crs $@ $^

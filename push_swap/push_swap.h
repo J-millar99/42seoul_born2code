@@ -6,16 +6,14 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:36 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/02 15:26:03 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/05 13:34:47 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "printf/bonus/includes/ft_printf_bonus.h"
-# include "libft/mandatory/includes/libft.h"
-# include "libft/mandatory/includes/libft_bonus.h"
+# include "libft/includes/libft.h"
 # include <stdio.h>
 
 typedef struct s_node

@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd_bonus.c                              :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 18:42:20 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/17 18:42:20 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 01:59:23 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 01:59:23 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft_bonus.h"
+#include "../includes/libft.h"
 
-int	ft_putchar_fd(char c, int fd)
+char	*ft_strchr(const char *s, int c)
 {
-	return (write(fd, &c, 1));
+	while (*s != (char)c)
+	{
+		if (!*s)
+			return (NULL);
+		s++;
+	}
+	return ((char *)s);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_bonus.c                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 18:41:20 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/26 13:03:39 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 01:57:04 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/06/05 13:46:49 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft_bonus.h"
+#include "../includes/libft.h"
 
-void	skip_space_sign(const char **str, int *sign)
+static void	skip_space_sign(const char **str, int *sign)
 {
 	while ((**str == 32 || (9 <= **str && **str <= 13)))
 		(*str)++;
@@ -57,9 +57,9 @@ int	ft_atoi_flag(const char *str, int *flag)
 	while ('0' <= *str && *str <= '9')
 	{
 		num = num * 10 + (*str - '0');
-		if (num > FT_INT_MAX && sign == 1)
+		if (num > 2147483647 && sign == 1)
 			*flag = 0;
-		if (num > FT_INT_MIN && sign == -1)
+		if (num > 2147483648 && sign == -1)
 			*flag = 0;
 		str++;
 	}

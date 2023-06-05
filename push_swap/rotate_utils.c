@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:56:51 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/30 14:06:35 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/05 13:25:24 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	rotate_a(t_node **alst)
 		return ;
 	if ((*alst)->next)
 		*alst = (*alst)->next;
-	ft_printf("ra\n");
+	write(1, "ra\n", 3);
 }
 
 void	rotate_b(t_node **blst)
@@ -27,12 +27,12 @@ void	rotate_b(t_node **blst)
 		return ;
 	if ((*blst)->next)
 		*blst = (*blst)->next;
-	ft_printf("rb\n");
+	write(1, "rb\n", 3);
 }
 
 void	rotate_rotate(t_node **alst, t_node **blst)
 {
 	rotate_a(alst);
 	rotate_b(blst);
-	ft_printf("rr\n");
+	write(1, "rr\n", 3);
 }

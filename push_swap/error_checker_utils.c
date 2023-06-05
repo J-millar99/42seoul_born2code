@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:59:43 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/02 14:48:24 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/05 13:25:04 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*make_str(int ac, char *av[])
 
 void	print_error(void)
 {
-	ft_printf("Error\n");
+	write(1, "Error\n", 6);
 	exit(1);
 }
 

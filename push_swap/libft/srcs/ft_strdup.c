@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 18:42:40 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/24 12:43:36 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 01:59:27 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 01:59:27 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft_bonus.h"
+#include "../includes/libft.h"
 
 char	*ft_strdup(const char *s1)
 {

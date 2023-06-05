@@ -1,3 +1,0 @@
-gcc *.c ../libft/mandatory/srcs/*.c ../printf/bonus/srcs/*.c ../get_next_line/mandatory/srcs/*.c ../*.c
-
-gcc *.c libft/mandatory/srcs/*.c printf/bonus/srcs/*.c

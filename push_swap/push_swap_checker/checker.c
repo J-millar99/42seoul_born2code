@@ -6,12 +6,12 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:19:26 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/02 16:11:52 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/05 14:01:16 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-#include "../get_next_line/mandatory/includes/get_next_line.h"
+#include "../get_next_line/includes/get_next_line.h"
 
 int	main(int ac, char *av[])
 {
@@ -22,7 +22,7 @@ int	main(int ac, char *av[])
 	str = input_check(ac, av);
 	make_stack(&alst, str);
 	if (check_sorted(alst))
-		ft_printf("Stack A already is aligned\n");
+		write(1, "Stack A already is aligned\n", 27);
 	else
 		read_standard_input(&alst, &blst);
 	return (0);
@@ -37,11 +37,11 @@ void	read_standard_input(t_node **alst, t_node **blst)
 		print_error();
 	execute_command_line(alst, blst, command_line);
 	if (!check_sorted(*alst))
-		ft_printf("1KO\n");
+		write(1, "KO\n", 3);
 	else if (*blst)
-		ft_printf("2KO\n");
+		write(1, "KO\n", 3);
 	else
-		ft_printf("OK\n");
+		write(1, "OK\n", 3);
 }
 
 void	execute_command_line(t_node **alst, t_node **blst, char *line)

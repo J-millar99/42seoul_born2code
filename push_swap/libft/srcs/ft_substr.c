@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 18:42:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/19 01:57:16 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 02:00:39 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 02:00:39 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft_bonus.h"
+#include "../includes/libft.h"
 
 char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
 	char	*result;
 	int		idx;
 
-	if (!str)
+	if (str == NULL)
 		return (NULL);
 	if (ft_strlen(str) < start)
 		return (ft_strdup("\0"));

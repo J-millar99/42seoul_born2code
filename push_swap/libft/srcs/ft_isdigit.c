@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 18:41:35 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/17 18:41:35 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 01:57:38 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 01:57:38 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft_bonus.h"
+#include "../includes/libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int	ft_isdigit(int c)
 {
-	size_t			idx;
-	unsigned char	*temp_dst;
-	unsigned char	*temp_src;
-
-	if (dst == NULL && src == NULL)
-		return (NULL);
-	idx = 0;
-	temp_dst = (unsigned char *)dst;
-	temp_src = (unsigned char *)src;
-	while (idx < n)
-	{
-		temp_dst[idx] = temp_src[idx];
-		++idx;
-	}
-	return (dst);
+	if ('0' <= c && c <= '9')
+		return (1);
+	else
+		return (0);
 }

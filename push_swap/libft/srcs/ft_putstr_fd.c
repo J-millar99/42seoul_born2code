@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_c_bonus.c                                     :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 15:17:37 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/02 15:14:57 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 01:59:16 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 01:59:16 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf_bonus.h"
+#include "../includes/libft.h"
 
-void	type_c(t_print *ps)
+void	ft_putstr_fd(char *s, int fd)
 {
-	char	c;
-
-	c = va_arg(ps->vlist, int);
-	if (ps->width && !ps->minus)
-		padding(ps, 1);
-	ps->plen += ft_putchar_fd(c, 1);
-	if (ps->width && ps->minus)
-		padding(ps, 1);
+	write(fd, s, ft_strlen(s));
 }

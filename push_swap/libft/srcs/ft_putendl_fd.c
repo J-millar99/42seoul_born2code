@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 18:42:36 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/17 18:42:36 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 01:59:09 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 01:59:09 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft_bonus.h"
+#include "../includes/libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_putendl_fd(char *s, int fd)
 {
-	while (*s != (char)c)
-	{
-		if (!*s)
-			return (NULL);
-		s++;
-	}
-	return ((char *)s);
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
 }

@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_i_bonus.c                                     :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 20:47:35 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/16 20:47:35 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/03/26 01:58:50 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/03/26 01:58:50 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf_bonus.h"
+#include "../includes/libft.h"
 
-void	type_i(t_print *ps)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	type_d(ps);
+	size_t			idx;
+	unsigned char	*temp_dst;
+	unsigned char	*temp_src;
+
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	idx = 0;
+	temp_dst = (unsigned char *)dst;
+	temp_src = (unsigned char *)src;
+	while (idx < n)
+	{
+		temp_dst[idx] = temp_src[idx];
+		++idx;
+	}
+	return (dst);
 }

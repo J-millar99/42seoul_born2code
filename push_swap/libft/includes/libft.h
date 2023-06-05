@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 02:00:54 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/05/24 11:41:15 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/05 13:36:01 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
+# include <limits.h>
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
@@ -45,6 +46,7 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_itoa(int n);
 int		ft_atoi(const char *str);
+int		ft_atoi_flag(const char *str, int *flag);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
