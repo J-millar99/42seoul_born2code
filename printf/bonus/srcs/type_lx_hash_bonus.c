@@ -20,10 +20,6 @@ void	type_lx_hash(t_print *ps, int nb_len, unsigned int nb)
 		return (type_lx_hash_nminus(ps, nb_len, nb));
 }
 
-/*
-	nb = 0이면 '#'의 0x가 동작하지 않음
-*/
-
 void	type_lx_hash_minus(t_print *ps, int nb_len, unsigned int nb)
 {
 	int		add;

@@ -12,12 +12,6 @@
 
 #include "../includes/ft_printf_bonus.h"
 
-/*
-	27: "0x"형식으로 출력되기 때문에 길이 + 2
-	31: 0x출력전에 padding을 하는데, '0'이 존재하면 패딩은 0x이후에 해야한다
-		'0'는 padding시, 0x(prefix)가 먼저 출력되고 출력된다
-*/
-
 void	type_p(t_print *ps)
 {
 	void	*ptr;

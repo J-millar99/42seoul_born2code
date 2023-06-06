@@ -12,14 +12,6 @@
 
 #include "get_next_line_bonus.h"
 
-/*
-	head는 list의 시작지점
-	find는 찾으려는 해당 fd 리스트
-	list를 탐색하다가 fd가 나오면 find를 반환
-	못찾았다면 해당 fd로 새로운 노드를 생성하고 next_fd에 저장
-	마지막으로 list를 초기 위치로 되돌려 재탐색 준비
-*/
-
 t_list	*find_fd_list(t_list **list, int fd)
 {
 	t_list	*find;

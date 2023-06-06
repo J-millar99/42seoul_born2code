@@ -12,12 +12,6 @@
 
 #include "../includes/ft_printf_bonus.h"
 
-/*
-	%c에 동작하는 flag는 'width', '-'
-	다른 플래그는 무시된다
-	'-'가 존재하지 않으면 앞에 패딩, 존재하면 뒤에 패딩
-*/
-
 void	type_c(t_print *ps)
 {
 	char	c;

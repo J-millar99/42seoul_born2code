@@ -12,11 +12,6 @@
 
 #include "../includes/ft_printf_bonus.h"
 
-/*
-	nb의 길이는 1, '.'가 존재하면 0
-	36: nb_len보다 긴 '.'플래그 패딩
-*/
-
 void	d_nb_zero(t_print *ps)
 {
 	if (ps->minus)

@@ -12,11 +12,6 @@
 
 #include "../includes/ft_printf_bonus.h"
 
-/*
-	nb가 음수면 '+', '-'동작 x
-	' '는 동작되면 항상 먼저
-*/
-
 void	check_ign_flag(t_print *ps, int nb)
 {
 	if (nb < 0)
@@ -71,13 +66,6 @@ void	type_d_nminus(t_print *ps, int nb_len, int nb)
 	check_sign(ps, nb);
 	ft_putnbr_base_fd(nb, DECI, 1);
 }
-
-/*
-	padding은 precision과 nb_len에 의해 결정된다
-	두 값이 width보다 작으면 공백으로 채운다
-	precision이 nb_len보다 크면 '-'에 따라 '0'으로 채운다
-	width는 제한선이지만 nb_len과 precision보다 작으면 역할을 못한다.
-*/
 
 void	type_d(t_print *ps)
 {

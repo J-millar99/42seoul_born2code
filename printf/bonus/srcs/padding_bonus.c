@@ -35,10 +35,6 @@ void	zero_padding(t_print *ps, int max, int min)
 	}
 }
 
-/*
-	dot은 type x에서 사용
-*/
-
 void	nb_zero_padding(t_print *ps)
 {
 	if (!ps->minus)
