@@ -60,7 +60,6 @@ void	lstclear(t_node **lst)
 		temp = (*lst)->next;
 	}
 	free(*lst);
-	*lst = NULL;
 }
 
 int	lstsize(t_node *lst)

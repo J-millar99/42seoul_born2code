@@ -44,15 +44,15 @@ void	process(t_node **bot, t_node **top)
 	top_lnode = (*top)->prev;
 	(*top)->next = NULL;
 	(*top)->prev = NULL;
-	if (topsize > 2)
-	{
-		top_snode->prev = top_lnode;
-		top_lnode->next = top_snode;
-	}
 	if (topsize == 2)
 	{
 		top_snode->prev = NULL;
 		top_lnode->next = NULL;
+	}
+	else if (topsize > 2)
+	{
+		top_snode->prev = top_lnode;
+		top_lnode->next = top_snode;
 	}
 	put_on(bot, top);
 	*top = top_snode;

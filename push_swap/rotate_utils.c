@@ -14,7 +14,7 @@
 
 void	rotate_a(t_node **alst)
 {
-	if (!*alst)
+	if (lstsize(*alst) < 2)
 		return ;
 	if ((*alst)->next)
 		*alst = (*alst)->next;
@@ -23,7 +23,7 @@ void	rotate_a(t_node **alst)
 
 void	rotate_b(t_node **blst)
 {
-	if (!*blst)
+	if (lstsize(*blst) < 2)
 		return ;
 	if ((*blst)->next)
 		*blst = (*blst)->next;

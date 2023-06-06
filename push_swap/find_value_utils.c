@@ -34,7 +34,7 @@ int	find_right_place_alst(t_node *alst, int value)
 	if (value < alst->value && bi_lstlast(alst)->value < value)
 		i = 0;
 	else if (lst_max(alst) < value || value < lst_min(alst))
-		i = find_idx(alst, lst_max(alst));
+		i = find_idx(alst, lst_min(alst));
 	else
 	{
 		tmp = alst->next;

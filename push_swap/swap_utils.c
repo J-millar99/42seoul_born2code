@@ -29,9 +29,6 @@ void	swap_a(t_node **alst)
 		(*alst)->next = snode->next;
 		snode->next = snode->prev;
 		snode->prev = lnode;
-	}
-	if (size > 2)
-	{
 		lnode->next = snode;
 		lnode->prev = *alst;
 	}

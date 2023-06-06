@@ -14,7 +14,7 @@
 
 t_node	*bi_lstlast(t_node *lst)
 {
-	if (!lst)
+	if (lstsize(lst) < 2)
 		return (lst);
 	return (lst->prev);
 }
@@ -28,9 +28,9 @@ int	lst_min(t_node *lst)
 	min = lst->value;
 	while (lsize--)
 	{
+		lst = lst->next;
 		if (lst->value < min)
 			min = lst->value;
-		lst = lst->next;
 	}
 	return (min);
 }
@@ -44,9 +44,9 @@ int	lst_max(t_node *lst)
 	max = lst->value;
 	while (lsize--)
 	{
+		lst = lst->next;
 		if (lst->value > max)
 			max = lst->value;
-		lst = lst->next;
 	}
 	return (max);
 }
