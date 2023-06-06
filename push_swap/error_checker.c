@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	check_novalue(int ac, char *av[])
+void	skip_space_check_value(int ac, char *av[])
 {
 	int		i;
 
@@ -71,9 +71,7 @@ char	**input_check(int ac, char *av[])
 	char	**str_array;
 	char	*array_oneline;
 
-	if (ac < 2)
-		print_error();
-	check_novalue(ac, av);
+	skip_space_check_value(ac, av);
 	array_oneline = make_str(ac, av);
 	str_array = ft_split(array_oneline, ' ');
 	free(array_oneline);

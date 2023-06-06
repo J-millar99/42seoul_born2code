@@ -18,6 +18,8 @@ int	main(int ac, char *av[])
 	t_node	*alst;
 
 	alst = NULL;
+	if (ac == 1)
+		exit(0);
 	str = input_check(ac, av);
 	make_stack(&alst, str);
 	if (!check_sorted(alst))
