@@ -12,6 +12,10 @@
 
 #include "push_swap.h"
 
+/*
+	what is the rotate type returning the least number of rotate.
+*/
+
 int	check_rotate_type_atob(t_node *alst, t_node *blst)
 {
 	int		i;

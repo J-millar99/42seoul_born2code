@@ -48,6 +48,11 @@ int	find_right_place_alst(t_node *alst, int value)
 	return (i);
 }
 
+/*
+	The number of times the stack needs to be rotated
+	to place the value in the correct position.
+*/
+
 int	find_right_place_blst(t_node *blst, int value)
 {
 	int		i;

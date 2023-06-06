@@ -67,14 +67,14 @@ void	sort_remaining_alst3(t_node **alst);
 void	operate_remaining_alst3(t_node **blst, t_node **alst);
 
 /*		rotate_case		*/
-int		case_rarb_atob(t_node *alst, t_node *blst, int value);
-int		case_rrarrb_atob(t_node *alst, t_node *blst, int value);
-int		case_rarrb_atob(t_node *alst, t_node *blst, int value);
-int		case_rrarb_atob(t_node *alst, t_node *blst, int value);
-int		case_rarb_btoa(t_node *alst, t_node *blst, int value);
-int		case_rrarrb_btoa(t_node *alst, t_node *blst, int value);
-int		case_rarrb_btoa(t_node *alst, t_node *blst, int value);
-int		case_rrarb_btoa(t_node *alst, t_node *blst, int value);
+int		case_rarb_atob(t_node *alst, t_node *blst, int a_val);
+int		case_rrarrb_atob(t_node *alst, t_node *blst, int a_val);
+int		case_rarrb_atob(t_node *alst, t_node *blst, int a_val);
+int		case_rrarb_atob(t_node *alst, t_node *blst, int a_val);
+int		case_rarb_btoa(t_node *alst, t_node *blst, int b_val);
+int		case_rrarrb_btoa(t_node *alst, t_node *blst, int b_val);
+int		case_rarrb_btoa(t_node *alst, t_node *blst, int b_val);
+int		case_rrarb_btoa(t_node *alst, t_node *blst, int b_val);
 
 /*		search		*/
 int		find_idx(t_node *lst, int value);

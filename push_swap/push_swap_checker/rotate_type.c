@@ -14,7 +14,7 @@
 
 void	rotate_a_np(t_node **alst)
 {
-	if (!*alst)
+	if (lstsize(*alst) < 2)
 		return ;
 	if ((*alst)->next)
 		*alst = (*alst)->next;
@@ -22,7 +22,7 @@ void	rotate_a_np(t_node **alst)
 
 void	rotate_b_np(t_node **blst)
 {
-	if (!*blst)
+	if (lstsize(*blst) < 2)
 		return ;
 	if ((*blst)->next)
 		*blst = (*blst)->next;
@@ -30,7 +30,7 @@ void	rotate_b_np(t_node **blst)
 
 void	rotate_reverse_a_np(t_node **alst)
 {
-	if (!*alst)
+	if (lstsize(*alst) < 2)
 		return ;
 	if ((*alst)->prev)
 		*alst = (*alst)->prev;
@@ -38,7 +38,7 @@ void	rotate_reverse_a_np(t_node **alst)
 
 void	rotate_reverse_b_np(t_node **blst)
 {
-	if (!*blst)
+	if (lstsize(*blst) < 2)
 		return ;
 	if ((*blst)->prev)
 		*blst = (*blst)->prev;

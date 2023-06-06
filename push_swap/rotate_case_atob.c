@@ -12,46 +12,51 @@
 
 #include "push_swap.h"
 
-int	case_rarb_atob(t_node *alst, t_node *blst, int value)
+/*
+	Considering A and B
+	the least number of times to be rotated(same time) is selected.
+*/
+
+int	case_rarb_atob(t_node *alst, t_node *blst, int a_val)
 {
 	int		i;
 
-	i = find_right_place_blst(blst, value);
-	if (i < find_idx(alst, value))
-		i = find_idx(alst, value);
+	i = find_right_place_blst(blst, a_val);
+	if (i < find_idx(alst, a_val))
+		i = find_idx(alst, a_val);
 	return (i);
 }
 
-int	case_rrarrb_atob(t_node *alst, t_node *blst, int value)
+int	case_rrarrb_atob(t_node *alst, t_node *blst, int a_val)
 {
 	int		i;
 
 	i = 0;
-	if (find_right_place_blst(blst, value))
-		i = lstsize(blst) - find_right_place_blst(blst, value);
-	if ((i < (lstsize(alst) - find_idx(alst, value))) && find_idx(alst, value))
-		i = lstsize(alst) - find_idx(alst, value);
+	if (find_right_place_blst(blst, a_val))
+		i = lstsize(blst) - find_right_place_blst(blst, a_val);
+	if ((i < (lstsize(alst) - find_idx(alst, a_val))) && find_idx(alst, a_val))
+		i = lstsize(alst) - find_idx(alst, a_val);
 	return (i);
 }
 
-int	case_rarrb_atob(t_node *alst, t_node *blst, int value)
+int	case_rarrb_atob(t_node *alst, t_node *blst, int a_val)
 {
 	int		i;
 
 	i = 0;
-	if (find_right_place_blst(blst, value))
-		i = lstsize(blst) - find_right_place_blst(blst, value);
-	i = find_idx(alst, value) + i;
+	if (find_right_place_blst(blst, a_val))
+		i = lstsize(blst) - find_right_place_blst(blst, a_val);
+	i = find_idx(alst, a_val) + i;
 	return (i);
 }
 
-int	case_rrarb_atob(t_node *alst, t_node *blst, int value)
+int	case_rrarb_atob(t_node *alst, t_node *blst, int a_val)
 {
 	int		i;
 
 	i = 0;
-	if (find_idx(alst, value))
-		i = lstsize(alst) - find_idx(alst, value);
-	i = find_right_place_blst(blst, value) + i;
+	if (find_idx(alst, a_val))
+		i = lstsize(alst) - find_idx(alst, a_val);
+	i = find_right_place_blst(blst, a_val) + i;
 	return (i);
 }
