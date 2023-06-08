@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_files.c                                      :+:      :+:    :+:   */
+/*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 14:25:07 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/06 14:25:07 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/06/08 15:25:02 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/06/08 15:25:02 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int check_files(char *av[])
+#include "pipex.h"
+
+void    print_error(void)
 {
-    
+    perror("Error");
+    exit(EXIT_FAILURE);
 }
