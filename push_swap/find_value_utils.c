@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:31:43 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/02 18:14:58 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 16:15:52 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@ int	find_idx(t_node *lst, int value)
 	return (idx);
 }
 
-int	find_right_place_alst(t_node *alst, int value)
+int	find_right_place_alst(t_node *alst, int b_val)
 {
 	int		i;
 	t_node	*tmp;
 
 	i = 1;
-	if (value < alst->value && bi_lstlast(alst)->value < value)
+	if (bi_lstlast(alst)->value < b_val && b_val < alst->value)
 		i = 0;
-	else if (lst_max(alst) < value || value < lst_min(alst))
+	else if (lst_max(alst) < b_val || b_val < lst_min(alst))
 		i = find_idx(alst, lst_min(alst));
 	else
 	{
 		tmp = alst->next;
-		while (tmp->value < value || value < alst->value)
+		while (tmp->value < b_val || b_val < alst->value)
 		{
 			alst = alst->next;
 			tmp = alst->next;
@@ -53,20 +53,20 @@ int	find_right_place_alst(t_node *alst, int value)
 	to place the value in the correct position.
 */
 
-int	find_right_place_blst(t_node *blst, int value)
+int	find_right_place_blst(t_node *blst, int a_val)
 {
 	int		i;
 	t_node	*tmp;
 
 	i = 1;
-	if (blst->value < value && value < bi_lstlast(blst)->value)
+	if (blst->value < a_val && a_val < bi_lstlast(blst)->value)
 		i = 0;
-	else if (lst_max(blst) < value || value < lst_min(blst))
+	else if (lst_max(blst) < a_val || a_val < lst_min(blst))
 		i = find_idx(blst, lst_max(blst));
 	else
 	{
 		tmp = blst->next;
-		while (blst->value < value || value < tmp->value)
+		while (blst->value < a_val || a_val < tmp->value)
 		{
 			blst = blst->next;
 			tmp = blst->next;

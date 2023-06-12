@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 11:52:43 by jaehyji           #+#    #+#              #
-#    Updated: 2023/06/12 11:57:24 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/06/12 16:56:22 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,7 @@ SRCS_U =	stack_utils.c	\
 		check_rotate_type.c
 
 BONUS_SRCS = push_swap_checker/checker.c	\
-			push_swap_checker/push_type.c	\
-			push_swap_checker/swap_type.c	\
-			push_swap_checker/rotate_type.c	\
+			push_swap_checker/command.c		\
 			get_next_line/srcs/get_next_line.c	\
 			get_next_line/srcs/get_next_line_utils.c
 

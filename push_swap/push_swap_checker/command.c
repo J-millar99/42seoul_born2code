@@ -6,42 +6,35 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:44:15 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/12 15:17:28 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 16:55:53 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	rotate_a_np(t_node **alst)
+void	push_command(t_node **alst, t_node **blst, char *command)
 {
-	if (lstsize(*alst) < 2)
-		return ;
-	if ((*alst)->next)
-		*alst = (*alst)->next;
+	if (!ft_strcmp(command, "pa\n"))
+		push_a_np(alst, blst);
+	else if (!ft_strcmp(command, "pb\n"))
+		push_b_np(blst, alst);
+	else
+		print_error();
 }
 
-void	rotate_b_np(t_node **blst)
+void	swap_command(t_node **alst, t_node **blst, char *command)
 {
-	if (lstsize(*blst) < 2)
-		return ;
-	if ((*blst)->next)
-		*blst = (*blst)->next;
-}
-
-void	rotate_reverse_a_np(t_node **alst)
-{
-	if (lstsize(*alst) < 2)
-		return ;
-	if ((*alst)->prev)
-		*alst = (*alst)->prev;
-}
-
-void	rotate_reverse_b_np(t_node **blst)
-{
-	if (lstsize(*blst) < 2)
-		return ;
-	if ((*blst)->prev)
-		*blst = (*blst)->prev;
+	if (!ft_strcmp(command, "sa\n"))
+		swap_a_np(alst);
+	else if (!ft_strcmp(command, "sb\n"))
+		swap_b_np(blst);
+	else if (!ft_strcmp(command, "ss\n"))
+	{
+		swap_a_np(alst);
+		swap_b_np(blst);
+	}
+	else
+		print_error();
 }
 
 void	rotate_command(t_node **alst, t_node **blst, char *command)

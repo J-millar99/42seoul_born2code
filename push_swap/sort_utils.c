@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:28:19 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/02 18:15:32 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 16:51:35 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	sort_algorithm(t_node **alst)
 	t_node	*blst;
 	int		idx;
 
+	blst = NULL;
 	if (lstsize(*alst) == 2)
 		swap_a(alst);
 	else

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:36 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/05 13:34:47 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 16:51:05 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,14 @@ void	rotate_rotate(t_node **alst, t_node **blst);
 void	rotate_reverse_a(t_node **alst);
 void	rotate_reverse_b(t_node **blst);
 void	rotate_rotate_reverse(t_node **alst, t_node **blst);
+void	push_a_np(t_node **alst, t_node **blst);
+void	push_b_np(t_node **blst, t_node **alst);
+void	rotate_a_np(t_node **alst);
+void	rotate_b_np(t_node **blst);
+void	rotate_reverse_a_np(t_node **alst);
+void	rotate_reverse_b_np(t_node **blst);
+void	swap_a_np(t_node **alst);
+void	swap_b_np(t_node **blst);
 
 /*		algorithm		*/
 void	sort_algorithm(t_node **alst);
@@ -78,8 +86,8 @@ int		case_rrarb_btoa(t_node *alst, t_node *blst, int b_val);
 
 /*		search		*/
 int		find_idx(t_node *lst, int value);
-int		find_right_place_alst(t_node *alst, int value);
-int		find_right_place_blst(t_node *blst, int value);
+int		find_right_place_alst(t_node *alst, int b_val);
+int		find_right_place_blst(t_node *blst, int a_val);
 
 /*		check_rotate_type		*/
 int		check_rotate_type_atob(t_node *alst, t_node *blst);
