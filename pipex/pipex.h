@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:51 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/12 19:59:11 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 20:24:09 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,15 @@ typedef struct s_cmdline
 }	t_cmdline;
 
 /*			pipex			*/
-void	parsing_cmd(t_cmdline *structure, char **av, char **envp);
 
 /*			error			*/
-void	malloc_free(t_cmdline *info);
 void	print_error(char *error_strting);
+void	malloc_error(t_cmdline *info);
+
+/*			utils			*/
+void	malloc_free(t_cmdline *info);
+void	parsing_cmd(t_cmdline *info, char **av, char **envp);
+void	check_command(t_cmdline *info);
+void	check_file(t_cmdline *info);
 
 #endif

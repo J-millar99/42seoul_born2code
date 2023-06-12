@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:25:02 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/12 19:59:22 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 20:09:38 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,17 @@ void	parsing_cmd(t_cmdline *info, char **av, char **envp)
 	info->cmd2 = ft_split(av[3], ' ');
 	info->outfile = ft_strdup(av[4]);
 	if (!info->infile || !info->cmd1 || !info->cmd2 || !info->outfile)
-		malloc_free(info);
+		malloc_error(info);
+}
+
+void	malloc_free(t_cmdline *info)
+{
+	if (info->infile)
+		free(info->infile);
+	if (info->cmd1)
+		free(info->cmd1);
+	if (info->cmd2)
+		free(info->cmd2);
+	if (info->outfile)
+		free(info->outfile);
 }

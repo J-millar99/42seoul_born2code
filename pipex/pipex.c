@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:41 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/12 19:38:49 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 20:26:52 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	main(int ac, char *av[], char **envp)
 	if (ac == 5)
 	{
 		if (pipe(fd) == -1)
-			print_error("pipe");
+			print_error("Pipe Function Error");
 		child = fork();
 		if (child == -1)
-			print_error("fork");
+			print_error("Fork Function Error");
 		if (child == 0)
 			printf("2\n");
 		else
