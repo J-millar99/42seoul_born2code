@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:36:11 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/12 12:57:02 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 15:18:00 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	duplicate_check(char **str_array)
 		{
 			if (!str_array[j])
 				break ;
-			if (ft_strcmp(str_array[i], str_array[j]) == 0)
+			if (!ft_strcmp(str_array[i], str_array[j]))
 				return (0);
 			j++;
 		}

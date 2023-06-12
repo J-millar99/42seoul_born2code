@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:19:26 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/12 12:54:10 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 15:17:05 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	main(int ac, char *av[])
 	blst = NULL;
 	str = input_check(ac, av);
 	make_stack(&alst, str);
-	if (check_sorted(alst))
-		exit(0);
-	else
-		read_standard_input(&alst, &blst);
+	read_standard_input(&alst, &blst);
 	return (0);
 }
 
@@ -35,8 +32,6 @@ void	read_standard_input(t_node **alst, t_node **blst)
 	char	*command_line;
 
 	command_line = get_next_line(0);
-	if (!command_line || !*command_line)
-		print_error();
 	execute_command_line(alst, blst, command_line);
 	if (!check_sorted(*alst))
 		write(1, "KO\n", 3);
@@ -50,7 +45,7 @@ void	execute_command_line(t_node **alst, t_node **blst, char *line)
 {
 	char	*tmp;
 
-	while (line && *line != '\n')
+	while (line && *line)
 	{
 		tmp = line;
 		line = check_command_line(alst, blst, line);
