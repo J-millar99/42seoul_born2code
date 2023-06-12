@@ -6,46 +6,43 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:41 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/06 14:12:41 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 19:38:49 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 /*
-    commands to implement
-    1. grep
-    2. ls
-    3. wc
+	pipe()
+	fd[0]: 읽기 전용 파일 디스크립터
+	fd[1]: 쓰기 전용 파일 디스크립터
+
+	fork()
+	프로세스를 복사
+	복사된 프로세스는 자식 프로세스
+
 */
 
-/*
-    argv number = n
-    av[0]: pipex(program name)
-    av[1]: first file
-    av[4]: last file
-    av[1 < n < 4]: command
-*/
-
-int main(int ac, char *av[])
+int	main(int ac, char *av[], char **envp)
 {
-    int     fd[2];
-    pid_t   child;
+	int			fd[2];
+	pid_t		child;
+	t_cmdline	cmdline;
 
-    if (ac == 5)
-    {
-        child = fork(); 
-        if (pipe(fd) == -1 || child == -1)
-            print_error();
-        if (child == 0)
-            c_process();
-        if (waitpid(child, NULL, 0) == -1)
-            print_error();
-        p_process();
-    }
-    else
-    {
-        /* error */
-    }
-    return (0);
+	parsing_cmd(&cmdline, av, envp);
+	if (ac == 5)
+	{
+		if (pipe(fd) == -1)
+			print_error("pipe");
+		child = fork();
+		if (child == -1)
+			print_error("fork");
+		if (child == 0)
+			printf("2\n");
+		else
+			printf("1\n");
+	}
+	else
+		print_error("Form of command line is wrong");
+	return (0);
 }

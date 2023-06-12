@@ -5,42 +5,24 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/06/05 11:52:43 by jaehyji           #+#    #+#              #
-#    Updated: 2023/06/12 19:14:32 by jaehyji          ###   ########.fr        #
+#    Created: 2023/06/12 19:12:36 by jaehyji           #+#    #+#              #
+#    Updated: 2023/06/12 19:14:13 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME = pipex
 CC = cc
 RM = rm -f
 FLAGS = -Wall -Wextra -Werror
 LIBFTDIR = libft
-BONUS = checker
-SRCS_M = push_swap.c
+BONUS = heredoc
 
-SRCS_U =	stack_utils.c	\
-		sort_utils.c	\
-		lst_utils1.c	\
-		lst_utils2.c	\
-		push_utils.c	\
-		swap_utils.c	\
-		rotate_utils.c	\
-		rotate_reverse_utils.c	\
-		rotate_case_atob.c	\
-		rotate_case_btoa.c	\
-		rotate_push.c	\
-		find_value_utils.c	\
-		error_checker.c	\
-		error_checker_utils.c	\
-		check_rotate_type.c
+SRCS = pipex.c	\
+		pipex_utils.c
 
-BONUS_SRCS = push_swap_checker/checker_bonus.c	\
-			push_swap_checker/command_bonus.c		\
-			get_next_line/srcs/get_next_line.c	\
-			get_next_line/srcs/get_next_line_utils.c
+BONUS_SRCS = 
 
-OBJS_M = ${SRCS_M:.c=.o}
-OBJS_U = ${SRCS_U:.c=.o}
+OBJS = ${SRCS:.c=.o}
 BONUS_OBJS =${BONUS_SRCS:.c=.o}
 
 LIBFT = -L ./libft -lft
@@ -48,20 +30,20 @@ LIBFT = -L ./libft -lft
 .c.o:
 	${CC} -c $< -o ${<:.c=.o}
 
-${NAME}: ${OBJS_M} ${OBJS_U}
+${NAME}: ${OBJS}
 	make -C $(LIBFTDIR)
-	${CC} ${FLAGS} ${OBJS_M} ${OBJS_U} -o ${NAME} ${LIBFT}
+	${CC} ${FLAGS} ${OBJS} -o ${NAME} ${LIBFT}
 
-${BONUS}: ${OBJS_U} ${BONUS_OBJS}
+${BONUS}: ${BONUS_OBJS}
 	make -C $(LIBFTDIR)
-	${CC} ${FLAGS} ${BONUS_OBJS} ${OBJS_U} -o ${BONUS} ${LIBFT}
+	${CC} ${FLAGS} ${BONUS_OBJS} -o ${BONUS} ${LIBFT}
 
 all: ${NAME} ${BONUS}
 
 bonus: ${BONUS} 
 
 clean:
-	${RM} ${OBJS_M} ${OBJS_U} ${BONUS_OBJS} ${NAME} ${BONUS}
+	${RM} ${OBJS} ${BONUS_OBJS} ${NAME} ${BONUS}
 	@cd $(LIBFTDIR) && $(MAKE) clean
 
 fclean: clean
