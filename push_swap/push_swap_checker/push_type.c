@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:43:34 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/02 16:16:34 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 12:50:52 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	push_b_np(t_node **blst, t_node **alst)
 
 void	push_command(t_node **alst, t_node **blst, char *command)
 {
-	if (ft_strcmp(command, "pa\n"))
+	if (!ft_strcmp(command, "pa\n"))
 		push_a_np(alst, blst);
-	else if (ft_strcmp(command, "pb\n"))
+	else if (!ft_strcmp(command, "pb\n"))
 		push_b_np(blst, alst);
 	else
 		print_error();

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:19:26 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/05 14:01:16 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 12:54:10 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 
 int	main(int ac, char *av[])
 {
-	char			**str;
-	static t_node	*alst;
-	static t_node	*blst;
+	char	**str;
+	t_node	*alst;
+	t_node	*blst;
 
+	alst = NULL;
+	blst = NULL;
 	str = input_check(ac, av);
 	make_stack(&alst, str);
 	if (check_sorted(alst))
-		write(1, "Stack A already is aligned\n", 27);
+		exit(0);
 	else
 		read_standard_input(&alst, &blst);
 	return (0);
@@ -54,6 +56,7 @@ void	execute_command_line(t_node **alst, t_node **blst, char *line)
 		line = check_command_line(alst, blst, line);
 		free(tmp);
 	}
+	free(line);
 }
 
 char	*check_command_line(t_node **alst, t_node **blst, char *line)
@@ -61,7 +64,6 @@ char	*check_command_line(t_node **alst, t_node **blst, char *line)
 	char	command_type;
 
 	command_type = line[0];
-	printf("%c", command_type);
 	if (command_type == 'p')
 		push_command(alst, blst, line);
 	else if (command_type == 's')

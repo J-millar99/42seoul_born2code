@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:04:31 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/05 13:25:42 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 11:52:53 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	rotate_reverse_a(t_node **alst)
 {
-	if (!*alst)
+	if (lstsize(*alst) < 2)
 		return ;
 	if ((*alst)->prev)
 		*alst = (*alst)->prev;
@@ -23,7 +23,7 @@ void	rotate_reverse_a(t_node **alst)
 
 void	rotate_reverse_b(t_node **blst)
 {
-	if (!*blst)
+	if (lstsize(*blst) < 2)
 		return ;
 	if ((*blst)->prev)
 		*blst = (*blst)->prev;

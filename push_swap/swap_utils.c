@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:12:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/05 13:26:19 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 12:11:05 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,6 @@ void	swap_b(t_node **blst)
 		(*blst)->next = snode->next;
 		snode->next = snode->prev;
 		snode->prev = lnode;
-	}
-	if (size > 2)
-	{
 		lnode->next = snode;
 		lnode->prev = *blst;
 	}

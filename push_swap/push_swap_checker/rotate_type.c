@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:44:15 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/02 15:42:42 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 12:52:03 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ void	rotate_reverse_b_np(t_node **blst)
 
 void	rotate_command(t_node **alst, t_node **blst, char *command)
 {
-	if (ft_strcmp(command, "ra\n"))
+	if (!ft_strcmp(command, "ra\n"))
 		rotate_a_np(alst);
-	else if (ft_strcmp(command, "rb\n"))
+	else if (!ft_strcmp(command, "rb\n"))
 		rotate_b_np(blst);
-	else if (ft_strcmp(command, "rr\n"))
+	else if (!ft_strcmp(command, "rr\n"))
 	{
 		rotate_a_np(alst);
 		rotate_b_np(blst);
 	}
-	else if (ft_strcmp(command, "rra\n"))
+	else if (!ft_strcmp(command, "rra\n"))
 		rotate_reverse_a_np(alst);
-	else if (ft_strcmp(command, "rrb\n"))
+	else if (!ft_strcmp(command, "rrb\n"))
 		rotate_reverse_b_np(blst);
-	else if (ft_strcmp(command, "rrr\n"))
+	else if (!ft_strcmp(command, "rrr\n"))
 	{
 		rotate_reverse_a_np(alst);
 		rotate_reverse_b_np(blst);

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:44:03 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/02 15:26:31 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/12 12:51:08 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	swap_a_np(t_node **alst)
 		(*alst)->next = snode->next;
 		snode->next = snode->prev;
 		snode->prev = lnode;
+		lnode->next = snode;
+		lnode->prev = *alst;
 	}
 	*alst = snode;
-	if (size > 2)
-		lnode->next = *alst;
 }
 
 void	swap_b_np(t_node **blst)
@@ -52,26 +52,23 @@ void	swap_b_np(t_node **blst)
 		(*blst)->next = snode->next;
 		snode->next = snode->prev;
 		snode->prev = lnode;
+		lnode->next = snode;
+		lnode->prev = *blst;
 	}
 	*blst = snode;
-	if (size > 2)
-		lnode->next = *blst;
-}
-
-void	swap_swap_np(t_node **alst, t_node **blst)
-{
-	swap_a(alst);
-	swap_b(blst);
 }
 
 void	swap_command(t_node **alst, t_node **blst, char *command)
 {
-	if (ft_strcmp(command, "sa\n"))
+	if (!ft_strcmp(command, "sa\n"))
 		swap_a_np(alst);
-	else if (ft_strcmp(command, "sb\n"))
+	else if (!ft_strcmp(command, "sb\n"))
 		swap_b_np(blst);
-	else if (ft_strcmp(command, "ss\n"))
-		swap_swap_np(alst, blst);
+	else if (!ft_strcmp(command, "ss\n"))
+	{
+		swap_a_np(alst);
+		swap_b_np(blst);
+	}
 	else
 		print_error();
 }
