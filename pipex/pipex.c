@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:41 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/12 20:26:52 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/15 12:11:04 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,29 @@
 	fork()
 	프로세스를 복사
 	복사된 프로세스는 자식 프로세스
-
 */
 
 int	main(int ac, char *av[], char **envp)
 {
 	int			fd[2];
 	pid_t		child;
-	t_cmdline	cmdline;
+	t_cmdline	info;
 
-	parsing_cmd(&cmdline, av, envp);
+	init_cmdinfo(&info);
 	if (ac == 5)
 	{
+		parsing_cmdline(&info, av, envp);
 		if (pipe(fd) == -1)
-			print_error("Pipe Function Error");
+			print_error("Pipe Function Error", &info);
 		child = fork();
 		if (child == -1)
-			print_error("Fork Function Error");
+			print_error("Fork Function Error", &info);
+		check_error(&info);
 		if (child == 0)
-			printf("2\n");
-		else
-			printf("1\n");
+			c_process(&info, fd);
+		p_process(&info, fd);
 	}
 	else
-		print_error("Form of command line is wrong");
+		print_error("Form of command line is wrong", &info);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 19:12:36 by jaehyji           #+#    #+#              #
-#    Updated: 2023/06/12 19:14:13 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/06/15 12:00:33 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,11 @@ LIBFTDIR = libft
 BONUS = heredoc
 
 SRCS = pipex.c	\
-		pipex_utils.c
+		pipex_utils.c	\
+		process.c	\
+		error_utils.c	\
+		check_file.c	\
+		check_cmd.c	\
 
 BONUS_SRCS = 
 

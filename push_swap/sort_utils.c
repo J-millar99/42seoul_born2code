@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:28:19 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/12 16:51:35 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/15 12:43:44 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	sort_algorithm(t_node **alst)
 		{
 			while ((*alst)->value != lst_min(*alst))
 				rotate_reverse_a(alst);
-		}	
+		}
 	}
 }
 
