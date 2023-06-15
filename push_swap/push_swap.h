@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:36 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/12 16:51:05 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/15 15:16:53 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ int		case_rrarb_btoa(t_node *alst, t_node *blst, int b_val);
 
 /*		search		*/
 int		find_idx(t_node *lst, int value);
-int		find_right_place_alst(t_node *alst, int b_val);
-int		find_right_place_blst(t_node *blst, int a_val);
+int		find_in_alst(t_node *alst, int b_val);
+int		find_in_blst(t_node *blst, int a_val);
 
 /*		check_rotate_type		*/
 int		check_rotate_type_atob(t_node *alst, t_node *blst);
