@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 11:52:43 by jaehyji           #+#    #+#              #
-#    Updated: 2023/06/12 19:14:32 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/06/16 15:22:51 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ all: ${NAME} ${BONUS}
 bonus: ${BONUS} 
 
 clean:
-	${RM} ${OBJS_M} ${OBJS_U} ${BONUS_OBJS} ${NAME} ${BONUS}
+	${RM} ${OBJS_M} ${OBJS_U} ${BONUS_OBJS}
 	@cd $(LIBFTDIR) && $(MAKE) clean
 
 fclean: clean

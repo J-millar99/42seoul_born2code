@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:31:43 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/15 15:17:19 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/16 12:13:57 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	find_in_alst(t_node *alst, int b_val)
 }
 
 /*
+	before push,
 	The number of times the stack needs to be rotated
 	to place the value in the correct position.
 */
