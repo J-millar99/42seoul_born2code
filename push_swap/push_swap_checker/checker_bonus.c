@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:19:26 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/12 15:17:05 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/16 18:32:20 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int ac, char *av[])
 	str = input_check(ac, av);
 	make_stack(&alst, str);
 	read_standard_input(&alst, &blst);
+	clear_all(&alst, str);
 	return (0);
 }
 

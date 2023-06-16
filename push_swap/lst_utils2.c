@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:53:13 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/02 17:17:10 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/16 18:31:08 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,19 @@ int	lst_max(t_node *lst)
 			max = lst->value;
 	}
 	return (max);
+}
+
+void	clear_all(t_node **alst, char **str)
+{
+	int		size;
+	t_node	*tmp;
+
+	size = lstsize(*alst);
+	while (size--)
+	{
+		tmp = (*alst)->next;
+		free(*alst);
+		*alst = tmp;
+	}
+	free_split(str);
 }

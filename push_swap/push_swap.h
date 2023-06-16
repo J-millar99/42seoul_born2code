@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:36 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/15 15:16:53 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/16 18:29:12 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		lst_max(t_node *lst);
 void	make_stack(t_node **lst, char **str);
 void	process(t_node **bot, t_node **top);
 void	put_on(t_node **bot, t_node **top);
+void	clear_all(t_node **alst, char **str);
 
 /*		error		*/
 char	*make_str(int ac, char *av[]);
