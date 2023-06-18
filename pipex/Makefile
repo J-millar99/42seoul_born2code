@@ -6,28 +6,28 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 19:12:36 by jaehyji           #+#    #+#              #
-#    Updated: 2023/06/15 12:00:33 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/06/18 17:42:35 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
+BONUS = pipex
 CC = cc
 RM = rm -f
 FLAGS = -Wall -Wextra -Werror
 LIBFTDIR = libft
-BONUS = heredoc
 
 SRCS = pipex.c	\
 		pipex_utils.c	\
 		process.c	\
 		error_utils.c	\
 		check_file.c	\
-		check_cmd.c	\
+		check_cmd.c
 
 BONUS_SRCS = 
 
-OBJS = ${SRCS:.c=.o}
-BONUS_OBJS =${BONUS_SRCS:.c=.o}
+OBJS = $(addprefix mandatory/, ${SRCS:.c=.o})
+BONUS_OBJS = $(addprefix bonus/, ${BONUS_SRCS:.c=.o})
 
 LIBFT = -L ./libft -lft
 
@@ -42,12 +42,12 @@ ${BONUS}: ${BONUS_OBJS}
 	make -C $(LIBFTDIR)
 	${CC} ${FLAGS} ${BONUS_OBJS} -o ${BONUS} ${LIBFT}
 
-all: ${NAME} ${BONUS}
+all: ${NAME}
 
 bonus: ${BONUS} 
 
 clean:
-	${RM} ${OBJS} ${BONUS_OBJS} ${NAME} ${BONUS}
+	${RM} ${OBJS} ${BONUS_OBJS}
 	@cd $(LIBFTDIR) && $(MAKE) clean
 
 fclean: clean

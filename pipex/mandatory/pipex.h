@@ -6,14 +6,14 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:51 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/18 17:06:55 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/18 17:39:45 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "./libft/libft.h"
+# include "../libft/libft.h"
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/wait.h>
