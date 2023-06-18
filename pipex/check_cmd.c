@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:52:07 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/15 14:21:45 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/18 13:22:44 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,47 +30,6 @@ void	check_command(t_cmdline *info)
 	free(command2);
 }
 
-char	*check_path(t_cmdline *info, char *cmd)
-{
-	char	**paths;
-	char	*path;
-	int		idx;
-	char	*cmd_file;
-
-	idx = -1;
-	paths = make_paths(info);
-	while (paths[++idx])
-	{
-		path = ft_strjoin(paths[idx], "/");
-		check_some(paths, path, cmd_file, info);
-		cmd_file = ft_strjoin(path, cmd);
-		free(path);
-		check_some(paths, path, cmd_file, info);
-		if (access(cmd_file, F_OK) == 0)
-		{
-			split_free(paths);
-			return (cmd_file);
-		}
-		free(cmd_file);
-	}
-	split_free(paths);
-	return (0);
-}
-
-void	check_some(char **paths, char **path, char **cmd_file, t_cmdline *info)
-{
-	if (!path)
-	{
-		split_free(paths);
-		print_error("Malloc Function Error", info);
-	}
-	if (!cmd_file)
-	{
-		split_free(paths);
-		print_error("Malloc Function Error", info);
-	}
-}
-
 char	**make_paths(t_cmdline *info)
 {
 	int		idx;
@@ -83,4 +42,20 @@ char	**make_paths(t_cmdline *info)
 	if (!paths)
 		print_error("Malloc Function Error", info);
 	return (paths);
+}
+
+void	check_av(t_cmdline *info, int ac, char **av)
+{
+	int		i;
+
+	init_cmdinfo(info);
+	i = 1;
+	while (i < ac)
+	{
+		while ((*(av[i]) == 32 || (9 <= *(av[i]) && *(av[i]) <= 13)))
+			av[i]++;
+		if (!*av[i])
+			print_error("Form of command line is wrong", info);
+		i++;
+	}
 }

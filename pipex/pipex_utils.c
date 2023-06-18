@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:25:02 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/15 12:19:43 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/18 16:40:15 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	parsing_cmdline(t_cmdline *info, char **av, char **envp)
 	info->outfile = ft_strdup(av[4]);
 	if (!info->infile || !info->cmd1 || !info->cmd2 || !info->outfile)
 		print_error("Malloc Function Error", info);
+	check_command(info);
 }
 
 void	malloc_free(t_cmdline *info)
@@ -37,9 +38,9 @@ void	malloc_free(t_cmdline *info)
 	if (info->infile)
 		free(info->infile);
 	if (info->cmd1)
-		free(info->cmd1);
+		split_free(info->cmd1);
 	if (info->cmd2)
-		free(info->cmd2);
+		split_free(info->cmd2);
 	if (info->outfile)
 		free(info->outfile);
 }
@@ -66,4 +67,5 @@ void	execute_cmdline(t_cmdline *info, char **cmd)
 		print_error("Malloc Function Error", info);
 	if (execve(exe, cmd, info->envp) == -1)
 		print_error("Execve Function Error", info);
+	free(exe);
 }
