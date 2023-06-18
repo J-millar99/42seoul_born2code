@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 19:12:36 by jaehyji           #+#    #+#              #
-#    Updated: 2023/06/18 17:42:35 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/06/18 18:09:32 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRCS = pipex.c	\
 		check_file.c	\
 		check_cmd.c
 
-BONUS_SRCS = 
+BONUS_SRCS = pipex_bonus.c	\
+			utils.c
 
 OBJS = $(addprefix mandatory/, ${SRCS:.c=.o})
 BONUS_OBJS = $(addprefix bonus/, ${BONUS_SRCS:.c=.o})
