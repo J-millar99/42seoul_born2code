@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:28:36 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/16 18:29:12 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/19 14:25:49 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "libft/includes/libft.h"
-# include <stdio.h>
 
 typedef struct s_node
 {

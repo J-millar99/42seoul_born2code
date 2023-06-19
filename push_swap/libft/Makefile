@@ -6,12 +6,12 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 02:01:07 by jaehyji           #+#    #+#              #
-#    Updated: 2023/06/05 13:45:54 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/06/19 14:26:42 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-CC = gcc
+CC = cc
 CFLAG = -Wall -Wextra -Werror
 
 SRCS_M =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c	\
