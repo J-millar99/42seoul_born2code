@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:51 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/18 17:39:45 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/19 14:56:18 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_cmdline
 	char	**cmd1;
 	char	**cmd2;
 	char	**envp;
-
 }	t_cmdline;
 
 /*			process			*/

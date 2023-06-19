@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:58:05 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/18 14:13:26 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/19 15:08:59 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	check_file(t_cmdline *info, int *file)
 		print_error("Open Function Error to infile", info);
 	file[1] = open(info->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (file[1] == -1)
+	{
+		close(file[0]);
 		print_error("Open Function Error to outfile", info);
+	}
 }
 
 char	*check_path(t_cmdline *info, char *cmd)

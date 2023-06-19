@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 12:19:26 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/19 11:42:43 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/19 14:32:52 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	main(int ac, char *av[])
 	t_node	*alst;
 	t_node	*blst;
 
+	if (ac == 1)
+		exit(0);
 	alst = NULL;
 	blst = NULL;
 	str = input_check(ac, av);
