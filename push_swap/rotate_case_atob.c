@@ -6,16 +6,11 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:13:04 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/15 15:15:52 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/21 11:33:54 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-	Considering A and B
-	the least number of times to be rotated(same time) is selected.
-*/
 
 int	case_rarb_atob(t_node *alst, t_node *blst, int a_val)
 {

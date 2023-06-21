@@ -6,15 +6,11 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:20:05 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/15 15:04:13 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/21 11:34:17 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-	what is the rotate type returning the least cost.
-*/
 
 int	check_rotate_type_atob(t_node *alst, t_node *blst)
 {
