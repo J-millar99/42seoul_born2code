@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:25:02 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/18 16:40:15 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/21 14:49:28 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	parsing_cmdline(t_cmdline *info, char **av, char **envp)
 	info->cmd1 = ft_split(av[2], ' ');
 	info->cmd2 = ft_split(av[3], ' ');
 	info->outfile = ft_strdup(av[4]);
-	if (!info->infile || !info->cmd1 || !info->cmd2 || !info->outfile)
+	if (!(info->infile) || !(info->cmd1) || !(info->cmd2) || !(info->outfile))
 		print_error("Malloc Function Error", info);
 	check_command(info);
 }

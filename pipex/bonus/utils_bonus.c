@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.c                                      :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/18 17:46:29 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/21 13:52:39 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/06/21 13:12:43 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/06/21 15:23:41 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-int	main(int ac, char *av[], char **envp)
+void	split_free(char **strarr)
 {
-	if (ac == 1)
-		print_error("Form of command line is wrong", NULL, 0);
-	if (!ft_strcmp(av[1], "here_doc"))
-		here_doc(ac, av + 1, envp);
-	// else
-	// 	multi_pipe(ac, av, envp);
-	return (0);
+	int		idx;
+
+	idx = 0;
+	while (strarr[idx])
+	{
+		free(strarr[idx]);
+		++idx;
+	}
+	free(strarr);
 }

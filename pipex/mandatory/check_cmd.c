@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:52:07 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/18 13:22:44 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/21 12:01:44 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,17 @@ char	**make_paths(t_cmdline *info)
 
 void	check_av(t_cmdline *info, int ac, char **av)
 {
-	int		i;
+	int		lidx;
 
+	lidx = ft_strlen(av[2]) - 1;
 	init_cmdinfo(info);
-	i = 1;
-	while (i < ac)
-	{
-		while ((*(av[i]) == 32 || (9 <= *(av[i]) && *(av[i]) <= 13)))
-			av[i]++;
-		if (!*av[i])
-			print_error("Form of command line is wrong", info);
-		i++;
-	}
+	if (*(av[2]) == 32 || (9 <= *(av[2]) && *(av[2]) <= 13))
+		print_error("Command is wrong", info);
+	if (av[2][lidx] == 32 || (9 <= av[2][lidx] && av[2][lidx] <= 13))
+		print_error("Command is wrong", info);
+	lidx = ft_strlen(av[3]) - 1;
+	if (*(av[3]) == 32 || (9 <= *(av[3]) && *(av[3]) <= 13))
+		print_error("Command is wrong", info);
+	if (av[3][lidx] == 32 || (9 <= av[3][lidx] && av[3][lidx] <= 13))
+		print_error("Command is wrong", info);
 }
