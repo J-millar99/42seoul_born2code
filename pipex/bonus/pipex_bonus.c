@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:46:29 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 12:23:34 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 18:57:05 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,27 @@
 
 int	main(int ac, char *av[], char **envp)
 {
-	if (ac == 1)
-		print_error("Form of command line is wrong");
-	if (!ft_strcmp(av[1], "here_doc"))
-		here_doc(ac, av, envp);
-	// else
-	// 	multi_pipe(ac, av, envp);
+	t_cmd	info;
+	int		fd[2];
+	int		idx;
+
+	if (ac >= 5)
+	{
+		init_file_fd(&info);
+		if (!ft_strcmp(av[1], "here_doc"))
+		{
+			idx = 3;
+			here_doc(&info, ac, av, envp);
+		}
+		else
+		{
+			idx = 2;
+			multi_pipe(&info, ac, av, envp);
+			dup2(info.file[0], STDIN_FILENO);
+		}
+		while (idx < ac - 2)
+			f_process();
+	}
+	print_error("Form of command line is wrong", 0);
 	return (0);
 }

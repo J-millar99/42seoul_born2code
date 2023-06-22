@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:51 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 15:28:13 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 18:50:00 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	split_free(char **strarr);
 void	parsing_cmdline(t_cmd *info, char **av, char **envp);
 void	init_cmdinfo(t_cmd *info);
 void	execute_cmdline(t_cmd *info, char **cmd);
+void	open_close(t_cmd *info);
 
 /*			check			*/
 void	check_command(t_cmd *info);

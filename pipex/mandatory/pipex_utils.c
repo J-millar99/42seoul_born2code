@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:25:02 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 15:27:48 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 18:49:00 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	init_cmdinfo(t_cmd *info)
 {
+	info->file[0] = 0;
+	info->file[1] = 0;
 	info->envp = 0;
 	info->infile = 0;
 	info->cmd1 = 0;
@@ -31,33 +33,6 @@ void	parsing_cmdline(t_cmd *info, char **av, char **envp)
 	if (!(info->infile) || !(info->cmd1) || !(info->cmd2) || !(info->outfile))
 		print_error("Malloc Function Error", info, 1);
 	check_command(info);
-}
-
-void	malloc_free(t_cmd *info)
-{
-	if (!info)
-		return ;
-	if (info->infile)
-		free(info->infile);
-	if (info->cmd1)
-		split_free(info->cmd1);
-	if (info->cmd2)
-		split_free(info->cmd2);
-	if (info->outfile)
-		free(info->outfile);
-}
-
-void	split_free(char **strarr)
-{
-	int		idx;
-
-	idx = 0;
-	while (strarr[idx])
-	{
-		free(strarr[idx]);
-		++idx;
-	}
-	free(strarr);
 }
 
 void	execute_cmdline(t_cmd *info, char **cmd)

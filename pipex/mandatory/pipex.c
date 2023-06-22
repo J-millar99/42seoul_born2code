@@ -6,15 +6,11 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:41 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 15:28:07 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 18:51:24 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-/*
-	오픈한거 닫아야 한다.
-*/
 
 int	main(int ac, char *av[], char **envp)
 {

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:44:40 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 13:16:40 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 18:55:26 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,50 +24,32 @@
 # include <errno.h>
 # include <stdio.h>
 
-typedef struct s_hd
+typedef struct s_cmd
 {
-	char	**cmd1;
-	char	**cmd2;
-	char	*outfile;
-	char	**envp;
-	char	*limiter;
-}	t_hd;
-
-typedef struct s_mp
-{
-	char	**cmd1;
-	char	**cmd2;
+	int		fd[2];
+	int		file[2];
 	char	*infile;
 	char	*outfile;
 	char	**envp;
-}	t_mp;
+	char	*limiter;
+}	t_cmd;
 
 /*			HEREDOC			*/
-void	here_doc(int ac, char **av, char **envp);
-void	f_process_fd(pid_t child, t_hd *info, int *fd);
-void	c_process_hd(t_hd *info, int *fd);
-void	p_process_hd(t_hd *info, int *fd);
-int		execute_hd(t_hd *info);
-void	execute_cmdline_hd(t_hd *info, char **cmd, char f);
+void	here_doc(t_cmd *info, int ac, char **av, char **envp);
+void	f_process_fd(pid_t child, t_cmd *info);
+void	c_process_hd(t_cmd *info, int *fd);
+void	p_process_hd(t_cmd *info, int *fd);
 
 /*			HEREDOC_UTILS			*/
-void	check_hd(t_hd *info, int ac, char **av, char **envp);
-void	check_space_command_hd(char **av);
-void	parsing_cmdline_hd(t_hd *info, char **av, char **envp);
-void	malloc_free_hd(t_hd *info);
-void	print_error_hd(char *error_string, t_hd *info, int code);
-void	check_file_hd(t_hd *info);
-void	check_command_hd(t_hd *info);
-char	*check_path_hd(t_hd *info, char *cmd);
-char	**make_paths_hd(t_hd *info);
-void	check_some_hd(char **paths, char **path, char **cmd_file, t_hd *info);
+void	check_hd(t_cmd *info, int ac, char **av, char **envp);
+void	execute_hd(t_cmd *info);
 
 /*			MULTIPIPE			*/
-
+void	multi_pipe(t_cmd *info, int ac, char **av, char **envp);
 /*			MULTIPIPE_UTILS			*/
-
-
+void	check_mp(t_cmd *info, int ac, char **av, char **envp);
 /*			UTILS			*/
 void	split_free(char **strarr);
-void	print_error(char *error_string);
+void	print_error(char *error_string, int code);
+void	init_file_fd(t_cmd *info);
 #endif

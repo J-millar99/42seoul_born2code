@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multi_pipe_utils_bonus.c                           :+:      :+:    :+:   */
+/*   here_doc_utils_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 18:28:41 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 18:33:26 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/06/21 15:09:12 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/06/22 18:28:27 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-void	check_mp(t_cmd *info, int ac, char **av, char **envp)
+void	check_hd(t_cmd *info, int ac, char **av, char **envp)
 {
 	int		lidx;
 
+	if (ac != 6)
+		print_error("Form of command line is wrong", 0);
 	info->envp = envp;
 	info->outfile = av[5];
 	info->limiter = av[2];
@@ -29,4 +31,21 @@ void	check_mp(t_cmd *info, int ac, char **av, char **envp)
 		print_error("Command is wrong", 0);
 	if (av[4][lidx] == 32 || (9 <= av[4][lidx] && av[4][lidx] <= 13))
 		print_error("Command is wrong", 0);
+}
+
+void	execute_hd(t_cmd *info)
+{
+	char		*line;
+
+	while (1)
+	{
+		line = get_next_line(0);
+		if (!ft_strncmp(info->limiter, line, ft_strlen(line) - 1))
+		{
+			free(line);
+			exit(0);
+		}
+		write(info->fd[1], line, ft_strlen(line));
+		free(line);
+	}
 }
