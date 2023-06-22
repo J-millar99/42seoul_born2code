@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 19:12:36 by jaehyji           #+#    #+#              #
-#    Updated: 2023/06/21 14:58:21 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/06/22 12:08:27 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,9 @@ SRCS = pipex.c	\
 
 BONUS_SRCS = pipex_bonus.c	\
 			here_doc_bonus.c	\
-			here_doc_utils_bonus.c	\
+			here_doc_utils1_bonus.c	\
+			here_doc_utils2_bonus.c	\
+			here_doc_process_bonus.c	\
 			utils_bonus.c
 
 GNL = get_next_line.c	\
@@ -35,7 +37,7 @@ GNL = get_next_line.c	\
 
 OBJS = $(addprefix mandatory/, ${SRCS:.c=.o})
 BONUS_OBJS = $(addprefix bonus/, ${BONUS_SRCS:.c=.o})
-GNL_OBJS = $(addprefix bonus/get_next_line, ${GNL:.c=.o})
+GNL_OBJS = $(addprefix bonus/get_next_line/, ${GNL:.c=.o})
 
 LIBFT = -L ./libft -lft
 

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:41 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/19 15:04:30 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 15:28:07 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,22 @@
 
 int	main(int ac, char *av[], char **envp)
 {
-	int			fd[2];
-	int			file[2];
-	pid_t		child;
-	t_cmdline	info;
+	pid_t	child;
+	t_cmd	info;
 
-	check_av(&info, ac, av);
 	if (ac == 5)
 	{
+		check_argv(&info, ac, av);
 		parsing_cmdline(&info, av, envp);
-		check_file(&info, file);
-		if (pipe(fd) == -1)
-			print_error("Pipe Function Error", &info);
+		check_file(&info);
+		if (pipe(info.fd) == -1)
+			print_error("Pipe Function Error", &info, 1);
 		child = fork();
 		if (child == -1)
-			print_error("Fork Function Error", &info);
-		f_process(child, &info, fd, file);
+			print_error("Fork Function Error", &info, 1);
+		f_process(child, &info);
 	}
 	else
-		print_error("Form of command line is wrong", &info);
+		print_error("Form of command line is wrong", NULL, 0);
 	return (0);
 }

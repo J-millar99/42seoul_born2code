@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:44:40 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/21 17:44:06 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 13:16:40 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_hd
 	char	**cmd2;
 	char	*outfile;
 	char	**envp;
-
+	char	*limiter;
 }	t_hd;
 
 typedef struct s_mp
@@ -42,28 +42,32 @@ typedef struct s_mp
 	char	**envp;
 }	t_mp;
 
-void	check_av(t_mp *info, int ac, char **av, int *file);
-void	setting_file(t_mp *info, int ac, char **av, int *file);
-
 /*			HEREDOC			*/
 void	here_doc(int ac, char **av, char **envp);
+void	f_process_fd(pid_t child, t_hd *info, int *fd);
+void	c_process_hd(t_hd *info, int *fd);
+void	p_process_hd(t_hd *info, int *fd);
+int		execute_hd(t_hd *info);
+void	execute_cmdline_hd(t_hd *info, char **cmd, char f);
 
 /*			HEREDOC_UTILS			*/
-void	malloc_free_hd(t_hd *info);
-void	print_error_hd(char *error_strting, t_hd *info, int code);
 void	check_hd(t_hd *info, int ac, char **av, char **envp);
-void	check_command_space_hd(char **av);
+void	check_space_command_hd(char **av);
 void	parsing_cmdline_hd(t_hd *info, char **av, char **envp);
+void	malloc_free_hd(t_hd *info);
+void	print_error_hd(char *error_string, t_hd *info, int code);
+void	check_file_hd(t_hd *info);
 void	check_command_hd(t_hd *info);
 char	*check_path_hd(t_hd *info, char *cmd);
 char	**make_paths_hd(t_hd *info);
 void	check_some_hd(char **paths, char **path, char **cmd_file, t_hd *info);
-void	check_file_hd(t_hd *info);
 
-/*			MULTIPIPE		*/
+/*			MULTIPIPE			*/
+
+/*			MULTIPIPE_UTILS			*/
 
 
 /*			UTILS			*/
 void	split_free(char **strarr);
-
+void	print_error(char *error_string);
 #endif

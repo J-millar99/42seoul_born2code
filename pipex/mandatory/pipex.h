@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:51 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/19 14:56:18 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 15:28:13 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,38 @@
 # include <errno.h>
 # include <stdio.h>
 
-typedef struct s_cmdline
+typedef struct s_cmd
 {
+	int		fd[2];
+	int		file[2];
 	char	*infile;
 	char	*outfile;
 	char	**cmd1;
 	char	**cmd2;
 	char	**envp;
-}	t_cmdline;
+}	t_cmd;
 
 /*			process			*/
-void	c_process(t_cmdline *info, int *fd, int infile);
-void	p_process(t_cmdline *info, int *fd, int outfile);
-void	f_process(pid_t child, t_cmdline *info, int *fd, int *file);
+void	c_process(t_cmd *info);
+void	p_process(t_cmd *info);
+void	f_process(pid_t child, t_cmd *info);
 
 /*			utils			*/
-void	malloc_free(t_cmdline *info);
+void	malloc_free(t_cmd *info);
 void	split_free(char **strarr);
-void	parsing_cmdline(t_cmdline *info, char **av, char **envp);
-void	init_cmdinfo(t_cmdline *info);
-void	execute_cmdline(t_cmdline *info, char **cmd);
+void	parsing_cmdline(t_cmd *info, char **av, char **envp);
+void	init_cmdinfo(t_cmd *info);
+void	execute_cmdline(t_cmd *info, char **cmd);
 
 /*			check			*/
-void	check_command(t_cmdline *info);
-char	*check_path(t_cmdline *info, char *cmd);
-void	check_some(char **paths, char **path, char **cmd_file, t_cmdline *info);
-char	**make_paths(t_cmdline *info);
-void	check_av(t_cmdline *info, int ac, char **av);
-void	check_file(t_cmdline *info, int *file);
+void	check_command(t_cmd *info);
+char	*check_path(t_cmd *info, char *cmd);
+void	check_some(char **paths, char **path, char **cmd_file, t_cmd *info);
+char	**make_paths(t_cmd *info);
+void	check_argv(t_cmd *info, int ac, char **av);
+void	check_file(t_cmd *info);
 
 /*			error			*/
-void	print_error(char *error_strting, t_cmdline *info);
+void	print_error(char *error_string, t_cmd *info, int code);
 
 #endif

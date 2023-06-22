@@ -6,11 +6,21 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 15:09:12 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/21 17:43:43 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 14:48:55 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
+
+void	check_file_hd(t_hd *info)
+{
+	int		fd;
+
+	fd = open(info->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (fd == -1)
+		print_error_hd("Open Function Error to outfile", info, 1);
+	close(fd);
+}
 
 void	check_command_hd(t_hd *info)
 {
@@ -19,12 +29,12 @@ void	check_command_hd(t_hd *info)
 
 	command1 = check_path_hd(info, info->cmd1[0]);
 	if (!command1)
-		print_error_hd("Command is wrong", info, 0);
+		print_error_hd("Command is wrong", info, 1);
 	command2 = check_path_hd(info, info->cmd2[0]);
 	if (!command2)
 	{
 		free(command1);
-		print_error_hd("Command is wrong", info, 0);
+		print_error_hd("Command is wrong", info, 1);
 	}
 	free(command1);
 	free(command2);
@@ -53,7 +63,7 @@ char	*check_path_hd(t_hd *info, char *cmd)
 		free(cmd_file);
 	}
 	split_free(paths);
-	return (0);
+	return (NULL);
 }
 
 char	**make_paths_hd(t_hd *info)
@@ -83,14 +93,4 @@ void	check_some_hd(char **paths, char **path, char **cmd_file, t_hd *info)
 		free(*path);
 		print_error_hd("Malloc Function Error", info, 1);
 	}
-}
-
-void	check_file_hd(t_hd *info)
-{
-	int		fd;
-
-	fd = open(info->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (fd == -1)
-		print_error_hd("Open Function Error to outfile", info, 1);
-	close(fd);
 }

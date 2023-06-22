@@ -6,13 +6,13 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:25:02 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/21 14:49:28 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 15:27:48 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	init_cmdinfo(t_cmdline *info)
+void	init_cmdinfo(t_cmd *info)
 {
 	info->envp = 0;
 	info->infile = 0;
@@ -21,7 +21,7 @@ void	init_cmdinfo(t_cmdline *info)
 	info->outfile = 0;
 }
 
-void	parsing_cmdline(t_cmdline *info, char **av, char **envp)
+void	parsing_cmdline(t_cmd *info, char **av, char **envp)
 {
 	info->envp = envp;
 	info->infile = ft_strdup(av[1]);
@@ -29,12 +29,14 @@ void	parsing_cmdline(t_cmdline *info, char **av, char **envp)
 	info->cmd2 = ft_split(av[3], ' ');
 	info->outfile = ft_strdup(av[4]);
 	if (!(info->infile) || !(info->cmd1) || !(info->cmd2) || !(info->outfile))
-		print_error("Malloc Function Error", info);
+		print_error("Malloc Function Error", info, 1);
 	check_command(info);
 }
 
-void	malloc_free(t_cmdline *info)
+void	malloc_free(t_cmd *info)
 {
+	if (!info)
+		return ;
 	if (info->infile)
 		free(info->infile);
 	if (info->cmd1)
@@ -58,14 +60,13 @@ void	split_free(char **strarr)
 	free(strarr);
 }
 
-void	execute_cmdline(t_cmdline *info, char **cmd)
+void	execute_cmdline(t_cmd *info, char **cmd)
 {
 	char	*exe;
 
 	exe = check_path(info, cmd[0]);
 	if (!exe)
-		print_error("Malloc Function Error", info);
+		print_error("Malloc Function Error", info, 1);
 	if (execve(exe, cmd, info->envp) == -1)
-		print_error("Execve Function Error", info);
-	free(exe);
+		print_error("Execve Function Error", info, 1);
 }
