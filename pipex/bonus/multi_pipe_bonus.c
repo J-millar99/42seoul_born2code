@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:45:42 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 20:18:53 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 20:25:46 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	multi_pipe(t_cmd *info, int ac, char **av, char **envp)
 {
-	t_cmd	info;
 	pid_t	child;
 
 	check_mp(info, ac, av, envp);
@@ -24,11 +23,6 @@ void	multi_pipe(t_cmd *info, int ac, char **av, char **envp)
 	info->file[1] = open(info->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (info->file[1] == -1)
 		print_error("Open Function Error", 1);
-	if (pipe(info->mp_fd) == -1)
-		print_error("Pipe Function Error", 1);
-	child = fork();
-	if (child == -1)
-		print_error("Fork Function Error", 1);
 }
 
 void	f_process_mp(t_cmd *info, char *av)
@@ -36,10 +30,10 @@ void	f_process_mp(t_cmd *info, char *av)
 	pid_t	child;
 
 	if (pipe(info->mp_fd) == -1)
-		error();
+		print_error("Pipe Function Error", 1);
 	child = fork();
 	if (child == -1)
-		error();
+		print_error("Fork Function Error", 1);
 	if (child == 0)
 	{
 		close(info->mp_fd[0]);

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 18:11:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 20:07:16 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 20:29:09 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	here_doc(t_cmd *info, int ac, char **av, char **envp)
 {
-	t_cmd	info;
 	pid_t	child;
 
 	check_hd(info, ac, av, envp);

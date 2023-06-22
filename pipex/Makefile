@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 19:12:36 by jaehyji           #+#    #+#              #
-#    Updated: 2023/06/22 12:08:27 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/06/22 20:22:09 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,9 @@ SRCS = pipex.c	\
 
 BONUS_SRCS = pipex_bonus.c	\
 			here_doc_bonus.c	\
-			here_doc_utils1_bonus.c	\
-			here_doc_utils2_bonus.c	\
-			here_doc_process_bonus.c	\
+			here_doc_utils_bonus.c	\
+			multi_pipe_bonus.c	\
+			multi_pipe_utils_bonus.c	\
 			utils_bonus.c
 
 GNL = get_next_line.c	\

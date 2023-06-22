@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 16:39:13 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/21 13:37:39 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 20:49:17 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	*make_line(char **backup)
 		while ((*backup)[i] != '\n')
 			++i;
 		optr = *backup;
+		optr[i] = 0;
 		rstr = ft_substr_gnl(optr, 0, i + 1);
 		*backup = ft_strdup_gnl(*backup + i + 1);
 		if (!*backup && rstr)
