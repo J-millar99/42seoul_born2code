@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:52:07 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 15:29:34 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 20:08:16 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,6 @@ void	check_command(t_cmd *info)
 	}
 	free(command1);
 	free(command2);
-}
-
-char	**make_paths(t_cmd *info)
-{
-	int		idx;
-	char	**paths;
-
-	idx = 0;
-	while (!ft_strnstr(info->envp[idx], "PATH", 4))
-		++idx;
-	paths = ft_split(info->envp[idx] + 5, ':');
-	if (!paths)
-		print_error("Malloc Function Error", info, 1);
-	return (paths);
 }
 
 void	check_argv(t_cmd *info, int ac, char **av)

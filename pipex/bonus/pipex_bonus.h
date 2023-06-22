@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:44:40 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 18:55:26 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/06/22 20:19:33 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 
 typedef struct s_cmd
 {
-	int		fd[2];
+	int		hd_fd[2];
+	int		mp_fd[2];
 	int		file[2];
 	char	*infile;
 	char	*outfile;
@@ -36,7 +37,7 @@ typedef struct s_cmd
 
 /*			HEREDOC			*/
 void	here_doc(t_cmd *info, int ac, char **av, char **envp);
-void	f_process_fd(pid_t child, t_cmd *info);
+void	f_process_hd(pid_t child, t_cmd *info);
 void	c_process_hd(t_cmd *info, int *fd);
 void	p_process_hd(t_cmd *info, int *fd);
 
@@ -46,8 +47,13 @@ void	execute_hd(t_cmd *info);
 
 /*			MULTIPIPE			*/
 void	multi_pipe(t_cmd *info, int ac, char **av, char **envp);
+void	f_process_mp(t_cmd *info, char *av);
 /*			MULTIPIPE_UTILS			*/
 void	check_mp(t_cmd *info, int ac, char **av, char **envp);
+void	execute_cmdline(t_cmd *info, char *cmdline);
+char	*check_path(t_cmd *info, char *cmd);
+char	**make_paths(t_cmd *info);
+void	check_some(char **paths, char **path, char **cmd_file, t_cmd *info);
 /*			UTILS			*/
 void	split_free(char **strarr);
 void	print_error(char *error_string, int code);
