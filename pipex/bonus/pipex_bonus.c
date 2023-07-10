@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:46:29 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/10 20:11:15 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/10 20:25:14 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int ac, char *av[], char **envp)
 		}
 		while (idx < ac - 2)
 			f_process_mp(&info, av[idx++]);
-		dup2(info.file[1], STDOUT_FILENO);
+		dup2(info.file[1], 1);
 		execute_cmdline(&info, av[ac - 2]);
 	}
 	print_error("Form of command line is wrong", NULL, 0);

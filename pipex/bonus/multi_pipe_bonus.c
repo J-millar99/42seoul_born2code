@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:45:42 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 20:25:46 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/10 20:25:35 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	f_process_mp(t_cmd *info, char *av)
 	if (child == 0)
 	{
 		close(info->mp_fd[0]);
-		dup2(info->mp_fd[1], STDOUT_FILENO);
+		dup2(info->mp_fd[1], 1);
 		execute_cmdline(info, av);
 	}
 	else
 	{
 		close(info->mp_fd[1]);
-		dup2(info->mp_fd[0], STDIN_FILENO);
+		dup2(info->mp_fd[0], 0);
 		waitpid(child, NULL, 0);
 	}
 }
