@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 15:09:12 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 20:52:40 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/10 20:14:49 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,11 @@
 
 void	check_hd(t_cmd *info, int ac, char **av, char **envp)
 {
-	int		lidx;
-
 	if (ac != 6)
-		print_error("Form of command line is wrong", 0);
+		print_error("Form of command line is wrong", info, 0);
 	info->envp = envp;
 	info->outfile = av[5];
 	info->limiter = av[2];
-	lidx = ft_strlen(av[3]) - 1;
-	if (*(av[3]) == 32 || (9 <= *(av[3]) && *(av[3]) <= 13))
-		print_error("Command is wrong", 0);
-	if (av[3][lidx] == 32 || (9 <= av[3][lidx] && av[3][lidx] <= 13))
-		print_error("Command is wrong", 0);
-	lidx = ft_strlen(av[4]) - 1;
-	if (*(av[4]) == 32 || (9 <= *(av[4]) && *(av[4]) <= 13))
-		print_error("Command is wrong", 0);
-	if (av[4][lidx] == 32 || (9 <= av[4][lidx] && av[4][lidx] <= 13))
-		print_error("Command is wrong", 0);
 }
 
 void	execute_hd(t_cmd *info)

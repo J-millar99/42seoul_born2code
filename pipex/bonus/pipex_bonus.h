@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:44:40 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 20:19:33 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/10 20:10:35 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ char	**make_paths(t_cmd *info);
 void	check_some(char **paths, char **path, char **cmd_file, t_cmd *info);
 /*			UTILS			*/
 void	split_free(char **strarr);
-void	print_error(char *error_string, int code);
+void	print_error(char *error_string, t_cmd *info, int code);
 void	init_file_fd(t_cmd *info);
 #endif
