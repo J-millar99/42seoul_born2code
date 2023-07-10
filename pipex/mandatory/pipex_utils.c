@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:25:02 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 20:20:31 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/10 19:44:42 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ void	init_cmdinfo(t_cmd *info)
 void	parsing_cmdline(t_cmd *info, char **av, char **envp)
 {
 	info->envp = envp;
-	info->infile = ft_strdup(av[1]);
+	info->infile = av[1];
 	info->cmd1 = ft_split(av[2], ' ');
+	if (!(info->cmd1))
+		print_error("cmd1", info, 1);
 	info->cmd2 = ft_split(av[3], ' ');
-	info->outfile = ft_strdup(av[4]);
-	if (!(info->infile) || !(info->cmd1) || !(info->cmd2) || !(info->outfile))
-		print_error("Malloc Function Error", info, 1);
+	if (!(info->cmd2))
+		print_error("cmd2", info, 1);
+	info->outfile = av[4];
 	check_command(info);
 }
 
@@ -41,7 +43,7 @@ void	execute_cmdline(t_cmd *info, char **cmd)
 
 	exe = check_path(info, cmd[0]);
 	if (!exe)
-		print_error("Malloc Function Error", info, 1);
+		print_error("exe", info, 1);
 	if (execve(exe, cmd, info->envp) == -1)
-		print_error("Execve Function Error", info, 1);
+		print_error("execve", info, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 19:58:05 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/22 20:09:49 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/10 17:42:34 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	check_file(t_cmd *info)
 {
 	if (access(info->infile, F_OK) == -1)
-		print_error("Infile does not exist", info, 1);
+		print_error(info->infile, info, 1);
 	info->file[0] = open(info->infile, O_RDONLY, 0777);
 	if (info->file[0] == -1)
-		print_error("Open Function Error to infile", info, 1);
+		print_error(info->infile, info, 1);
 	info->file[1] = open(info->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (info->file[1] == -1)
-		print_error("Open Function Error to outfile", info, 1);
+		print_error(info->outfile, info, 1);
 }
 
 char	*check_path(t_cmd *info, char *cmd)
@@ -60,7 +60,7 @@ char	**make_paths(t_cmd *info)
 		++idx;
 	paths = ft_split(info->envp[idx] + 5, ':');
 	if (!paths)
-		print_error("Malloc Function Error", info, 1);
+		print_error("paths", info, 1);
 	return (paths);
 }
 
@@ -69,12 +69,12 @@ void	check_some(char **paths, char **path, char **cmd_file, t_cmd *info)
 	if (!(*path))
 	{
 		split_free(paths);
-		print_error("Malloc Function Error", info, 1);
+		print_error("paths", info, 1);
 	}
 	if (!(*cmd_file))
 	{
 		split_free(paths);
 		free(*path);
-		print_error("Malloc Function Error", info, 1);
+		print_error("cmd_file", info, 1);
 	}
 }
