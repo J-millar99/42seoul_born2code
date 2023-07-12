@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:12:43 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/10 20:10:03 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/12 14:21:53 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	print_error(char *error_string, t_cmd *info, int code)
 	}
 	write(1, error_string, ft_strlen(error_string));
 	write(1, "\n", 1);
-	malloc_free(info);
-	open_close(info);
 	exit(EXIT_FAILURE);
 }
 

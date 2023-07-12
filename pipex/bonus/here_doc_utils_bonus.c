@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 15:09:12 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/10 20:14:49 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/12 15:28:50 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ void	execute_hd(t_cmd *info)
 	{
 		write(1, "pipe heredoc> ", 15);
 		line = get_next_line(0);
-		if (!ft_strncmp(info->limiter, line, ft_strlen(line) - 1))
+		if (!ft_strncmp(info->limiter, line, ft_strlen(line) + 1))
 		{
 			free(line);
 			exit(0);
 		}
 		write(info->hd_fd[1], line, ft_strlen(line));
+		write(info->hd_fd[1], "\n", 1);
 		free(line);
 	}
 }
