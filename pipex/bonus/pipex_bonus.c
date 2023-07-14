@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:46:29 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/12 14:57:28 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/14 14:48:49 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char *av[], char **envp)
 {
 	t_cmd	info;
-	int		fd[2];
 	int		idx;
 
 	if (ac >= 5)
@@ -32,6 +31,7 @@ int	main(int ac, char *av[], char **envp)
 			multi_pipe(&info, ac, av, envp);
 			dup2(info.file[0], 0);
 		}
+		check_command(&info, av, idx, ac);
 		while (idx < ac - 2)
 			f_process_mp(&info, av[idx++]);
 		dup2(info.file[1], 1);

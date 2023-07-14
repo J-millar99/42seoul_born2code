@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:44:40 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/10 20:10:35 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/14 15:31:28 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,8 @@ typedef struct s_cmd
 
 /*			HEREDOC			*/
 void	here_doc(t_cmd *info, int ac, char **av, char **envp);
-void	f_process_hd(pid_t child, t_cmd *info);
-void	c_process_hd(t_cmd *info, int *fd);
-void	p_process_hd(t_cmd *info, int *fd);
+void	c_process_hd(t_cmd *info);
+void	p_process_hd(t_cmd *info);
 
 /*			HEREDOC_UTILS			*/
 void	check_hd(t_cmd *info, int ac, char **av, char **envp);
@@ -48,14 +47,22 @@ void	execute_hd(t_cmd *info);
 /*			MULTIPIPE			*/
 void	multi_pipe(t_cmd *info, int ac, char **av, char **envp);
 void	f_process_mp(t_cmd *info, char *av);
+
 /*			MULTIPIPE_UTILS			*/
 void	check_mp(t_cmd *info, int ac, char **av, char **envp);
 void	execute_cmdline(t_cmd *info, char *cmdline);
 char	*check_path(t_cmd *info, char *cmd);
 char	**make_paths(t_cmd *info);
 void	check_some(char **paths, char **path, char **cmd_file, t_cmd *info);
+
 /*			UTILS			*/
 void	split_free(char **strarr);
 void	print_error(char *error_string, t_cmd *info, int code);
 void	init_file_fd(t_cmd *info);
+void	open_close(t_cmd *info);
+void	check_command(t_cmd *info, char *av[], int idx, int ac);
+void	print_error_cmd(char *cmd, int *flag);
+void	print_error_nocmd(char *cmd, int *flag);
+void	stop_flag(t_cmd *info, int flag);
+
 #endif

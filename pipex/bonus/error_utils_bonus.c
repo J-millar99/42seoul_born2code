@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_cmd.c                                        :+:      :+:    :+:   */
+/*   error_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 12:52:07 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/14 15:24:26 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/07/14 15:33:04 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/07/14 15:33:24 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	print_error_cmd(char *cmd, int *flag)
 {
@@ -30,37 +30,16 @@ void	print_error_nocmd(char *cmd, int *flag)
 	*flag = 1;
 }
 
-void	check_command(t_cmd *info)
+void	print_error(char *error_string, t_cmd *info, int code)
 {
-	char	*cmd;
-	int		flag;
-
-	flag = 0;
-	if (!*(info->cmd1))
-		print_error_nocmd("command is wrong", &flag);
-	if (!*(info->cmd2))
-		print_error_nocmd("command is wrong", &flag);
-	if (*(info->cmd1))
+	write(1, "pipex: ", 8);
+	if (code)
 	{
-		cmd = check_path(info, info->cmd1[0]);
-		if (!cmd)
-			print_error_cmd(info->cmd1[0], &flag);
+		write(1, strerror(errno), ft_strlen(strerror(errno)));
+		write(1, ": ", 2);
 	}
-	if (*(info->cmd2))
-	{
-		cmd = check_path(info, info->cmd2[0]);
-		if (!cmd)
-			print_error_cmd(info->cmd2[0], &flag);
-	}
-	stop_flag(info, flag);
-	free(cmd);
-}
-
-void	stop_flag(t_cmd *info, int flag)
-{
-	if (flag == 1)
-	{
-		open_close(info);
-		exit(1);
-	}
+	write(1, error_string, ft_strlen(error_string));
+	write(1, "\n", 1);
+	open_close(info);
+	exit(EXIT_FAILURE);
 }

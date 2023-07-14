@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 18:28:41 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/12 14:20:11 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/14 13:38:44 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	check_mp(t_cmd *info, int ac, char **av, char **envp)
 {
-	int		lidx;
-
 	info->envp = envp;
 	info->infile = av[1];
 	info->outfile = av[ac - 1];

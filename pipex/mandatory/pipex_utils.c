@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:25:02 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/10 19:44:42 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/14 14:58:45 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	parsing_cmdline(t_cmd *info, char **av, char **envp)
 	if (!(info->cmd2))
 		print_error("cmd2", info, 1);
 	info->outfile = av[4];
-	check_command(info);
 }
 
 void	execute_cmdline(t_cmd *info, char **cmd)

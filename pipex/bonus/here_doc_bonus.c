@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 18:11:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/10 20:15:57 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/14 13:37:20 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,24 @@ void	here_doc(t_cmd *info, int ac, char **av, char **envp)
 	child = fork();
 	if (child == -1)
 		print_error("fork", info, 1);
-	f_process_hd(child, info);
-}
-
-void	f_process_hd(pid_t child, t_cmd *info)
-{
 	if (child == 0)
-		c_process_hd(info, info->hd_fd);
+		c_process_hd(info);
 	else
-		p_process_hd(info, info->hd_fd);
+	{
+		if (wait(NULL) == -1)
+			print_error("wait", info, 1);
+		p_process_hd(info);
+	}
 }
 
-void	c_process_hd(t_cmd *info, int *hd_fd)
+void	c_process_hd(t_cmd *info)
 {
-	close(hd_fd[0]);
+	close(info->hd_fd[0]);
 	execute_hd(info);
 }
 
-void	p_process_hd(t_cmd *info, int *hd_fd)
+void	p_process_hd(t_cmd *info)
 {
-	close(hd_fd[1]);
-	dup2(hd_fd[0], 0);
-	wait(NULL);
+	close(info->hd_fd[1]);
+	dup2(info->hd_fd[0], 0);
 }

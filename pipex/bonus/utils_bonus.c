@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:12:43 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/12 14:21:53 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/14 15:33:26 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,18 @@ void	split_free(char **strarr)
 	free(strarr);
 }
 
-void	print_error(char *error_string, t_cmd *info, int code)
-{
-	write(1, "pipex: ", 8);
-	if (code)
-	{
-		write(1, strerror(errno), ft_strlen(strerror(errno)));
-		write(1, ": ", 2);
-	}
-	write(1, error_string, ft_strlen(error_string));
-	write(1, "\n", 1);
-	exit(EXIT_FAILURE);
-}
-
 void	init_file_fd(t_cmd *info)
 {
 	info->file[0] = 0;
 	info->file[1] = 0;
+}
+
+void	open_close(t_cmd *info)
+{
+	if (!info)
+		return ;
+	if (info->file[0])
+		close(info->file[0]);
+	if (info->file[1])
+		close(info->file[1]);
 }
