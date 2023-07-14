@@ -6,13 +6,13 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 19:12:36 by jaehyji           #+#    #+#              #
-#    Updated: 2023/06/22 20:22:09 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/07/14 15:34:20 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 BONUS = pipex_bonus
-CC = cc
+CC = gcc
 RM = rm -f
 FLAGS = -Wall -Wextra -Werror
 LIBFTDIR = libft
@@ -29,7 +29,8 @@ BONUS_SRCS = pipex_bonus.c	\
 			here_doc_utils_bonus.c	\
 			multi_pipe_bonus.c	\
 			multi_pipe_utils_bonus.c	\
-			utils_bonus.c
+			utils_bonus.c	\
+			error_utils_bonus.c
 
 GNL = get_next_line.c	\
 		get_next_line_utils.c
@@ -42,19 +43,19 @@ GNL_OBJS = $(addprefix bonus/get_next_line/, ${GNL:.c=.o})
 LIBFT = -L ./libft -lft
 
 .c.o:
-	${CC} -c $< -o ${<:.c=.o}
+	${CC} $(FLAGS) -c $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
 	make -C $(LIBFTDIR)
-	${CC} ${FLAGS} ${OBJS} -o ${NAME} ${LIBFT}
+	${CC} ${FLAGS} ${OBJS} -o pipex ${LIBFT}
 
 ${BONUS}: ${BONUS_OBJS} ${GNL_OBJS}
 	make -C $(LIBFTDIR)
-	${CC} ${FLAGS} ${BONUS_OBJS} ${GNL_OBJS} -o ${BONUS} ${LIBFT}
+	${CC} ${FLAGS} ${BONUS_OBJS} ${GNL_OBJS} -o pipex ${LIBFT}
 
 all: ${NAME}
 
-bonus: ${BONUS} 
+bonus: ${BONUS}
 
 clean:
 	${RM} ${OBJS} ${BONUS_OBJS} ${GNL_OBJS}
