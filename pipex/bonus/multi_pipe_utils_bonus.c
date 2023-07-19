@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 18:28:41 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/14 13:38:44 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/19 17:04:13 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*check_path(t_cmd *info, char *cmd)
 		free(cmd_file);
 	}
 	split_free(paths);
-	return (0);
+	return (ft_strdup(cmd));
 }
 
 char	**make_paths(t_cmd *info)

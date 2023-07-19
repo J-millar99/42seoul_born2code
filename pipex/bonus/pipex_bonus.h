@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:44:40 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/14 15:31:28 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/19 17:21:56 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	execute_hd(t_cmd *info);
 
 /*			MULTIPIPE			*/
 void	multi_pipe(t_cmd *info, int ac, char **av, char **envp);
-void	f_process_mp(t_cmd *info, char *av);
+void	c_process_mp(t_cmd *info, char *av);
+void	p_process_mp(t_cmd *info, char *av, int i, int ac);
 
 /*			MULTIPIPE_UTILS			*/
 void	check_mp(t_cmd *info, int ac, char **av, char **envp);
@@ -61,8 +62,7 @@ void	print_error(char *error_string, t_cmd *info, int code);
 void	init_file_fd(t_cmd *info);
 void	open_close(t_cmd *info);
 void	check_command(t_cmd *info, char *av[], int idx, int ac);
-void	print_error_cmd(char *cmd, int *flag);
-void	print_error_nocmd(char *cmd, int *flag);
-void	stop_flag(t_cmd *info, int flag);
+void	print_error_cmd1(char *cmd);
+void	print_error_cmd2(char *str, char *cmd);
 
 #endif

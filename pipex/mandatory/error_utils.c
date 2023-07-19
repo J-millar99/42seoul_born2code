@@ -6,11 +6,26 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:57:08 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/10 19:29:25 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:50:25 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	print_error_cmd1(char *str)
+{
+	write(1, "pipex: ", 8);
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
+}
+
+void	print_error_cmd2(char *str, char *cmd)
+{
+	write(1, "pipex: ", 8);
+	write(1, str, ft_strlen(str));
+	write(1, cmd, ft_strlen(cmd));
+	write(1, "\n", 1);
+}
 
 void	print_error(char *error_string, t_cmd *info, int code)
 {
@@ -22,19 +37,8 @@ void	print_error(char *error_string, t_cmd *info, int code)
 	}
 	write(1, error_string, ft_strlen(error_string));
 	write(1, "\n", 1);
-	malloc_free(info);
 	open_close(info);
-	exit(EXIT_FAILURE);
-}
-
-void	malloc_free(t_cmd *info)
-{
-	if (!info)
-		return ;
-	if (info->cmd1)
-		split_free(info->cmd1);
-	if (info->cmd2)
-		split_free(info->cmd2);
+	exit(1);
 }
 
 void	split_free(char **strarr)

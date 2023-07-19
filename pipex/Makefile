@@ -6,12 +6,11 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 19:12:36 by jaehyji           #+#    #+#              #
-#    Updated: 2023/07/14 15:34:20 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/07/14 17:33:02 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-BONUS = pipex_bonus
 CC = gcc
 RM = rm -f
 FLAGS = -Wall -Wextra -Werror
@@ -42,27 +41,33 @@ GNL_OBJS = $(addprefix bonus/get_next_line/, ${GNL:.c=.o})
 
 LIBFT = -L ./libft -lft
 
+ifdef BO
+	OBJS_ALL = $(BONUS_OBJS) $(GNL_OBJS)
+	OBJS_EXCEPT = $(OBJS)
+else
+	OBJS_ALL = $(OBJS)
+	OBJS_EXCEPT = $(BONUS_OBJS) $(GNL_OBJS)
+endif
+
 .c.o:
 	${CC} $(FLAGS) -c $< -o ${<:.c=.o}
 
-${NAME}: ${OBJS}
-	make -C $(LIBFTDIR)
-	${CC} ${FLAGS} ${OBJS} -o pipex ${LIBFT}
-
-${BONUS}: ${BONUS_OBJS} ${GNL_OBJS}
-	make -C $(LIBFTDIR)
-	${CC} ${FLAGS} ${BONUS_OBJS} ${GNL_OBJS} -o pipex ${LIBFT}
+${NAME}: $(OBJS_ALL)
+	${RM} $(NAME)
+	${RM} $(OBJS_EXCEPT)
+	@make -C $(LIBFTDIR)
+	${CC} ${FLAGS} ${OBJS_ALL} -o ${NAME} ${LIBFT}
 
 all: ${NAME}
-
-bonus: ${BONUS}
+bonus :
+	@make BO=1 $(NAME)
 
 clean:
 	${RM} ${OBJS} ${BONUS_OBJS} ${GNL_OBJS}
 	@cd $(LIBFTDIR) && $(MAKE) clean
 
 fclean: clean
-	${RM} ${NAME} ${BONUS}
+	${RM} ${NAME}
 	@cd $(LIBFTDIR) && $(MAKE) fclean
 
 re: clean all

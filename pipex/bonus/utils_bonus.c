@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:12:43 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/14 15:33:26 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/19 17:03:53 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,30 @@ void	open_close(t_cmd *info)
 		close(info->file[0]);
 	if (info->file[1])
 		close(info->file[1]);
+}
+
+void	check_command(t_cmd *info, char *av[], int idx, int ac)
+{
+	char	**cmdline;
+	char	*cmd;
+
+	while (idx < ac - 1)
+	{
+		if (!*(av[idx]))
+			print_error_cmd1("permission denied:");
+		else
+		{
+			cmdline = ft_split(av[idx], ' ');
+			if (!cmdline)
+				print_error("cmdline", info, 1);
+			cmd = check_path(info, cmdline[0]);
+			if (!cmd)
+				print_error("cmd", info, 1);
+			if (access(cmd, F_OK) != 0)
+				print_error_cmd2("command not found: ", cmd);
+			split_free(cmdline);
+			free(cmd);
+		}
+		idx++;
+	}
 }

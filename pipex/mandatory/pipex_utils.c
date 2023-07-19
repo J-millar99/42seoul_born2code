@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:25:02 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/14 14:58:45 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/19 15:43:54 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,28 @@ void	init_cmdinfo(t_cmd *info)
 	info->file[1] = 0;
 	info->envp = 0;
 	info->infile = 0;
-	info->cmd1 = 0;
-	info->cmd2 = 0;
 	info->outfile = 0;
 }
 
-void	parsing_cmdline(t_cmd *info, char **av, char **envp)
+void	setting_cmdinfo(t_cmd *info, char **av, char **envp)
 {
+	init_cmdinfo(info);
 	info->envp = envp;
 	info->infile = av[1];
-	info->cmd1 = ft_split(av[2], ' ');
-	if (!(info->cmd1))
-		print_error("cmd1", info, 1);
-	info->cmd2 = ft_split(av[3], ' ');
-	if (!(info->cmd2))
-		print_error("cmd2", info, 1);
 	info->outfile = av[4];
 }
 
-void	execute_cmdline(t_cmd *info, char **cmd)
+void	execute_cmdline(t_cmd *info, char *av)
 {
 	char	*exe;
+	char	**cmdline;
 
-	exe = check_path(info, cmd[0]);
+	cmdline = ft_split(av, ' ');
+	if (!cmdline)
+		print_error("cmdline", info, 1);
+	exe = check_path(info, cmdline[0]);
 	if (!exe)
 		print_error("exe", info, 1);
-	if (execve(exe, cmd, info->envp) == -1)
+	if (execve(exe, cmdline, info->envp) == -1)
 		print_error("execve", info, 1);
 }
