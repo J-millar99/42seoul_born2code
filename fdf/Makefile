@@ -6,27 +6,32 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 17:54:45 by jaehyji           #+#    #+#              #
-#    Updated: 2023/07/25 16:09:22 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/07/27 07:11:48 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = myfdf
 CC = gcc
 RM = rm -f
-# FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 LIBFTDIR = libft
 MLXDIR = minilibx_mms_20210621
 LIBFT = -L ./libft
 MLX = -L ./minilibx_mms_20210621
 
 .c.o:
-	${CC} $(FLAGS) -c $< -o ${<:.c=.o}
+	${CC} -c $< -o ${<:.c=.o}
 
 SRCS = fdf.c	\
-		image_utils.c	\
+		map_utils.c	\
 		key_utils.c		\
 		error_utils.c	\
-		check_utils.c
+		check_utils.c	\
+		color_utils.c	\
+		coordinates_utils.c	\
+		rotate_algorithm.c	\
+		utils1.c		\
+		utils2.c		\
 
 GNL = get_next_line.c	\
 

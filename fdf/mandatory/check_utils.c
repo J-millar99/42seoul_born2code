@@ -6,22 +6,27 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:21:55 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/26 15:07:36 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/27 09:04:37 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	check_file(char *filename, t_info *info)
+void	checking_file(t_file *info)
 {
-	if (access(filename, F_OK) == -1)
-		print_error(filename, 1, info);
-	info->fd = open(filename, O_RDONLY, 0644);
+	char	*tmp;
+
+	tmp = &(info->filename)[ft_strlen(info->filename) - 4];
+	if (ft_strncmp(tmp, ".fdf", 4))
+		print_error("The file does not have the extension \".fdf\".", 0, info);
+	if (access(info->filename, F_OK) == -1)
+		print_error(info->filename, 1, info);
+	info->fd = open(info->filename, O_RDONLY, 0644);
 	if (info->fd == -1)
-		print_error(filename, 1, info);
+		print_error(info->filename, 1, info);
 }
 
-void	check_no_data(char *line, t_info *info)
+void	checking_no_data(char *line, t_file *info)
 {
 	if (!line || !*line)
 		print_error("No data found.", 0, info);
@@ -32,52 +37,35 @@ void	check_no_data(char *line, t_info *info)
 		print_error("No data found.", 0, info);
 }
 
-void	check_map(char *av, t_info *info)
+void	checking_map(t_file *info)
 {
 	char	*line;
 
-	check_file(av, info);
+	checking_file(info);
 	line = get_next_line(info->fd);
-	check_no_data(line, info);
-	check_possible_map(line, info);
+	checking_no_data(line, info);
+	info->limit_row++;
+	checking_possible_map(line, info);
 	close(info->fd);
 	info->fd = 0;
 }
 
-int	check_num(char **arr)
+void	checking_possible_map(char *line, t_file *info)
 {
-	int		cnt;
+	int		comp;
 
-	cnt = 0;
-	if (!arr || !*arr)
-		return (0);
-	while (*arr)
-	{
-		cnt++;
-		arr++;
-	}
-	return (cnt);
-}
-
-void	check_possible_map(char *line, t_info *info)
-{
-	char	**arr;
-	int		stdnum;
-	int		arrnum;
-
-	arr = ft_split(line, ' ');
-	stdnum = check_num(arr);
-	free_arr(arr, info);
+	info->limit_col = word_count(line, ' ');
 	while (line && *line)
 	{
 		free(line);
 		line = get_next_line(info->fd);
 		if (!line)
 			break ;
-		arr = ft_split(line, ' ');
-		arrnum = check_num(arr);
-		free_arr(arr, info);
-		if (arrnum < stdnum)
+		info->limit_row++;
+		comp = word_count(line, ' ');
+		if (comp < info->limit_col)
 			print_error("Found wrong line length. Exiting.", 0, info);
 	}
+	if (info->limit_row > 800 || info->limit_col > 1280)
+		print_error("Floating point exception", 0, info);
 }
