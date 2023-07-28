@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:21:55 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 13:21:40 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 15:06:31 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	checking_no_data(char *line, t_file *info)
 		print_error("No data found.", 0, info);
 }
 
-void	checking_map(t_file *info)
+void	checking_map_data(t_file *info)
 {
 	char	*line;
 	int		p;
@@ -47,14 +47,6 @@ void	checking_map(t_file *info)
 	checking_no_data(line, info);
 	info->limit_row++;
 	checking_possible_map(line, info);
-	p = 2;
-	while ((info->limit_row / 2) * p < VERTICAL / 2)
-		p++;
-	info->p_x = 2;
-	p = 2;
-	while ((info->limit_col / 2) * p < HORIZONTAL / 2)
-		p++;
-	info->p_y = 2;
 	close(info->fd);
 	info->fd = 0;
 }
@@ -75,6 +67,4 @@ void	checking_possible_map(char *line, t_file *info)
 		if (comp < info->limit_col)
 			print_error("Found wrong line length. Exiting.", 0, info);
 	}
-	if (info->limit_row > 800 || info->limit_col > 1280)
-		print_error("Floating point exception", 0, info);
 }

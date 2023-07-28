@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 17:54:45 by jaehyji           #+#    #+#              #
-#    Updated: 2023/07/27 07:11:48 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/07/28 16:17:46 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,8 @@ SRCS = fdf.c	\
 		color_utils.c	\
 		coordinates_utils.c	\
 		rotate_algorithm.c	\
+		screen_utils.c	\
 		utils1.c		\
-		utils2.c		\
 
 GNL = get_next_line.c	\
 

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 12:36:29 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 16:41:44 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ typedef struct s_file
 {
 	int		limit_row;
 	int		limit_col;
-	int		p_x;
-	int		p_y;
+	int		width;
+	int		height;
+	int		mtp_x;
+	int		mtp_y;
 	int		fd;
 	char	*filename;
 }	t_file;
@@ -42,10 +44,16 @@ typedef struct s_map
 	int		color;
 }	t_map;
 
+typedef struct s_mlx
+{
+	void	*mptr;
+	void	*wptr;
+}	t_mlx;
+
 /*	check_utils	*/
 void	checking_file(t_file *info);
 void	checking_no_data(char *line, t_file *info);
-void	checking_map(t_file *info);
+void	checking_map_data(t_file *info);
 void	checking_possible_map(char *line, t_file *info);
 
 /* color_utils	*/
@@ -57,9 +65,8 @@ int		ft_atoi_hex(char *str);
 /*	coordinates_utils	*/
 t_map	coordinate(int row, int col, char **arr, t_file *info);
 char	**one_coordinate_line(t_file *info);
-void	plotting(void *mlx_ptr, void *win_ptr, t_map **map, t_file *info);
-void	line_put(void *mlx_ptr, void *win_ptr, t_map map1, t_map map2);
-void	locate_mid(t_map *map, t_file *info);
+void	locate_mid(t_map **map, t_file *info);
+void	initializing_coordinates_data(t_map *map);
 /*	error_utils	*/
 void	print_error(char *estr, int code, t_file *info);
 
@@ -69,7 +76,9 @@ void	input_key(void *win_ptr);
 
 /*	map_utils	*/
 t_map	**initial_map(t_file *info);
-void	make_map(void *mlx_ptr, t_file *info);
+void	make_map(t_mlx *mlx, t_file *info);
+void	plotting(t_mlx *mlx, t_map **map, t_file *info);
+void	line_put(t_mlx *mlx, t_map map1, t_map map2, t_file *info);
 
 /* rotate_algorithm	*/
 void	isometric_projection(t_map **map, t_file *info);
@@ -83,7 +92,11 @@ int		is_sep(char c, char sep);
 int		word_count(const char *s, char c);
 void	free_split(char **array);
 void	free_map(t_map **map, t_file *info);
-void	initializing_map(t_map *map);
+
+/*	screen_utils	*/
+void	setting_window(t_mlx *mlx, t_file *info);
+void	adjusting_screen(t_map **map, t_file *info);
+
 /*	temp_f	*/
-void	put_crossline(void *mlx_ptr, void *win_ptr);
+void	put_crossline(t_mlx *mlx, t_file *info);
 #endif

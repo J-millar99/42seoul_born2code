@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 23:39:47 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 12:42:10 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 16:40:21 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,36 @@ t_map	coordinate(int row, int col, char **arr, t_file *info)
 {
 	t_map	map;
 
-	initializing_map(&map);
-	map.x = (row - (info->limit_row / 2)) * info->p_x;
-	map.y = (col - (info->limit_col / 2)) * info->p_y;
+	initializing_coordinates_data(&map);
+	map.x = row - (info->limit_row / 2);
+	map.y = col - (info->limit_col / 2);
 	ft_atoi_z(&map, arr[col]);
 	return (map);
+}
+
+void	initializing_coordinates_data(t_map *map)
+{
+	map->x = 0;
+	map->y = 0;
+	map->z = 0;
+	map->color = 0;
+}
+
+void	locate_mid(t_map **map, t_file *info)
+{
+	int		row;
+	int		col;
+
+	row = 0;
+	while (row < info->limit_row)
+	{
+		col = 0;
+		while (col < info->limit_col)
+		{
+			map[row][col].x += (info->height / 2);
+			map[row][col].y += (info->width / 2);
+			++col;
+		}
+		++row;
+	}
 }

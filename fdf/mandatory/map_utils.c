@@ -6,28 +6,26 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 13:35:01 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 17:02:32 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	make_map(void *mlx_ptr, t_file *info)
+void	make_map(t_mlx *mlx, t_file *info)
 {
 	t_map	**map;
-	void	*win_ptr;
 
 	info->fd = open(info->filename, O_RDONLY, 0644);
 	map = initial_map(info);
 	isometric_projection(map, info);
-	win_ptr = mlx_new_window(mlx_ptr, HORIZONTAL, VERTICAL, "fdf");
-	if (!win_ptr)
-		print_error("mlx_new_window", 0, info);
-	input_key(win_ptr);
-	plotting(mlx_ptr, win_ptr, map, info);
+	adjusting_screen(map, info);
+	locate_mid(map, info);
+	setting_window(mlx, info);
+	plotting(mlx, map, info);
 	free_map(map, info);
-	mlx_loop(mlx_ptr);
-	mlx_destroy_window(mlx_ptr, win_ptr);
+	mlx_loop(mlx->mptr);
+	mlx_destroy_window(mlx->mptr, mlx->wptr);
 }
 
 t_map	**initial_map(t_file *info)
@@ -59,12 +57,11 @@ t_map	**initial_map(t_file *info)
 	return (map);
 }
 
-void	plotting(void *mlx_ptr, void *win_ptr, t_map **map, t_file *info)
+void	plotting(t_mlx *mlx, t_map **map, t_file *info)
 {
 	int		row;
 	int		col;
 
-	put_crossline(mlx_ptr, win_ptr);
 	row = 0;
 	while (row < info->limit_row)
 	{
@@ -72,16 +69,16 @@ void	plotting(void *mlx_ptr, void *win_ptr, t_map **map, t_file *info)
 		while (col < info->limit_col)
 		{
 			if (col < info->limit_col - 1)
-				line_put(mlx_ptr, win_ptr, map[row][col], map[row][col + 1]);
+				line_put(mlx, map[row][col], map[row][col + 1], info);
 			if (row < info->limit_row - 1)
-				line_put(mlx_ptr, win_ptr, map[row][col], map[row + 1][col]);
+				line_put(mlx, map[row][col], map[row + 1][col], info);
 			++col;
 		}
 		++row;
 	}
 }
 
-void	line_put(void *mlx_ptr, void *win_ptr, t_map map1, t_map map2)
+void	line_put(t_mlx *mlx, t_map map1, t_map map2, t_file *info)
 {
 	double	dx;
 	double	dy;
@@ -100,18 +97,9 @@ void	line_put(void *mlx_ptr, void *win_ptr, t_map map1, t_map map2)
 	int	i = -1;
 	while (i++ <= inc)
 	{
-		mlx_pixel_put(mlx_ptr, win_ptr, map1.y, map1.x, map1.color);
+		if (map1.x < info->height && map1.y < info->width)
+			mlx_pixel_put(mlx->mptr, mlx->wptr, map1.y, map1.x, map1.color);
 		map1.x += xinc;
 		map1.y += yinc;
 	}
-}
-
-void	put_crossline(void *mlx_ptr, void *win_ptr)
-{
-	int x, y = -1;
-
-	while (x++ < HORIZONTAL)
-		mlx_pixel_put(mlx_ptr, win_ptr, x, VERTICAL / 2, 0xffffff);
-	while (y++ < VERTICAL)
-		mlx_pixel_put(mlx_ptr, win_ptr, HORIZONTAL / 2, y, 0xffffff);
 }
