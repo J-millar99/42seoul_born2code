@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:21:55 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/27 09:04:37 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 13:21:40 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,21 @@ void	checking_no_data(char *line, t_file *info)
 void	checking_map(t_file *info)
 {
 	char	*line;
+	int		p;
 
 	checking_file(info);
 	line = get_next_line(info->fd);
 	checking_no_data(line, info);
 	info->limit_row++;
 	checking_possible_map(line, info);
+	p = 2;
+	while ((info->limit_row / 2) * p < VERTICAL / 2)
+		p++;
+	info->p_x = 2;
+	p = 2;
+	while ((info->limit_col / 2) * p < HORIZONTAL / 2)
+		p++;
+	info->p_y = 2;
 	close(info->fd);
 	info->fd = 0;
 }

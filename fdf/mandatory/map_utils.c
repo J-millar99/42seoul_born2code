@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/27 09:49:36 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 13:35:01 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	plotting(void *mlx_ptr, void *win_ptr, t_map **map, t_file *info)
 	int		row;
 	int		col;
 
+	put_crossline(mlx_ptr, win_ptr);
 	row = 0;
 	while (row < info->limit_row)
 	{
@@ -103,4 +104,14 @@ void	line_put(void *mlx_ptr, void *win_ptr, t_map map1, t_map map2)
 		map1.x += xinc;
 		map1.y += yinc;
 	}
+}
+
+void	put_crossline(void *mlx_ptr, void *win_ptr)
+{
+	int x, y = -1;
+
+	while (x++ < HORIZONTAL)
+		mlx_pixel_put(mlx_ptr, win_ptr, x, VERTICAL / 2, 0xffffff);
+	while (y++ < VERTICAL)
+		mlx_pixel_put(mlx_ptr, win_ptr, HORIZONTAL / 2, y, 0xffffff);
 }

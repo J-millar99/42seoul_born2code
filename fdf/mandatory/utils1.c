@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:43:13 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/27 07:46:08 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 12:39:11 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	initializing_fileinfo(t_file *info, char *filename)
 {
 	info->limit_row = 0;
 	info->limit_col = 0;
+	info->p_x = 0;
+	info->p_y = 0;
 	info->fd = 0;
 	info->filename = filename;
 }

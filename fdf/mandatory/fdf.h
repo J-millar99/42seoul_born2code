@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/27 09:44:20 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 12:36:29 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_file
 {
 	int		limit_row;
 	int		limit_col;
+	int		p_x;
+	int		p_y;
 	int		fd;
 	char	*filename;
 }	t_file;
@@ -82,4 +84,6 @@ int		word_count(const char *s, char c);
 void	free_split(char **array);
 void	free_map(t_map **map, t_file *info);
 void	initializing_map(t_map *map);
+/*	temp_f	*/
+void	put_crossline(void *mlx_ptr, void *win_ptr);
 #endif
