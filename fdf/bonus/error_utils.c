@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   error_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/19 19:18:15 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 20:26:11 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/07/19 19:32:22 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/07/26 23:38:51 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-void	f(void)
-{
-	system("leaks myfdf");
-}
-int	main(int ac, char *av[])
-{
-	t_file	info;
-	t_mlx	mlx;
 
-	atexit(f);
-	if (ac == 2)
+void	print_error(char *estr, int code, t_file *info)
+{
+	if (code)
 	{
-		mlx.mptr = mlx_init();
-		if (!mlx.mptr)
-			print_error("mlx_init", 0, &info);
-		initializing_fileinfo(&info, av[1]);
-		checking_map_data(&info);
-		make_map(&mlx, &info);
+		write(1, strerror(errno), ft_strlen(strerror(errno)));
+		write(1, ": ", 2);
 	}
-	else
-		print_error("Argument count must be only two", 0, &info);
-	return (0);
+	if (info->fd)
+		close(info->fd);
+	write(1, estr, ft_strlen(estr));
+	write(1, "\n", 1);
+	exit(1);
 }

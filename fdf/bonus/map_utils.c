@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 20:26:17 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 21:20:00 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,18 @@ void	make_map(t_mlx *mlx, t_file *info)
 	info->fd = open(info->filename, O_RDONLY, 0644);
 	map = initial_map(info);
 	isometric_projection(map, info);
-	adjusting_screen(map, info);
 	locate_mid(map, info);
-	setting_window(mlx, info);
+	mlx->wptr = mlx_new_window(mlx->mptr, HOR, VER, "fdf");
+	if (!mlx->wptr)
+		print_error("mlx_new_window", 0, info);
 	plotting(mlx, map, info);
-	free_map(map, info);
+	mlx->info = info;
+	mlx->map = map;
+	mlx->w_min = 0;
+	mlx->w_max = 0;
+	input_key(mlx);
 	mlx_loop(mlx->mptr);
+	free_map(map, info);
 	mlx_destroy_window(mlx->mptr, mlx->wptr);
 }
 
@@ -69,16 +75,16 @@ void	plotting(t_mlx *mlx, t_map **map, t_file *info)
 		while (col < info->limit_col - 1)
 		{
 			if (col < info->limit_col - 1)
-				line_put(mlx, map[row][col], map[row][col + 1], info);
+				line_put(mlx, map[row][col], map[row][col + 1]);
 			if (row < info->limit_row - 1)
-				line_put(mlx, map[row][col], map[row + 1][col], info);
+				line_put(mlx, map[row][col], map[row + 1][col]);
 			++col;
 		}
 		++row;
 	}
 }
 
-void	line_put(t_mlx *mlx, t_map map1, t_map map2, t_file *info)
+void	line_put(t_mlx *mlx, t_map map1, t_map map2)
 {
 	double	inc;
 	double	xinc;
@@ -94,8 +100,7 @@ void	line_put(t_mlx *mlx, t_map map1, t_map map2, t_file *info)
 	i = 0;
 	while (i <= inc)
 	{
-		if (map1.x < info->height && map1.y < info->width)
-			mlx_pixel_put(mlx->mptr, mlx->wptr, map1.y, map1.x, map1.color);
+		mlx_pixel_put(mlx->mptr, mlx->wptr, map1.y, map1.x, map1.color);
 		map1.x += xinc;
 		map1.y += yinc;
 		i++;

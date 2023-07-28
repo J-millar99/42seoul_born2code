@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 17:54:45 by jaehyji           #+#    #+#              #
-#    Updated: 2023/07/28 16:17:46 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/07/28 20:43:54 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT = -L ./libft
 MLX = -L ./minilibx_mms_20210621
 
 .c.o:
-	${CC} -c $< -o ${<:.c=.o}
+	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 SRCS = fdf.c	\
 		map_utils.c	\
@@ -30,18 +30,18 @@ SRCS = fdf.c	\
 		color_utils.c	\
 		coordinates_utils.c	\
 		rotate_algorithm.c	\
-		screen_utils.c	\
 		utils1.c		\
+		# screen_utils.c	\
 
 GNL = get_next_line.c	\
 
-OBJS = $(addprefix mandatory/, ${SRCS:.c=.o})
+OBJS = $(addprefix bonus/, ${SRCS:.c=.o})
 GNL_OBJS = $(addprefix get_next_line/, ${GNL:.c=.o})
 
 $(NAME): $(OBJS) $(GNL_OBJS)
 	make -C $(LIBFTDIR)
 	make -C $(MLXDIR)
-	${CC} ${LIBFT} ${MLX} -o $@ $^ -lft -lmlx
+	${CC} ${FLAGS} ${LIBFT} ${MLX} -o $@ $^ -lft -lmlx
 	@cd ./$(MLXDIR) ; mv libmlx.dylib ../
 
 all: ${NAME}
