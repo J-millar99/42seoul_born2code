@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 04:44:28 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 17:02:28 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 17:55:32 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,21 @@ void	adjusting_screen(t_map **map, t_file *info)
 {
 	int		row;
 	int		col;
-	int		mtp_x;
-	int		mtp_y;
 
-	mtp_x = 2;
-	while (info->height * mtp_x < VERTICAL)
-		mtp_x++;
-	info->height *= (mtp_x - 1);
-	mtp_y = 2;
-	while (info->width * mtp_y < HORIZONTAL)
-		mtp_y++;
-	info->width *= (mtp_y - 1);
+	while (info->height * info->mtp_x < VERTICAL)
+		info->mtp_x++;
+	info->height *= (info->mtp_x - 1);
+	while (info->width * info->mtp_y < HORIZONTAL)
+		info->mtp_y++;
+	info->width *= (info->mtp_y - 1);
 	row = 0;
 	while (row < info->limit_row)
 	{
 		col = 0;
 		while (col < info->limit_col)
 		{
-			map[row][col].x *= ((mtp_x - 1) * 3 / 4);
-			map[row][col].y *= ((mtp_y - 1) * 3 / 4);
+			map[row][col].x *= ((info->mtp_x - 1) * 9 / 10);
+			map[row][col].y *= ((info->mtp_y - 1) * 9 / 10);
 			++col;
 		}
 		++row;

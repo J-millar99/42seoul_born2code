@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 23:39:47 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 16:40:21 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 17:35:23 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	locate_mid(t_map **map, t_file *info)
 		col = 0;
 		while (col < info->limit_col)
 		{
-			map[row][col].x += (info->height / 2);
+			map[row][col].x += (info->height * 3 / 5);
 			map[row][col].y += (info->width / 2);
 			++col;
 		}

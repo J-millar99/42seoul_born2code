@@ -6,14 +6,14 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 16:41:44 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 17:27:48 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define VERTICAL 800
-# define HORIZONTAL 1280
+# define VERTICAL 1000
+# define HORIZONTAL 1200
 
 # include "../minilibx_mms_20210621/mlx.h"
 # include "../libft/libft.h"

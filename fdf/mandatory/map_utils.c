@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 17:02:32 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 18:00:12 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,22 +80,19 @@ void	plotting(t_mlx *mlx, t_map **map, t_file *info)
 
 void	line_put(t_mlx *mlx, t_map map1, t_map map2, t_file *info)
 {
-	double	dx;
-	double	dy;
 	double	inc;
 	double	xinc;
 	double	yinc;
+	int		i;
 
-	dx = map2.x - map1.x;
-	dy = map2.y - map1.y;
-	if (fabs(dx) > fabs(dy))
-		inc = fabs(dx);
+	if (fabs(map2.x - map1.x) > fabs(map2.y - map1.y))
+		inc = fabs(map2.x - map1.x);
 	else
-		inc = fabs(dy);
-	xinc = dx / inc;
-	yinc = dy / inc;
-	int	i = -1;
-	while (i++ <= inc)
+		inc = fabs(map2.y - map1.y);
+	xinc = (map2.x - map1.x) / inc;
+	yinc = (map2.y - map1.y) / inc;
+	i = 0;
+	while (i <= inc)
 	{
 		if (map1.x < info->height && map1.y < info->width)
 			mlx_pixel_put(mlx->mptr, mlx->wptr, map1.y, map1.x, map1.color);
