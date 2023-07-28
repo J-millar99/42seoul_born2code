@@ -6,21 +6,21 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:15 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 18:01:00 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 19:32:15 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-// void	f(void)
-// {
-// 	system("leaks myfdf");
-// }
+void	f(void)
+{
+	system("leaks myfdf");
+}
 int	main(int ac, char *av[])
 {
 	t_file	info;
 	t_mlx	mlx;
 
-	// atexit(f);
+	atexit(f);
 	if (ac == 2)
 	{
 		mlx.mptr = mlx_init();

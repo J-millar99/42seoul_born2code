@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 18:00:12 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 19:43:00 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void	plotting(t_mlx *mlx, t_map **map, t_file *info)
 	int		col;
 
 	row = 0;
-	while (row < info->limit_row)
+	while (row < info->limit_row - 1)
 	{
 		col = 0;
-		while (col < info->limit_col)
+		while (col < info->limit_col - 1)
 		{
 			if (col < info->limit_col - 1)
 				line_put(mlx, map[row][col], map[row][col + 1], info);
@@ -98,5 +98,6 @@ void	line_put(t_mlx *mlx, t_map map1, t_map map2, t_file *info)
 			mlx_pixel_put(mlx->mptr, mlx->wptr, map1.y, map1.x, map1.color);
 		map1.x += xinc;
 		map1.y += yinc;
+		i++;
 	}
 }

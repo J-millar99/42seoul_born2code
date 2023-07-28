@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 17:27:48 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 19:31:28 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	line_put(t_mlx *mlx, t_map map1, t_map map2, t_file *info);
 
 /* rotate_algorithm	*/
 void	isometric_projection(t_map **map, t_file *info);
-void	rotate_std_x(t_map *map, double theta);
 void	rotate_std_y(t_map *map, double theta);
 void	rotate_std_z(t_map *map, double theta);
 
@@ -96,7 +95,6 @@ void	free_map(t_map **map, t_file *info);
 /*	screen_utils	*/
 void	setting_window(t_mlx *mlx, t_file *info);
 void	adjusting_screen(t_map **map, t_file *info);
+void	get_mtp(t_file *info);
 
-/*	temp_f	*/
-void	put_crossline(t_mlx *mlx, t_file *info);
 #endif

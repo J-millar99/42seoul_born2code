@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:21:55 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 15:06:31 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/07/28 20:23:05 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	checking_no_data(char *line, t_file *info)
 void	checking_map_data(t_file *info)
 {
 	char	*line;
-	int		p;
 
 	checking_file(info);
 	line = get_next_line(info->fd);
