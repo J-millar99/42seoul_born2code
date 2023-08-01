@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 14:37:29 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/01 16:42:46 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/01 19:04:37 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	key_size(t_mlx *mlx, int keycode)
 {
 	void	*img;
-	char	*img_adta;
+	char	*img_addr;
 
 	mlx_clear_window(mlx->mptr, mlx->wptr);
 	img = mlx_new_image(mlx->mptr, HOR, VER);
-	img_adta = mlx_get_data_addr(img, NULL, NULL, NULL);
+	img_addr = mlx_get_data_addr(img, NULL, NULL, NULL);
 	if (keycode == PLUS && mlx->w_max != W_MAX)
 		extend_screen(mlx);
 	else if (keycode == MINUS && mlx->w_max != W_MIN)
