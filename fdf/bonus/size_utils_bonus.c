@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_utils.c                                        :+:      :+:    :+:   */
+/*   size_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 16:02:20 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 21:42:32 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/08/01 14:37:29 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/08/01 16:42:46 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
-/*
-	증감제한구간 설정.
-	회전.
-	다른 투영.
-*/
-
-void	input_key(t_mlx *mlx)
+void	key_size(t_mlx *mlx, int keycode)
 {
-	mlx_key_hook(mlx->wptr, &on_key_press, mlx);
-}
+	void	*img;
+	char	*img_adta;
 
-int	on_key_press(int keycode, t_mlx *mlx)
-{
-	if (keycode == 53)
-		exit(1);
-	if (keycode == 35 && mlx->w_max == 0)
+	mlx_clear_window(mlx->mptr, mlx->wptr);
+	img = mlx_new_image(mlx->mptr, HOR, VER);
+	img_adta = mlx_get_data_addr(img, NULL, NULL, NULL);
+	if (keycode == PLUS && mlx->w_max != W_MAX)
 		extend_screen(mlx);
-	if (keycode == 46 && mlx->w_max > -3)
+	else if (keycode == MINUS && mlx->w_max != W_MIN)
 		contract_screen(mlx);
-	return (0);
 }
 
 void	extend_screen(t_mlx *mlx)
@@ -48,13 +40,16 @@ void	extend_screen(t_mlx *mlx)
 		{
 			mlx->map[r][c].x *= 2;
 			mlx->map[r][c].y *= 2;
-			if (mlx->map[r][c].x >= VER / 2 || mlx->map[r][c].y >= HOR / 2)
-				mlx->w_max += 1;
+			if (fabs(mlx->map[r][c].x) >= VER / 2 \
+			|| fabs(mlx->map[r][c].y) >= HOR / 2)
+			{	
+				mlx->w_max = W_MAX;
+				mlx->w_min = 0;
+			}
 			++c;
 		}
 		++r;
 	}
-	mlx_clear_window(mlx->mptr, mlx->wptr);
 	locate_mid(mlx->map, mlx->info);
 	plotting(mlx, mlx->map, mlx->info);
 }
@@ -73,12 +68,15 @@ void	contract_screen(t_mlx *mlx)
 		{
 			mlx->map[r][c].x /= 2;
 			mlx->map[r][c].y /= 2;
+			if (fabs(mlx->map[r][c].x) < 2 || fabs(mlx->map[r][c].y) < 2)
+			{	
+				mlx->w_max = 0;
+				mlx->w_min = W_MIN;
+			}
 			++c;
 		}
 		++r;
 	}
-	mlx_clear_window(mlx->mptr, mlx->wptr);
 	locate_mid(mlx->map, mlx->info);
 	plotting(mlx, mlx->map, mlx->info);
-	mlx->w_max -= 1;
 }

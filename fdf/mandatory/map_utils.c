@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 20:26:17 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/01 15:02:32 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	make_map(t_mlx *mlx, t_file *info)
 	map = initial_map(info);
 	isometric_projection(map, info);
 	adjusting_screen(map, info);
-	locate_mid(map, info);
 	setting_window(mlx, info);
 	plotting(mlx, map, info);
 	free_map(map, info);

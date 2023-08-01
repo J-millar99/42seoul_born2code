@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   map_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 21:20:00 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/01 15:09:54 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fdf_bonus.h"
 
 void	make_map(t_mlx *mlx, t_file *info)
 {
@@ -24,10 +24,7 @@ void	make_map(t_mlx *mlx, t_file *info)
 	if (!mlx->wptr)
 		print_error("mlx_new_window", 0, info);
 	plotting(mlx, map, info);
-	mlx->info = info;
-	mlx->map = map;
-	mlx->w_min = 0;
-	mlx->w_max = 0;
+	setting_mlx(mlx, map, info);
 	input_key(mlx);
 	mlx_loop(mlx->mptr);
 	free_map(map, info);
@@ -105,4 +102,12 @@ void	line_put(t_mlx *mlx, t_map map1, t_map map2)
 		map1.y += yinc;
 		i++;
 	}
+}
+
+void	setting_mlx(t_mlx *mlx, t_map **map, t_file *info)
+{
+	mlx->info = info;
+	mlx->map = map;
+	mlx->w_min = 0;
+	mlx->w_max = 0;
 }
