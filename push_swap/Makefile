@@ -11,11 +11,17 @@
 # **************************************************************************** #
 
 NAME = push_swap
-CC = cc
-RM = rm -f
-FLAGS = -Wall -Wextra -Werror
-LIBFTDIR = libft
 BONUS = checker
+GCC = gcc
+FLAGS = -Wall -Wextra -Werror
+RM = rm
+LIBFTDIR = libft
+LIBFT = -L ./libft -lft
+
+INCS_P = push_swap.h
+
+INCS_G = get_next_line.h
+
 SRCS_M = push_swap.c
 
 SRCS_U =	stack_utils.c	\
@@ -34,38 +40,41 @@ SRCS_U =	stack_utils.c	\
 		error_checker_utils.c	\
 		check_rotate_type.c
 
-BONUS_SRCS = push_swap_checker/checker_bonus.c	\
-			push_swap_checker/command_bonus.c		\
-			get_next_line/srcs/get_next_line.c	\
-			get_next_line/srcs/get_next_line_utils.c
+SRCS_B = checker_bonus.c	\
+		command_bonus.c		\
 
-OBJS_M = ${SRCS_M:.c=.o}
-OBJS_U = ${SRCS_U:.c=.o}
-BONUS_OBJS =${BONUS_SRCS:.c=.o}
+SRCS_G = get_next_line.c	\
+	get_next_line_utils.c
 
-LIBFT = -L ./libft -lft
+INCS_P = $(addprefix mandatory/, ${INCS_P})
+INCS_G = $(addprefix get_next_line, ${INCS_G})
+OBJS_M = $(addprefix mandatory/, ${SRCS_M:.c=.o})
+OBJS_U = $(addprefix mandatory/, ${SRCS_U:.c=.o})
+OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
+OBJS_G = $(addprefix get_next_line, ${SRCS_G:.c=.o})
+INCS = $(INCS_P) $(INCS_G)
 
-.c.o:
-	${CC} -c $< -o ${<:.c=.o}
+%.o : %.c
+	$(GCC) $(CFLAG) -c $< -o $@
 
-${NAME}: ${OBJS_M} ${OBJS_U}
+$(NAME): $(OBJS_M) $(OBJS_U) $(OBJS_G) $(INCS)
 	make -C $(LIBFTDIR)
-	${CC} ${FLAGS} ${OBJS_M} ${OBJS_U} -o ${NAME} ${LIBFT}
+	$(GCC) $(FLAGS) $(OBJS_M) $(OBJS_U) $(OBJS_G) -o $(NAME) $(LIBFT)
 
-${BONUS}: ${OBJS_U} ${BONUS_OBJS}
+$(BONUS): $(OBJS_U) $(OBJS_B) $(OBJS_G) $(INCS)
 	make -C $(LIBFTDIR)
-	${CC} ${FLAGS} ${BONUS_OBJS} ${OBJS_U} -o ${BONUS} ${LIBFT}
+	$(GCC) $(FLAGS) $(OBJS_B) $(OBJS_U) $(OBJS_G) -o $(BONUS) $(LIBFT)
 
-all: ${NAME} ${BONUS}
+all: $(NAME)
 
-bonus: ${BONUS} 
+bonus: $(BONUS) 
 
 clean:
-	${RM} ${OBJS_M} ${OBJS_U} ${BONUS_OBJS}
+	$(RM) $(OBJS_M) $(OBJS_U) $(OBJS_B) $(OBJS_G)
 	@cd $(LIBFTDIR) && $(MAKE) clean
 
 fclean: clean
-	${RM} ${NAME} ${BONUS}
+	$(RM) $(NAME) $(BONUS)
 	@cd $(LIBFTDIR) && $(MAKE) fclean
 
 re: clean all

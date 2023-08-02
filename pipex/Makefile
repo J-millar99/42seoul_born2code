@@ -11,19 +11,26 @@
 # **************************************************************************** #
 
 NAME = pipex
-CC = gcc
-RM = rm -f
+GCC = gcc
+RM = rm
 FLAGS = -Wall -Wextra -Werror
 LIBFTDIR = libft
+LIBFT = -L ./libft -lft
 
-SRCS = pipex.c	\
+INCS_M = pipex.h
+
+SRCS_M = pipex.c	\
 		pipex_utils.c	\
 		process.c	\
 		error_utils.c	\
 		check_file.c	\
 		check_cmd.c
 
-BONUS_SRCS = pipex_bonus.c	\
+INCS_B = pipex_bonus.h
+
+INCS_G = get_next_line.h
+
+SRCS_B = pipex_bonus.c	\
 			here_doc_bonus.c	\
 			here_doc_utils_bonus.c	\
 			multi_pipe_bonus.c	\
@@ -31,39 +38,41 @@ BONUS_SRCS = pipex_bonus.c	\
 			utils_bonus.c	\
 			error_utils_bonus.c
 
-GNL = get_next_line.c	\
+SCRS_G = get_next_line.c	\
 		get_next_line_utils.c
 			
+INCS_M = $(addprefix mandatory/, ${INCS_M})
+OBJS_M = $(addprefix mandatory/, ${SRCS:.c=.o})
+INCS_B = $(addprefix bonus/, ${INCS_B})
+INCS_G = $(addprefix get_next_line/, ${INCS_G})
+OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
+OBJS_G = $(addprefix get_next_line/, ${SRCS_G:.c=.o})
 
-OBJS = $(addprefix mandatory/, ${SRCS:.c=.o})
-BONUS_OBJS = $(addprefix bonus/, ${BONUS_SRCS:.c=.o})
-GNL_OBJS = $(addprefix bonus/get_next_line/, ${GNL:.c=.o})
-
-LIBFT = -L ./libft -lft
-
-ifdef BO
-	OBJS_ALL = $(BONUS_OBJS) $(GNL_OBJS)
-	OBJS_EXCEPT = $(OBJS)
+ifdef B=1
+	OBJS_ALL = $(OBJS_B) $(OBJS_G)
+	OBJS_EXCEPT = $(OBJS_M)
+	INCS = $(INCS_B) $(INCS_G)
 else
-	OBJS_ALL = $(OBJS)
-	OBJS_EXCEPT = $(BONUS_OBJS) $(GNL_OBJS)
+	OBJS_ALL = $(OBJS_M)
+	OBJS_EXCEPT = $(OBJS_B) $(OBJS_G)
+	INCS = $(INCS_M)
 endif
 
 .c.o:
-	${CC} $(FLAGS) -c $< -o ${<:.c=.o}
+	${GCC} $(FLAGS) -c $< -o ${<:.c=.o}
 
-${NAME}: $(OBJS_ALL)
+${NAME}: $(OBJS_ALL) $(INCS)
 	${RM} $(NAME)
 	${RM} $(OBJS_EXCEPT)
 	@make -C $(LIBFTDIR)
-	${CC} ${FLAGS} ${OBJS_ALL} -o ${NAME} ${LIBFT}
+	${GCC} ${FLAGS} ${OBJS_ALL} -o ${NAME} ${LIBFT}
 
 all: ${NAME}
 bonus :
-	@make BO=1 $(NAME)
+	@make B=1 $(NAME)
 
 clean:
-	${RM} ${OBJS} ${BONUS_OBJS} ${GNL_OBJS}
+	${RM} ${OBJS_M} ${OBJS_B} ${OBJS_G}
 	@cd $(LIBFTDIR) && $(MAKE) clean
 
 fclean: clean

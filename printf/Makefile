@@ -11,51 +11,64 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
-CC = cc
+GCC = gcc
 CFLAG = -Wall -Wextra -Werror
+RM = rm
+AR = ar
+CRS = crs
+
+INCS_M = ft_printf.h
 
 SRCS_M = ft_printf.c type_cs.c type_di.c type_p.c type_u.c type_x.c utils.c
 
-SRCS_B = ft_printf_bonus.c ft_putchar_fd_bonus.c ft_putstr_fd_bonus.c ft_atoi_bonus.c \
-		ft_isdigit_bonus.c ft_memcpy_bonus.c ft_strchr_bonus.c ft_strdup_bonus.c \
-		ft_strlen_bonus.c ft_substr_bonus.c	padding_bonus.c set_format_bonus.c \
-		utils_bonus.c type_percent_bonus.c type_c_bonus.c type_s_bonus.c \
-		type_d_bonus.c type_i_bonus.c type_p_bonus.c type_u_bonus.c type_lx_bonus.c \
-		type_ux_bonus.c type_d_flag_bonus.c type_ux_hash_bonus.c type_lx_hash_bonus.c \
-		d_nb_zero_bonus.c
+INCS_B = ft_printf_bonus.h
 
-OBJS_M = $(addprefix mandatory/srcs/, ${SRCS_M:.c=.o})
-OBJS_B = $(addprefix bonus/srcs/, ${SRCS_B:.c=.o})
-INC_M = -I./mandatory/includes
-INC_B = -I./bonus/includes
+SRCS_B = ft_printf_bonus.c ft_putchar_fd_bonus.c	\
+		ft_putstr_fd_bonus.c ft_atoi_bonus.c	\
+		ft_isdigit_bonus.c ft_memcpy_bonus.c	\
+		ft_strchr_bonus.c ft_strdup_bonus.c	\
+		ft_strlen_bonus.c ft_substr_bonus.c	\
+		padding_bonus.c set_format_bonus.c	\
+		utils_bonus.c type_percent_bonus.c	\
+		type_c_bonus.c type_s_bonus.c	\
+		type_d_bonus.c type_i_bonus.c	\
+		type_p_bonus.c type_u_bonus.c	\
+		type_lx_bonus.c	type_ux_bonus.c	\
+		type_d_flag_bonus.c type_ux_hash_bonus.c	\
+		type_lx_hash_bonus.c d_nb_zero_bonus.c
 
-ifdef FLAG
+OBJS_M = ${addprefix mandatory/srcs/, $(SRCS_M:.c=.o)}
+INCS_M = ${addprefix mandatory/srcs/, $(INCS_M)}
+OBJS_B = ${addprefix bonus/srcs/, $(SRCS_B:.c=.o)}
+INCS_B = ${addprefix bonus/srcs/, $(INCS_B)}
+
+ifdef B=1
     OBJS = $(OBJS_B)
-	INC = $(INC_B)
+	INCS = $(INCS_B)
 else
     OBJS = $(OBJS_M)
-	INC = $(INC_M)
+	INCS = $(INCS_M)
 endif
 
 %.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@ $(INC)
+	$(GCC) $(CFLAG) -c $< -o $@
 
-$(NAME) : $(OBJS)
-	ar crs $@ $^
+$(NAME) : $(OBJS) $(INCS)
+	$(AR) $(CRS) $(NAME) $(OBJS)
 	
 all : $(NAME)
 
 clean :
-	rm -rf $(OBJS_M) $(OBJS_B)
+	$(RM) $(OBJS_M) $(OBJS_B)
 
 fclean : clean
-	rm -rf $(NAME)
+	$(RM) $(NAME)
 
 re :
 	make fclean
 	make all
 
 bonus :
-	@make FLAG=1 all
+	@make B=1 all
 
 .PHONY : all clean fclean re bonus
