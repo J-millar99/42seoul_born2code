@@ -6,13 +6,13 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/03 14:34:14 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 22:51:36 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define VERTICAL 1000
+# define VERTICAL 800
 # define HORIZONTAL 1200
 
 # include "../minilibx_mms_20210621/mlx.h"
@@ -28,10 +28,10 @@ typedef struct s_file
 {
 	int		limit_row;
 	int		limit_col;
-	int		width;
-	int		height;
-	int		mtp_x;
-	int		mtp_y;
+	double	max_height;
+	double	min_height;
+	double	width;
+	double	height;
 	int		fd;
 	char	*filename;
 }	t_file;
@@ -51,7 +51,7 @@ typedef struct s_mlx
 	void	*img;
 	char	*addr;
 	int		bpp;
-	int		line_length;
+	int		len;
 	int		endian;
 }	t_mlx;
 
@@ -71,35 +71,42 @@ int		ft_atoi_hex(char *str);
 t_map	coordinate(int row, int col, char **arr, t_file *info);
 char	**one_coordinate_line(t_file *info);
 void	locate_mid(t_map **map, t_file *info);
-void	initializing_coordinates_data(t_map *map);
+void	draw(t_mlx *mlx, t_map **map, t_file *info);
+void	draw_line(t_mlx *mlx, t_map p, t_map q);
+
 /*	error_utils	*/
 void	print_error(char *estr, int code, t_file *info);
 
 /*	key_utils	*/
-int		on_key_press(int keycode);
-void	input_key(void *win_ptr);
+void	input_key(t_mlx *mlx);
+int		on_key_press(int keycode, t_mlx *mlx);
 
 /*	map_utils	*/
 t_map	**initial_map(t_file *info);
 void	make_map(t_mlx *mlx, t_file *info);
 void	plotting(t_mlx *mlx, t_map **map, t_file *info);
-void	line_put(t_mlx *mlx, t_map map1, t_map map2, t_file *info);
 
 /* rotate_algorithm	*/
 void	isometric_projection(t_map **map, t_file *info);
 void	rotate_std_y(t_map *map, double theta);
 void	rotate_std_z(t_map *map, double theta);
 
-/*	utils	*/
+/*	initializing_utils	*/
 void	initializing_fileinfo(t_file *info, char *filename);
+void	initializing_coordinates_data(t_map *map);
+
+/*	utils	*/
 int		is_sep(char c, char sep);
 int		word_count(const char *s, char c);
 void	free_split(char **array);
 void	free_map(t_map **map, t_file *info);
+void	get_height(t_map **map, t_file *info);
 
 /*	screen_utils	*/
 void	setting_window(t_mlx *mlx, t_file *info);
+void	setting_img_data(t_mlx *mlx, t_file *info);
+void	extend_screen(t_map **map, t_file *info, int mtp);
 void	adjusting_screen(t_map **map, t_file *info);
-void	get_mtp(t_file *info);
+
 
 #endif

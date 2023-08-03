@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:15 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/01 14:52:46 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 22:53:19 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int ac, char *av[])
 	t_file	info;
 	t_mlx	mlx;
 
+	atexit(f);
 	if (ac == 2)
 	{
 		mlx.mptr = mlx_init();

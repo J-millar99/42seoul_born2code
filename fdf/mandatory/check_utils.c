@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:21:55 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 20:23:05 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 20:19:38 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	checking_map_data(t_file *info)
 	checking_possible_map(line, info);
 	close(info->fd);
 	info->fd = 0;
+	if (info->limit_row > VERTICAL || info->limit_col > HORIZONTAL)
+		print_error("Too many coordinates", 0, info);
 }
 
 void	checking_possible_map(char *line, t_file *info)

@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 17:54:45 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/03 12:04:49 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/03 22:48:53 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRCS = fdf.c	\
 		coordinates_utils.c	\
 		rotate_algorithm.c	\
 		utils.c		\
-		screen_utils.c
+		screen_utils.c	\
+		initializing_utils.c
 
 BONUS_SRCS = fdf_bonus.c	\
 		map_utils_bonus.c	\
@@ -58,7 +59,7 @@ BONUS_OBJS = $(addprefix bonus/, ${BONUS_SRCS:.c=.o})
 BONUS_HEAD = $(addprefix bonus/, ${BONUS_INCS})
 GNL_OBJS = $(addprefix get_next_line/, ${GNL:.c=.o})
 
-ifdef BO
+ifdef BO=1
 	OBJS_ALL = $(BONUS_OBJS) $(GNL_OBJS)
 	OBJS_EXCEPT = $(OBJS)
 	HEADER = $(BONUS_HEAD)

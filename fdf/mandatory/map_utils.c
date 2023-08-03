@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/03 14:31:13 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 22:48:23 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ void	make_map(t_mlx *mlx, t_file *info)
 
 	info->fd = open(info->filename, O_RDONLY, 0644);
 	map = initial_map(info);
+	setting_window(mlx, info);
 	isometric_projection(map, info);
 	adjusting_screen(map, info);
-	setting_window(mlx, info);
-	input_key(mlx->wptr);
-	plotting(mlx, map, info);
-	free_map(map, info);
+	draw(mlx, map, info);
+	mlx_put_image_to_window(mlx->mptr, mlx->wptr, mlx->img, 0, 0);
+	input_key(mlx);
 	mlx_loop(mlx->mptr);
+	free_map(map, info);
 	mlx_destroy_window(mlx->mptr, mlx->wptr);
 }
 
@@ -55,49 +56,4 @@ t_map	**initial_map(t_file *info)
 		++row;
 	}
 	return (map);
-}
-
-void	plotting(t_mlx *mlx, t_map **map, t_file *info)
-{
-	int		row;
-	int		col;
-
-	row = 0;
-	while (row < info->limit_row - 1)
-	{
-		col = 0;
-		while (col < info->limit_col - 1)
-		{
-			if (col < info->limit_col - 1)
-				line_put(mlx, map[row][col], map[row][col + 1], info);
-			if (row < info->limit_row - 1)
-				line_put(mlx, map[row][col], map[row + 1][col], info);
-			++col;
-		}
-		++row;
-	}
-}
-
-void	line_put(t_mlx *mlx, t_map map1, t_map map2, t_file *info)
-{
-	double	inc;
-	double	xinc;
-	double	yinc;
-	int		i;
-
-	if (fabs(map2.x - map1.x) > fabs(map2.y - map1.y))
-		inc = fabs(map2.x - map1.x);
-	else
-		inc = fabs(map2.y - map1.y);
-	xinc = (map2.x - map1.x) / inc;
-	yinc = (map2.y - map1.y) / inc;
-	i = 0;
-	while (i <= inc)
-	{
-		if (map1.x < info->height && map1.y < info->width)
-			mlx_pixel_put(mlx->mptr, mlx->wptr, map1.y, map1.x, map1.color);
-		map1.x += xinc;
-		map1.y += yinc;
-		i++;
-	}
 }

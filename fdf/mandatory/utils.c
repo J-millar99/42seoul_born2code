@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:43:13 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/03 14:37:09 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 22:48:20 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,25 @@ void	free_map(t_map **map, t_file *info)
 		x++;
 	}
 	free(map);
+}
+
+void	get_height(t_map **map, t_file *info)
+{
+	int		row;
+	int		col;
+
+	row = 0;
+	while (row < info->limit_row)
+	{
+		col = 0;
+		while (col < info->limit_col)
+		{
+			if (info->max_height <= map[row][col].x)
+				info->max_height = map[row][col].x;
+			if (info->min_height > map[row][col].x)
+				info->min_height = map[row][col].x;
+			++col;
+		}
+		++row;
+	}
 }

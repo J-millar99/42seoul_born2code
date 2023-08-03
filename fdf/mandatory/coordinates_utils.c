@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 23:39:47 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/03 14:37:23 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 22:52:59 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,55 @@ t_map	coordinate(int row, int col, char **arr, t_file *info)
 	return (map);
 }
 
+void	draw(t_mlx *mlx, t_map **map, t_file *info)
+{
+	int		row;
+	int		col;
+
+	row = 0;
+	while (row < info->limit_row)
+	{
+		col = 0;
+		while (col < info->limit_col)
+		{
+			if (col < info->limit_col - 1)
+				draw_line(mlx, map[row][col], map[row][col + 1]);
+			if (row < info->limit_row - 1)
+				draw_line(mlx, map[row][col], map[row + 1][col]);
+			++col;
+		}
+		++row;
+	}
+}
+
+void	draw_line(t_mlx *mlx, t_map p, t_map q)
+{
+	double	inc;
+	double	xinc;
+	double	yinc;
+	int		i;
+	char	*dst;
+
+	if (fabs(q.x - p.x) > fabs(q.y - p.y))
+		inc = fabs(q.x - p.x);
+	else
+		inc = fabs(q.y - p.y);
+	xinc = (q.x - p.x) / inc;
+	yinc = (q.y - p.y) / inc;
+	i = 0;
+	while (i <= inc)
+	{
+		if (p.x < VERTICAL && p.y < HORIZONTAL)
+		{
+			dst = mlx->addr + ((int)p.x * mlx->len + (int)p.y * mlx->bpp / 8);
+			*(int *)dst = p.color;
+		}
+		p.x += xinc;
+		p.y += yinc;
+		i++;
+	}
+}
+
 void	locate_mid(t_map **map, t_file *info)
 {
 	int		row;
@@ -47,8 +96,8 @@ void	locate_mid(t_map **map, t_file *info)
 		col = 0;
 		while (col < info->limit_col)
 		{
-			map[row][col].x += (info->height / 1.25);
-			map[row][col].y += (info->width / 2);
+			map[row][col].x += (VERTICAL - info->max_height);
+			map[row][col].y += (HORIZONTAL / 2);
 			++col;
 		}
 		++row;
