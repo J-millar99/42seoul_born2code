@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:43:13 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 20:24:41 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:37:09 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	initializing_fileinfo(t_file *info, char *filename)
-{
-	info->limit_row = 0;
-	info->limit_col = 0;
-	info->width = 0;
-	info->height = 0;
-	info->mtp_x = 2;
-	info->mtp_y = 2;
-	info->fd = 0;
-	info->filename = filename;
-}
 
 int	is_sep(char c, char sep)
 {

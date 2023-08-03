@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 23:39:47 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/01 15:09:40 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 12:12:49 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,13 @@ t_map	coordinate(int row, int col, char **arr, t_file *info)
 	t_map	map;
 
 	initializing_coordinates_data(&map);
+	map.std_x = row;
+	map.std_y = col;
 	map.x = row - (info->limit_row / 2);
 	map.y = col - (info->limit_col / 2);
 	ft_atoi_z(&map, arr[col]);
+	map.std_z = map.z;
 	return (map);
-}
-
-void	initializing_coordinates_data(t_map *map)
-{
-	map->x = 0;
-	map->y = 0;
-	map->z = 0;
-	map->color = 0;
 }
 
 void	locate_mid(t_map **map, t_file *info)
@@ -76,6 +71,26 @@ void	locate_zero(t_mlx *mlx)
 		{
 			mlx->map[row][col].x -= (VER / 2);
 			mlx->map[row][col].y -= (HOR / 2);
+			++col;
+		}
+		++row;
+	}
+}
+
+void	initializing_coordinates(t_map **map, t_file *info)
+{
+	int		row;
+	int		col;
+
+	row = 0;
+	while (row < info->limit_row)
+	{
+		col = 0;
+		while (col < info->limit_col)
+		{
+			map[row][col].x = row - (info->limit_row / 2);
+			map[row][col].y = col - (info->limit_col / 2);
+			map[row][col].z = map[row][col].std_z;
 			++col;
 		}
 		++row;

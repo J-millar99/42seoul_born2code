@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 19:31:28 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:34:14 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ typedef struct s_mlx
 {
 	void	*mptr;
 	void	*wptr;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
 }	t_mlx;
 
 /*	check_utils	*/

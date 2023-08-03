@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 04:44:28 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/28 19:42:51 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:40:11 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ void	setting_window(t_mlx *mlx, t_file *info)
 	mlx->wptr = mlx_new_window(mlx->mptr, info->width, info->height, "fdf");
 	if (!mlx->wptr)
 		print_error("mlx_new_window", 0, info);
-	input_key(mlx->wptr);
+	mlx->img = mlx_new_image(mlx->mptr, info->width, info->height);
+	mlx->addr = mlx_get_data_addr(mlx->img, \
+	&mlx->bpp, &mlx->line_length, &mlx->endian);
 }
 
 void	get_mtp(t_file *info)

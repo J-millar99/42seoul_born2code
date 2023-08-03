@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/01 15:09:54 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:19:06 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ void	make_map(t_mlx *mlx, t_file *info)
 
 	info->fd = open(info->filename, O_RDONLY, 0644);
 	map = initial_map(info);
-	isometric_projection(map, info);
-	locate_mid(map, info);
 	mlx->wptr = mlx_new_window(mlx->mptr, HOR, VER, "fdf");
 	if (!mlx->wptr)
 		print_error("mlx_new_window", 0, info);
-	plotting(mlx, map, info);
 	setting_mlx(mlx, map, info);
 	input_key(mlx);
+	mlx_loop_hook(mlx->mptr, click_close, mlx);
 	mlx_loop(mlx->mptr);
 	free_map(map, info);
 	mlx_destroy_window(mlx->mptr, mlx->wptr);
@@ -102,12 +100,4 @@ void	line_put(t_mlx *mlx, t_map map1, t_map map2)
 		map1.y += yinc;
 		i++;
 	}
-}
-
-void	setting_mlx(t_mlx *mlx, t_map **map, t_file *info)
-{
-	mlx->info = info;
-	mlx->map = map;
-	mlx->w_min = 0;
-	mlx->w_max = 0;
 }

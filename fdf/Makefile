@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 17:54:45 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/01 16:03:26 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/03 12:04:49 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,9 @@ BONUS_SRCS = fdf_bonus.c	\
 		rotate_algorithm_bonus.c	\
 		utils_bonus.c		\
 		size_utils_bonus.c	\
-		rotate_utils_bonus.c
+		rotate_utils_bonus.c	\
+		projection_utils_bonus.c	\
+		initializing_utils_bonus.c
 
 GNL = get_next_line.c	\
 

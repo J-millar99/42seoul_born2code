@@ -6,33 +6,11 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 01:15:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/01 16:02:14 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 12:37:50 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
-
-void	isometric_projection(t_map **map, t_file *info)
-{
-	int		row;
-	int		col;
-	double	theta;
-
-	row = 0;
-	while (row < info->limit_row)
-	{
-		col = 0;
-		while (col < info->limit_col)
-		{
-			theta = M_PI / 4;
-			rotate_std_z(&map[row][col], theta);
-			theta = M_PI / 3;
-			rotate_std_y(&map[row][col], theta);
-			++col;
-		}
-		++row;
-	}
-}
 
 void	rotate_std_x(t_map *map, double theta)
 {

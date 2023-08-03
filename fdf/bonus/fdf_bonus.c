@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:15 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/01 15:15:20 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:15:51 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 // {
 // 	system("leaks myfdf");
 // }
+
 int	main(int ac, char *av[])
 {
 	t_file	info;
