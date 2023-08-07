@@ -6,14 +6,14 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 02:01:07 by jaehyji           #+#    #+#              #
-#    Updated: 2023/06/21 15:01:25 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/08 08:16:06 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-CC = gcc
+CC = cc
 CFLAG = -Wall -Wextra -Werror
-RM = rm
+RM = rm -rf
 AR = ar
 CRS = crs
 
@@ -34,7 +34,7 @@ SRCS_B =	ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstclear_bonus.c	\
 OBJS_M = $(SRCS_M:.c=.o)
 OBJS_B = $(SRCS_B:.c=.o)
 
-ifdef B=1
+ifdef B
     OBJS = $(OBJS_M) $(OBJS_B)
 else
     OBJS = $(OBJS_M)
@@ -49,10 +49,10 @@ $(NAME) : $(OBJS) $(INCS)
 all : $(NAME)
 
 clean :
-	$(RM) $(OBJS_M) ($OBJS_B)
+	@$(RM) -rf $(OBJS_M) $(OBJS_B)
 
 fclean : clean
-	$(RM) $(NAME)
+	@$(RM) -rf $(NAME)
 
 re :
 	make fclean

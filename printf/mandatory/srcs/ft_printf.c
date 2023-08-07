@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:09:25 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/29 03:19:45 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:21:49 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,15 @@ int	ft_printf(const char *format, ...)
 
 int	check_sp(va_list vlist, const char c)
 {
-	static t_ptr	type_arr[9] = {type_c, type_s, type_p, type_d,
-		type_i, type_u, type_lx, type_ux, type_percent};
+	static t_ptr	type_arr[8] = {type_c, type_s, type_p, type_d,
+		type_i, type_u, type_lx, type_ux};
 	int				idx;
 
 	idx = type_num(TYPE, c);
-	return (type_arr[idx](vlist));
+	if (idx < 8)
+		return (type_arr[idx](vlist));
+	else
+		return (type_percent());
 }
 
 int	type_num(char *type, char sp)

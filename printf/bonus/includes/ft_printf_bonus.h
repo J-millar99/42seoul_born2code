@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 17:46:55 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/04/25 21:44:18 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:23:57 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,5 @@ int			ft_unbrlen_base(unsigned long n, unsigned int base);
 void		ft_put_unbr_base_fd(unsigned long n, char *base, int fd);
 void		ft_putnbr_base_fd(long n, char *base, int fd);
 int			ft_nbrlen_base(int nb, int base);
+
 #endif

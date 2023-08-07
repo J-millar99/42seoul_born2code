@@ -6,22 +6,22 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 22:11:46 by jaehyji           #+#    #+#              #
-#    Updated: 2023/04/29 03:09:57 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/08 08:23:02 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 GCC = gcc
 CFLAG = -Wall -Wextra -Werror
-RM = rm
+RM = rm -rf
 AR = ar
 CRS = crs
 
-INCS_M = ft_printf.h
+INCS_M = mandatory/includes/ft_printf.h
 
 SRCS_M = ft_printf.c type_cs.c type_di.c type_p.c type_u.c type_x.c utils.c
 
-INCS_B = ft_printf_bonus.h
+INCS_B = bonus/includes/ft_printf_bonus.h
 
 SRCS_B = ft_printf_bonus.c ft_putchar_fd_bonus.c	\
 		ft_putstr_fd_bonus.c ft_atoi_bonus.c	\
@@ -38,11 +38,9 @@ SRCS_B = ft_printf_bonus.c ft_putchar_fd_bonus.c	\
 		type_lx_hash_bonus.c d_nb_zero_bonus.c
 
 OBJS_M = ${addprefix mandatory/srcs/, $(SRCS_M:.c=.o)}
-INCS_M = ${addprefix mandatory/srcs/, $(INCS_M)}
 OBJS_B = ${addprefix bonus/srcs/, $(SRCS_B:.c=.o)}
-INCS_B = ${addprefix bonus/srcs/, $(INCS_B)}
 
-ifdef B=1
+ifdef B
     OBJS = $(OBJS_B)
 	INCS = $(INCS_B)
 else
@@ -59,10 +57,10 @@ $(NAME) : $(OBJS) $(INCS)
 all : $(NAME)
 
 clean :
-	$(RM) $(OBJS_M) $(OBJS_B)
+	@$(RM) $(OBJS_M) $(OBJS_B)
 
 fclean : clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re :
 	make fclean
