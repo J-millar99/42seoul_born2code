@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 11:52:43 by jaehyji           #+#    #+#              #
-#    Updated: 2023/06/16 15:22:51 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/08 08:37:00 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@ NAME = push_swap
 BONUS = checker
 GCC = gcc
 FLAGS = -Wall -Wextra -Werror
-RM = rm
+RM = rm -rf
 LIBFTDIR = libft
 LIBFT = -L ./libft -lft
 
-INCS_P = push_swap.h
+INCS_P = mandatory/push_swap.h
 
-INCS_G = get_next_line.h
+INCS_G = get_next_line/get_next_line.h
 
 SRCS_M = push_swap.c
 
@@ -46,12 +46,10 @@ SRCS_B = checker_bonus.c	\
 SRCS_G = get_next_line.c	\
 	get_next_line_utils.c
 
-INCS_P = $(addprefix mandatory/, ${INCS_P})
-INCS_G = $(addprefix get_next_line, ${INCS_G})
 OBJS_M = $(addprefix mandatory/, ${SRCS_M:.c=.o})
 OBJS_U = $(addprefix mandatory/, ${SRCS_U:.c=.o})
 OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
-OBJS_G = $(addprefix get_next_line, ${SRCS_G:.c=.o})
+OBJS_G = $(addprefix get_next_line/, ${SRCS_G:.c=.o})
 INCS = $(INCS_P) $(INCS_G)
 
 %.o : %.c

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 02:00:54 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/21 15:01:14 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:36:33 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
+# include <limits.h>
 
 /*          madatory            */
 int		ft_atoi(const char *str);
+int		ft_atoi_flag(const char *str, int *flag);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 int		ft_isalnum(int c);

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 02:00:54 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/21 15:01:14 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:35:35 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
+# include <limits.h>
 
 /*          madatory            */
 int		ft_atoi(const char *str);

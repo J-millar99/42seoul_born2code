@@ -6,33 +6,40 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 01:57:04 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/06/12 19:32:11 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:35:21 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static void	skip_space_sign(const char **str, int *sign)
+{
+	while ((**str == 32 || (9 <= **str && **str <= 13)))
+		(*str)++;
+	if (**str == '-' || **str == '+')
+	{	
+		if (**str == '-')
+			*sign *= -1;
+		(*str)++;
+	}
+}
+
 int	ft_atoi(const char *str)
 {
-	int		idx;
-	int		sign;
-	int		result;
+	long long	num;
+	int			sign;
 
-	idx = 0;
+	num = 0;
 	sign = 1;
-	result = 0;
-	while (str[idx] == 32 || (9 <= str[idx] && str[idx] <= 13))
-		++idx;
-	if (str[idx] == '+' || str[idx] == '-')
+	skip_space_sign(&str, &sign);
+	while ('0' <= *str && *str <= '9')
 	{
-		if (str[idx] == '-')
-			sign = -1;
-		++idx;
+		num = num * 10 + (*str - '0');
+		if (num > LLONG_MAX && sign == 1)
+			return (-1);
+		if (num > LLONG_MAX && sign == -1)
+			return (0);
+		str++;
 	}
-	while ('0' <= str[idx] && str[idx] <= '9')
-	{
-		result = (result * 10) + (str[idx] - '0');
-		++idx;
-	}
-	return (sign * result);
+	return (num * sign);
 }
