@@ -6,18 +6,20 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 19:12:36 by jaehyji           #+#    #+#              #
-#    Updated: 2023/07/14 17:33:02 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/08 08:44:17 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 GCC = gcc
-RM = rm
+RM = rm -rf
 FLAGS = -Wall -Wextra -Werror
 LIBFTDIR = libft
 LIBFT = -L ./libft -lft
 
-INCS_M = pipex.h
+INCS_M = mandatory/pipex.h
+INCS_B = bonus/pipex_bonus.h
+INCS_G = get_next_line/get_next_line.h
 
 SRCS_M = pipex.c	\
 		pipex_utils.c	\
@@ -25,10 +27,6 @@ SRCS_M = pipex.c	\
 		error_utils.c	\
 		check_file.c	\
 		check_cmd.c
-
-INCS_B = pipex_bonus.h
-
-INCS_G = get_next_line.h
 
 SRCS_B = pipex_bonus.c	\
 			here_doc_bonus.c	\
@@ -41,14 +39,11 @@ SRCS_B = pipex_bonus.c	\
 SCRS_G = get_next_line.c	\
 		get_next_line_utils.c
 			
-INCS_M = $(addprefix mandatory/, ${INCS_M})
-OBJS_M = $(addprefix mandatory/, ${SRCS:.c=.o})
-INCS_B = $(addprefix bonus/, ${INCS_B})
-INCS_G = $(addprefix get_next_line/, ${INCS_G})
+OBJS_M = $(addprefix mandatory/, ${SRCS_M:.c=.o})
 OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
 OBJS_G = $(addprefix get_next_line/, ${SRCS_G:.c=.o})
 
-ifdef B=1
+ifdef B
 	OBJS_ALL = $(OBJS_B) $(OBJS_G)
 	OBJS_EXCEPT = $(OBJS_M)
 	INCS = $(INCS_B) $(INCS_G)
@@ -62,21 +57,22 @@ endif
 	${GCC} $(FLAGS) -c $< -o ${<:.c=.o}
 
 ${NAME}: $(OBJS_ALL) $(INCS)
-	${RM} $(NAME)
-	${RM} $(OBJS_EXCEPT)
+	@${RM} $(NAME)
+	@${RM} $(OBJS_EXCEPT)
 	@make -C $(LIBFTDIR)
 	${GCC} ${FLAGS} ${OBJS_ALL} -o ${NAME} ${LIBFT}
 
 all: ${NAME}
+
 bonus :
 	@make B=1 $(NAME)
 
 clean:
-	${RM} ${OBJS_M} ${OBJS_B} ${OBJS_G}
+	@${RM} ${OBJS_M} ${OBJS_B} ${OBJS_G}
 	@cd $(LIBFTDIR) && $(MAKE) clean
 
 fclean: clean
-	${RM} ${NAME}
+	@${RM} ${NAME}
 	@cd $(LIBFTDIR) && $(MAKE) fclean
 
 re: clean all
