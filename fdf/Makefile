@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = myfdf
-CC = gcc
+GCC = gcc
 RM = rm -f
 FLAGS = -Wall -Wextra -Werror
 LIBFTDIR = libft
@@ -20,14 +20,14 @@ LIBFT = -L ./libft
 MLX = -L ./minilibx_mms_20210621
 
 .c.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+	${GCC} ${FLAGS} -c $< -o ${<:.c=.o}
 
-INCS = fdf.h
-BONUS_INCS = fdf_bonus.h
+INCS_M = fdf.h
+INCS_B = fdf_bonus.h
 
-SRCS = fdf.c	\
+SRCS_M = fdf.c	\
 		map_utils.c	\
-		key_utils.c		\
+		event_hooks.c	\
 		error_utils.c	\
 		check_utils.c	\
 		color_utils.c	\
@@ -37,7 +37,7 @@ SRCS = fdf.c	\
 		screen_utils.c	\
 		initializing_utils.c
 
-BONUS_SRCS = fdf_bonus.c	\
+SRCS_B = fdf_bonus.c	\
 		map_utils_bonus.c	\
 		key_utils_bonus.c		\
 		error_utils_bonus.c	\
@@ -51,22 +51,22 @@ BONUS_SRCS = fdf_bonus.c	\
 		projection_utils_bonus.c	\
 		initializing_utils_bonus.c
 
-GNL = get_next_line.c	\
+SRCS_G = get_next_line.c	\
 
-OBJS = $(addprefix mandatory/, ${SRCS:.c=.o})
-HEAD = $(addprefix mandatory/, ${INCS})
-BONUS_OBJS = $(addprefix bonus/, ${BONUS_SRCS:.c=.o})
-BONUS_HEAD = $(addprefix bonus/, ${BONUS_INCS})
-GNL_OBJS = $(addprefix get_next_line/, ${GNL:.c=.o})
+OBJS_M = $(addprefix mandatory/, ${SRCS_M:.c=.o})
+INCS_M = $(addprefix mandatory/, ${INCS_M})
+OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
+INCS_B = $(addprefix bonus/, ${INCS_B})
+OBJS_G = $(addprefix get_next_line/, ${SRCS_G:.c=.o})
 
-ifdef BO=1
-	OBJS_ALL = $(BONUS_OBJS) $(GNL_OBJS)
+ifdef B=1
+	OBJS_ALL = $(OBJS_B) $(OBJS_G)
 	OBJS_EXCEPT = $(OBJS)
-	HEADER = $(BONUS_HEAD)
+	HEADER = $(INCS_B)
 else
-	OBJS_ALL = $(OBJS) $(GNL_OBJS)
-	OBJS_EXCEPT = $(BONUS_OBJS)
-	HEADER = $(HEAD)
+	OBJS_ALL = $(OBJS) $(OBJS_G)
+	OBJS_EXCEPT = $(OBJS_B)
+	HEADER = $(INCS_M)
 endif
 
 $(NAME): $(OBJS_ALL) $(HAEDER)
@@ -83,7 +83,7 @@ bonus:
 	@make BO=1 $(NAME)
 
 clean:
-	${RM} ${OBJS} $(GNL_OBJS) $(BONUS_OBJS)
+	${RM} ${OBJS} $(OBJS_G) $(OBJS_B)
 	@cd $(LIBFTDIR) && $(MAKE) clean
 	@cd $(MLXDIR) && $(MAKE) clean
 

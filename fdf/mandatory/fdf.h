@@ -50,6 +50,8 @@ typedef struct s_mlx
 	void	*wptr;
 	void	*img;
 	char	*addr;
+	t_map	**map;
+	t_file	*info;
 	int		bpp;
 	int		len;
 	int		endian;
@@ -77,9 +79,10 @@ void	draw_line(t_mlx *mlx, t_map p, t_map q);
 /*	error_utils	*/
 void	print_error(char *estr, int code, t_file *info);
 
-/*	key_utils	*/
-void	input_key(t_mlx *mlx);
-int		on_key_press(int keycode, t_mlx *mlx);
+/*	event_hooks	*/
+void	event_hooks(t_mlx *mlx);
+void	esc_key(int keycode, t_mlx *mlx);
+void	close_window(t_mlx *mlx);
 
 /*	map_utils	*/
 t_map	**initial_map(t_file *info);

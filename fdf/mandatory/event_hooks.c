@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_utils.c                                        :+:      :+:    :+:   */
+/*   event_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 16:02:20 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/03 22:46:03 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/08/07 17:20:15 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/08/07 17:20:15 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	input_key(t_mlx *mlx)
+void	event_hooks(t_mlx *mlx)
 {
-	mlx_key_hook(mlx->wptr, &on_key_press, mlx);
+	mlx_hook(mlx->wptr, 2, 0, esc_key, mlx);
+	mlx_hook(mlx->wptr, 17, 0, close_window, mlx);
 }
 
-int	on_key_press(int keycode, t_mlx *mlx)
+void	esc_key(int keycode, t_mlx *mlx)
 {
 	if (keycode == 53)
 	{
+		mlx_destroy_image(mlx->mptr, mlx->wptr);
 		mlx_destroy_window(mlx->mptr, mlx->wptr);
+		free_map(mlx->map, mlx->info);
 		exit(0);
 	}
 	return (0);
+}
+
+void	close_window(t_mlx *mlx)
+{
+	mlx_destroy_image(mlx->mptr, mlx->wptr);
+	mlx_destroy_window(mlx->mptr, mlx->wptr);
+	free_map(mlx->map, mlx->info);
+	exit(0);
 }

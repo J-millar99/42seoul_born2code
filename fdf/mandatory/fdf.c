@@ -17,7 +17,6 @@ int	main(int ac, char *av[])
 	t_file	info;
 	t_mlx	mlx;
 
-	atexit(f);
 	if (ac == 2)
 	{
 		mlx.mptr = mlx_init();

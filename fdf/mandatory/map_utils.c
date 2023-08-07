@@ -16,16 +16,17 @@ void	make_map(t_mlx *mlx, t_file *info)
 {
 	t_map	**map;
 
-	info->fd = open(info->filename, O_RDONLY, 0644);
 	map = initial_map(info);
+	mlx->map = map;
+	mlx->info = info;
 	setting_window(mlx, info);
 	isometric_projection(map, info);
 	adjusting_screen(map, info);
 	draw(mlx, map, info);
-	mlx_put_image_to_window(mlx->mptr, mlx->wptr, mlx->img, 0, 0);
-	input_key(mlx);
+	event_hooks(mlx);
 	mlx_loop(mlx->mptr);
 	free_map(map, info);
+	mlx_destroy_image(mlx->mptr, mlx->wptr);
 	mlx_destroy_window(mlx->mptr, mlx->wptr);
 }
 
@@ -36,24 +37,22 @@ t_map	**initial_map(t_file *info)
 	int		row;
 	int		col;
 
+	info->fd = open(info->filename, O_RDONLY, 0644);
 	map = (t_map **)malloc(sizeof(t_map *) * info->limit_row);
 	if (!map)
 		print_error("malloc", 1, info);
-	row = 0;
-	while (row < info->limit_row)
+	row = -1;
+	while (row++ < info->limit_row - 1)
 	{
-		col = 0;
+		col = -1;
 		map[row] = (t_map *)malloc(sizeof(t_map) * info->limit_col);
 		if (!map[row])
 			print_error("malloc", 1, info);
 		coordinate_array = one_coordinate_line(info);
-		while (col < info->limit_col)
-		{
+		while (col++ < info->limit_col - 1)
 			map[row][col] = coordinate(row, col, coordinate_array, info);
-			++col;
-		}
 		free_split(coordinate_array);
-		++row;
 	}
+	close(info->fd);
 	return (map);
 }

@@ -55,6 +55,7 @@ void	draw(t_mlx *mlx, t_map **map, t_file *info)
 		}
 		++row;
 	}
+	mlx_put_image_to_window(mlx->mptr, mlx->wptr, mlx->img, 0, 0);
 }
 
 void	draw_line(t_mlx *mlx, t_map p, t_map q)
