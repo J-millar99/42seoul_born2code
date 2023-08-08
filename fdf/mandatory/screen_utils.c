@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 04:44:28 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/03 22:48:03 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 09:27:46 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	extend_screen(t_map **map, t_file *info, int mtp)
 	int		col;
 
 	if (info->limit_col < 100 || info->limit_row < 100)
-		mtp /= 1.5;
+		mtp /= 2;
 	row = 0;
 	while (row < info->limit_row)
 	{

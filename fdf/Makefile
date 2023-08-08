@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 17:54:45 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/08 08:56:36 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/08 09:19:58 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,16 +40,14 @@ SRCS_M = fdf.c	\
 
 SRCS_B = fdf_bonus.c	\
 		map_utils_bonus.c	\
-		key_utils_bonus.c		\
+		event_hooks_bonus.c	\
 		error_utils_bonus.c	\
 		check_utils_bonus.c	\
 		color_utils_bonus.c	\
 		coordinates_utils_bonus.c	\
 		rotate_algorithm_bonus.c	\
 		utils_bonus.c		\
-		size_utils_bonus.c	\
-		rotate_utils_bonus.c	\
-		projection_utils_bonus.c	\
+		screen_utils_bonus.c	\
 		initializing_utils_bonus.c
 
 SRCS_G = get_next_line.c
