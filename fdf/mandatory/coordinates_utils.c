@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 23:39:47 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/03 22:52:59 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:57:58 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	draw(t_mlx *mlx, t_map **map, t_file *info)
 		++row;
 	}
 	mlx_put_image_to_window(mlx->mptr, mlx->wptr, mlx->img, 0, 0);
+	mlx_destroy_image(mlx->mptr, mlx->img);
 }
 
 void	draw_line(t_mlx *mlx, t_map p, t_map q)

@@ -6,13 +6,13 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 17:54:45 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/03 22:48:53 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/08 08:56:36 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = myfdf
 GCC = gcc
-RM = rm -f
+RM = rm -rf
 FLAGS = -Wall -Wextra -Werror
 LIBFTDIR = libft
 MLXDIR = minilibx_mms_20210621
@@ -22,8 +22,9 @@ MLX = -L ./minilibx_mms_20210621
 .c.o:
 	${GCC} ${FLAGS} -c $< -o ${<:.c=.o}
 
-INCS_M = fdf.h
-INCS_B = fdf_bonus.h
+INCS_M = mandatory/fdf.h
+INCS_B = bonus/fdf_bonus.h
+INCS_G = get_next_line/get_next_line.h
 
 SRCS_M = fdf.c	\
 		map_utils.c	\
@@ -51,39 +52,37 @@ SRCS_B = fdf_bonus.c	\
 		projection_utils_bonus.c	\
 		initializing_utils_bonus.c
 
-SRCS_G = get_next_line.c	\
+SRCS_G = get_next_line.c
 
 OBJS_M = $(addprefix mandatory/, ${SRCS_M:.c=.o})
-INCS_M = $(addprefix mandatory/, ${INCS_M})
 OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
-INCS_B = $(addprefix bonus/, ${INCS_B})
 OBJS_G = $(addprefix get_next_line/, ${SRCS_G:.c=.o})
 
-ifdef B=1
+ifdef B
 	OBJS_ALL = $(OBJS_B) $(OBJS_G)
 	OBJS_EXCEPT = $(OBJS)
-	HEADER = $(INCS_B)
+	INCS = $(INCS_B) $(INCS_G)
 else
-	OBJS_ALL = $(OBJS) $(OBJS_G)
+	OBJS_ALL = $(OBJS_M) $(OBJS_G)
 	OBJS_EXCEPT = $(OBJS_B)
-	HEADER = $(INCS_M)
+	INCS = $(INCS_M) $(INCS_G)
 endif
 
-$(NAME): $(OBJS_ALL) $(HAEDER)
-	${RM} $(NAME)
-	${RM} $(OBJS_EXCEPT)
+$(NAME): $(OBJS_ALL) $(INCS)
+	@${RM} $(NAME)
+	@${RM} $(OBJS_EXCEPT)
 	make -C $(LIBFTDIR)
 	make -C $(MLXDIR)
-	${CC} ${FLAGS} ${LIBFT} ${MLX} -o $(NAME) $(OBJS_ALL) -lft -lmlx
+	${GCC} ${FLAGS} ${LIBFT} ${MLX} -o $(NAME) $(OBJS_ALL) -lft -lmlx
 	@cd ./$(MLXDIR) ; mv libmlx.dylib ../
 
 all: ${NAME}
 
 bonus:
-	@make BO=1 $(NAME)
+	@make B=1 $(NAME)
 
 clean:
-	${RM} ${OBJS} $(OBJS_G) $(OBJS_B)
+	${RM} ${OBJS_M} $(OBJS_G) $(OBJS_B)
 	@cd $(LIBFTDIR) && $(MAKE) clean
 	@cd $(MLXDIR) && $(MAKE) clean
 

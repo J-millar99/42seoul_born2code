@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:20:15 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/07 17:20:15 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:54:41 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,25 @@
 
 void	event_hooks(t_mlx *mlx)
 {
-	mlx_hook(mlx->wptr, 2, 0, esc_key, mlx);
-	mlx_hook(mlx->wptr, 17, 0, close_window, mlx);
+	mlx_hook(mlx->wptr, 2, 0, &esc_key, mlx);
+	mlx_hook(mlx->wptr, 17, 0, &close_window, mlx);
 }
 
-void	esc_key(int keycode, t_mlx *mlx)
+int	esc_key(int keycode, t_mlx *mlx)
 {
 	if (keycode == 53)
 	{
-		mlx_destroy_image(mlx->mptr, mlx->wptr);
 		mlx_destroy_window(mlx->mptr, mlx->wptr);
 		free_map(mlx->map, mlx->info);
 		exit(0);
 	}
-	return (0);
+	return (1);
 }
 
-void	close_window(t_mlx *mlx)
+int	close_window(t_mlx *mlx)
 {
-	mlx_destroy_image(mlx->mptr, mlx->wptr);
 	mlx_destroy_window(mlx->mptr, mlx->wptr);
 	free_map(mlx->map, mlx->info);
 	exit(0);
+	return (1);
 }

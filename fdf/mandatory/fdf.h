@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/03 22:51:36 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:52:47 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	print_error(char *estr, int code, t_file *info);
 
 /*	event_hooks	*/
 void	event_hooks(t_mlx *mlx);
-void	esc_key(int keycode, t_mlx *mlx);
-void	close_window(t_mlx *mlx);
+int		esc_key(int keycode, t_mlx *mlx);
+int		close_window(t_mlx *mlx);
 
 /*	map_utils	*/
 t_map	**initial_map(t_file *info);
