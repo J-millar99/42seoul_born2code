@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/03 14:19:06 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 16:31:58 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,14 @@
 void	make_map(t_mlx *mlx, t_file *info)
 {
 	t_map	**map;
+	t_flag	lflag;
 
-	info->fd = open(info->filename, O_RDONLY, 0644);
 	map = initial_map(info);
-	mlx->wptr = mlx_new_window(mlx->mptr, HOR, VER, "fdf");
-	if (!mlx->wptr)
-		print_error("mlx_new_window", 0, info);
-	setting_mlx(mlx, map, info);
-	input_key(mlx);
-	mlx_loop_hook(mlx->mptr, click_close, mlx);
+	setting_mlx(&lflag, mlx, map, info);
+	setting_window(mlx, info);
+	event_hooks(mlx);
+	// mlx_loop_hook(mlx->mptr, &event_hooks, mlx);
 	mlx_loop(mlx->mptr);
-	free_map(map, info);
-	mlx_destroy_window(mlx->mptr, mlx->wptr);
 }
 
 t_map	**initial_map(t_file *info)
@@ -36,68 +32,75 @@ t_map	**initial_map(t_file *info)
 	int		row;
 	int		col;
 
+	info->fd = open(info->filename, O_RDONLY, 0644);
 	map = (t_map **)malloc(sizeof(t_map *) * info->limit_row);
 	if (!map)
 		print_error("malloc", 1, info);
-	row = 0;
-	while (row < info->limit_row)
+	row = -1;
+	while (row++ < info->limit_row - 1)
 	{
-		col = 0;
+		col = -1;
 		map[row] = (t_map *)malloc(sizeof(t_map) * info->limit_col);
 		if (!map[row])
 			print_error("malloc", 1, info);
 		coordinate_array = one_coordinate_line(info);
-		while (col < info->limit_col)
-		{
+		while (col++ < info->limit_col - 1)
 			map[row][col] = coordinate(row, col, coordinate_array, info);
-			++col;
-		}
 		free_split(coordinate_array);
-		++row;
 	}
+	close(info->fd);
 	return (map);
 }
 
-void	plotting(t_mlx *mlx, t_map **map, t_file *info)
+void	draw(t_mlx *mlx, t_map **map, t_file *info)
 {
 	int		row;
 	int		col;
 
+	locate_mid(map, info);
+	setting_image(mlx);
 	row = 0;
-	while (row < info->limit_row - 1)
+	while (row < info->limit_row)
 	{
 		col = 0;
-		while (col < info->limit_col - 1)
+		while (col < info->limit_col)
 		{
 			if (col < info->limit_col - 1)
-				line_put(mlx, map[row][col], map[row][col + 1]);
+				draw_line(mlx, map[row][col], map[row][col + 1]);
 			if (row < info->limit_row - 1)
-				line_put(mlx, map[row][col], map[row + 1][col]);
+				draw_line(mlx, map[row][col], map[row + 1][col]);
 			++col;
 		}
 		++row;
 	}
+	mlx_put_image_to_window(mlx->mptr, mlx->wptr, mlx->img, 0, 0);
+	mlx_destroy_image(mlx->mptr, mlx->img);
 }
 
-void	line_put(t_mlx *mlx, t_map map1, t_map map2)
+void	draw_line(t_mlx *mlx, t_map p, t_map q)
 {
 	double	inc;
 	double	xinc;
 	double	yinc;
 	int		i;
+	char	*dst;
 
-	if (fabs(map2.x - map1.x) > fabs(map2.y - map1.y))
-		inc = fabs(map2.x - map1.x);
+	if (fabs(q.x - p.x) > fabs(q.y - p.y))
+		inc = fabs(q.x - p.x);
 	else
-		inc = fabs(map2.y - map1.y);
-	xinc = (map2.x - map1.x) / inc;
-	yinc = (map2.y - map1.y) / inc;
+		inc = fabs(q.y - p.y);
+	xinc = (q.x - p.x) / inc;
+	yinc = (q.y - p.y) / inc;
 	i = 0;
 	while (i <= inc)
 	{
-		mlx_pixel_put(mlx->mptr, mlx->wptr, map1.y, map1.x, map1.color);
-		map1.x += xinc;
-		map1.y += yinc;
+		if (p.x < VERTICAL && p.y < HORIZONTAL)
+		{
+			dst = mlx->addr + ((int)p.x * mlx->len + (int)p.y * mlx->bpp / 8);
+			*(int *)dst = p.color;
+		}
+		p.x += xinc;
+		p.y += yinc;
 		i++;
 	}
 }

@@ -6,15 +6,18 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 09:23:48 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 14:59:30 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+/*	macro	*/
 # define VERTICAL 1200
 # define HORIZONTAL 1600
 
+/*	includes	*/
 # include "../minilibx_mms_20210621/mlx.h"
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
@@ -24,6 +27,7 @@
 # include <fcntl.h>
 # include <math.h>
 
+/*	structs	*/
 typedef struct s_file
 {
 	int		limit_row;
@@ -63,13 +67,13 @@ void	checking_no_data(char *line, t_file *info);
 void	checking_map_data(t_file *info);
 void	checking_possible_map(char *line, t_file *info);
 
-/* color_utils	*/
+/* get_color	*/
 int		ft_atoi_fdf(char **str);
 void	ft_atoi_z(t_map *map, char *str);
 void	ft_atoi_color(t_map *map, char **str);
 int		ft_atoi_hex(char *str);
 
-/*	coordinates_utils	*/
+/*	get_coordinates	*/
 t_map	coordinate(int row, int col, char **arr, t_file *info);
 char	**one_coordinate_line(t_file *info);
 void	locate_mid(t_map **map, t_file *info);
@@ -87,7 +91,6 @@ int		close_window(t_mlx *mlx);
 /*	map_utils	*/
 t_map	**initial_map(t_file *info);
 void	make_map(t_mlx *mlx, t_file *info);
-void	plotting(t_mlx *mlx, t_map **map, t_file *info);
 
 /* rotate_algorithm	*/
 void	isometric_projection(t_map **map, t_file *info);

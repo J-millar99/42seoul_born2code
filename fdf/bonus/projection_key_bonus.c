@@ -1,44 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   projection_utils_bonus.c                           :+:      :+:    :+:   */
+/*   projection_key_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/03 11:46:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/03 12:57:57 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/08/08 13:40:17 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/08/08 16:29:33 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-void	key_projection(t_mlx *mlx, int keycode)
+void	projection_key(t_mlx *mlx, int keycode)
 {
 	if (keycode == PJ_A)
-	{
-		orthographic_projection(mlx->map, mlx->info);
-		locate_mid(mlx->map, mlx->info);
-		plotting(mlx, mlx->map, mlx->info);
-	}
+		oblique_projection(mlx, mlx->map, mlx->info);
 	else if (keycode == PJ_B)
-	{
-		isometric_projection(mlx->map, mlx->info);
-		locate_mid(mlx->map, mlx->info);
-		plotting(mlx, mlx->map, mlx->info);
-	}
-	else if (keycode == PJ_C)
-	{
-		oblique_projection(mlx->map, mlx->info);
-		locate_mid(mlx->map, mlx->info);
-		plotting(mlx, mlx->map, mlx->info);
-	}
+		isometric_projection(mlx, mlx->map, mlx->info);
 }
 
-void	orthographic_projection(t_map **map, t_file *info)
+void	oblique_projection(t_mlx *mlx, t_map **map, t_file *info)
 {
 	int		row;
 	int		col;
 
+	initializing_coordinates(map, info);
 	row = 0;
 	while (row < info->limit_row)
 	{
@@ -50,35 +37,35 @@ void	orthographic_projection(t_map **map, t_file *info)
 		}
 		++row;
 	}
+	draw(mlx, mlx->map, mlx->info);
 }
 
-void	isometric_projection(t_map **map, t_file *info)
+
+void	isometric_projection(t_mlx *mlx, t_map **map, t_file *info)
 {
 	int		row;
 	int		col;
-	double	theta;
 
+	initializing_coordinates(map, info);
 	row = 0;
 	while (row < info->limit_row)
 	{
 		col = 0;
 		while (col < info->limit_col)
 		{
-			theta = M_PI / 4;
-			rotate_std_z(&map[row][col], theta);
-			theta = M_PI / 3;
-			rotate_std_y(&map[row][col], theta);
+			rotate_std_z(&map[row][col], M_PI / 4);
+			rotate_std_y(&map[row][col], M_PI / 3);
 			++col;
 		}
 		++row;
 	}
+	draw(mlx, mlx->map, mlx->info);
 }
 
-void	oblique_projection(t_map **map, t_file *info)
+void	initializing_coordinates(t_map **map, t_file *info)
 {
 	int		row;
 	int		col;
-	double	theta;
 
 	row = 0;
 	while (row < info->limit_row)
@@ -86,8 +73,9 @@ void	oblique_projection(t_map **map, t_file *info)
 		col = 0;
 		while (col < info->limit_col)
 		{
-			theta = M_PI / 6;
-			rotate_std_x(&map[row][col], theta);
+			map[row][col].x = map[row][col].init_x;
+			map[row][col].y = map[row][col].init_y;
+			map[row][col].z = map[row][col].init_z;
 			++col;
 		}
 		++row;

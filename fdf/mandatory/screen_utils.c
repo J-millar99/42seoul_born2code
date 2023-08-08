@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 04:44:28 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 09:27:46 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 14:44:35 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,25 @@ void	extend_screen(t_map **map, t_file *info, int mtp)
 		{
 			map[row][col].x *= mtp;
 			map[row][col].y *= mtp;
+			++col;
+		}
+		++row;
+	}
+}
+
+void	locate_mid(t_map **map, t_file *info)
+{
+	int		row;
+	int		col;
+
+	row = 0;
+	while (row < info->limit_row)
+	{
+		col = 0;
+		while (col < info->limit_col)
+		{
+			map[row][col].x += (VERTICAL - info->max_height);
+			map[row][col].y += (HORIZONTAL / 2);
 			++col;
 		}
 		++row;

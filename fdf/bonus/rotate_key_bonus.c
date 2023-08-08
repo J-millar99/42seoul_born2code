@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_utils_bonus.c                               :+:      :+:    :+:   */
+/*   rotate_key_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 15:25:42 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/01 16:00:45 by jaehyji          ###   ########.fr       */
+/*   Created: 2023/08/08 13:42:02 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/08/08 16:49:43 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-void	key_rotate(t_mlx *mlx, int keycode)
+void	rotate_key(t_mlx *mlx, int keycode)
 {
-	locate_zero(mlx);
-	if (keycode == X)
+	if (keycode == X_AXIS)
 		rotate_x(mlx);
-	else if (keycode == Y)
+	else if (keycode == Y_AXIS)
 		rotate_y(mlx);
-	else if (keycode == Z)
+	else if (keycode == Z_AXIS)
 		rotate_z(mlx);
-	locate_mid(mlx->map, mlx->info);
-	plotting(mlx, mlx->map, mlx->info);
 }
 
 void	rotate_x(t_mlx *mlx)
@@ -31,7 +28,9 @@ void	rotate_x(t_mlx *mlx)
 	int		col;
 	double	theta;
 
-	theta = M_PI / 6;
+	mlx_clear_window(mlx->mptr, mlx->wptr);
+	locate_zero(mlx->map, mlx->info);
+	theta = M_PI / 12;
 	row = 0;
 	while (row < mlx->info->limit_row)
 	{
@@ -43,6 +42,7 @@ void	rotate_x(t_mlx *mlx)
 		}
 		++row;
 	}
+	draw(mlx, mlx->map, mlx->info);
 }
 
 void	rotate_y(t_mlx *mlx)
@@ -51,7 +51,9 @@ void	rotate_y(t_mlx *mlx)
 	int		col;
 	double	theta;
 
-	theta = M_PI / 6;
+	mlx_clear_window(mlx->mptr, mlx->wptr);
+	locate_zero(mlx->map, mlx->info);
+	theta = M_PI / 12;
 	row = 0;
 	while (row < mlx->info->limit_row)
 	{
@@ -63,6 +65,7 @@ void	rotate_y(t_mlx *mlx)
 		}
 		++row;
 	}
+	draw(mlx, mlx->map, mlx->info);
 }
 
 void	rotate_z(t_mlx *mlx)
@@ -71,7 +74,9 @@ void	rotate_z(t_mlx *mlx)
 	int		col;
 	double	theta;
 
-	theta = M_PI / 6;
+	mlx_clear_window(mlx->mptr, mlx->wptr);
+	locate_zero(mlx->map, mlx->info);
+	theta = M_PI / 12;
 	row = 0;
 	while (row < mlx->info->limit_row)
 	{
@@ -83,4 +88,5 @@ void	rotate_z(t_mlx *mlx)
 		}
 		++row;
 	}
+	draw(mlx, mlx->map, mlx->info);
 }
