@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/03 22:48:23 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 09:50:40 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ void	make_map(t_mlx *mlx, t_file *info)
 	draw(mlx, map, info);
 	event_hooks(mlx);
 	mlx_loop(mlx->mptr);
-	free_map(map, info);
-	mlx_destroy_image(mlx->mptr, mlx->wptr);
-	mlx_destroy_window(mlx->mptr, mlx->wptr);
 }
 
 t_map	**initial_map(t_file *info)
