@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:45:42 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/19 17:44:59 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/09 17:12:20 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	multi_pipe(t_cmd *info, int ac, char **av, char **envp)
 {
-	init_file_fd(info);
+	init_info(info);
 	check_mp(info, ac, av, envp);
 	info->file[0] = open(info->infile, O_RDONLY, 0777);
 	if (info->file[0] == -1)

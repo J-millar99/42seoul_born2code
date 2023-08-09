@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 17:44:40 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/19 17:21:56 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/09 17:13:45 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PIPEX_BONUS_H
 
 # include "../libft/libft.h"
-# include "./get_next_line/get_next_line.h"
+# include "../get_next_line/get_next_line.h"
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/wait.h>
@@ -59,7 +59,7 @@ void	check_some(char **paths, char **path, char **cmd_file, t_cmd *info);
 /*			UTILS			*/
 void	split_free(char **strarr);
 void	print_error(char *error_string, t_cmd *info, int code);
-void	init_file_fd(t_cmd *info);
+void	init_info(t_cmd *info);
 void	open_close(t_cmd *info);
 void	check_command(t_cmd *info, char *av[], int idx, int ac);
 void	print_error_cmd1(char *cmd);

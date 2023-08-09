@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 19:12:36 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/08 08:44:17 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/09 16:49:16 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,9 @@ SRCS_B = pipex_bonus.c	\
 			utils_bonus.c	\
 			error_utils_bonus.c
 
-SCRS_G = get_next_line.c	\
+SRCS_G = get_next_line.c	\
 		get_next_line_utils.c
-			
+
 OBJS_M = $(addprefix mandatory/, ${SRCS_M:.c=.o})
 OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
 OBJS_G = $(addprefix get_next_line/, ${SRCS_G:.c=.o})

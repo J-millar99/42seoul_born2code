@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 18:28:41 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/19 17:04:13 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/09 17:12:59 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	execute_cmdline(t_cmd *info, char *cmdline)
 	if (!exe)
 		print_error("exe", info, 1);
 	if (execve(exe, cmd, info->envp) == -1)
+	{
+		close(1);
 		print_error("execve", info, 1);
+	}
 }
 
 char	*check_path(t_cmd *info, char *cmd)
