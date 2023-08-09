@@ -6,11 +6,11 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 17:54:45 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/08 19:24:00 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/09 12:11:59 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = myfdf
+NAME = fdf
 GCC = gcc
 RM = rm -rf
 FLAGS = -Wall -Wextra -Werror
