@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:12:50 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 14:19:15 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/09 11:48:40 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ void	draw_line(t_mlx *mlx, t_map p, t_map q)
 	i = 0;
 	while (i <= inc)
 	{
-		if (p.x < VERTICAL && p.y < HORIZONTAL)
+		if (0 < p.x && 0 < p.y && \
+		fabs(p.x) < VERTICAL && fabs(p.y) < HORIZONTAL)
 		{
 			dst = mlx->addr + ((int)p.x * mlx->len + (int)p.y * mlx->bpp / 8);
 			*(int *)dst = p.color;

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 14:36:34 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 16:57:12 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 19:20:26 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,25 @@ void	setting_mlx(t_flag *lflag, t_mlx *mlx, t_map **map, t_file *info)
 	lflag->right_max = 0;
 	lflag->left_max = 0;
 	mlx->lflag = lflag;
+}
+
+void	init_color(t_mlx *mlx)
+{
+	int		row;
+	int		col;
+
+	locate_zero(mlx->map, mlx->info);
+	mlx_clear_window(mlx->mptr, mlx->wptr);
+	row = 0;
+	while (row < mlx->info->limit_row)
+	{
+		col = 0;
+		while (col < mlx->info->limit_col)
+		{
+			mlx->map[row][col].color = mlx->map[row][col].init_color;
+			++col;
+		}
+		++row;
+	}
+	draw(mlx, mlx->map, mlx->info);
 }

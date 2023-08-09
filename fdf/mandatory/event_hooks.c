@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:20:15 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 08:54:41 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/09 11:39:57 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	event_hooks(t_mlx *mlx)
 
 int	esc_key(int keycode, t_mlx *mlx)
 {
-	if (keycode == 53)
+	if (keycode == ESC)
 	{
 		mlx_destroy_window(mlx->mptr, mlx->wptr);
 		free_map(mlx->map, mlx->info);

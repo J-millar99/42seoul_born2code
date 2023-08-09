@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 04:44:28 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 14:44:35 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/09 11:50:35 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	setting_window(t_mlx *mlx, t_file *info)
 	if (!mlx->wptr)
 		print_error("mlx_new_window", 0, info);
 	mlx->img = mlx_new_image(mlx->mptr, HORIZONTAL, VERTICAL);
+	if (!mlx->img)
+		print_error("mlx_new_image", 0, info);
 	mlx->addr = mlx_get_data_addr(mlx->img, \
 	&mlx->bpp, &mlx->len, &mlx->endian);
 }

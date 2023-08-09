@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 17:54:45 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/08 17:16:09 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/08 19:24:00 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRCS_B = fdf_bonus.c				\
 		screen_utils_bonus.c		\
 		size_key_bonus.c			\
 		limit_utils_bonus.c			\
+		random_color_bonus.c		\
 		utils_bonus.c
 
 SRCS_G = get_next_line.c

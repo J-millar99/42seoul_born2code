@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 17:20:15 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 17:16:41 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 19:37:40 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	input_key(int keycode, t_mlx *mlx)
 		rotate_key(mlx, keycode);
 	else if (keycode == PJ_A || keycode == PJ_B)
 		projection_key(mlx, keycode);
+	else if (keycode == R_COLOR || keycode == W_COLOR || keycode == INIT_COLOR)
+		random_color(mlx, keycode);
 	check_limit(mlx);
 	return (1);
 }

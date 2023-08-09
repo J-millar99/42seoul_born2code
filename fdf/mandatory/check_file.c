@@ -1,41 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_utils.c                                      :+:      :+:    :+:   */
+/*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:21:55 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 09:42:01 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/09 11:30:44 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	checking_file(t_file *info)
-{
-	char	*tmp;
-
-	tmp = &(info->filename)[ft_strlen(info->filename) - 4];
-	if (ft_strncmp(tmp, ".fdf", 4))
-		print_error("The file does not have the extension \".fdf\".", 0, info);
-	if (access(info->filename, F_OK) == -1)
-		print_error(info->filename, 1, info);
-	info->fd = open(info->filename, O_RDONLY, 0644);
-	if (info->fd == -1)
-		print_error(info->filename, 1, info);
-}
-
-void	checking_no_data(char *line, t_file *info)
-{
-	if (!line || !*line)
-		print_error("No data found.", 0, info);
-	if (*line)
-		while (*line == 32 || (9 <= *line && *line <= 13))
-			line++;
-	if (!*line)
-		print_error("No data found.", 0, info);
-}
 
 void	checking_map_data(t_file *info)
 {
@@ -50,6 +25,29 @@ void	checking_map_data(t_file *info)
 	info->fd = 0;
 	if (info->limit_row > VERTICAL || info->limit_col > HORIZONTAL)
 		print_error("Too many coordinates", 0, info);
+}
+
+void	checking_file(t_file *info)
+{
+	char	*tmp;
+
+	tmp = &(info->filename)[ft_strlen(info->filename) - 4];
+	if (ft_strncmp(tmp, ".fdf", 4))
+		print_error("The file does not have the extension \".fdf\".", 0, info);
+	info->fd = open(info->filename, O_RDONLY, 0644);
+	if (info->fd == -1)
+		print_error(info->filename, 1, info);
+}
+
+void	checking_no_data(char *line, t_file *info)
+{
+	if (!line || !*line)
+		print_error("No data found.", 0, info);
+	if (*line)
+		while (*line == 32 || (9 <= *line && *line <= 13))
+			line++;
+	if (!*line)
+		print_error("No data found.", 0, info);
 }
 
 void	checking_possible_map(char *line, t_file *info)

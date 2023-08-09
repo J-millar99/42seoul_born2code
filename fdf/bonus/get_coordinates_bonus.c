@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 23:39:47 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 16:44:42 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 17:49:01 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_map	coordinate(int row, int col, char **arr, t_file *info)
 	map.init_x = map.x;
 	map.init_y = map.y;
 	map.init_z = map.z;
+	map.init_color = map.color;
 	return (map);
 }
 

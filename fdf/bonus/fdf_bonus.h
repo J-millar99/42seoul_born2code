@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 17:17:58 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 19:23:32 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # define Z_AXIS 6
 # define PJ_A 18
 # define PJ_B 19
+# define R_COLOR 33
+# define W_COLOR 30
+# define INIT_COLOR 29
 
 /*	includes	*/
 # include "../minilibx_mms_20210621/mlx.h"
@@ -39,6 +42,8 @@
 # include <string.h>
 # include <fcntl.h>
 # include <math.h>
+# include <limits.h>
+# include <time.h>
 
 /*	structs	*/
 typedef struct s_flag
@@ -61,13 +66,14 @@ typedef struct s_file
 
 typedef struct s_map
 {
-	double	init_x;
-	double	init_y;
-	double	init_z;
-	double	x;
-	double	y;
-	double	z;
-	int		color;
+	double			init_x;
+	double			init_y;
+	double			init_z;
+	double			x;
+	double			y;
+	double			z;
+	unsigned int	color;
+	unsigned int	init_color;
 }	t_map;
 
 typedef struct s_mlx
@@ -137,6 +143,7 @@ void	rotate_z(t_mlx *mlx);
 void	initializing_fileinfo(t_file *info, char *filename);
 void	initializing_coordinates_data(t_map *map);
 void	setting_mlx(t_flag *lflag, t_mlx *mlx, t_map **map, t_file *info);
+void	init_color(t_mlx *mlx);
 
 /*	utils	*/
 int		is_sep(char c, char sep);
@@ -168,5 +175,10 @@ int		up_limit(t_map **map, t_file *info);
 int		down_limit(t_map **map, t_file *info);
 int		right_limit(t_map **map, t_file *info);
 int		left_limit(t_map **map, t_file *info);
+
+/*	bonus	*/
+void	random_color(t_mlx *mlx, int keycode);
+void	random_rgb(t_mlx *mlx);
+void	random_microwave(t_mlx *mlx);
 
 #endif

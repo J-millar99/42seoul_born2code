@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:14:06 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 17:36:27 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/08 19:28:24 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	up_limit(t_map **map, t_file *info)
 		col = -1;
 		while (col++ < info->limit_col - 1)
 		{
-			if (map[row][col].x <= 15)
+			if (map[row][col].x <= 10)
 				return (1);
 		}
 	}
@@ -67,7 +67,7 @@ int	left_limit(t_map **map, t_file *info)
 		col = -1;
 		while (col++ < info->limit_col - 1)
 		{
-			if (map[row][col].y <= 15)
+			if (map[row][col].y <= 10)
 				return (1);
 		}
 	}

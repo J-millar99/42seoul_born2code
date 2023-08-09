@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 14:59:30 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/09 11:55:38 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /*	macro	*/
 # define VERTICAL 1200
 # define HORIZONTAL 1600
+# define ESC 53
 
 /*	includes	*/
 # include "../minilibx_mms_20210621/mlx.h"
@@ -113,6 +114,5 @@ void	setting_window(t_mlx *mlx, t_file *info);
 void	setting_img_data(t_mlx *mlx, t_file *info);
 void	extend_screen(t_map **map, t_file *info, int mtp);
 void	adjusting_screen(t_map **map, t_file *info);
-
 
 #endif
