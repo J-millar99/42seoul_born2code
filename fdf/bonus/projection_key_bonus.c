@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:40:17 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 16:29:33 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/09 12:06:28 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	oblique_projection(t_mlx *mlx, t_map **map, t_file *info)
 	}
 	draw(mlx, mlx->map, mlx->info);
 }
-
 
 void	isometric_projection(t_mlx *mlx, t_map **map, t_file *info)
 {

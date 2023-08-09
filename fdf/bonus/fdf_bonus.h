@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 19:18:53 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 19:23:32 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/09 12:03:25 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ int		left_limit(t_map **map, t_file *info);
 
 /*	bonus	*/
 void	random_color(t_mlx *mlx, int keycode);
-void	random_rgb(t_mlx *mlx);
-void	random_microwave(t_mlx *mlx);
+void	random_time(t_mlx *mlx);
+void	random_clock(t_mlx *mlx);
 
 #endif

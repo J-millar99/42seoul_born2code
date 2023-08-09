@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:54:39 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 16:59:07 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/09 12:06:15 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	move_right(t_mlx *mlx)
 		col = 0;
 		while (col < mlx->info->limit_col)
 		{
-
 			mlx->map[row][col].y += 15;
 			++col;
 		}

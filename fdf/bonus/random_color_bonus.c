@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 18:21:37 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/08 19:24:50 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/09 12:06:37 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	random_color(t_mlx *mlx, int keycode)
 	if (keycode == INIT_COLOR)
 		init_color(mlx);
 	else if (keycode == R_COLOR)
-		random_rgb(mlx);
+		random_time(mlx);
 	else if (keycode == W_COLOR)
-		random_microwave(mlx);
+		random_clock(mlx);
 }
 
-unsigned int	generate_random_rgb(void)
+unsigned int	generate_random_time(void)
 {
 	unsigned int	random_value;
 	int				i;
@@ -38,7 +38,7 @@ unsigned int	generate_random_rgb(void)
 	return (random_value);
 }
 
-unsigned int	generate_random_microwave(void)
+unsigned int	generate_random_clock(void)
 {
 	unsigned int	random_value;
 	int				i;
@@ -54,8 +54,7 @@ unsigned int	generate_random_microwave(void)
 	return (random_value);
 }
 
-
-void	random_rgb(t_mlx *mlx)
+void	random_time(t_mlx *mlx)
 {
 	int		row;
 	int		col;
@@ -68,7 +67,7 @@ void	random_rgb(t_mlx *mlx)
 		col = 0;
 		while (col < mlx->info->limit_col)
 		{
-			mlx->map[row][col].color = generate_random_rgb();
+			mlx->map[row][col].color = generate_random_time();
 			++col;
 		}
 		++row;
@@ -76,7 +75,7 @@ void	random_rgb(t_mlx *mlx)
 	draw(mlx, mlx->map, mlx->info);
 }
 
-void	random_microwave(t_mlx *mlx)
+void	random_clock(t_mlx *mlx)
 {
 	int		row;
 	int		col;
@@ -89,7 +88,7 @@ void	random_microwave(t_mlx *mlx)
 		col = 0;
 		while (col < mlx->info->limit_col)
 		{
-			mlx->map[row][col].color = generate_random_microwave();
+			mlx->map[row][col].color = generate_random_clock();
 			++col;
 		}
 		++row;
