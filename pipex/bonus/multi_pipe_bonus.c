@@ -64,6 +64,7 @@ void	p_process_mp(t_cmd *info, char *av, int i, int ac)
 		execute_cmdline(info, av);
 	}
 	open_close(info);
+	close(0);
 	while (i < ac - 1)
 	{
 		temp = wait(&status);
