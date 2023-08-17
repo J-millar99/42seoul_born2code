@@ -52,14 +52,14 @@ OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
 OBJS_G = $(addprefix get_next_line/, ${SRCS_G:.c=.o})
 INCS = $(INCS_P) $(INCS_G)
 
-%.o : %.c
+%.o : %.c $(INCS)
 	$(GCC) $(CFLAG) -c $< -o $@
 
-$(NAME): $(OBJS_M) $(OBJS_U) $(OBJS_G) $(INCS)
+$(NAME): $(OBJS_M) $(OBJS_U) $(OBJS_G)
 	make -C $(LIBFTDIR)
 	$(GCC) $(FLAGS) $(OBJS_M) $(OBJS_U) $(OBJS_G) -o $(NAME) $(LIBFT)
 
-$(BONUS): $(OBJS_U) $(OBJS_B) $(OBJS_G) $(INCS)
+$(BONUS): $(OBJS_U) $(OBJS_B) $(OBJS_G)
 	make -C $(LIBFTDIR)
 	$(GCC) $(FLAGS) $(OBJS_B) $(OBJS_U) $(OBJS_G) -o $(BONUS) $(LIBFT)
 

@@ -48,10 +48,10 @@ else
 	INCS = $(INCS_M)
 endif
 
-%.o : %.c
+%.o : %.c $(INCS)
 	$(GCC) $(CFLAG) -c $< -o $@
 
-$(NAME) : $(OBJS) $(INCS)
+$(NAME) : $(OBJS)
 	$(AR) $(CRS) $(NAME) $(OBJS)
 	
 all : $(NAME)

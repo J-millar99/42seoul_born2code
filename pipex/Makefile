@@ -13,7 +13,7 @@
 NAME = pipex
 GCC = gcc
 RM = rm -rf
-FLAGS = -Wall -Wextra -Werror
+FLAGS =
 LIBFTDIR = libft
 LIBFT = -L ./libft -lft
 
@@ -53,8 +53,8 @@ else
 	INCS = $(INCS_M)
 endif
 
-.c.o:
-	${GCC} $(FLAGS) -c $< -o ${<:.c=.o}
+%.o: %.c $(INCS)
+	${GCC} $(FLAGS) -c $< -o $@
 
 ${NAME}: $(OBJS_ALL) $(INCS)
 	@${RM} $(NAME)

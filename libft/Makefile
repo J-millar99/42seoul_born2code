@@ -40,10 +40,10 @@ else
     OBJS = $(OBJS_M)
 endif
 
-%.o : %.c
+%.o : %.c $(INCS)
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(NAME) : $(OBJS) $(INCS)
+$(NAME) : $(OBJS)
 	$(AR) $(CRS) $(NAME) $(OBJS)
 	
 all : $(NAME)

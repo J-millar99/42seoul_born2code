@@ -19,9 +19,6 @@ MLXDIR = minilibx_mms_20210621
 LIBFT = -L ./libft
 MLX = -L ./minilibx_mms_20210621
 
-.c.o:
-	${GCC} ${FLAGS} -c $< -o ${<:.c=.o}
-
 INCS_M = mandatory/fdf.h
 INCS_B = bonus/fdf_bonus.h
 INCS_G = get_next_line/get_next_line.h
@@ -61,6 +58,9 @@ SRCS_G = get_next_line.c
 OBJS_M = $(addprefix mandatory/, ${SRCS_M:.c=.o})
 OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
 OBJS_G = $(addprefix get_next_line/, ${SRCS_G:.c=.o})
+
+%.o : %.c $(INCS)
+	${GCC} ${FLAGS} -c $< -o $@
 
 ifdef B
 	OBJS_ALL = $(OBJS_B) $(OBJS_G)

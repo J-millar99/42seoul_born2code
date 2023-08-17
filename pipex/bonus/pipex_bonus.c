@@ -12,18 +12,12 @@
 
 #include "pipex_bonus.h"
 
-void f()
-{
-	system("leaks pipex");
-}
-
 int	main(int ac, char *av[], char **envp)
 {
 	t_cmd	info;
 	int		idx;
 	int		i;
 
-	atexit(f);
 	if (ac >= 5)
 	{
 		if (!ft_strcmp(av[1], "here_doc"))
