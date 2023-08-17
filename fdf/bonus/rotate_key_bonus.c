@@ -30,7 +30,7 @@ void	rotate_x(t_mlx *mlx)
 
 	mlx_clear_window(mlx->mptr, mlx->wptr);
 	locate_zero(mlx->map, mlx->info);
-	theta = M_PI / 12;
+	theta = M_PI / 180;
 	row = 0;
 	while (row < mlx->info->limit_row)
 	{
@@ -53,7 +53,7 @@ void	rotate_y(t_mlx *mlx)
 
 	mlx_clear_window(mlx->mptr, mlx->wptr);
 	locate_zero(mlx->map, mlx->info);
-	theta = M_PI / 12;
+	theta = M_PI / 180;
 	row = 0;
 	while (row < mlx->info->limit_row)
 	{
@@ -76,7 +76,7 @@ void	rotate_z(t_mlx *mlx)
 
 	mlx_clear_window(mlx->mptr, mlx->wptr);
 	locate_zero(mlx->map, mlx->info);
-	theta = M_PI / 12;
+	theta = M_PI / 180;
 	row = 0;
 	while (row < mlx->info->limit_row)
 	{

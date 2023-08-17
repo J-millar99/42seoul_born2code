@@ -59,9 +59,6 @@ OBJS_M = $(addprefix mandatory/, ${SRCS_M:.c=.o})
 OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
 OBJS_G = $(addprefix get_next_line/, ${SRCS_G:.c=.o})
 
-%.o : %.c $(INCS)
-	${GCC} ${FLAGS} -c $< -o $@
-
 ifdef B
 	OBJS_ALL = $(OBJS_B) $(OBJS_G)
 	OBJS_EXCEPT = $(OBJS_M)
@@ -71,6 +68,9 @@ else
 	OBJS_EXCEPT = $(OBJS_B)
 	INCS = $(INCS_M) $(INCS_G)
 endif
+
+%.o : %.c $(INCS)
+	${GCC} ${FLAGS} -c $< -o $@
 
 $(NAME): $(OBJS_ALL) $(INCS)
 	@${RM} $(NAME)
