@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 18:11:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/09 17:10:24 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/17 19:09:22 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	c_process_hd(t_cmd *info)
 {
 	close(info->hd_fd[0]);
 	execute_hd(info);
+	close(info->hd_fd[1]);
 }
 
 void	p_process_hd(t_cmd *info)

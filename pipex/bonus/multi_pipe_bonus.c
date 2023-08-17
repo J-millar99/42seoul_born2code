@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:45:42 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/09 17:12:20 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/17 19:14:12 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,11 @@ void	p_process_mp(t_cmd *info, char *av, int i, int ac)
 		close(info->file[1]);
 		execute_cmdline(info, av);
 	}
-	open_close(info);
-	close(0);
+	else
+	{
+		close(0);
+		open_close(info);
+	}
 	while (i < ac - 1)
 	{
 		temp = wait(&status);
