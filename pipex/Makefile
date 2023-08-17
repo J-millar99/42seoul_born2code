@@ -13,7 +13,7 @@
 NAME = pipex
 GCC = gcc
 RM = rm -rf
-FLAGS =
+FLAGS = -Wall -Wextra -Werror
 LIBFTDIR = libft
 LIBFT = -L ./libft -lft
 
