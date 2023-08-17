@@ -72,5 +72,4 @@ void	p_process_mp(t_cmd *info, char *av, int i, int ac)
 			print_error("wait", info, 1);
 		i++;
 	}
-	exit(0);
 }
