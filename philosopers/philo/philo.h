@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/18 17:07:58 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:10:31 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_atoi(const char *str);
 char	*make_str(int ac, char *av[]);
 int		check_input(int argc, char **argv, int *arr);
 
-/*		f_resource	*/
+/*		f_clean		*/
 void	split_free(char **str);
 
 #endif

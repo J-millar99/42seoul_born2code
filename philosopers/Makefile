@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/18 16:57:50 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/18 17:10:43 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS_M = philo.c	\
 		ft_modstr.c	\
 		ft_split.c	\
 		check_input.c	\
+		clean_up.c		\
 
 SRCS_B = philo_bonus.c
 

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/18 17:07:12 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:10:08 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,4 @@ int	check_input(int argc, char **argv, int *arr)
 	if (i < 3 || line_arr[i])
 		return (free(arr), split_free(line_arr), 0);
 	return (free(arr), split_free(line_arr), 1);
-}
-
-void	split_free(char **str)
-{
-	while (*str != NULL)
-	{
-		free(*str);
-		str++;
-	}
-	free(str);
 }
