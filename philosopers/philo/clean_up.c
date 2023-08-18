@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:10:09 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/18 17:43:54 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:55:55 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 void	split_free(char **str)
 {
-	for (int i = 0; i < 100; i++)
+	int		idx;
+
+	idx = 0;
+	while (str[idx])
 	{
-		if (*str)
-			break ;
-		printf("%s\n", *str);
-		str++;
+		free(str[idx]);
+		idx++;
 	}
-	// while (*str)
-	// {
-	// 	free(*str);
-	// 	str++;
-	// }
-	// free(str);
+	free(str);
 }
