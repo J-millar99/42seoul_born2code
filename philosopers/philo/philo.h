@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/18 17:36:17 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/18 21:16:17 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include <string.h>
 # include <sys/time.h>
 # include <pthread.h>
+
+typedef struct s_sys
+{
+	struct timeval	time;
+	pthread_mutex_t	mutex;
+	int				input_arr[5];
+}	t_sys;
 
 /*		f_string	*/
 char	*ft_strspacejoin(char const *s1, char const *s2);
