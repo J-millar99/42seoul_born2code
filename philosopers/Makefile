@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/18 17:10:43 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/18 17:11:51 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,10 +53,10 @@ bonus :
 	@make B=1 $(NAME)
 
 clean:
-	@${RM} ${OBJS_M} ${OBJS_B}
+	${RM} ${OBJS_M} ${OBJS_B}
 
 fclean: clean
-	@${RM} ${NAME}
+	${RM} ${NAME}
 
 re: clean all
 

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/18 17:10:08 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:12:43 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*make_str(int ac, char *av[])
 	while (i < ac)
 	{
 		tmp = str;
-		str = ft_strjoin(str, av[i]);
+		str = ft_strspacejoin(str, av[i]);
 		if (!str)
 			return (free(tmp), NULL);
 		i++;

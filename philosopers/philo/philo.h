@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/18 17:10:31 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:12:28 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*ft_substr(char const *str, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(const char *s);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
+char	**ft_split(char const *s, char c);
 
 /*		f_check		*/
 int		ft_atoi(const char *str);
