@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/18 17:12:43 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:42:27 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,19 @@ int	ft_atoi(const char *str)
 	return (num);
 }
 
-char	*make_str(int ac, char *av[])
+char	*make_str(int ac, char **av)
 {
 	int		i;
 	char	*str;
 	char	*tmp;
 
+	if (!*av)
+		return (NULL);
 	str = ft_strdup(av[0]);
 	if (!str)
 		return (NULL);
 	i = 1;
-	while (i < ac)
+	while (i < ac - 1)
 	{
 		tmp = str;
 		str = ft_strspacejoin(str, av[i]);
@@ -60,8 +62,9 @@ int	check_input(int argc, char **argv, int *arr)
 	if (!line)
 		return (0);
 	line_arr = ft_split(line, ' ');
+	free(line);
 	if (!line_arr)
-		return (free(line), 0);
+		return (0);
 	i = 0;
 	while (line_arr[i])
 	{
@@ -72,6 +75,6 @@ int	check_input(int argc, char **argv, int *arr)
 		i++;
 	}
 	if (i < 3 || line_arr[i])
-		return (free(arr), split_free(line_arr), 0);
-	return (free(arr), split_free(line_arr), 1);
+		return (split_free(line_arr), 0);
+	return (split_free(line_arr), 1);
 }

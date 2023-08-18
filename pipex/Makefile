@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/12 19:12:36 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/09 16:49:16 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/18 17:24:16 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,9 @@ SRCS_B = pipex_bonus.c	\
 SRCS_G = get_next_line.c	\
 		get_next_line_utils.c
 
-OBJS_M = $(addprefix mandatory/, ${SRCS_M:.c=.o})
-OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
-OBJS_G = $(addprefix get_next_line/, ${SRCS_G:.c=.o})
+OBJS_M = ${addprefix mandatory/, $(SRCS_M:.c=.o)}
+OBJS_B = ${addprefix bonus/, $(SRCS_B:.c=.o)}
+OBJS_G = ${addprefix get_next_line/, $(SRCS_G:.c=.o)}
 
 ifdef B
 	OBJS_ALL = $(OBJS_B) $(OBJS_G)
@@ -54,25 +54,25 @@ else
 endif
 
 %.o: %.c $(INCS)
-	${GCC} $(FLAGS) -c $< -o $@
+	$(GCC) $(FLAGS) -c $< -o $@
 
-${NAME}: $(OBJS_ALL) $(INCS)
-	@${RM} $(NAME)
-	@${RM} $(OBJS_EXCEPT)
+$(NAME): $(OBJS_ALL) $(INCS)
+	@$(RM) $(NAME)
+	@$(RM) $(OBJS_EXCEPT)
 	@make -C $(LIBFTDIR)
-	${GCC} ${FLAGS} ${OBJS_ALL} -o ${NAME} ${LIBFT}
+	$(GCC) $(FLAGS) $(OBJS_ALL) -o $(NAME) $(LIBFT)
 
-all: ${NAME}
+all: $(NAME)
 
 bonus :
 	@make B=1 $(NAME)
 
 clean:
-	@${RM} ${OBJS_M} ${OBJS_B} ${OBJS_G}
+	@$(RM) $(OBJS_M) $(OBJS_B) $(OBJS_G)
 	@cd $(LIBFTDIR) && $(MAKE) clean
 
 fclean: clean
-	@${RM} ${NAME}
+	@$(RM) $(NAME)
 	@cd $(LIBFTDIR) && $(MAKE) fclean
 
 re: clean all

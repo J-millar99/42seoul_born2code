@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 11:52:43 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/08 08:37:00 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/18 17:25:54 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,10 +46,10 @@ SRCS_B = checker_bonus.c	\
 SRCS_G = get_next_line.c	\
 	get_next_line_utils.c
 
-OBJS_M = $(addprefix mandatory/, ${SRCS_M:.c=.o})
-OBJS_U = $(addprefix mandatory/, ${SRCS_U:.c=.o})
-OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
-OBJS_G = $(addprefix get_next_line/, ${SRCS_G:.c=.o})
+OBJS_M = ${addprefix mandatory/, $(SRCS_M:.c=.o)}
+OBJS_U = ${addprefix mandatory/, $(SRCS_U:.c=.o)}
+OBJS_B = ${addprefix bonus/, $(SRCS_B:.c=.o)}
+OBJS_G = ${addprefix get_next_line/, $(SRCS_G:.c=.o)}
 INCS = $(INCS_P) $(INCS_G)
 
 %.o : %.c $(INCS)

@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/19 17:54:45 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/09 12:11:59 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/18 17:25:14 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,9 +55,9 @@ SRCS_B = fdf_bonus.c				\
 
 SRCS_G = get_next_line.c
 
-OBJS_M = $(addprefix mandatory/, ${SRCS_M:.c=.o})
-OBJS_B = $(addprefix bonus/, ${SRCS_B:.c=.o})
-OBJS_G = $(addprefix get_next_line/, ${SRCS_G:.c=.o})
+OBJS_M = ${addprefix mandatory/, $(SRCS_M:.c=.o)}
+OBJS_B = ${addprefix bonus/, $(SRCS_B:.c=.o)}
+OBJS_G = ${addprefix get_next_line/, $(SRCS_G:.c=.o)}
 
 ifdef B
 	OBJS_ALL = $(OBJS_B) $(OBJS_G)
@@ -70,28 +70,28 @@ else
 endif
 
 %.o : %.c $(INCS)
-	${GCC} ${FLAGS} -c $< -o $@
+	$(GCC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS_ALL) $(INCS)
-	@${RM} $(NAME)
-	@${RM} $(OBJS_EXCEPT)
+	@$(RM) $(NAME)
+	@$(RM) $(OBJS_EXCEPT)
 	make -C $(LIBFTDIR)
 	make -C $(MLXDIR)
-	${GCC} ${FLAGS} ${LIBFT} ${MLX} -o $(NAME) $(OBJS_ALL) -lft -lmlx
+	$(GCC) $(FLAGS) $(LIBFT) $(MLX) -o $(NAME) $(OBJS_ALL) -lft -lmlx
 	@cd ./$(MLXDIR) ; mv libmlx.dylib ../
 
-all: ${NAME}
+all: $(NAME)
 
 bonus:
 	@make B=1 $(NAME)
 
 clean:
-	${RM} ${OBJS_M} $(OBJS_G) $(OBJS_B)
+	$(RM) $(OBJS_M) $(OBJS_G) $(OBJS_B)
 	@cd $(LIBFTDIR) && $(MAKE) clean
 	@cd $(MLXDIR) && $(MAKE) clean
 
 fclean: clean
-	${RM} ${NAME} libmlx.dylib
+	$(RM) $(NAME) libmlx.dylib
 	@cd $(LIBFTDIR) && $(MAKE) fclean
 	@cd $(MLXDIR) && $(MAKE) clean
 

@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/18 17:12:28 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:36:17 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**ft_split(char const *s, char c);
 
 /*		f_check		*/
 int		ft_atoi(const char *str);
-char	*make_str(int ac, char *av[]);
+char	*make_str(int ac, char **av);
 int		check_input(int argc, char **argv, int *arr);
 
 /*		f_clean		*/
