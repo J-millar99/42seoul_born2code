@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:45:42 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/17 19:14:12 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/18 16:09:44 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	p_process_mp(t_cmd *info, char *av, int i, int ac)
 	{
 		close(0);
 		open_close(info);
-	}
-	while (i < ac - 1)
-	{
-		temp = wait(&status);
-		if (temp == -1)
-			print_error("wait", info, 1);
-		i++;
+		while (i < ac - 1)
+		{
+			temp = wait(&status);
+			if (temp == -1)
+				print_error("wait", info, 1);
+			i++;
+		}
 	}
 }
