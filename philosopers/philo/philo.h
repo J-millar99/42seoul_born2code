@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/22 15:03:33 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/22 15:53:51 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,14 @@ typedef struct s_sys
 
 typedef struct s_id
 {
-	t_id	*prev;
-	t_id	*next;
-	int		idx;
-	int		right;
-	int		left;
-	int		eat;
-	int		sleep;
-	int		think;
-	int		life;
+	t_id		*prev;
+	t_id		*next;
+	pthread_t	threads;
+	int			idx;
+	int			right;
+	int			left;
+	int			eat_time;
+	int			eat_num;
 }	t_id;
 
 /*		f_string	*/

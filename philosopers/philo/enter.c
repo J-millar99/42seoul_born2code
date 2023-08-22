@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:40:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/22 15:11:09 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/22 17:27:06 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ t_id	*lstnew(void)
 	man = (t_id *)malloc(sizeof(t_id));
 	if (!man)
 		return (NULL);
-	man->eat = 0;
-	man->sleep = 0;
-	man->think = 0;
+	man->eat_num = 0;
+	man->eat_time = 0;
 	man->left = 0;
 	man->right = 0;
-	man->life = 1;
 	man->prev = NULL;
 	man->next = NULL;
 	return (man);
