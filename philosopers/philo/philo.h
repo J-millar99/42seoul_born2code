@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/18 21:16:17 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/22 15:03:33 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,21 @@ typedef struct s_sys
 {
 	struct timeval	time;
 	pthread_mutex_t	mutex;
-	int				input_arr[5];
+	int				info[5];
 }	t_sys;
+
+typedef struct s_id
+{
+	t_id	*prev;
+	t_id	*next;
+	int		idx;
+	int		right;
+	int		left;
+	int		eat;
+	int		sleep;
+	int		think;
+	int		life;
+}	t_id;
 
 /*		f_string	*/
 char	*ft_strspacejoin(char const *s1, char const *s2);
@@ -43,5 +56,12 @@ int		check_input(int argc, char **argv, int *arr);
 
 /*		f_clean		*/
 void	split_free(char **str);
+void	lstclear(t_id **lst);
+
+/*		f_lst		*/
+int		enter(t_id **lst, int max);
+t_id	*lstnew(void);
+t_id	*lstlast(t_id *lst);
+void	lstadd_back(t_id **lst, t_id *newnode);
 
 #endif

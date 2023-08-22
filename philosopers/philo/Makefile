@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/18 17:26:27 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/22 15:13:33 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRCS = philo.c	\
 		ft_split.c	\
 		check_input.c	\
 		clean_up.c		\
+		enter.c	\
+		simulate.c	\
 
 OBJS = $(SRCS:.c=.o)
 

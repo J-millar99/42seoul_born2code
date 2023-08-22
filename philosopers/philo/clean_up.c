@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:10:09 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/18 17:55:55 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/08/22 15:11:08 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,20 @@ void	split_free(char **str)
 		idx++;
 	}
 	free(str);
+}
+
+void	lstclear(t_id **lst)
+{
+	t_id	*temp;
+
+	if (lst == NULL || *lst == NULL)
+		return ;
+	temp = (*lst)->next;
+	while (temp != NULL)
+	{
+		free(*lst);
+		*lst = temp;
+		temp = (*lst)->next;
+	}
+	free(*lst);
 }
