@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 02:01:07 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/08 08:16:06 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/08/25 12:52:06 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,10 +49,10 @@ $(NAME) : $(OBJS)
 all : $(NAME)
 
 clean :
-	@$(RM) -rf $(OBJS_M) $(OBJS_B)
+	@$(RM) $(OBJS_M) $(OBJS_B)
 
 fclean : clean
-	@$(RM) -rf $(NAME)
+	@$(RM) $(NAME)
 
 re :
 	make fclean
