@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:42:47 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/09 17:06:02 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/09/21 20:48:32 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 void	f_process1(t_cmd *info, char **av)
 {
-	pid_t	child1;
 	int		fd[2];
 
 	if (pipe(fd) == -1)
 		print_error("pipe", info, 1);
-	child1 = fork();
-	if (child1 == -1)
+	info->child[0] = fork();
+	if (info->child[0] == -1)
 		print_error("fork", info, 1);
-	if (child1 == 0)
+	if (info->child[0] == 0)
 	{
 		close(fd[0]);
 		close(info->file[1]);
@@ -37,12 +36,10 @@ void	f_process1(t_cmd *info, char **av)
 
 void	f_process2(t_cmd *info, char **av, int *fd)
 {
-	pid_t	child2;
-
-	child2 = fork();
-	if (child2 == -1)
+	info->child[1] = fork();
+	if (info->child[1] == -1)
 		print_error("fork", info, 1);
-	if (child2 == 0)
+	if (info->child[1] == 0)
 	{
 		close(fd[1]);
 		dup2(fd[0], 0);
@@ -57,7 +54,6 @@ void	f_process2(t_cmd *info, char **av, int *fd)
 void	f_process3(t_cmd *info, int *fd)
 {
 	int		status;
-	pid_t	temp;
 	int		i;
 
 	i = 0;
@@ -66,10 +62,11 @@ void	f_process3(t_cmd *info, int *fd)
 	open_close(info);
 	while (i < 2)
 	{
-		temp = wait(&status);
-		if (temp == -1)
+		if (waitpid(info->child[i], &status, 0) == -1)
 			print_error("wait", info, 1);
 		i++;
 	}
+	if (WEXITSTATUS(status))
+		exit(1);
 	exit(0);
 }

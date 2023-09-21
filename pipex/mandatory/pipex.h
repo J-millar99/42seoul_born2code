@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:12:51 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/07/19 16:50:34 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/09/21 20:38:44 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 typedef struct s_cmd
 {
+	pid_t	child[2];
 	int		file[2];
 	char	*infile;
 	char	*outfile;
