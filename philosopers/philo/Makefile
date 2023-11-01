@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
+#    By: millar <millar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/08/22 15:13:33 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/11/02 05:20:53 by millar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,12 @@ FLAGS = -Wall -Wextra -Werror
 INCS = philo.h
 
 SRCS = philo.c	\
-		ft_modstr.c	\
-		ft_split.c	\
-		check_input.c	\
-		clean_up.c		\
-		enter.c	\
-		simulate.c	\
+	check_input_utils.c \
+	check_input.c	\
+	clean_up.c	\
+	ft_modstr.c	\
+	ft_split.c	\
+	enter.c	\
 
 OBJS = $(SRCS:.c=.o)
 

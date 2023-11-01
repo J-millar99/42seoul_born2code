@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:10:09 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/22 15:11:08 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/02 06:08:50 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	split_free(char **str)
+void	free_str(char *str)
+{
+	if (!str)
+		return ;
+	free(str);
+	str = NULL;
+}
+
+void	free_arr(char **str)
 {
 	int		idx;
 
@@ -20,23 +28,36 @@ void	split_free(char **str)
 	while (str[idx])
 	{
 		free(str[idx]);
+		str[idx] = NULL;
 		idx++;
 	}
 	free(str);
+	str = NULL;
 }
 
-void	lstclear(t_id **lst)
+void	escape(t_id *lst, int max)
 {
-	t_id	*temp;
+	t_id	*tmp;
 
-	if (lst == NULL || *lst == NULL)
-		return ;
-	temp = (*lst)->next;
-	while (temp != NULL)
+	while (max > 0)
 	{
-		free(*lst);
-		*lst = temp;
-		temp = (*lst)->next;
+		tmp = lst->next;
+		free(lst);
+		lst = tmp;
+		max--;
 	}
-	free(*lst);
+}
+
+void	lstclear(t_id *lst)
+{
+	t_id	*tmp;
+
+	if (lst == NULL)
+		return ;
+	while (lst)
+	{
+		tmp = lst->next;
+		free(lst);
+		lst = tmp;
+	}
 }

@@ -3,58 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/18 18:09:11 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/02 05:22:24 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *str)
+static int	make_system_info(int *arr, char **line_arr)
 {
-	unsigned long long	num;
+	int		idx;
+	int		num;
+	int		flag;
 
-	num = 0;
-	while ('0' <= *str && *str <= '9')
+	flag = 0;
+	idx = 0;
+	while (line_arr[idx])
 	{
-		num = num * 10 + (*str - '0');
-		str++;
+		num = ft_atoi(line_arr[idx]);
+		if (num < 0)
+			flag = 1;
+		arr[idx] = num;
+		idx++;
 	}
-	if (num > INT_MAX || (*str && !('0' <= *str && *str <= '9')))
+	idx = 0;
+	while (idx < 4)
+	{
+		if (arr[idx] == 0)
+			flag = 1;
+		idx++;
+	}
+	if (flag == 1)
 		return (0);
-	return (num);
-}
-
-char	*make_str(int ac, char **av)
-{
-	int		i;
-	char	*str;
-	char	*tmp;
-
-	if (!*av)
-		return (NULL);
-	str = ft_strdup(av[0]);
-	if (!str)
-		return (NULL);
-	i = 1;
-	while (i < ac - 1)
-	{
-		tmp = str;
-		str = ft_strspacejoin(str, av[i]);
-		if (!str)
-			return (free(tmp), NULL);
-		i++;
-		free(tmp);
-	}
-	return (str);
+	return (1);
 }
 
 int	check_input(int argc, char **argv, int *arr)
 {
-	int		i;
-	int		num;
+	int		cnt;
 	char	*line;
 	char	**line_arr;
 
@@ -62,19 +50,11 @@ int	check_input(int argc, char **argv, int *arr)
 	if (!line)
 		return (0);
 	line_arr = ft_split(line, ' ');
-	free(line);
+	free_str(line);
 	if (!line_arr)
 		return (0);
-	i = 0;
-	while (line_arr[i])
-	{
-		num = ft_atoi(line_arr[i]);
-		if (num == 0 || i == 5)
-			break ;
-		arr[i] = num;
-		i++;
-	}
-	if (i < 3 || line_arr[i])
-		return (split_free(line_arr), 0);
-	return (split_free(line_arr), 1);
+	cnt = cnt_arr(line_arr);
+	if (cnt != 4 && cnt != 5)
+		return (0);
+	return (make_system_info(arr, line_arr));
 }

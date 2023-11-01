@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enter.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:40:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/08/22 17:27:06 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/02 05:56:17 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,20 @@ int	enter(t_id **lst, int max)
 	t_id	*node;
 	int		i;
 
-	*lst = NULL;
 	i = 1;
+	*lst = NULL;
 	while (i <= max)
 	{
 		node = lstnew();
 		if (node == NULL)
 		{
 			if (*lst)
-				lstclear(lst);
+				lstclear(*lst);
 			return (0);
 		}
 		node->idx = i;
 		lstadd_back(lst, node);
+		i++;
 	}
 	(*lst)->prev = lstlast(*lst);
 	lstlast(*lst)->next = *lst;
@@ -54,7 +55,7 @@ t_id	*lstnew(void)
 
 t_id	*lstlast(t_id *lst)
 {
-	while (lst->next != NULL)
+	while (lst->next)
 		lst = lst->next;
 	return (lst);
 }
