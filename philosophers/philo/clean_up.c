@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:10:09 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/02 06:08:50 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/06 16:41:00 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	free_str(char *str)
 	if (!str)
 		return ;
 	free(str);
-	str = NULL;
 }
 
 void	free_arr(char **str)
@@ -32,32 +31,4 @@ void	free_arr(char **str)
 		idx++;
 	}
 	free(str);
-	str = NULL;
-}
-
-void	escape(t_id *lst, int max)
-{
-	t_id	*tmp;
-
-	while (max > 0)
-	{
-		tmp = lst->next;
-		free(lst);
-		lst = tmp;
-		max--;
-	}
-}
-
-void	lstclear(t_id *lst)
-{
-	t_id	*tmp;
-
-	if (lst == NULL)
-		return ;
-	while (lst)
-	{
-		tmp = lst->next;
-		free(lst);
-		lst = tmp;
-	}
 }

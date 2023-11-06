@@ -6,41 +6,42 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/02 05:22:24 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/06 16:58:33 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	make_system_info(int *arr, char **line_arr)
+static int	make_system_info(char **argv, t_sys *system)
 {
-	int		idx;
-	int		num;
-	int		flag;
+	long long	num;
 
-	flag = 0;
-	idx = 0;
-	while (line_arr[idx])
-	{
-		num = ft_atoi(line_arr[idx]);
-		if (num < 0)
-			flag = 1;
-		arr[idx] = num;
-		idx++;
-	}
-	idx = 0;
-	while (idx < 4)
-	{
-		if (arr[idx] == 0)
-			flag = 1;
-		idx++;
-	}
-	if (flag == 1)
+	num = ft_atoll(argv[0]);
+	if (num == -1)
 		return (0);
+	system->num_of_philo = (unsigned int) num;
+	num = ft_atoll(argv[1]);
+	if (num == -1)
+		return (0);
+	system->time_to_die = (unsigned int) num;
+	num = ft_atoll(argv[2]);
+	if (num == -1)
+		return (0);
+	system->time_to_eat = (unsigned int) num;
+	num = ft_atoll(argv[3]);
+	if (num == -1)
+		return (0);
+	system->time_to_sleep = (unsigned int) num;
+	num = ft_atoll(argv[4]);
+	if (num == -1)
+		return (0);
+	system->num_of_must_meals = (unsigned int) num;
+	system->death = 0;
+	system->survive = 0;
 	return (1);
 }
 
-int	check_input(int argc, char **argv, int *arr)
+int	check_input(int argc, char **argv, t_sys *system)
 {
 	int		cnt;
 	char	*line;
@@ -56,5 +57,5 @@ int	check_input(int argc, char **argv, int *arr)
 	cnt = cnt_arr(line_arr);
 	if (cnt != 4 && cnt != 5)
 		return (0);
-	return (make_system_info(arr, line_arr));
+	return (make_system_info(line_arr, system));
 }
