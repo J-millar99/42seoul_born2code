@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simulate.c                                         :+:      :+:    :+:   */
+/*   simulate_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/22 15:12:05 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/07 17:48:38 by millar           ###   ########.fr       */
+/*   Created: 2023/11/07 16:54:03 by millar            #+#    #+#             */
+/*   Updated: 2023/11/07 17:53:20 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	isolated_philosopher(t_sys *sys)
+unsigned int    get_time()
 {
-	sys->start_time = get_time();
-	if (pthread_create(&sys->philos[0].pthread_behavior, NULL, \
-	&behave, &sys->philos[0]));
-		return (error());
-	// pthread_detach(sys->philos[0].pthread_behavior);
-	pthread_join(sys->philos[0].pthread_behavior, NULL);
-	return (0);
+    struct timeval  time_val;
+
+    if (gettimeofday(&time_val, NULL) == -1)
+        return (error());
+    return (time_val.tv_sec / 1000);
 }
 
+void    *behave(void *ptr)
+{
+    t_philo *philo;
+
+    philo = (t_philo *) ptr;
+    philo->
+}

@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:40:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/06 16:59:27 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/07 17:53:58 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int  enter(t_sys *system)
 		system->philos[idx].idx = idx + 1;
 		system->philos[idx].num_of_meals = 0;
 		system->philos[idx].status = 0;
+        system->philos[idx].lifespan = 0;
 		idx++;
 	}
     return (1);

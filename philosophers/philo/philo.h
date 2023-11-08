@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/06 16:58:21 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/07 17:53:54 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@
 typedef struct	s_philopher
 {
 	t_sys			*info;
-	pthread_t		behavior;
+	pthread_t		pthread_behavior;
+	pthread_t		pthread_supervisor;
 	unsigned int	idx;
 	unsigned int	num_of_meals;
 	unsigned int	status;
+	unsigned int	lifespan;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 }	t_philo;
@@ -60,6 +62,10 @@ long long	ft_atoll(const char *str);
 char		*make_str(int argc, char **argv);
 int 		cnt_arr(char **arr);
 
+/*	environment	*/
+int set_environment(t_sys *system);
+
+/*	simulate	*/
+int	isolated_philosopher(t_sys *system);
+
 #endif
-
-
