@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:08:03 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/07 16:52:04 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/09 16:40:03 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int	main(int argc, char *argv[])
 		return (write(2, "Set Error\n", 12));
 	if (system->num_of_philo == 1)
 		return (isolated_philosopher(system));
-	simulate(system);
+	// simulate(system);
 	return (0);
 }

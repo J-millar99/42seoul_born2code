@@ -6,7 +6,7 @@
 #    By: millar <millar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/11/02 05:20:53 by millar           ###   ########.fr        #
+#    Updated: 2023/11/09 16:57:20 by millar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,11 @@ SRCS = philo.c	\
 	clean_up.c	\
 	ft_modstr.c	\
 	ft_split.c	\
-	enter.c	\
+	eating.c	\
+	set_enviornment.c	\
+	simulate_utils.c	\
+	simulate.c	\
+	utils.c	\
 
 OBJS = $(SRCS:.c=.o)
 

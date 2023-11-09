@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:40:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/07 17:53:58 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/09 16:54:08 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int  enter(t_sys *system)
 {
-    int     idx;
+    unsigned int    idx;
 
     system->philos = malloc(sizeof(t_philo) * system->num_of_philo);
     if (!system->philos)
@@ -26,7 +26,9 @@ static int  enter(t_sys *system)
 		system->philos[idx].idx = idx + 1;
 		system->philos[idx].num_of_meals = 0;
 		system->philos[idx].status = 0;
-        system->philos[idx].lifespan = 0;
+        system->philos[idx].lifespan = system->time_to_die;
+        system->philos[idx].eating = 0;
+        pthread_mutex_init(&system->philos[idx].message, NULL);
 		idx++;
 	}
     return (1);
@@ -34,7 +36,7 @@ static int  enter(t_sys *system)
 
 static int  set_forks_on_table(t_sys *system)
 {
-    int     idx;
+    unsigned int     idx;
 
     system->forks = malloc(sizeof(pthread_mutex_t) * system->num_of_philo);
     if (!system->forks)
