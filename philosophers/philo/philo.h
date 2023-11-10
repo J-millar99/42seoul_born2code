@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/09 17:02:06 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/10 17:35:13 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,35 +51,34 @@ typedef struct s_system
 }	t_sys;
 
 /*	libft	*/
-char		**ft_split(char const *s, char c);
-char		*ft_strspacejoin(char const *s1, char const *s2);
-char		*ft_substr(char const *str, unsigned int start, size_t len);
-char		*ft_strdup(const char *s1);
-size_t		ft_strlen(const char *s);
-void		*ft_memcpy(void *dst, const void *src, size_t n);
-int			ft_strcmp(char *s1, char *s2);
+char			**ft_split(char const *s, char c);
+char			*ft_strspacejoin(char const *s1, char const *s2);
+char			*ft_substr(char const *str, unsigned int start, size_t len);
+char			*ft_strdup(const char *s1);
+size_t			ft_strlen(const char *s);
+void			*ft_memcpy(void *dst, const void *src, size_t n);
+int				ft_strcmp(char *s1, char *s2);
 /*	check_input	*/
-int			check_input(int argc, char **argv, t_sys *system);
-long long	ft_atoll(const char *str);
-char		*make_str(int argc, char **argv);
-int 		cnt_arr(char **arr);
+int				check_input(int argc, char **argv, t_sys *system);
 
 /*	clean_up	*/
-void		free_str(char *str);
-void		free_arr(char **str);
-int     	ft_error(char *error_string, t_sys *system);
-void    	ft_exit(t_sys *system);
+void			free_str(char *str);
+void			free_arr(char **str);
+int				ft_error(char *error_string, t_sys *system);
+void			ft_exit(t_sys *system);
 
 /*	environment	*/
-int 		set_environment(t_sys *system);
+int				set_environment(t_sys *system);
 
 /*	simulate	*/
-int			isolated_philosopher(t_sys *system);
-void   		*behave(void *ptr);
-void    	*supervisor(void *ptr);
-void    	message(char *notice, t_philo *philo);
-void		eating(t_philo *philo);
+int				simulate(t_sys *sys);
+int				isolated_philosopher(t_sys *system);
+void			*behave(void *ptr);
+void			*supervisor(void *ptr);
+void			message(char *notice, t_philo *philo);
+void			eating(t_philo *philo);
 
 /*	utils	*/
-unsigned int    get_time(t_sys *system);
+unsigned int	get_time(t_sys *system);
+
 #endif

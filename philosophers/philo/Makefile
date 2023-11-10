@@ -3,22 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: millar <millar@student.42.fr>              +#+  +:+       +#+         #
+#    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/11/09 16:57:20 by millar           ###   ########.fr        #
+#    Updated: 2023/11/10 17:34:30 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 GCC = gcc
 RM = rm -rf
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 
 INCS = philo.h
 
 SRCS = philo.c	\
-	check_input_utils.c \
 	check_input.c	\
 	clean_up.c	\
 	ft_modstr.c	\

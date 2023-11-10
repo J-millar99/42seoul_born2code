@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:10:09 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/09 17:01:51 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/10 10:46:28 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ static void	destory_system(t_sys *system)
 		free(system);
 }
 
-void    ft_exit(t_sys *system)
+void	ft_exit(t_sys *system)
 {
-    unsigned int     idx;
+	unsigned int	idx;
 
-    idx = 0;
-    while (idx < system->num_of_philo)
-    {
-        pthread_mutex_destroy(&system->forks[idx]);
-        pthread_mutex_destroy(&system->philos[idx++].message);
-    }
-    destory_system(system);
+	idx = 0;
+	while (idx < system->num_of_philo)
+	{
+		pthread_mutex_destroy(&system->forks[idx]);
+		pthread_mutex_destroy(&system->philos[idx++].message);
+	}
+	destory_system(system);
 }
 
 void	free_str(char *str)
@@ -56,10 +56,10 @@ void	free_arr(char **str)
 	free(str);
 }
 
-int     ft_error(char *error_string, t_sys *system)
+int	ft_error(char *error_string, t_sys *system)
 {
-    printf("%s\n", error_string);
-    if (system)
-        ft_exit(system);
-    return (1);
+	printf("%s\n", error_string);
+	if (system)
+		ft_exit(system);
+	return (1);
 }

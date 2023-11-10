@@ -3,14 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/09 15:14:03 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/10 12:55:57 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static long long	ft_atoll(const char *str)
+{
+	long long	num;
+
+	if (!str)
+		return (0);
+	if (*str == '-')
+		return (-1);
+	if (*str == '+')
+		str++;
+	num = 0;
+	while ('0' <= *str && *str <= '9')
+	{
+		num = num * 10 + (*str - '0');
+		if (num > 9999999999)
+			return (-1);
+		str++;
+	}
+	if (*str)
+		return (-1);
+	if (num > UINT_MAX)
+		return (-1);
+	return (num);
+}
+
+static char	*make_str(int argc, char **argv)
+{
+	int		i;
+	char	*str;
+	char	*tmp;
+
+	if (!*argv)
+		return (NULL);
+	str = ft_strdup(argv[0]);
+	if (!str)
+		return (NULL);
+	i = 1;
+	while (i < argc - 1)
+	{
+		tmp = str;
+		str = ft_strspacejoin(str, argv[i]);
+		if (!str)
+		{
+			free_str(tmp);
+			return (NULL);
+		}
+		i++;
+		free(tmp);
+	}
+	return (str);
+}
+
+static int	cnt_arr(char **arr)
+{
+	int	idx;
+
+	idx = 0;
+	while (arr[idx])
+		idx++;
+	return (idx);
+}
 
 static int	make_system_info(char **argv, t_sys *system)
 {
@@ -57,5 +119,7 @@ int	check_input(int argc, char **argv, t_sys *system)
 	cnt = cnt_arr(line_arr);
 	if (cnt != 4 && cnt != 5)
 		return (0);
-	return (make_system_info(line_arr, system));
+	make_system_info(line_arr, system);
+	free_arr(line_arr);
+	return (1);
 }
