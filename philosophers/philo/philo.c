@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:08:03 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/10 17:34:47 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/14 15:26:09 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,5 @@ int	main(int argc, char *argv[])
 		return (write(2, "Input Error\n", 12));
 	if (!set_environment(system))
 		return (write(2, "Set Error\n", 12));
-	if (system->num_of_philo == 1)
-		return (isolated_philosopher(system));
-	else
-		return (simulate(system));
-	return (0);
+	return (simulate(system));
 }

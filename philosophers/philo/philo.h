@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/10 17:35:13 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/14 16:16:37 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+# define ALIVE 0
+# define DEATH 1
+
 typedef struct	s_philopher
 {
 	struct s_system	*info;
@@ -31,7 +34,6 @@ typedef struct	s_philopher
 	unsigned int	status;
 	unsigned int	lifespan;
 	unsigned int	eating;
-	pthread_mutex_t	message;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 }	t_philo;
@@ -44,8 +46,10 @@ typedef struct s_system
 	unsigned int	time_to_sleep;
 	unsigned int	num_of_must_meals;
 	unsigned int	death;
-	unsigned int	survive;
 	unsigned int	start_time;
+	pthread_mutex_t	status;
+	pthread_mutex_t	survive;
+	pthread_mutex_t	message;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 }	t_sys;
@@ -58,6 +62,7 @@ char			*ft_strdup(const char *s1);
 size_t			ft_strlen(const char *s);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 int				ft_strcmp(char *s1, char *s2);
+long long		ft_atoll(const char *str);
 /*	check_input	*/
 int				check_input(int argc, char **argv, t_sys *system);
 
@@ -72,13 +77,11 @@ int				set_environment(t_sys *system);
 
 /*	simulate	*/
 int				simulate(t_sys *sys);
-int				isolated_philosopher(t_sys *system);
 void			*behave(void *ptr);
-void			*supervisor(void *ptr);
 void			message(char *notice, t_philo *philo);
 void			eating(t_philo *philo);
 
 /*	utils	*/
-unsigned int	get_time(t_sys *system);
+unsigned int	get_time(void);
 
 #endif

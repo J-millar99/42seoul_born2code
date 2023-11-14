@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:10:09 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/10 10:46:28 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/14 16:08:08 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ void	ft_exit(t_sys *system)
 
 	idx = 0;
 	while (idx < system->num_of_philo)
-	{
-		pthread_mutex_destroy(&system->forks[idx]);
-		pthread_mutex_destroy(&system->philos[idx++].message);
-	}
+		pthread_mutex_destroy(&system->forks[idx++]);
+	pthread_mutex_destroy(&system->status);
+	pthread_mutex_destroy(&system->message);
 	destory_system(system);
 }
 
@@ -58,7 +57,7 @@ void	free_arr(char **str)
 
 int	ft_error(char *error_string, t_sys *system)
 {
-	printf("%s\n", error_string);
+	printf("%s is error\n", error_string);
 	if (system)
 		ft_exit(system);
 	return (1);

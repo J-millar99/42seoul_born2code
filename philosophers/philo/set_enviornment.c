@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   set_enviornment.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:40:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/10 11:11:09 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/14 16:10:50 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	enter(t_sys *system);
+static int	set_forks_on_table(t_sys *system);
+
+int	set_environment(t_sys *system)
+{
+	if (!enter(system))
+		return (0);
+	if (!set_forks_on_table(system))
+		return (0);
+	pthread_mutex_init(&system->status, NULL);
+	pthread_mutex_init(&system->survive, NULL);
+	pthread_mutex_init(&system->message, NULL);
+	return (1);
+}
 
 static int	enter(t_sys *system)
 {
@@ -25,10 +40,9 @@ static int	enter(t_sys *system)
 		system->philos[idx].info = system;
 		system->philos[idx].idx = idx + 1;
 		system->philos[idx].num_of_meals = 0;
-		system->philos[idx].status = 0;
+		system->philos[idx].status = ALIVE;
 		system->philos[idx].lifespan = system->time_to_die;
 		system->philos[idx].eating = 0;
-		pthread_mutex_init(&system->philos[idx].message, NULL);
 		idx++;
 	}
 	return (1);
@@ -53,14 +67,5 @@ static int	set_forks_on_table(t_sys *system)
 		system->philos[idx].r_fork = &system->forks[idx - 1];
 		idx++;
 	}
-	return (1);
-}
-
-int	set_environment(t_sys *system)
-{
-	if (!enter(system))
-		return (0);
-	if (!set_forks_on_table(system))
-		return (0);
 	return (1);
 }

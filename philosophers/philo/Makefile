@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
+#    By: millar <millar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/11/10 17:34:30 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/11/14 22:18:25 by millar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 GCC = gcc
 RM = rm -rf
+FLAGS = -Wall -Wextra -Werror
 FLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 
 INCS = philo.h
@@ -35,6 +36,7 @@ OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
 	$(GCC) $(FLAGS) $(OBJS) -o $(NAME)
+	@make clean
 
 all : $(NAME)
 
