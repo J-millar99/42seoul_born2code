@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/14 16:13:10 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/23 23:01:05 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,9 @@ static int	make_system_info2(char **argv, t_sys *system)
 	num = ft_atoll(argv[4]);
 	if (num == -1)
 		return (0);
-	system->num_of_must_meals = (unsigned int) num;
-	if (system->num_of_must_meals == 0)
-		system->num_of_must_meals = -1;
-	system->death = 0;
+	if (num == 0)
+		num = -1;
+	system->num_of_must_meals = num;
 	free_arr(argv);
 	return (1);
 }
@@ -95,18 +94,18 @@ static int	make_system_info1(char **argv, t_sys *system)
 	num = ft_atoll(argv[0]);
 	if (num == -1 || num == 0)
 		return (0);
-	system->num_of_philo = (unsigned int) num;
+	system->num_of_philo = (uint) num;
 	num = ft_atoll(argv[1]);
 	if (num == -1 || num == 0)
 		return (0);
-	system->time_to_die = (unsigned int) num;
+	system->time_to_die = (uint) num;
 	num = ft_atoll(argv[2]);
 	if (num == -1 || num == 0)
 		return (0);
-	system->time_to_eat = (unsigned int) num;
+	system->time_to_eat = (uint) num;
 	num = ft_atoll(argv[3]);
 	if (num == -1 || num == 0)
 		return (0);
-	system->time_to_sleep = (unsigned int) num;
+	system->time_to_sleep = (uint) num;
 	return (make_system_info2(argv, system));
 }

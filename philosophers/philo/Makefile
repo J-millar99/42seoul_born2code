@@ -6,7 +6,7 @@
 #    By: millar <millar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/11/14 22:18:25 by millar           ###   ########.fr        #
+#    Updated: 2023/11/23 20:04:04 by millar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,8 @@ SRCS = philo.c	\
 	clean_up.c	\
 	ft_modstr.c	\
 	ft_split.c	\
-	eating.c	\
+	behavior.c	\
 	set_enviornment.c	\
-	simulate_utils.c	\
 	simulate.c	\
 	utils.c	\
 

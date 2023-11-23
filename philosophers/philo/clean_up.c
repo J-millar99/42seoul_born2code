@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:10:09 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/14 16:08:08 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/23 21:07:05 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static void	destory_system(t_sys *system)
 
 void	ft_exit(t_sys *system)
 {
-	unsigned int	idx;
+	uint	idx;
 
 	idx = 0;
 	while (idx < system->num_of_philo)
 		pthread_mutex_destroy(&system->forks[idx++]);
-	pthread_mutex_destroy(&system->status);
 	pthread_mutex_destroy(&system->message);
+	pthread_mutex_destroy(&system->end);
 	destory_system(system);
 }
 

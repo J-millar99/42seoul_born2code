@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:40:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/14 16:10:50 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/23 22:39:55 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int	set_environment(t_sys *system)
 		return (0);
 	if (!set_forks_on_table(system))
 		return (0);
-	pthread_mutex_init(&system->status, NULL);
-	pthread_mutex_init(&system->survive, NULL);
 	pthread_mutex_init(&system->message, NULL);
+	pthread_mutex_init(&system->end, NULL);
+	system->status = ACTIVATE;
 	return (1);
 }
 
 static int	enter(t_sys *system)
 {
-	unsigned int	idx;
+	uint	idx;
 
 	system->philos = malloc(sizeof(t_philo) * system->num_of_philo);
 	if (!system->philos)
@@ -37,12 +37,11 @@ static int	enter(t_sys *system)
 	idx = 0;
 	while (idx < system->num_of_philo)
 	{
-		system->philos[idx].info = system;
+		system->philos[idx].system = system;
 		system->philos[idx].idx = idx + 1;
 		system->philos[idx].num_of_meals = 0;
-		system->philos[idx].status = ALIVE;
-		system->philos[idx].lifespan = system->time_to_die;
-		system->philos[idx].eating = 0;
+		system->philos[idx].age = get_time();
+		system->philos[idx].lifespan = get_time();
 		idx++;
 	}
 	return (1);
@@ -50,7 +49,7 @@ static int	enter(t_sys *system)
 
 static int	set_forks_on_table(t_sys *system)
 {
-	unsigned int	idx;
+	uint	idx;
 
 	system->forks = malloc(sizeof(pthread_mutex_t) * system->num_of_philo);
 	if (!system->forks)

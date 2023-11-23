@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/14 16:16:37 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/23 23:01:36 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,67 +21,74 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+typedef struct s_system t_sys;
+typedef pthread_mutex_t mutex_t;
+typedef unsigned int uint;
+
+# define ACTIVATE 0
+# define SHUTDOWN 1
+
 # define ALIVE 0
-# define DEATH 1
+# define DEAD 1
 
 typedef struct	s_philopher
 {
-	struct s_system	*info;
-	pthread_t		pthread_behavior;
-	pthread_t		pthread_supervisor;
-	unsigned int	idx;
-	unsigned int	num_of_meals;
-	unsigned int	status;
-	unsigned int	lifespan;
-	unsigned int	eating;
-	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*l_fork;
+	pthread_t	thread;
+	t_sys		*system;
+	uint		idx;
+	int			num_of_meals;
+	long long	lifespan;
+	long long	age;
+	mutex_t		*r_fork;
+	mutex_t		*l_fork;
 }	t_philo;
 
 typedef struct s_system
 {
-	unsigned int	num_of_philo;
-	unsigned int	time_to_die;
-	unsigned int	time_to_eat;
-	unsigned int	time_to_sleep;
-	unsigned int	num_of_must_meals;
-	unsigned int	death;
-	unsigned int	start_time;
-	pthread_mutex_t	status;
-	pthread_mutex_t	survive;
-	pthread_mutex_t	message;
-	t_philo			*philos;
-	pthread_mutex_t	*forks;
+	uint	num_of_philo;
+	uint	time_to_die;
+	uint	time_to_eat;
+	uint	time_to_sleep;
+	int		num_of_must_meals;
+	uint	status;
+	mutex_t	message;
+	mutex_t	end;
+	mutex_t	*forks;
+	t_philo	*philos;
 }	t_sys;
 
 /*	libft	*/
-char			**ft_split(char const *s, char c);
-char			*ft_strspacejoin(char const *s1, char const *s2);
-char			*ft_substr(char const *str, unsigned int start, size_t len);
-char			*ft_strdup(const char *s1);
-size_t			ft_strlen(const char *s);
-void			*ft_memcpy(void *dst, const void *src, size_t n);
-int				ft_strcmp(char *s1, char *s2);
-long long		ft_atoll(const char *str);
+char		**ft_split(char const *s, char c);
+char		*ft_strspacejoin(char const *s1, char const *s2);
+char		*ft_substr(char const *str, uint start, size_t len);
+char		*ft_strdup(const char *s1);
+size_t		ft_strlen(const char *s);
+void		*ft_memcpy(void *dst, const void *src, size_t n);
+int			ft_strcmp(char *s1, char *s2);
+long long	ft_atoll(const char *str);
 /*	check_input	*/
-int				check_input(int argc, char **argv, t_sys *system);
+int			check_input(int argc, char **argv, t_sys *system);
 
 /*	clean_up	*/
-void			free_str(char *str);
-void			free_arr(char **str);
-int				ft_error(char *error_string, t_sys *system);
-void			ft_exit(t_sys *system);
+void		free_str(char *str);
+void		free_arr(char **str);
+int			ft_error(char *error_string, t_sys *system);
+void		ft_exit(t_sys *system);
 
 /*	environment	*/
-int				set_environment(t_sys *system);
+int			set_environment(t_sys *system);
 
 /*	simulate	*/
-int				simulate(t_sys *sys);
-void			*behave(void *ptr);
-void			message(char *notice, t_philo *philo);
-void			eating(t_philo *philo);
-
+int			simulate(t_sys *sys);
+void		message(char *notice, t_philo *philo);
+int			check_philosopher_status(t_philo *philo);
+int			check_system_status(t_sys *system);
+int			check_status(t_philo *philo);
+/*	behavior	*/
+void		eating(t_philo *philo);
+void		sleeping(t_philo *philo);
+void		thinking(t_philo *philo);
 /*	utils	*/
-unsigned int	get_time(void);
-
+long long	get_time(void);
+void		ft_usleep(long long limit_time, t_philo *philo);
 #endif
