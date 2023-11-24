@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/11/24 13:17:02 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/11/24 13:50:47 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
 	$(GCC) $(FLAGS) $(OBJS) -o $(NAME)
-	@make clean
 
 all : $(NAME)
 
