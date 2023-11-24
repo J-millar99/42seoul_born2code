@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/24 08:46:36 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/24 12:27:43 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ size_t		ft_strlen(const char *s);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
 int			ft_strcmp(char *s1, char *s2);
 long long	ft_atoll(const char *str);
+
 /*	check_input	*/
 int			check_input(int argc, char **argv, t_sys *system);
 
@@ -84,10 +85,13 @@ void		message(char *notice, t_philo *philo);
 int			check_philosopher_status(t_philo *philo);
 int			check_system_status(t_sys *system);
 int			check_status(t_philo *philo);
+
 /*	behavior	*/
+void		*routine(void *ptr);
 void		eating(t_philo *philo);
 void		sleeping(t_philo *philo);
 void		thinking(t_philo *philo);
+
 /*	utils	*/
 long long	get_time(void);
 void		ft_usleep(long long limit_time, t_philo *philo);
