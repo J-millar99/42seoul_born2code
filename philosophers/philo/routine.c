@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:14:06 by millar            #+#    #+#             */
-/*   Updated: 2023/11/24 13:57:10 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/24 14:31:20 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	*routine(void *ptr)
 
 void	eating(t_philo *philo)
 {
-	pthread_mutex_lock(philo->l_fork);
-	message("has taken a fork", philo);
 	pthread_mutex_lock(philo->r_fork);
+	message("has taken a fork", philo);
+	pthread_mutex_lock(philo->l_fork);
 	message("has taken a fork", philo);
 	message("is eating", philo);
 	ft_usleep(philo->system->time_to_eat, philo);
