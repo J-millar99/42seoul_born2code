@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:14:06 by millar            #+#    #+#             */
-/*   Updated: 2023/11/24 13:37:30 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/24 13:30:25 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ void	sleeping(t_philo *philo)
 void	thinking(t_philo *philo)
 {
 	message("is thinking", philo);
+	usleep(200);
 }
