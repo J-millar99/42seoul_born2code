@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_enviornment.c                                  :+:      :+:    :+:   */
+/*   set_enviornment_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:40:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/24 16:37:08 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/24 16:45:23 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 static int	enter(t_sys *system);
 static int	set_forks_on_table(t_sys *system);

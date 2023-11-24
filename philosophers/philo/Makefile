@@ -6,12 +6,12 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/11/24 13:50:47 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/11/24 14:39:56 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-GCC = gcc
+CC = cc
 RM = rm -rf
 FLAGS = -Wall -Wextra -Werror
 
@@ -30,10 +30,10 @@ SRCS = philo.c	\
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c $(INCS)
-	$(GCC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(GCC) $(FLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 all : $(NAME)
 
