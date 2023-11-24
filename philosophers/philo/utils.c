@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:56:50 by millar            #+#    #+#             */
-/*   Updated: 2023/11/24 13:25:29 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/24 18:04:48 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,6 @@ void	ft_usleep(long long limit_time, t_philo *philo)
 			break ;
 		current_time = get_time();
 	}
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	while (*s1 && *s2)
-	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
-	}
-	return (*s1 - *s2);
 }
 
 long long	ft_atoll(const char *str)

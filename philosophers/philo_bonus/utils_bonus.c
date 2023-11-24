@@ -6,32 +6,11 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:56:50 by millar            #+#    #+#             */
-/*   Updated: 2023/11/24 16:45:27 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/24 18:27:39 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-
-void	message(char *notice, t_philo *philo)
-{
-	long long	time;
-
-	pthread_mutex_lock(&philo->system->message);
-	if (check_system_status(philo->system) == SHUTDOWN)
-	{
-		pthread_mutex_unlock(&philo->system->message);
-		return ;
-	}
-	time = get_time() - philo->system->time;
-	printf("%lld %u %s\n", time, philo->idx, notice);
-	if (!ft_strcmp(notice, "died"))
-	{
-		pthread_mutex_lock(&philo->system->end);
-		philo->system->status = SHUTDOWN;
-		pthread_mutex_unlock(&philo->system->end);
-	}
-	pthread_mutex_unlock(&philo->system->message);
-}
 
 long long	get_time(void)
 {
@@ -74,22 +53,22 @@ long long	ft_atoll(const char *str)
 	long long	num;
 
 	if (!str)
-		return (0);
+		error("argument value error");
 	if (*str == '-')
-		return (-1);
+		error("argument value error");
 	if (*str == '+')
 		str++;
 	if (!*str)
-		return (-1);
+		error("argument value error");
 	num = 0;
 	while ('0' <= *str && *str <= '9')
 	{
 		num = num * 10 + (*str - '0');
 		if (num > UINT_MAX)
-			return (-1);
+			error("argument value error");
 		str++;
 	}
 	if (*str)
-		return (-1);
+		error("argument value error");
 	return (num);
 }

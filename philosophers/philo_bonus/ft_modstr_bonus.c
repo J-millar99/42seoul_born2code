@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:53:56 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/24 16:44:22 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/24 20:09:39 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,25 @@ char	*ft_substr(char const *str, unsigned int start, size_t len)
 		result[idx++] = str[start++];
 	result[idx] = '\0';
 	return (result);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	s1_len;
+	size_t	s2_len;
+	char	*jstr;
+
+	if (!s1 && !s2)
+		return (NULL);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	jstr = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (!jstr)
+		return (NULL);
+	ft_memcpy(jstr, s1, s1_len);
+	ft_memcpy(jstr + s1_len, s2, s2_len);
+	jstr[s1_len + 1 + s2_len] = '\0';
+	return (jstr);
 }
 
 char	*ft_strdup(const char *s1)

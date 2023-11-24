@@ -6,63 +6,47 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:40:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/24 16:45:23 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/24 18:26:15 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-static int	enter(t_sys *system);
-static int	set_forks_on_table(t_sys *system);
+static void			set_forks_on_table(t_sys *system);
+static const char	*fork_name(t_uint i);
 
-int	set_environment(t_sys *system)
+void	set_environment(t_sys *system)
 {
-	if (!enter(system))
-		return (0);
-	if (!set_forks_on_table(system))
-		return (0);
-	pthread_mutex_init(&system->message, NULL);
-	pthread_mutex_init(&system->end, NULL);
+	set_forks_on_table(system);
 	system->status = ACTIVATE;
-	return (1);
 }
 
-static int	enter(t_sys *system)
+static void	set_forks_on_table(t_sys *system)
 {
-	t_uint	idx;
+	t_uint	i;
+	char	*file_name;
 
-	system->philos = malloc(sizeof(t_philo) * system->num_of_philo);
-	if (!system->philos)
-		return (0);
-	idx = 0;
-	while (idx < system->num_of_philo)
+	i = 0;
+	system->sema_forks = malloc(sizeof(sem_t) * system->num_of_philo);
+	if (!system->sema_forks)
+		error("sema_forks malloc error");
+	while (i < system->num_of_philo)
 	{
-		system->philos[idx].system = system;
-		system->philos[idx].idx = idx + 1;
-		system->philos[idx].num_of_meals = 0;
-		idx++;
+		file_name = fork_name(i);
+		system->sema_forks[i] = sem_open(file_name, O_CREAT, 0644, 1);
+		free_str(file_name);
+		i++;
 	}
-	return (1);
 }
 
-static int	set_forks_on_table(t_sys *system)
+static const char	*fork_name(t_uint i)
 {
-	t_uint	idx;
+	char	num;
+	char	*rstr;
 
-	system->forks = malloc(sizeof(pthread_mutex_t) * system->num_of_philo);
-	if (!system->forks)
-		return (0);
-	idx = 0;
-	while (idx < system->num_of_philo)
-		pthread_mutex_init(&system->forks[idx++], NULL);
-	system->philos[0].r_fork = &system->forks[system->num_of_philo - 1];
-	system->philos[0].l_fork = &system->forks[0];
-	idx = 1;
-	while (idx < system->num_of_philo)
-	{
-		system->philos[idx].r_fork = &system->forks[idx - 1];
-		system->philos[idx].l_fork = &system->forks[idx];
-		idx++;
-	}
-	return (1);
+	num = (char)(('9' - '0' + 1) + i);
+	rstr = ft_strjoin("./cabinet/fork_", i);
+	if (!rstr)
+		error("ft_strjoin error");
+	return (rstr);
 }

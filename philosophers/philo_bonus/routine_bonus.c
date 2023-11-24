@@ -6,21 +6,36 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:14:06 by millar            #+#    #+#             */
-/*   Updated: 2023/11/24 16:45:18 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/24 20:16:33 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	*routine(void *ptr)
+t_philo	*init_philo(t_sys *system)
 {
 	t_philo	*philo;
-	int		numofmustmeals;
 
-	philo = (t_philo *)ptr;
+	philo = malloc(sizeof(t_philo));
+	if (!philo)
+		error("philo malloc error");
+	philo->system = system;
+	philo->idx = system->num_of_philo;
+	philo->num_of_meals = 0;
+	system->sema_forks[system->num_of_philo];
+	system->seam_forks[system->num_of_philo - 1];
 	philo->lifespan = get_time();
-	numofmustmeals = philo->system->num_of_must_meals;
-	while (numofmustmeals == -1 || philo->num_of_meals != numofmustmeals)
+	return (philo);
+}
+
+void	*routine(void *ptr)
+{
+	t_sys	*system;
+	t_philo	*philo;
+
+	system = (t_sys *)ptr;
+	philo = init_philo(system);
+	while (!system->num_of_must_meals || philo->num_of_meals != system->num_of_must_meals)
 	{
 		if (!check_status(philo))
 			break ;
