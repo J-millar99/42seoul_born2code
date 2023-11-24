@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:08:03 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/24 13:35:47 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/24 13:37:25 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	simulate(t_sys *sys)
 		i = 1;
 		if (!threads(sys, i))
 			return (ft_error("ptread_create", sys));
+		usleep(200);
 		i = 2;
 		if (!threads(sys, i))
 			return (ft_error("ptread_create", sys));
