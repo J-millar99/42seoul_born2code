@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/23 23:01:36 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/24 08:46:36 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-typedef struct s_system t_sys;
-typedef pthread_mutex_t mutex_t;
-typedef unsigned int uint;
+typedef struct s_system	t_sys;
+typedef pthread_mutex_t	t_mutex;
+typedef unsigned int	t_uint;
 
 # define ACTIVATE 0
 # define SHUTDOWN 1
@@ -31,36 +31,36 @@ typedef unsigned int uint;
 # define ALIVE 0
 # define DEAD 1
 
-typedef struct	s_philopher
+typedef struct s_philopher
 {
 	pthread_t	thread;
 	t_sys		*system;
-	uint		idx;
+	t_uint		idx;
 	int			num_of_meals;
 	long long	lifespan;
-	long long	age;
-	mutex_t		*r_fork;
-	mutex_t		*l_fork;
+	t_mutex		*r_fork;
+	t_mutex		*l_fork;
 }	t_philo;
 
 typedef struct s_system
 {
-	uint	num_of_philo;
-	uint	time_to_die;
-	uint	time_to_eat;
-	uint	time_to_sleep;
-	int		num_of_must_meals;
-	uint	status;
-	mutex_t	message;
-	mutex_t	end;
-	mutex_t	*forks;
-	t_philo	*philos;
+	t_uint		num_of_philo;
+	t_uint		time_to_die;
+	t_uint		time_to_eat;
+	t_uint		time_to_sleep;
+	int			num_of_must_meals;
+	t_uint		status;
+	long long	time;
+	t_mutex		message;
+	t_mutex		end;
+	t_mutex		*forks;
+	t_philo		*philos;
 }	t_sys;
 
 /*	libft	*/
 char		**ft_split(char const *s, char c);
 char		*ft_strspacejoin(char const *s1, char const *s2);
-char		*ft_substr(char const *str, uint start, size_t len);
+char		*ft_substr(char const *str, t_uint start, size_t len);
 char		*ft_strdup(const char *s1);
 size_t		ft_strlen(const char *s);
 void		*ft_memcpy(void *dst, const void *src, size_t n);

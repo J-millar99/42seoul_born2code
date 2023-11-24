@@ -3,31 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:56:50 by millar            #+#    #+#             */
-/*   Updated: 2023/11/23 23:42:22 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/24 11:00:50 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    message(char *notice, t_philo *philo)
+void	message(char *notice, t_philo *philo)
 {
-    long long	time;
+	long long	time;
 
-    pthread_mutex_lock(&philo->system->message);
-    if (check_system_status(philo->system) == SHUTDOWN)
-        return ;
-    time = get_time() - philo->age;
-    printf("%lld %u %s\n", time, philo->idx, notice);
-    if (!ft_strcmp(notice, "died"))
+	pthread_mutex_lock(&philo->system->message);
+	if (check_system_status(philo->system) == SHUTDOWN)
 	{
-    	pthread_mutex_lock(&philo->system->end);
-        philo->system->status = SHUTDOWN;
-    	pthread_mutex_unlock(&philo->system->end);
+		pthread_mutex_unlock(&philo->system->message);
+		return ;
 	}
-    pthread_mutex_unlock(&philo->system->message);
+	time = get_time() - philo->system->time;
+	printf("%lld %u %s\n", time, philo->idx, notice);
+	if (!ft_strcmp(notice, "died"))
+	{
+		pthread_mutex_lock(&philo->system->end);
+		philo->system->status = SHUTDOWN;
+		pthread_mutex_unlock(&philo->system->end);
+	}
+	pthread_mutex_unlock(&philo->system->message);
 }
 
 long long	get_time(void)
@@ -47,7 +50,7 @@ void	ft_usleep(long long limit_time, t_philo *philo)
 	current_time = get_time();
 	while (current_time - start_time < limit_time)
 	{
-		usleep(500);
+		usleep(200);
 		if (philo && !check_status(philo))
 			break ;
 		current_time = get_time();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/23 23:01:05 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/24 08:46:55 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,18 +94,18 @@ static int	make_system_info1(char **argv, t_sys *system)
 	num = ft_atoll(argv[0]);
 	if (num == -1 || num == 0)
 		return (0);
-	system->num_of_philo = (uint) num;
+	system->num_of_philo = (t_uint) num;
 	num = ft_atoll(argv[1]);
 	if (num == -1 || num == 0)
 		return (0);
-	system->time_to_die = (uint) num;
+	system->time_to_die = (t_uint) num;
 	num = ft_atoll(argv[2]);
 	if (num == -1 || num == 0)
 		return (0);
-	system->time_to_eat = (uint) num;
+	system->time_to_eat = (t_uint) num;
 	num = ft_atoll(argv[3]);
 	if (num == -1 || num == 0)
 		return (0);
-	system->time_to_sleep = (uint) num;
+	system->time_to_sleep = (t_uint) num;
 	return (make_system_info2(argv, system));
 }

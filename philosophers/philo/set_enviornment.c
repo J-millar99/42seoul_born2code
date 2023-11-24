@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_enviornment.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:40:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/23 22:39:55 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/24 10:10:23 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	set_environment(t_sys *system)
 
 static int	enter(t_sys *system)
 {
-	uint	idx;
+	t_uint	idx;
 
 	system->philos = malloc(sizeof(t_philo) * system->num_of_philo);
 	if (!system->philos)
@@ -40,8 +40,6 @@ static int	enter(t_sys *system)
 		system->philos[idx].system = system;
 		system->philos[idx].idx = idx + 1;
 		system->philos[idx].num_of_meals = 0;
-		system->philos[idx].age = get_time();
-		system->philos[idx].lifespan = get_time();
 		idx++;
 	}
 	return (1);
@@ -49,7 +47,7 @@ static int	enter(t_sys *system)
 
 static int	set_forks_on_table(t_sys *system)
 {
-	uint	idx;
+	t_uint	idx;
 
 	system->forks = malloc(sizeof(pthread_mutex_t) * system->num_of_philo);
 	if (!system->forks)
