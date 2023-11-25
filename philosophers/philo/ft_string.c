@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_modstr.c                                        :+:      :+:    :+:   */
+/*   ft_string.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:53:56 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/24 20:03:15 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/25 19:51:07 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,6 @@ char	*ft_substr(char const *str, unsigned int start, size_t len)
 		result[idx++] = str[start++];
 	result[idx] = '\0';
 	return (result);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	while (*s1 && *s2)
-	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
-	}
-	return (*s1 - *s2);
 }
 
 char	*ft_strdup(const char *s1)

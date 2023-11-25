@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/24 18:21:02 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/25 01:38:14 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*make_str(int argc, char **argv);
 static int	cnt_arr(char **arr);
-static int	make_system_info1(char **argv, t_sys *system);
+static void	make_system_info(char **argv, t_sys *system);
 
 void	check_input(int argc, char **argv, t_sys *system)
 {

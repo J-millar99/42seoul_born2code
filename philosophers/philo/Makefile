@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
+#    By: millar <millar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/11/24 14:39:56 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/11/25 19:55:54 by millar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS = philo.c	\
 	check_status.c	\
 	check_input.c	\
 	clean_up.c	\
-	ft_modstr.c	\
+	ft_string.c	\
 	ft_split.c	\
 	routine.c	\
 	set_enviornment.c	\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/24 20:16:26 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/25 02:57:01 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,18 @@ typedef struct s_system
 	int			num_of_must_meals;
 	t_uint		status;
 	long long	time;
+	sem_t		*sema_message;
 	sem_t		*sema_forks;
+	sem_t		*sema_start;
 	pid_t		*philos;
 }	t_sys;
 
 typedef	struct s_philo
 {
 	t_uint		idx;
-	t_uint 		num_of_meals;
 	t_uint		lifespan;
+	t_uint 		num_of_meals;
+	t_uint		status;
 	t_sys		*system;
 }	t_philo;
 
@@ -62,6 +65,8 @@ size_t		ft_strlen(const char *s);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
 int			ft_strcmp(char *s1, char *s2);
 long long	ft_atoll(const char *str);
+void		*ft_malloc(unsigned long type, int size);
+char		*ft_itoa(int n);
 
 /*	check_input	*/
 void		check_input(int argc, char **argv, t_sys *system);
@@ -74,19 +79,8 @@ void		ft_exit(t_sys *system);
 
 /*	environment	*/
 void		set_environment(t_sys *system);
-
-/*	simulate	*/
-int			simulate(t_sys *sys);
-void		message(char *notice, t_philo *philo);
-int			check_philosopher_status(t_philo *philo);
-int			check_system_status(t_sys *system);
-int			check_status(t_philo *philo);
-
-/*	behavior	*/
+void		simulate(t_sys *sys);
 void		*routine(void *ptr);
-void		eating(t_philo *philo);
-void		sleeping(t_philo *philo);
-void		thinking(t_philo *philo);
 
 /*	utils	*/
 long long	get_time(void);
@@ -95,4 +89,8 @@ void		ft_usleep(long long limit_time, t_philo *philo);
 /*	error	*/
 void		error(char *error_string);
 
+/*	semaphore	*/
+sem_t   	*ft_sem_open(const char *sem_name, int num_of_access_data);
+void		ft_sem_wait(sem_t *semaphore);
+void		ft_sem_post(sem_t *semaphore);
 #endif

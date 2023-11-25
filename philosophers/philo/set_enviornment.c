@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_enviornment.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:40:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/24 16:37:08 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/25 20:06:20 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	set_environment(t_sys *system)
 		return (0);
 	pthread_mutex_init(&system->message, NULL);
 	pthread_mutex_init(&system->end, NULL);
+	system->time = get_time();
 	system->status = ACTIVATE;
 	return (1);
 }
@@ -40,6 +41,7 @@ static int	enter(t_sys *system)
 		system->philos[idx].system = system;
 		system->philos[idx].idx = idx + 1;
 		system->philos[idx].num_of_meals = 0;
+		system->philos[idx].lifespan = get_time();
 		idx++;
 	}
 	return (1);

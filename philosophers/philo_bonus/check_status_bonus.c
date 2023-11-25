@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_up_bonus.c                                   :+:      :+:    :+:   */
+/*   check_status_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/18 17:10:09 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/25 01:59:07 by millar           ###   ########.fr       */
+/*   Created: 2023/08/22 15:12:05 by jaehyji           #+#    #+#             */
+/*   Updated: 2023/11/25 03:01:41 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "philo.h"
 
-void	free_str(char *str)
+int	check_philosopher_status(t_philo *philo)
 {
-	if (!str)
-		return ;
-	free(str);
-}
+	long long	time;
 
-void	free_arr(char **str)
-{
-	int		idx;
-
-	idx = 0;
-	while (str[idx])
+	time = get_time() - philo->lifespan;
+	if (time > philo->system->time_to_die)
 	{
-		free(str[idx]);
-		str[idx] = NULL;
-		idx++;
+		message("died", philo);
+		return (DEAD);
 	}
-	free(str);
+	return (ALIVE);
 }

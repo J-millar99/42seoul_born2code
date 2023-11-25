@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:56:50 by millar            #+#    #+#             */
-/*   Updated: 2023/11/24 18:27:39 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/25 02:55:33 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ long long	ft_atoll(const char *str)
 	long long	num;
 
 	if (!str)
-		error("argument value error");
+		return (0);
 	if (*str == '-')
 		error("argument value error");
 	if (*str == '+')
@@ -71,4 +71,14 @@ long long	ft_atoll(const char *str)
 	if (*str)
 		error("argument value error");
 	return (num);
+}
+
+void	*ft_malloc(unsigned long type, int size)
+{
+	void	*ret;
+
+	ret = malloc(type * size);
+	if (!ret)
+		error("malloc error");
+	return (ret);
 }

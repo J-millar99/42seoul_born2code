@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/24 20:03:27 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/25 19:57:25 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_system
 /*	libft	*/
 char		**ft_split(char const *s, char c);
 char		*ft_strspacejoin(char const *s1, char const *s2);
-char		*ft_substr(char const *str, t_uint start, size_t len);
+char		*ft_substr(char const *str, unsigned int start, size_t len);
 char		*ft_strdup(const char *s1);
 size_t		ft_strlen(const char *s);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
@@ -80,17 +80,11 @@ void		ft_exit(t_sys *system);
 int			set_environment(t_sys *system);
 
 /*	simulate	*/
-int			simulate(t_sys *sys);
+void		*routine(void *ptr);
 void		message(char *notice, t_philo *philo);
 int			check_philosopher_status(t_philo *philo);
 int			check_system_status(t_sys *system);
 int			check_status(t_philo *philo);
-
-/*	behavior	*/
-void		*routine(void *ptr);
-void		eating(t_philo *philo);
-void		sleeping(t_philo *philo);
-void		thinking(t_philo *philo);
 
 /*	utils	*/
 long long	get_time(void);
