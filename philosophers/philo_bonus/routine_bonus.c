@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:14:06 by millar            #+#    #+#             */
-/*   Updated: 2023/11/27 01:33:00 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 02:19:24 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	grave(t_philo *philo)
 	ft_sem_close(philo->status);
 	ft_sem_unlink(temp);
 	free_str((char *)temp);
-	free(philo);
 }
 
 void	message(char *notice, t_philo *philo)
@@ -34,16 +33,13 @@ void	message(char *notice, t_philo *philo)
 	long long	time;
 
 	ft_sem_wait(philo->system->sema_message);
-	if (!waitpid(0, NULL, WNOHANG))
-		return ;
 	time = get_time() - philo->system->time;
 	printf("%lld %u %s\n", time, philo->idx, notice);
 	if (!ft_strcmp(notice, "died"))
 	{
-		kill(0, SIGTERM);
-		usleep(1000);
-		ft_sem_post(philo->system->sema_message);
-		return ;
+		grave(philo);
+		free(philo);
+		exit(0);
 	}
 	ft_sem_post(philo->system->sema_message);
 }
@@ -54,19 +50,15 @@ void	*check_philo_status(void *ptr)
 	long long	time;
 
 	system = (t_sys *)ptr;
-	while (!waitpid(0, NULL, WNOHANG))
+	while (!waitpid(getpid(), NULL, WNOHANG))
 	{
 		ft_sem_wait(system->philo->status);
 		time = get_time() - system->philo->lifespan;
 		if (time > system->time_to_die)
-		{
 			message("died", system->philo);
-			break;
-		}
 		ft_sem_post(system->philo->status);
 		usleep(500);
 	}
-	grave(system->philo);
 	return (NULL);
 }
 

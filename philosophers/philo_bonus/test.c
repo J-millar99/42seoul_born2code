@@ -10,9 +10,13 @@
 
 void *f(void *ptr)
 {
-    pid_t child_pid = *((pid_t *)ptr);
-
-    kill(child_pid, SIGTERM);
+    int i = 0;
+    while(i < 5)
+    {
+        printf("@@\n");
+        sleep(1);
+        i++;
+    }
     return 0;
 }
 
@@ -24,17 +28,15 @@ int main()
     child = fork();
     if (child == 0)
     {
-        if (pthread_create(&thread, NULL, f, &child))
+        if (pthread_create(&thread, NULL, f, 0))
             printf("error\n");
-        pthread_join(thread, NULL);
+        pthread_detach(thread);
+        exit(0);
     }
     else
     {
-        while (!waitpid(child, NULL, WNOHANG))
-        {
-            printf("sleeping\n");
-            sleep(1);
-        }
-        printf("done\n");
+        sleep(1);
+        kill(child, SIGTERM);
+        sleep(5);
     }
 }

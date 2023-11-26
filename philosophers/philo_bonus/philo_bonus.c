@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:08:03 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/27 01:33:37 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 02:17:25 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,24 @@ static void	simulate(t_sys *system)
 			pid_t temp = waitpid(system->pids[i], &status, WNOHANG);
 			if (temp > 0)
 			{
+				printf("signal\n");
 				if (WIFSIGNALED(status))
 				{
+					printf("who die\n");
 					process_exit(system, i);
 					return ;
 				}
 				else if (WIFEXITED(status))
+				{
+					printf("who eat\n");
 					cnt++;
+				}
 			}
 			i++;
 		}
 		if ((t_uint) cnt == system->num_of_philo)
 		{
+			printf("all eat\n");
 			process_exit(system, cnt + 1);
 			return ;
 		}	
