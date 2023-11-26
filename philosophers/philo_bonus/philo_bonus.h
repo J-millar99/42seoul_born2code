@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/25 02:57:01 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 01:33:54 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <string.h>
+# include <sys/wait.h>
+# include <signal.h>
 # include <sys/time.h>
 # include <pthread.h>
 # include <semaphore.h>
 
 typedef struct s_system	t_sys;
+typedef struct s_philo	t_philo;
 typedef unsigned int	t_uint;
 
 # define ACTIVATE 0
@@ -38,20 +40,20 @@ typedef struct s_system
 	t_uint		time_to_eat;
 	t_uint		time_to_sleep;
 	int			num_of_must_meals;
-	t_uint		status;
 	long long	time;
 	sem_t		*sema_message;
 	sem_t		*sema_forks;
 	sem_t		*sema_start;
-	pid_t		*philos;
+	pid_t		*pids;
+	t_philo		*philo;
 }	t_sys;
 
 typedef	struct s_philo
 {
 	t_uint		idx;
-	t_uint		lifespan;
-	t_uint 		num_of_meals;
-	t_uint		status;
+	long long	lifespan;
+	int 		num_of_meals;
+	sem_t		*status;
 	t_sys		*system;
 }	t_philo;
 
@@ -74,17 +76,15 @@ void		check_input(int argc, char **argv, t_sys *system);
 /*	clean_up	*/
 void		free_str(char *str);
 void		free_arr(char **str);
-int			ft_error(char *error_string, t_sys *system);
 void		ft_exit(t_sys *system);
+void		error(char *error_string);
 
 /*	environment	*/
 void		set_environment(t_sys *system);
-void		simulate(t_sys *sys);
-void		*routine(void *ptr);
-
+void		routine(t_sys *system);
 /*	utils	*/
 long long	get_time(void);
-void		ft_usleep(long long limit_time, t_philo *philo);
+void		ft_usleep(long long limit_time);
 
 /*	error	*/
 void		error(char *error_string);
@@ -93,4 +93,6 @@ void		error(char *error_string);
 sem_t   	*ft_sem_open(const char *sem_name, int num_of_access_data);
 void		ft_sem_wait(sem_t *semaphore);
 void		ft_sem_post(sem_t *semaphore);
+void		ft_sem_close(sem_t *semaphore);
+void		ft_sem_unlink(const char *semaphore);
 #endif

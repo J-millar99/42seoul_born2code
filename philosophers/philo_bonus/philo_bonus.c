@@ -6,11 +6,15 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:08:03 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/25 02:34:07 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 01:33:37 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+
+static void	enter(t_sys *system);
+static void	simulate(t_sys *system);
+static void	process_exit(t_sys *system, t_uint except);
 
 int	main(int argc, char *argv[])
 {
@@ -20,38 +24,81 @@ int	main(int argc, char *argv[])
 	check_input(argc, argv + 1, system);
 	set_environment(system);
 	simulate(system);
+	ft_exit(system);
 	return (0);
 }
 
-void	enter(t_sys *system)
+static void	enter(t_sys *system)
 {
 	t_uint		i;
 	pid_t		philo;
-	pthread_t	thread;
 
 	i = 0;
-	system->philos = (pid_t *)ft_malloc(sizeof(pid_t), system->num_of_philo);
 	ft_sem_wait(system->sema_start);
+	system->time = get_time();
 	while (i < system->num_of_philo)
 	{
 		philo = fork();
 		if (philo == 0)
 		{
 			system->num_of_philo -= i;
-			if (pthread_create(&thread, NULL, routine, system))
-				error("pthread_create error");
-			pthread_join(thread, NULL);
+			routine(system);
 			exit(0);
 		}
 		else
-			system->philos[i] = philo;
+			system->pids[i] = philo;
 		i++;
+	}
+	ft_sem_post(system->sema_start);
+}
+
+static void	simulate(t_sys *system)
+{
+	t_uint	i;
+	int		status;
+	int		cnt;
+
+	enter(system);
+	while (1)
+	{
+		cnt = 0;
+		i = 0;
+		while (i < system->num_of_philo)
+		{
+			pid_t temp = waitpid(system->pids[i], &status, WNOHANG);
+			if (temp > 0)
+			{
+				if (WIFSIGNALED(status))
+				{
+					process_exit(system, i);
+					return ;
+				}
+				else if (WIFEXITED(status))
+					cnt++;
+			}
+			i++;
+		}
+		if ((t_uint) cnt == system->num_of_philo)
+		{
+			process_exit(system, cnt + 1);
+			return ;
+		}	
 	}
 }
 
-void	simulate(t_sys *system)
+static void	process_exit(t_sys *system, t_uint except)
 {
-	enter(system);
-	ft_sem_post(system->sema_start);
-	monitoring() // 죽음 추적 -> 프로세스 종료 회수;
+	t_uint i;
+
+	i = 0;
+	while (i < system->num_of_philo)
+	{
+		if (i == except)
+		{
+			i++;
+			continue;
+		}
+		kill(system->pids[i], SIGTERM);
+		i++;
+	}
 }

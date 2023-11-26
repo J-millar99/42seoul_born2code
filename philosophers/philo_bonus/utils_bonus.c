@@ -6,7 +6,7 @@
 /*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:56:50 by millar            #+#    #+#             */
-/*   Updated: 2023/11/25 02:55:33 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/25 20:30:39 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ long long	get_time(void)
 	return ((time_val.tv_sec * 1000) + (time_val.tv_usec / 1000));
 }
 
-void	ft_usleep(long long limit_time, t_philo *philo)
+void	ft_usleep(long long limit_time)
 {
 	long long	start_time;
 	long long	current_time;
@@ -30,8 +30,6 @@ void	ft_usleep(long long limit_time, t_philo *philo)
 	while (current_time - start_time < limit_time)
 	{
 		usleep(200);
-		if (philo && !check_status(philo))
-			break ;
 		current_time = get_time();
 	}
 }

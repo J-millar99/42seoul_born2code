@@ -1,0 +1,25 @@
+#resource list
+
+main process
+{
+    #in system(struct)
+
+    sem_t *sema_start
+    sem_t *sema_forks
+    sem_t *sema_message
+    ./sema/button
+    ./sema/forks
+    ./sema/message
+}
+
+child process
+{
+    #in philo(struct)
+
+    sem_t *status
+
+    thread (philo_monitoring)
+    {
+        
+    }
+}
