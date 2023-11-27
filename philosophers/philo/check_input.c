@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/24 11:45:15 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/27 17:19:48 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,13 @@ int	check_input(int argc, char **argv, t_sys *system)
 		return (0);
 	cnt = cnt_arr(line_arr);
 	if (cnt != 4 && cnt != 5)
+	{
+		free_arr(line_arr);
 		return (0);
-	return (make_system_info1(line_arr, system));
+	}
+	if (!make_system_info1(line_arr, system))
+		free_arr(line_arr);
+	return (1);
 }
 
 static char	*make_str(int argc, char **argv)
@@ -73,20 +78,6 @@ static int	cnt_arr(char **arr)
 	return (idx);
 }
 
-static int	make_system_info2(char **argv, t_sys *system)
-{
-	long long	num;
-
-	num = ft_atoll(argv[4]);
-	if (num == -1)
-		return (0);
-	if (num == 0)
-		num = -1;
-	system->num_of_must_meals = num;
-	free_arr(argv);
-	return (1);
-}
-
 static int	make_system_info1(char **argv, t_sys *system)
 {
 	long long	num;
@@ -108,4 +99,18 @@ static int	make_system_info1(char **argv, t_sys *system)
 		return (0);
 	system->time_to_sleep = (t_uint) num;
 	return (make_system_info2(argv, system));
+}
+
+static int	make_system_info2(char **argv, t_sys *system)
+{
+	long long	num;
+
+	num = ft_atoll(argv[4]);
+	if (num == -1)
+		return (0);
+	if (num == 0)
+		num = -1;
+	system->num_of_must_meals = num;
+	free_arr(argv);
+	return (1);
 }

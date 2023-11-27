@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:08:03 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/27 14:06:56 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/27 17:30:39 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ int	main(int argc, char *argv[])
 	if (!system)
 		return (0);
 	if (!check_input(argc, argv + 1, system))
+	{
+		free(system);
 		return (write(2, "Input Error\n", 12));
+	}
 	if (!set_environment(system))
-		return (write(2, "Set Error\n", 12));
+		return (ft_error("set_environment error", system));
 	return (simulate(system));
 }
 
