@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:56:50 by millar            #+#    #+#             */
-/*   Updated: 2023/11/25 01:06:36 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 14:01:02 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_usleep(long long limit_time, t_philo *philo)
 	current_time = get_time();
 	while (current_time - start_time < limit_time)
 	{
-		usleep(200);
+		usleep(500);
 		if (philo && !check_status(philo))
 			break ;
 		current_time = get_time();

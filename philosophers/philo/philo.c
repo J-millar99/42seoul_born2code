@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:08:03 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/25 20:06:37 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 14:06:56 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int simulate(t_sys *sys);
+static int	simulate(t_sys *sys);
 static int	simulate_thread(t_sys *sys, t_uint i);
 
 int	main(int argc, char *argv[])
@@ -43,7 +43,7 @@ static int	simulate(t_sys *sys)
 		i = 1;
 		if (!simulate_thread(sys, i))
 			return (ft_error("ptread_create", sys));
-		ft_usleep(sys->time_to_eat, NULL);
+		ft_usleep(sys->time_to_eat / 2, NULL);
 		i = 2;
 		if (!simulate_thread(sys, i))
 			return (ft_error("ptread_create", sys));

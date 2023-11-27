@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: millar <millar@student.42.fr>              +#+  +:+       +#+         #
+#    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/11/25 19:55:54 by millar           ###   ########.fr        #
+#    Updated: 2023/11/27 14:02:52 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = philo
 CC = cc
 RM = rm -rf
 FLAGS = -Wall -Wextra -Werror
+# FLAGS += -fsanitize=thread
 
 INCS = philo.h
 
