@@ -6,13 +6,13 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:59:24 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/27 17:00:44 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/27 17:02:32 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-static t_philo	init_philo(t_sys *system)
+t_philo	init_philo(t_sys *system)
 {
 	t_philo		philo;
 

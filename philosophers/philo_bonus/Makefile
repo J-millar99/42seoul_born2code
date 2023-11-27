@@ -6,7 +6,7 @@
 #    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/11/27 16:10:15 by jaehyji          ###   ########.fr        #
+#    Updated: 2023/11/27 17:03:42 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ SRCS = check_input_bonus.c		\
 		set_enviornment_bonus.c	\
 		utils_bonus.c			\
 		ft_itoa_bonus.c			\
+		routine_utils_bonus.c	\
+		simulate_bonus.c		\
 
 OBJS = $(SRCS:.c=.o)
 

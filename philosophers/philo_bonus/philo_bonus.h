@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/27 17:00:34 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/27 17:02:43 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void		routine(t_sys *system);
 void		simulate(t_sys *system);
 void		message(char *notice, t_philo *philo);
 void		check_philo_status(t_philo *philo);
-
+t_philo		init_philo(t_sys *system);
 /*	utils	*/
 long long	get_time(void);
 void		ft_usleep(long long limit_time, t_philo *philo);

@@ -6,13 +6,12 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:14:06 by millar            #+#    #+#             */
-/*   Updated: 2023/11/27 17:00:05 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/27 17:02:23 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-static t_philo	init_philo(t_sys *system);
 static void		eating(t_philo *philo);
 static void		sleeping(t_philo *philo);
 static void		thinking(t_philo *philo);

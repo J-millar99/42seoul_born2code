@@ -6,23 +6,23 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:52:33 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/27 17:01:03 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/27 17:05:18 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
 static void	enter(t_sys *system);
-static void	simulate(t_sys *system);
 static void	process_exit(t_sys *system, int *except);
 static void	monitoring(t_sys *system, int *idx);
+static int	check_all_process(t_sys *system, int *idx);
 
 void	simulate(t_sys *system)
 {
 	int		*idx;
 
 	idx = (int *)ft_malloc(sizeof(int), system->num_of_philo);
-	memset(idx, 0, sizeof(idx));
+	memset(idx, 0, sizeof(int) * system->num_of_philo);
 	if (system->num_of_philo == 1)
 	{	
 		printf("0 1 has taken a fork\n");
