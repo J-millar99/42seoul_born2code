@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:52:33 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/27 17:05:18 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/27 18:10:59 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	simulate(t_sys *system)
 {
 	int		*idx;
 
-	idx = (int *)ft_malloc(sizeof(int), system->num_of_philo);
-	memset(idx, 0, sizeof(int) * system->num_of_philo);
 	if (system->num_of_philo == 1)
 	{	
 		printf("0 1 has taken a fork\n");
@@ -30,8 +28,11 @@ void	simulate(t_sys *system)
 	}
 	else
 	{
+		idx = (int *)ft_malloc(sizeof(int), system->num_of_philo);
+		memset(idx, 0, sizeof(int) * system->num_of_philo);
 		enter(system);
 		monitoring(system, idx);
+		free(idx);
 	}
 }
 

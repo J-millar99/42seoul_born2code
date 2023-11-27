@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:40:57 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/27 16:57:33 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/27 18:10:03 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	set_environment(t_sys *system)
 		free_str((char *)temp);
 		i++;
 	}
-	system->pids = ft_malloc(sizeof(pid_t), system->num_of_philo);
+	system->pids = (pid_t *)ft_malloc(sizeof(pid_t), system->num_of_philo);
 }
