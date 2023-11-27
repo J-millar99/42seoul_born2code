@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:56:50 by millar            #+#    #+#             */
-/*   Updated: 2023/11/25 20:30:39 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 16:54:22 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ long long	get_time(void)
 	return ((time_val.tv_sec * 1000) + (time_val.tv_usec / 1000));
 }
 
-void	ft_usleep(long long limit_time)
+void	ft_usleep(long long limit_time, t_philo *philo)
 {
 	long long	start_time;
 	long long	current_time;
@@ -29,7 +29,9 @@ void	ft_usleep(long long limit_time)
 	current_time = get_time();
 	while (current_time - start_time < limit_time)
 	{
-		usleep(200);
+		usleep(500);
+		if (philo)
+			check_philo_status(philo);
 		current_time = get_time();
 	}
 }

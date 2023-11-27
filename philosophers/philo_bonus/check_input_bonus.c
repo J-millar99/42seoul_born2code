@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/25 01:38:14 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 16:52:00 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	check_input(int argc, char **argv, t_sys *system)
 
 	line = make_str(argc, argv);
 	if (!line)
-		error("make_str error");
+		error("number of argument error");
 	line_arr = ft_split(line, ' ');
 	free_str(line);
 	if (!line_arr)
@@ -35,12 +35,27 @@ void	check_input(int argc, char **argv, t_sys *system)
 	make_system_info(line_arr, system);
 }
 
+char	*ft_strdup(const char *s1)
+{
+	size_t	s1_len;
+	char	*dupstr;
+
+	s1_len = ft_strlen(s1);
+	dupstr = (char *)malloc(sizeof(char) * (s1_len + 1));
+	if (!dupstr)
+		return (NULL);
+	ft_memcpy(dupstr, s1, s1_len + 1);
+	return (dupstr);
+}
+
 static char	*make_str(int argc, char **argv)
 {
 	int		i;
 	char	*str;
 	char	*tmp;
 
+	if (!*argv)
+		return (NULL);
 	str = ft_strdup(argv[0]);
 	if (!str)
 		error("ft_strdup error");

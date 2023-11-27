@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 17:10:09 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/26 23:05:49 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 16:32:38 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,23 @@ void	free_arr(char **str)
 
 void	ft_exit(t_sys *system)
 {
-	ft_sem_close(system->sema_start);
-	ft_sem_close(system->sema_forks);
-	ft_sem_close(system->sema_message);
-	ft_sem_unlink("./sema/button");
-	ft_sem_unlink("./sema/forks");
-	ft_sem_unlink("./sema/message");
+	t_uint		i;
+	const char	*temp;
+
+	i = 0;
+	ft_sem_close(system->forks);
+	ft_sem_close(system->message);
+	ft_sem_unlink("forks");
+	ft_sem_unlink("message");
+	while (i < system->num_of_philo)
+	{
+		ft_sem_close(system->philo_status[i]);
+		temp = ft_itoa(i + 1);
+		ft_sem_unlink(temp);
+		free_str((char *)temp);
+		i++;
+	}
+	free(system->philo_status);
 	free(system->pids);
 	free(system);
 }

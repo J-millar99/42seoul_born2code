@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 02:08:22 by millar            #+#    #+#             */
-/*   Updated: 2023/11/25 02:08:31 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 14:59:43 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_itoa(int n)
 	len = ft_itoa_len(n);
 	ptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (ptr == NULL)
-		return (NULL);
+		error("ft_itoa malloc error");
 	if (!n)
 		ptr[0] = '0';
 	i = 0;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: millar <millar@student.42.fr>              +#+  +:+       +#+         #
+#    By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:58:14 by jaehyji           #+#    #+#              #
-#    Updated: 2023/11/26 22:03:35 by millar           ###   ########.fr        #
+#    Updated: 2023/11/27 16:10:15 by jaehyji          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = philo_bonus
 CC = cc
 RM = rm -rf
 FLAGS = -Wall -Wextra -Werror
+# FLAGE += -fsanitize=thread
 
 INCS = philo_bonus.h
 

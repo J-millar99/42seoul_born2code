@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   semaphore_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:27:41 by millar            #+#    #+#             */
-/*   Updated: 2023/11/27 01:08:28 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 17:00:47 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-sem_t   *ft_sem_open(const char *sem_name, int num_of_access_data)
+sem_t	*ft_sem_open(const char *sem_name, int num_of_access_data)
 {
-    sem_t   *ret;
+	sem_t	*ret;
 
 	ft_sem_unlink(sem_name);
 	ret = sem_open(sem_name, O_CREAT, 0644, num_of_access_data);
 	if (ret == SEM_FAILED)
 		error("sem_open error");
-    return (ret);
+	return (ret);
 }
 
 void	ft_sem_wait(sem_t *semaphore)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_string_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:53:56 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/25 20:20:45 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 16:51:53 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_memcpy(jstr + s1_len, s2, s2_len);
 	jstr[s1_len + 1 + s2_len] = '\0';
 	return (jstr);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	size_t	s1_len;
-	char	*dupstr;
-
-	s1_len = ft_strlen(s1);
-	dupstr = (char *)malloc(sizeof(char) * (s1_len + 1));
-	if (!dupstr)
-		return (NULL);
-	ft_memcpy(dupstr, s1, s1_len + 1);
-	return (dupstr);
 }
 
 size_t	ft_strlen(const char *s)

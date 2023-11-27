@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:09:00 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/27 01:33:54 by millar           ###   ########.fr       */
+/*   Updated: 2023/11/27 17:00:34 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_BONUS_H
 # define PHILO_BONUS_H
 
+# include <string.h>
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -23,15 +24,23 @@
 # include <pthread.h>
 # include <semaphore.h>
 
+# define ACTIVATE 0
+# define SHUTDOWN 1
+# define ALIVE 0
+# define DEAD 1
+
 typedef struct s_system	t_sys;
 typedef struct s_philo	t_philo;
 typedef unsigned int	t_uint;
 
-# define ACTIVATE 0
-# define SHUTDOWN 1
-
-# define ALIVE 0
-# define DEAD 1
+typedef struct s_philo
+{
+	t_uint		idx;
+	long long	lifespan;
+	int			num_of_meals;
+	sem_t		*status;
+	t_sys		*system;
+}	t_philo;
 
 typedef struct s_system
 {
@@ -41,21 +50,11 @@ typedef struct s_system
 	t_uint		time_to_sleep;
 	int			num_of_must_meals;
 	long long	time;
-	sem_t		*sema_message;
-	sem_t		*sema_forks;
-	sem_t		*sema_start;
+	sem_t		*message;
+	sem_t		*forks;
+	sem_t		**philo_status;
 	pid_t		*pids;
-	t_philo		*philo;
 }	t_sys;
-
-typedef	struct s_philo
-{
-	t_uint		idx;
-	long long	lifespan;
-	int 		num_of_meals;
-	sem_t		*status;
-	t_sys		*system;
-}	t_philo;
 
 /*	libft	*/
 char		**ft_split(char const *s, char c);
@@ -77,22 +76,26 @@ void		check_input(int argc, char **argv, t_sys *system);
 void		free_str(char *str);
 void		free_arr(char **str);
 void		ft_exit(t_sys *system);
-void		error(char *error_string);
 
-/*	environment	*/
+/*	simulate	*/
 void		set_environment(t_sys *system);
 void		routine(t_sys *system);
+void		simulate(t_sys *system);
+void		message(char *notice, t_philo *philo);
+void		check_philo_status(t_philo *philo);
+
 /*	utils	*/
 long long	get_time(void);
-void		ft_usleep(long long limit_time);
+void		ft_usleep(long long limit_time, t_philo *philo);
 
 /*	error	*/
 void		error(char *error_string);
 
 /*	semaphore	*/
-sem_t   	*ft_sem_open(const char *sem_name, int num_of_access_data);
+sem_t		*ft_sem_open(const char *sem_name, int num_of_access_data);
 void		ft_sem_wait(sem_t *semaphore);
 void		ft_sem_post(sem_t *semaphore);
 void		ft_sem_close(sem_t *semaphore);
 void		ft_sem_unlink(const char *semaphore);
+
 #endif
