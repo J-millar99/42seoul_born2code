@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/27 16:52:00 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/27 18:24:23 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ static void	make_system_info(char **argv, t_sys *system)
 	long long	num;
 
 	num = ft_atoll(argv[0]);
+	if (num > 200)
+		error("argument value error");
 	system->num_of_philo = (t_uint) num;
 	num = ft_atoll(argv[1]);
 	system->time_to_die = (t_uint) num;

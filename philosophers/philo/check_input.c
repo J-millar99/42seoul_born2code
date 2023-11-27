@@ -6,7 +6,7 @@
 /*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:29:59 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/27 17:19:48 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/11/27 18:20:01 by jaehyji          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ int	check_input(int argc, char **argv, t_sys *system)
 		return (0);
 	}
 	if (!make_system_info1(line_arr, system))
+	{
 		free_arr(line_arr);
+		return (0);
+	}
 	return (1);
 }
 
@@ -83,7 +86,7 @@ static int	make_system_info1(char **argv, t_sys *system)
 	long long	num;
 
 	num = ft_atoll(argv[0]);
-	if (num == -1 || num == 0)
+	if (num == -1 || num == 0 || num > 200)
 		return (0);
 	system->num_of_philo = (t_uint) num;
 	num = ft_atoll(argv[1]);
