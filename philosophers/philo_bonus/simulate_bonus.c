@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simulate_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:52:33 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/27 18:10:59 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/12/17 14:47:38 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	simulate(t_sys *system)
 	if (system->num_of_philo == 1)
 	{	
 		printf("0 1 has taken a fork\n");
+		ft_usleep(system->time_to_die, NULL);
 		printf("%u 1 died\n", system->time_to_die);
 	}
 	else

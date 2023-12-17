@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaehyji <jaehyji@student.42.fr>            +#+  +:+       +#+        */
+/*   By: millar <millar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:08:03 by jaehyji           #+#    #+#             */
-/*   Updated: 2023/11/27 18:08:54 by jaehyji          ###   ########.fr       */
+/*   Updated: 2023/12/17 14:47:15 by millar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static int	simulate(t_sys *sys)
 	if (sys->num_of_philo == 1)
 	{	
 		printf("0 1 has taken a fork\n");
+		ft_usleep(sys->time_to_die, NULL);
 		printf("%u 1 died\n", sys->time_to_die);
 	}
 	else
