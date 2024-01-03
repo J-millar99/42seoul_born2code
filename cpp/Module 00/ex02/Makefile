@@ -1,8 +1,8 @@
-NAME = phonebook
+NAME = globalbanksters
 CPP = c++
 CPP_FLAGES = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Contact.cpp PhoneBook.cpp
+SRCS = tests.cpp Account.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o : %.cpp %.hpp

@@ -128,8 +128,6 @@ void Contact::printSearchColumn()
 		std::cout << std::setw(9) << std::right << nickName.substr(0, 9) << '.' << '|' << std::endl;
 	else
 		std::cout << std::setw(10) << std::right << nickName << '|' << std::endl;
-
-	std::cout << std::endl;
 }
 
 void Contact::showAllInformation()
