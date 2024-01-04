@@ -146,7 +146,7 @@ void Contact::showAllInformation()
 
 void Contact::istreamException()
 {
-	if (std::cin.eof())
+	if (std::cin.fail() ||std::cin.eof())
 	{
 		std::cout << "input stream exit" << std::endl;
 		std::exit(0);

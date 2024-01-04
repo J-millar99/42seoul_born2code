@@ -1,9 +1,14 @@
 #include "Account.hpp"
 #include <iostream>
-#include <chrono>
+#include <iomanip>
 #include <ctime>
 
 // public part
+
+int Account::_nbAccounts = 0;
+int Account::_totalAmount = 0;
+int Account::_totalNbDeposits = 0;
+int Account::_totalNbWithdrawals = 0;
 
 int Account::getNbAccounts()
 {
@@ -22,7 +27,7 @@ int Account::getNbDeposits()
 
 int Account::getNbWithdrawals()
 {
-	return (_totalNbDeposits);
+	return (_totalNbWithdrawals);
 }
 
 void Account::displayAccountsInfos()
@@ -44,6 +49,8 @@ void Account::displayAccountsInfos()
 
 Account::Account(int initial_deposit)
 {
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
 	_accountIndex = _nbAccounts;
 	_amount = initial_deposit;
 	_totalAmount += _amount;
@@ -65,15 +72,37 @@ Account::~Account()
 void Account::makeDeposit(int deposit)
 {
 	_displayTimestamp();
+	_nbDeposits++;
+	_totalNbDeposits++;
 	std::cout << "index:" << _accountIndex << ';'
 			  << "p_amount:" << _amount << ';'
-			  << "deposit:" << deposit << ';'
-			  << "amount" << _amount + deposit << ';'
+			  << "deposit:" << deposit << ';';
+	_amount += deposit;
+	_totalAmount += deposit;
+	std::cout << "amount:" << _amount << ';'
 			  << "nb_deposits:" << _nbDeposits << std::endl;
 }
 
 bool Account::makeWithdrawal(int withdrawal)
 {
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ';'
+			  << "p_amount:" << _amount << ';';
+	if (_amount < withdrawal)
+	{
+		std::cout << "withdrawal:refused" << std::endl;
+		return (false);
+	}
+	else
+	{
+		_nbWithdrawals++;
+		_totalNbWithdrawals++;
+		_amount -= withdrawal;
+		_totalAmount -= withdrawal;
+		std::cout	<< "withdrawal:" << withdrawal << ';'
+			  		<< "amount:" << _amount << ';'
+			  		<< "nb_withdrawals:" << _nbDeposits << std::endl;
+	}
 	return (true);
 }
 
@@ -95,21 +124,17 @@ void Account::displayStatus() const
 
 void Account::_displayTimestamp()
 {
-    auto currentTime = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+    std::time_t currentTime = std::time(NULL);
     struct std::tm *localTime = std::localtime(&currentTime);
 
-    // 현재 년도, 월, 일, 시간, 분, 초 출력
     std::cout << '['
               << (localTime->tm_year + 1900)
-              << (localTime->tm_mon + 1)
-              << localTime->tm_mday << '_'
-              << localTime->tm_hour
-              << localTime->tm_min
-              << localTime->tm_sec << ']'
+              << std::setw(2) << std::setfill('0') << (localTime->tm_mon + 1)
+              << std::setw(2) << std::setfill('0') << localTime->tm_mday << '_'
+              << std::setw(2) << std::setfill('0') << localTime->tm_hour
+              << std::setw(2) << std::setfill('0') << localTime->tm_min
+              << std::setw(2) << std::setfill('0') << localTime->tm_sec << ']'
 			  << ' ';
 }
 
-
-Account::Account()
-{
-}
+Account::Account() {};

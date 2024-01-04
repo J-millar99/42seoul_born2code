@@ -5,7 +5,7 @@ CPP_FLAGES = -Wall -Wextra -Werror -std=c++98
 SRCS = tests.cpp Account.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-%.o : %.cpp %.hpp
+%.o : %.cpp
 	$(CPP) $(CPP_FLAGES) -c $< -o $@
 
 all: $(NAME)
