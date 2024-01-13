@@ -21,7 +21,7 @@ int main()
 		else if (command == "SEARCH")
 			phonebook.search();
 		else if (command == "EXIT")
-			phonebook.exit();
+			phonebook.ft_exit();
 		else
 			continue;
 	}

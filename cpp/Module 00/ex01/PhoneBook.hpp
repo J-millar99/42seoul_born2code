@@ -14,7 +14,7 @@ class PhoneBook : public Contact
 		void showMenu();
 		void add();
 		void search();
-		void exit();
+		void ft_exit();
 		bool inRange(const std::string &str);
 };
 

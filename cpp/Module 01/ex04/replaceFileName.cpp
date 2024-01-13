@@ -15,11 +15,11 @@ static std::string replaceExtension(const std::string &filename)
 
 void replaceFileName(std::string filename)
 {
-    std::ifstream inputFile(filename);
+    std::ifstream inputFile(filename.c_str());
 
     if (inputFile.is_open()) 
 	{
-		std::ofstream outputFile(replaceExtension(filename));
+		std::ofstream outputFile(replaceExtension(filename).c_str());
 		if (!outputFile.is_open())
 		{
 			std::cerr << "Error: Failed to open output file." << std::endl;

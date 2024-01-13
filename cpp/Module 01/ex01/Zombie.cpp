@@ -10,8 +10,7 @@ Zombie::Zombie() {}
 Zombie::~Zombie()
 {
 	std::cout << name
-		<< ": "
-		<< "die"
+		<< ": die"
 		<< std::endl;
 }
 

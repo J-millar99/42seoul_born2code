@@ -1,5 +1,4 @@
 #include "Harl.hpp"
-
 typedef void (Harl::*memberFunctionPTR)(void);
 
 void Harl::debug(void)

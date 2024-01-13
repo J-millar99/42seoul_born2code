@@ -55,10 +55,13 @@ void Harl::complain(std::string level)
 	{
 	case 1:
 		(this->*exePTR[0])();
+		// fall through
 	case 2:
 		(this->*exePTR[1])();
+		// fall through
 	case 3:
 		(this->*exePTR[2])();
+		// fall through
 	case 4:
 		(this->*exePTR[3])();
 		break;

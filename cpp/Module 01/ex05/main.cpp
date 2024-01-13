@@ -2,14 +2,11 @@
 
 int main()
 {
-	Harl harl1;
-	Harl harl2;
-	Harl harl3;
-	Harl harl4;
+	Harl harl;
 
-	harl1.complain("debug");
-	harl2.complain("info");
-	harl3.complain("warning");
-	harl4.complain("error");
+	harl.complain("debug");
+	harl.complain("info");
+	harl.complain("warning");
+	harl.complain("error");
 	return 0;
 }

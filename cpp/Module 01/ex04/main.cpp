@@ -9,9 +9,14 @@ bool argumentError(int argc)
 	}
 	return false;
 }
+// void f(void)
+// {
+// 	system("leaks sed");
+// }
 
 int main(int argc, char *argv[])
 {
+	// atexit(f);
 	if (argumentError(argc))
 		return (1);
 	

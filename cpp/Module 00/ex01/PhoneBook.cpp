@@ -41,10 +41,10 @@ void PhoneBook::search()
 	contacts[std::stoi(choice) - 1].showAllInformation();
 }
 
-void PhoneBook::exit()
+void PhoneBook::ft_exit()
 {
 	std::cout << "Program Exit" << std::endl;
-	std::exit(0);
+	exit(0);
 }
 
 void PhoneBook::showMenu()

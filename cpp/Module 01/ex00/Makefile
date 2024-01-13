@@ -5,7 +5,7 @@ CPP_FLAGES = -Wall -Wextra -Werror -std=c++98
 SRCS = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-%.o : %.cpp
+%.o : %.cpp %.hpp
 	$(CPP) $(CPP_FLAGES) -c $< -o $@
 
 all: $(NAME)
