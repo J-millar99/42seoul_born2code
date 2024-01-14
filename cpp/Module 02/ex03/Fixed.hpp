@@ -11,8 +11,8 @@ class Fixed
 	public:
 		Fixed();
 		Fixed(const Fixed &ref);
-		Fixed(const int param);
-		Fixed(const float param);
+		Fixed(const int &param);
+		Fixed(const float &param);
 		~Fixed();
 
 		Fixed& operator=(const Fixed &ref);

@@ -1,3 +1,5 @@
+#ifndef FIXED_HPP
+#define FIXED_HPP
 #include <iostream>
 
 class Fixed
@@ -9,8 +11,8 @@ class Fixed
 	public:
 		Fixed();
 		Fixed(const Fixed &ref);
-		Fixed(const int &param);
-		Fixed(const float &param);
+		Fixed(const int param);
+		Fixed(const float param);
 		~Fixed();
 		
 		Fixed& operator=(const Fixed &ref);
@@ -23,3 +25,5 @@ class Fixed
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed &ref);
+
+#endif
