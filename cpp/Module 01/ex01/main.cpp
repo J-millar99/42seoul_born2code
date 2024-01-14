@@ -1,13 +1,7 @@
 #include "Zombie.hpp"
 
-// void f()
-// {
-// 	system("leaks zombie");
-// }
-
 int main()
 {
-	// atexit(f);
 	Zombie zombie("Foo");
 	Zombie* _zombieHorde = zombie.zombieHorde(6, "Foo's zombieHorde");
 

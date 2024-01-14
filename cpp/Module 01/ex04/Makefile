@@ -2,7 +2,7 @@ NAME = sed
 CPP = c++
 CPP_FLAGES = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp replaceFileName.cpp
+SRCS = main.cpp replaceFile.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o : %.cpp %.hpp
