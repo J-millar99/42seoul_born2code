@@ -47,7 +47,7 @@ int Fixed::toInt(void) const
 	return (int)(fixedPointNum / (1 << fractionalBit));
 }
 
-std::ostream& operator<<(std::ostream& os, const Fixed &ref)
+std::ostream &operator<<(std::ostream& os, const Fixed &ref)
 {
 	os << ref.toFloat();
 	return (os);
