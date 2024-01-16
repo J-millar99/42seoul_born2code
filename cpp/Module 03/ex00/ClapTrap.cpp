@@ -60,12 +60,7 @@ void ClapTrap::takeDamage(unsigned int amount)
                   << " is already destoryed" << std::endl << std::endl;
         return ;
     }
-    if (amount > INT_MAX)
-    {
-        std::cout << "undefined behavior" << std::endl << std::endl;
-        return ;
-    }
-    if (_health < (int)amount)
+    if (_health < amount)
         _health = 0;
     else
         _health -= amount;
@@ -84,18 +79,8 @@ void ClapTrap::beRepaired(unsigned int amount)
                   << " can't operate" << std::endl << std::endl;
         return ;
     }
-    if (amount > INT_MAX)
-    {
-        std::cout << "undefined behavior" << std::endl << std::endl;
-        return ;
-    }
     _energy--;
-    for (u_int i = 0; i < amount; i++)
-    {
-        _health += 1;
-        if (_health == INT_MAX)
-            break ;
-    }
+    _health += amount;
     std::cout << name
               << " is repaired: "
               << amount << std::endl

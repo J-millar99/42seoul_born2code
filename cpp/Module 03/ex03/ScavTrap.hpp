@@ -4,10 +4,12 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-class ScavTrap : public ClapTrap 
+class ScavTrap : public virtual ClapTrap 
 {
-   public:
+	protected:
         ScavTrap();
+
+    public:
         ScavTrap(std::string name);
         ScavTrap(const ScavTrap &ref);
         ~ScavTrap();

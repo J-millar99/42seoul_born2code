@@ -1,16 +1,11 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap() : ClapTrap("dummy", 30, 50, 100)
-{
-    std::cout << "FragTrap: dummy is running" << std::endl;
-}
-
-FragTrap::FragTrap(std::string name) : ClapTrap(name, 30, 50, 100)
+FragTrap::FragTrap(std::string name) : ClapTrap(name, 30, 100, 100)
 {
     std::cout << "FragTrap: " + name + " is running" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &ref) : ClapTrap(ref.getName(), 30, 50, 100)
+FragTrap::FragTrap(const FragTrap &ref) : ClapTrap(ref.getName(), 30, 100, 100)
 {
     std::cout << "FragTrap: " + getName() + " is running" << std::endl;
 }
