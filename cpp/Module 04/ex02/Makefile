@@ -2,7 +2,7 @@ NAME = a.out
 CPP = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o : %.cpp %.hpp

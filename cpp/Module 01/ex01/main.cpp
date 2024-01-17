@@ -1,13 +1,18 @@
 #include "Zombie.hpp"
 
+
 int main()
 {
 	Zombie zombie("Foo");
-	Zombie* _zombieHorde = zombie.zombieHorde(6, "Foo's zombieHorde");
+	Zombie* _zombieHorde = zombie.zombieHorde(3, "Foo's zombieHorde");
 
-	for (int i = 0; i < 6; i++)
-		_zombieHorde[i].announce();
+	if (!_zombieHorde)
+		return 1;
+	else
+	{
+		for (int i = 0; i < 3; i++)
+			_zombieHorde[i].announce();
+	}
 	delete []_zombieHorde;
-	// exit(0);
 	return 0;
 }

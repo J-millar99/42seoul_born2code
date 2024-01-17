@@ -19,7 +19,12 @@ static std::string &replaceLine(t_String sed, std::string &line)
 	while ((found = line.find(sed.s1, found)) != std::string::npos)
 	{
 		line = line.substr(0, found) + sed.s2 + line.substr(found + sed.s1.length());
-		found += sed.s2.length() - 1;
+		if (sed.s2.length() == 0)
+			found += 0;
+		else if (sed.s1[0] == sed.s2[sed.s2.length() - 1])
+			found += sed.s2.length();
+		else
+			found += sed.s2.length() - 1;
 	}
 	return (line);
 }
