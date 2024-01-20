@@ -9,8 +9,9 @@ ClapTrap::ClapTrap(std::string name) : _health(10), _energy(10), _attack(0)
     std::cout << name + " is running" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name, int _atk, int _eng, int _hel) // ScavTrap
+ClapTrap::ClapTrap(std::string name, int _hel, int _eng, int _atk)
 {
+    std::cout << "ClapTrap constructor for Another Trap" << std::endl;
     this->name = name;
     _attack = _atk;
     _energy = _eng;
@@ -29,6 +30,8 @@ ClapTrap::~ClapTrap()
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &ref)
 {
+    if (this == &ref)
+        return (*this);
     _attack = ref._attack;
     _energy = ref._energy;
     _health = ref._health;

@@ -25,6 +25,8 @@ ClapTrap::~ClapTrap()
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &ref)
 {
+    if (this == &ref)
+        return (*this);
     _attack = ref._attack;
     _energy = ref._energy;
     _health = ref._health;

@@ -86,7 +86,7 @@ static int	make_system_info1(char **argv, t_sys *system)
 	long long	num;
 
 	num = ft_atoll(argv[0]);
-	if (num == -1 || num == 0 || num > 200)
+	if (num == -1 || num == 0)
 		return (0);
 	system->num_of_philo = (t_uint) num;
 	num = ft_atoll(argv[1]);

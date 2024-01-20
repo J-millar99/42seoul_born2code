@@ -1,11 +1,11 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 20, 50, 100)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 20)
 {
     std::cout << "ScavTrap: " + name + " is running" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &ref) : ClapTrap(ref.getName(), 20, 50, 100)
+ScavTrap::ScavTrap(const ScavTrap &ref) : ClapTrap(ref.getName(), 100, 50, 20)
 {
     std::cout << "ScavTrap: " + getName() + " is running" << std::endl;
 }
@@ -17,6 +17,8 @@ ScavTrap::~ScavTrap()
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &ref)
 {
+    if (this == &ref)
+        return (*this);
     setName(ref.getName());
     setAttack(ref.getAttack());
     setEnergy(ref.getEnergy());

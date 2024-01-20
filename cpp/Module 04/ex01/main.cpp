@@ -43,8 +43,8 @@ int main()
 	// 	delete animalArray[k];
 
 	/*	shallow / deep	*/
-	// Dog *dog = new Dog();
-	// Dog d1(*dog);
+	Dog *dog = new Dog();
+	Dog d1(*dog);
 
 	// std::cout << dog->getType() + ": ";
 	// ptrHeldAddr(dog->getBrainPtr());

@@ -5,9 +5,9 @@ DiamondTrap::DiamondTrap(std::string name)
 	this->name = name;
 	setName(name + "_clap_name");
     setHealth(FT_HEALTH);
-    setEnergy(2);
+    setEnergy(ST_ENERGY);
     setAttack(FT_ATTACK);
-	std::cout << name + " is running" << std::endl;
+	std::cout << "DiamondTrap: " + name + " is running" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &ref)
@@ -17,7 +17,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap &ref)
     setAttack(ref.getAttack());
     setEnergy(ref.getEnergy());
     setHealth(ref.getHealth());
-	std::cout << "DiamondTrap: " + getName() + " is running" << std::endl;
+	std::cout << "DiamondTrap: " + name + " is running" << std::endl;
 }
 
 DiamondTrap::~DiamondTrap()
@@ -27,11 +27,13 @@ DiamondTrap::~DiamondTrap()
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &ref)
 {
+    if (this == &ref)
+        return (*this);
     setName(ref.getName());
     setAttack(ref.getAttack());
     setEnergy(ref.getEnergy());
     setHealth(ref.getHealth());
-    std::cout << "DiamondTrap: " + getName() + " is running" << std::endl;
+    std::cout << "DiamondTrap: " + name + " is running" << std::endl;
     return *this;
 }
 

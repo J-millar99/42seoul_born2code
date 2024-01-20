@@ -22,6 +22,4 @@ class Point
         static int absoluteValue(int num);
 };
 
-bool bsp(Point const a, Point const b, Point const c, Point const point);
-
 #endif

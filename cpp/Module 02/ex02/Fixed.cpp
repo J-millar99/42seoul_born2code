@@ -54,7 +54,7 @@ std::ostream& operator<<(std::ostream& os, const Fixed &ref)
 
 Fixed &Fixed::operator=(const Fixed &ref)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	// std::cout << "Copy assignment operator called" << std::endl;
 	fixedPointNum = ref.getRawBits();
 	return (*this);
 }

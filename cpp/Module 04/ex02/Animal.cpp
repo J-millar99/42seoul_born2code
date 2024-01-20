@@ -28,10 +28,11 @@ Animal::~Animal()
 	std::cout << this << std::endl;
 }
 
-void Animal::makeSound() const
-{
-	
-}
+// void Animal::makeSound() const
+// {
+// 	std::cout << "Animal: (onomatopoeia) in ";
+// 	std::cout << this << std::endl;
+// }
 
 std::string Animal::getType() const
 {

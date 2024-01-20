@@ -22,8 +22,8 @@ class DiamondTrap : public ScavTrap, public FragTrap
 			FT_ENERGY = 100,
 			FT_ATTACK = 30
 		};
-		std::string name; //상속한 ClapTrap의 name과 동일해야한다.
 		DiamondTrap();
+		std::string name;
 	
 	public:
 		DiamondTrap(std::string name);

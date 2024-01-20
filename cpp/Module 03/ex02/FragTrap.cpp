@@ -1,11 +1,11 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(std::string name) : ClapTrap(name, 30, 100, 100)
+FragTrap::FragTrap(std::string name) : ClapTrap(name, 100, 100, 30)
 {
     std::cout << "FragTrap: " + name + " is running" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &ref) : ClapTrap(ref.getName(), 30, 100, 100)
+FragTrap::FragTrap(const FragTrap &ref) : ClapTrap(ref.getName(), 100, 100, 30)
 {
     std::cout << "FragTrap: " + getName() + " is running" << std::endl;
 }
@@ -17,6 +17,8 @@ FragTrap::~FragTrap()
 
 FragTrap &FragTrap::operator=(const FragTrap &ref)
 {
+    if (this == &ref)
+        return (*this);
     setName(ref.getName());
     setAttack(ref.getAttack());
     setEnergy(ref.getEnergy());

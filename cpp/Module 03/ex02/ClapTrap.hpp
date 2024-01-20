@@ -9,6 +9,8 @@ class ClapTrap
     private:
         std::string name;
         unsigned int _health, _energy, _attack;
+
+    protected:
         ClapTrap();
 
     public:

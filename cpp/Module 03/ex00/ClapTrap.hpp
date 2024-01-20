@@ -8,9 +8,9 @@ class ClapTrap
     private:
         std::string name;
         unsigned int _health, _energy, _attack;
-		ClapTrap();
 
     public:
+		ClapTrap();
         ClapTrap(std::string name);
         ClapTrap(const ClapTrap &ref);
         ~ClapTrap();

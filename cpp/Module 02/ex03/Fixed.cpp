@@ -13,7 +13,7 @@ Fixed::Fixed(const Fixed &ref)
 Fixed::Fixed(const int &param)
 {
 	// std::cout << "Int constructor called" << std::endl;
-	fixedPointNum = param * (1 << fractionalBit);
+	fixedPointNum = param << fractionalBit;
 }
 
 Fixed::Fixed(const float &param)

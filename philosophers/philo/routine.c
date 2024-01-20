@@ -45,9 +45,9 @@ static void	eating(t_philo *philo)
 	pthread_mutex_lock(philo->l_fork);
 	message("has taken a fork", philo);
 	message("is eating", philo);
-	ft_usleep(philo->system->time_to_eat, philo);
 	philo->lifespan = get_time();
 	philo->num_of_meals++;
+	ft_usleep(philo->system->time_to_eat, philo);
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
 }
