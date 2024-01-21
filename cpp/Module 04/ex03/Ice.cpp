@@ -5,6 +5,10 @@ Ice::Ice()
     type = "ice";
 }
 
+Ice::Ice(const AMateria &ref)
+{
+    type = ref.getType();
+}
 
 Ice::Ice(const Ice &ref)
 {
@@ -13,6 +17,8 @@ Ice::Ice(const Ice &ref)
 
 Ice &Ice::operator=(const Ice &ref)
 {
+    if (this == &ref)
+        return (*this);
     type = ref.type;
     return (*this);
 }

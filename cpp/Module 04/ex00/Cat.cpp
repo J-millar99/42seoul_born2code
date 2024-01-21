@@ -14,6 +14,8 @@ Cat::Cat(const Cat &ref)
 
 Cat &Cat::operator=(const Cat &ref)
 {
+	if (this == &ref)
+		return *this;
 	type = ref.type;
 	std::cout << "Constructor: Cat" << std::endl;
 	return *this;

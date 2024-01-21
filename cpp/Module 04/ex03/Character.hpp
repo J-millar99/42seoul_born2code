@@ -2,27 +2,19 @@
 #define CHARACTER_HPP
 
 #include "AMateria.hpp"
-#include "IMateriaSource.hpp"
-#include "ICharacter.hpp"
-#include "Ice.hpp"
 #include "Cure.hpp"
+#include "Ice.hpp"
 
-class Character
+class Character : public ICharacter
 {
     private:
-        typedef struct
-        {
-            AMateria *remain;
-            void *next;
-        } Floor;
-
-        Floor *floor;
-        int slot;
         std::string name;
-        AMateria *inventory[4];
-        Character();
+        AMateria* inventory[4];
+        int slot[4];
 
     public:
+        Character();
+        ~Character();
         Character(std::string const &name);
         Character(const Character &ref);
         Character &operator=(const Character &ref);
@@ -35,10 +27,6 @@ class Character
         void inventorySet();
         void inventoryClear();
         void inventoryCopy(AMateria* const *src);
-
-        /*  IMateriaSource   */
-        void learnMateria(AMateria *src);
-        AMateria *createMateria(std::string const &type);
 };
 
 #endif

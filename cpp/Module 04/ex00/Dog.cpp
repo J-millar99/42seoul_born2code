@@ -14,6 +14,8 @@ Dog::Dog(const Dog &ref)
 
 Dog &Dog::operator=(const Dog &ref)
 {
+	if (this == &ref)
+		return *this;
 	type = ref.type;
 	std::cout << "Constructor: Dog" << std::endl;
 	return *this;

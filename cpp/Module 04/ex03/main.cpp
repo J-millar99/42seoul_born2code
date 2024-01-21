@@ -1,31 +1,28 @@
-#include <iostream>
+#include "AMateria.hpp"
+#include "MateriaSource.hpp"
+#include "Character.hpp"
 
-class A
-{
-    public:
-        void func() {std::cout << "hi" << std::endl; }
-};
-
-void f(A **ptr)
-{
-    for (int i = 0; i < 3; i++)
-        std::cout << ptr[i] << std::endl;
-}
+// void f()
+// {
+//     system("leaks a.out");
+// }
 
 int main()
 {
-    A *arr[3];
-
-    for (int i = 0; i < 3; i++)
-    {
-        A *a = new A();
-        arr[i] = a;
-    }
-    f(arr);
-    for (int j = 0; j < 3; j++)
-    {
-        delete arr[j];
-        arr[j] = NULL;
-    }
-    f(arr);
+    IMateriaSource *src = new MateriaSource();
+    src->learnMateria(new Ice());
+    src->learnMateria(new Cure());
+    ICharacter *me = new Character("me");
+    AMateria *tmp;
+    tmp = src->createMateria("ice");
+    me->equip(tmp);
+    tmp = src->createMateria("cure");
+    me->equip(tmp);
+    ICharacter *bob = new Character("bob");
+    me->use(0, *bob);
+    me->use(1, *bob);
+    delete bob;
+    delete me;
+    delete src;
+    return 0;
 }

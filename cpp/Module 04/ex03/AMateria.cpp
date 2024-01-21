@@ -1,14 +1,29 @@
 #include "AMateria.hpp"
 
-AMateria::AMateria(std::string const &type) { }
+AMateria::AMateria()
+{
+    type = "";
+}
 
-AMateria::AMateria() { }
+AMateria::AMateria(const AMateria &ref)
+{
+    type = ref.type;
+}
 
-AMateria::AMateria(const AMateria &ref) { }
-
-AMateria &AMateria::operator=(const AMateria &ref) { }
+AMateria &AMateria::operator=(const AMateria &ref)
+{
+    if (this == &ref)
+        return *this;
+    type = ref.type;
+    return *this;
+}
 
 AMateria::~AMateria() { }
+
+AMateria::AMateria(std::string const &type)
+{
+    this->type = type;
+}
 
 std::string const &AMateria::getType() const
 {
@@ -17,5 +32,5 @@ std::string const &AMateria::getType() const
 
 void AMateria::use(ICharacter &target)
 {
-    
+    std::cout << target.getName();
 }

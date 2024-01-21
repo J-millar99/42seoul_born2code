@@ -19,6 +19,8 @@ Cat::Cat(const Cat &ref)
 
 Cat &Cat::operator=(const Cat &ref)
 {
+	if (this == &ref)
+		return *this;
 	_brain = new Brain();
 	type = ref.type;
 	copyStringArray(ref._brain->getIdeas(), _brain->getIdeas(), 100);

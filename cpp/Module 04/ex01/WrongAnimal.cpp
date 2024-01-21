@@ -14,6 +14,8 @@ WrongAnimal::WrongAnimal(const WrongAnimal &ref)
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &ref)
 {
+	if (this == &ref)
+		return *this;
 	type = ref.type;
 	std::cout << "Constructor: WrongAnimal" << std::endl;
 	return *this;

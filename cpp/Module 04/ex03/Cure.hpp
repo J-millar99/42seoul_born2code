@@ -8,6 +8,7 @@ class Cure : public AMateria
     public:
         Cure();
         Cure(const Cure &ref);
+        Cure(const AMateria &ref);
         Cure &operator=(const Cure &ref);
         ~Cure();
 

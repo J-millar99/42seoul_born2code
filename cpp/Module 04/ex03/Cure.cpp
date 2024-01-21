@@ -10,8 +10,15 @@ Cure::Cure(const Cure &ref)
     type = ref.type;
 }
 
+Cure::Cure(const AMateria &ref)
+{
+    type = ref.getType();
+}
+
 Cure &Cure::operator=(const Cure &ref)
 {
+    if (this == &ref)
+        return (*this);
     type = ref.type;
     return (*this);
 }

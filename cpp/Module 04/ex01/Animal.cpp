@@ -16,6 +16,8 @@ Animal::Animal(const Animal &ref)
 
 Animal &Animal::operator=(const Animal &ref)
 {
+	if (this == &ref)
+		return *this;
 	type = ref.type;
 	std::cout << "Constructor: Animal in ";
 	std::cout << this << std::endl;

@@ -20,6 +20,8 @@ Dog::Dog(const Dog &ref)
 
 Dog &Dog::operator=(const Dog &ref)
 {
+	if (this == &ref)
+		return *this;
 	_brain = new Brain();
 	type = ref.type;
 	copyStringArray(ref._brain->getIdeas(), _brain->getIdeas(), 100);

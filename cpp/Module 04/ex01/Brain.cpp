@@ -15,6 +15,8 @@ Brain::Brain(const Brain &ref)
 
 Brain &Brain::operator=(const Brain &ref)
 {
+	if (this == &ref)
+		return *this;
 	copyStringArray(ref.ideas, ideas, 100);
 	std::cout << "Constructor: Brain in ";
 	std::cout << this << std::endl;

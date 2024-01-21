@@ -14,6 +14,8 @@ WrongCat::WrongCat(const WrongCat &ref)
 
 WrongCat &WrongCat::operator=(const WrongCat &ref)
 {
+	if (this == &ref)
+		return *this;
 	type = ref.type;
 	std::cout << "Constructor: WrongCat" << std::endl;
 	return *this;

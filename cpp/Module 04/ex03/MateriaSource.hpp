@@ -3,18 +3,25 @@
 
 #include "AMateria.hpp"
 #include "IMateriaSource.hpp"
+#include "Cure.hpp"
+#include "Ice.hpp"
 
 class MateriaSource : public IMateriaSource
 {
     private:
-
+        AMateria *memory[4];
+        std::string letter[4];
     public:
         MateriaSource();
         MateriaSource(const MateriaSource &ref);
         MateriaSource &operator=(const MateriaSource &ref);
         ~MateriaSource();
-        void learnMateria(AMateria *) = 0;
-        AMateria *createMateria(std::string const &type) = 0;
+        void learnMateria(AMateria *);
+        AMateria *createMateria(std::string const &type);
+
+        void inventorySet();
+        void inventoryClear();
+        void inventoryCopy(AMateria* const *src);
 };
 
 #endif

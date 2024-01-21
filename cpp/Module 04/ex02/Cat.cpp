@@ -36,7 +36,7 @@ Cat::~Cat()
 
 void Cat::makeSound() const
 {
-	std::cout << "Cat: miaou in " << std::endl;
+	std::cout << "Cat: miaou in ";
 	std::cout << this << std::endl;
 }
 
