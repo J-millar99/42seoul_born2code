@@ -17,10 +17,10 @@ int main()
 	atexit(f);
 
 	/*	leaks	*/
-	const Animal *j = new Dog();
-	const Animal *i = new Cat();
-	delete j; // should not create a leak delete i;
-	delete i;
+	// const Animal *j = new Dog();
+	// const Animal *i = new Cat();
+	// delete j; // should not create a leak delete i;
+	// delete i;
 
 	/*	Constructor / Destructor */
 	// Animal *animalArray[4];
@@ -43,13 +43,21 @@ int main()
 	// 	delete animalArray[k];
 
 	/*	shallow / deep	*/
-	// Dog *dog = new Dog();
-	// Dog d1(*dog);
+	Dog *d1 = new Dog();
+	Dog d2(*d1);
+	Dog d3 = d2;
+	Dog d4;
 
-	// std::cout << dog->getType() + ": ";
-	// ptrHeldAddr(dog->getBrainPtr());
-	// std::cout << d1.getType() + ": ";
-	// ptrHeldAddr(d1.getBrainPtr());
-	// delete dog;
+	d4 = d3;
+
+	std::cout << d1->getType() + ": ";
+	ptrHeldAddr(d1->getBrainPtr());
+	std::cout << d2.getType() + ": ";
+	ptrHeldAddr(d2.getBrainPtr());
+	std::cout << d3.getType() + ": ";
+	ptrHeldAddr(d3.getBrainPtr());
+	std::cout << d4.getType() + ": ";
+	ptrHeldAddr(d4.getBrainPtr());
+	delete d1;
 	return 0;
 }

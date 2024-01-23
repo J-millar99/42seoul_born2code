@@ -9,9 +9,8 @@ class Character : public ICharacter
 {
     private:
         std::string name;
-        AMateria* inventory[4];
         int slot[4];
-
+        AMateria* inventory[4];
     public:
         Character();
         ~Character();
@@ -23,7 +22,8 @@ class Character : public ICharacter
         void equip(AMateria* m);
         void unequip(int idx);
         void use(int idx, ICharacter &target);
-
+        
+        AMateria *unequipPtr(int idx);
         void inventorySet();
         void inventoryClear();
         void inventoryCopy(AMateria* const *src);

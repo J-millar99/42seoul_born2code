@@ -29,23 +29,21 @@ void MateriaSource::learnMateria(AMateria *m)
 {
     int idx;
 
+    if (!m)
+        return ;
     for (idx = 0; idx < 4; idx++)
     {
         if (letter[idx] == "")
         {
+            memory[idx] = m;
             if (m->getType() == "ice")
-            {
-                memory[idx] = new Ice(*m);
                 letter[idx] = "ice";
-            }
             else if (m->getType() == "cure")
-            {
-                memory[idx] = new Cure(*m);
                 letter[idx] = "cure";
-            }
-            break ;
+            return ;
         }
     }
+    delete m;
 }
 
 AMateria *MateriaSource::createMateria(std::string const &type)
@@ -54,11 +52,8 @@ AMateria *MateriaSource::createMateria(std::string const &type)
 
     for (idx = 3; idx > -1; idx--)
     {
-        if (letter[idx] != "")
-        {
-            if (type == letter[idx])
-                return memory[idx];
-        }
+        if (memory[idx] && type == memory[idx]->getType())
+            return memory[idx]->clone();
     }
     return NULL;
 }
@@ -89,16 +84,11 @@ void MateriaSource::inventoryCopy(AMateria* const *src)
     {
         if (src[i])
         {
+            memory[i] = src[i]->clone();
             if (src[i]->getType() == "ice")
-            {
-                memory[i] = new Ice(*src[i]);
                 letter[i] = "ice";
-            }
             else if(src[i]->getType() == "cure")
-            {
-                memory[i] = new Cure(*src[i]);
                 letter[i] = "cure";
-            }
         }
     }
 }

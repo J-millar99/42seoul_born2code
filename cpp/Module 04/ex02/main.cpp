@@ -2,15 +2,15 @@
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 
-// void f()
-// {
-// 	system("leaks a.out");
-// }
+void f()
+{
+	system("leaks a.out");
+}
 
 int main()
 {
-	// atexit(f);
-	// Animal test0; //compile error: abstract class is not instantiable
+	atexit(f);
+	// Animal abstractClass; //compile error: abstract class is not instantiable
 	const Animal *i = new Cat();
 	const Animal *j = new Dog();
 
