@@ -2,8 +2,14 @@
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 
+void f()
+{
+	system("leaks a.out");
+}
+
 int main()
 {
+	atexit(f);
 	std::cout << "-----True case-----" << std::endl;
 	const Animal *meta = new Animal();
 	const Animal *i = new Cat();
@@ -14,8 +20,8 @@ int main()
 
 	i->makeSound(); // will output the cat sound!
 	j->makeSound();
-
 	meta->makeSound();
+
 	delete meta;
 	delete i;
 	delete j;
