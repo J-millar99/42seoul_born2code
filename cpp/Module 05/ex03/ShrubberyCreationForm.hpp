@@ -21,7 +21,6 @@ class ShrubberyCreationForm : public AForm
         void createASCII_TreeFile() const;
         std::string ASCII_Tree() const;
         bool execute(const Bureaucrat &executor) const;
-        static AForm *clone(const std::string &target);
 };
 
 #endif

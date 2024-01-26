@@ -18,6 +18,10 @@ class Intern
         Intern &operator=(const Intern &ref);
 
         AForm *makeForm(const std::string &formName, const std::string &target);
+        static AForm *cloneShrubberyCreationForm(const std::string &target);
+        static AForm *cloneRobotomyRequestForm(const std::string &target);
+        static AForm *clonePresidentialPardonForm(const std::string &target);
+        static AForm *cloneNullForm(const std::string &target);
 };
 
 #endif

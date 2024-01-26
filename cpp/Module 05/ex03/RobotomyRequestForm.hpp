@@ -3,6 +3,7 @@
 
 #include "AForm.hpp"
 #include <cmath>
+#include <ctime>
 
 class Bureaucrat;
 class AForm;
@@ -17,9 +18,9 @@ class RobotomyRequestForm : public AForm
     public:
         ~RobotomyRequestForm();
         RobotomyRequestForm(const std::string formName);
+        void drillingNoiseAnimation() const;
         void informRobotomized() const;
         bool execute(const Bureaucrat &executor) const;
-        static AForm *clone(const std::string &target);
 };
 
 #endif

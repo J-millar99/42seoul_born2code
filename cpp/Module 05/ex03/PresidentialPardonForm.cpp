@@ -40,8 +40,3 @@ bool PresidentialPardonForm::execute(const Bureaucrat &executor) const
         GradeTooLowException();
     return true;
 }
-
-AForm *PresidentialPardonForm::clone(const std::string &target)
-{
-    return new PresidentialPardonForm(target);
-}

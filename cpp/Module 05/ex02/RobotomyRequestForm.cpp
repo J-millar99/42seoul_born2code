@@ -31,7 +31,7 @@ void RobotomyRequestForm::informRobotomized() const
 {
     srand(time(NULL));
     std::cout << "(Drilling noises...)" << std::endl;
-    std::cout << "Robotomize Mode : ";
+    std::cout << getName() + "'s Robotomize Mode : ";
     rand() % 2 ? std::cout << "success\n" : std::cout << "fail\n";
 }
 

@@ -16,15 +16,44 @@ Intern &Intern::operator=(const Intern &ref)
     return *this;
 }
 
+AForm *Intern::cloneShrubberyCreationForm(const std::string &target)
+{
+    return new ShrubberyCreationForm(target);
+}
+
+
+AForm *Intern::cloneRobotomyRequestForm(const std::string &target)
+{
+    return new RobotomyRequestForm(target);
+}
+
+
+AForm *Intern::clonePresidentialPardonForm(const std::string &target)
+{
+    return new PresidentialPardonForm(target);
+}
+
+AForm *Intern::cloneNullForm(const std::string &target)
+{
+    std::cerr << target << std::endl;
+    return NULL;
+}
+
 AForm *Intern::makeForm(const std::string &formName, const std::string &target)
 {
     std::string form[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
     memberFunctionPTR formArr[4]
-    = {&ShrubberyCreationForm::clone, &RobotomyRequestForm::clone, &PresidentialPardonForm::clone, &AForm::nullForm};
-    int idx = 0;
-
+    = {
+        &Intern::cloneShrubberyCreationForm,
+        &Intern::cloneRobotomyRequestForm, 
+        &Intern::clonePresidentialPardonForm,
+        &Intern::cloneNullForm
+      };
+    int idx = 3;
     for (int i = 0; i < 3; i++)
-        form[i] == formName ? idx = i : idx = 3;
-    idx != 3 ? std::cout << "Intern create " + formName << std::endl : std::cerr << "undefined form" << std::endl;
+        form[i] == formName ? idx = i : 0;
+    idx == 3 ? 
+    std::cerr << "undefined form: " :
+    std::cout << "Intern create " + formName << std::endl;
     return (formArr[idx])(target);
 }
