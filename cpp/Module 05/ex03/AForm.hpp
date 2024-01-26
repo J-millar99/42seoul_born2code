@@ -25,6 +25,7 @@ class AForm
         unsigned int getGradeToSign() const;
         unsigned int getGradeToExecute() const;
         virtual bool execute(const Bureaucrat &executor) const = 0;
+        static AForm *nullForm(std::string &target);
         class FormLowException : public std::exception
         {
             public:

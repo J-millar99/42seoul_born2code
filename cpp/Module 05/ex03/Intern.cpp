@@ -1,4 +1,5 @@
 #include "Intern.hpp"
+typedef AForm* (*memberFunctionPTR)(const std::string&);
 
 Intern::Intern() { }
 
@@ -18,27 +19,12 @@ Intern &Intern::operator=(const Intern &ref)
 AForm *Intern::makeForm(const std::string &formName, const std::string &target)
 {
     std::string form[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+    memberFunctionPTR formArr[4]
+    = {&ShrubberyCreationForm::clone, &RobotomyRequestForm::clone, &PresidentialPardonForm::clone, &AForm::nullForm};
     int idx = 0;
 
     for (int i = 0; i < 3; i++)
-    {
-        if (form[i] == formName)
-            idx = i;
-    }
-
-    switch (idx)
-    {
-    case 0:
-        std::cout << "Intern create " + formName << std::endl;
-        return new ShrubberyCreationForm(target);
-    case 1:
-        std::cout << "Intern create " + formName << std::endl;
-        return new RobotomyRequestForm(target);
-    case 2:
-        std::cout << "Intern create " + formName << std::endl;
-        return new PresidentialPardonForm(target);
-    default:
-        std::cerr << "undefined form" << std::endl;
-        return NULL;
-    }
+        form[i] == formName ? idx = i : idx = 3;
+    idx != 3 ? std::cout << "Intern create " + formName << std::endl : std::cerr << "undefined form" << std::endl;
+    return (formArr[idx])(target);
 }

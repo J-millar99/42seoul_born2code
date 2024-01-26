@@ -43,3 +43,8 @@ bool RobotomyRequestForm::execute(const Bureaucrat &executor) const
         GradeTooLowException();
     return true;
 }
+
+AForm *RobotomyRequestForm::clone(const std::string &target)
+{
+    return new RobotomyRequestForm(target);
+}

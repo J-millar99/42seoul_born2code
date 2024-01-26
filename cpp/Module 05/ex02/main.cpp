@@ -7,13 +7,16 @@ int main()
 {
        try
        {
-              Bureaucrat c("c", 2);
-              AForm *t = new PresidentialPardonForm("test");
+              Bureaucrat c("c", 1);
+              AForm *t = new ShrubberyCreationForm("test");
+              // AForm *t = new RobotomyRequestForm("test");
+              // AForm *t = new PresidentialPardonForm("test");
               // c.executeForm(*t);
               t->beSigned(c);
               c.executeForm(*t);
+              delete t;
        }
-       catch(std::exception & e)
+       catch (std::exception &e)
        {
               std::cerr << e.what() << std::endl;
        }

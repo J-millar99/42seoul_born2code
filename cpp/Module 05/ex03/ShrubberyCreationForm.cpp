@@ -58,3 +58,8 @@ bool ShrubberyCreationForm::execute(const Bureaucrat &executor) const
         GradeTooLowException();
     return true;
 }
+
+AForm *ShrubberyCreationForm::clone(const std::string &target)
+{
+    return new ShrubberyCreationForm(target);
+}

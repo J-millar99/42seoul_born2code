@@ -18,6 +18,7 @@ class PresidentialPardonForm : public AForm
         ~PresidentialPardonForm();
         void informPardoned() const;
         bool execute(const Bureaucrat &executor) const;
+        static AForm *clone(const std::string &target);
 };
 
 #endif

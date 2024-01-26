@@ -19,6 +19,7 @@ class RobotomyRequestForm : public AForm
         RobotomyRequestForm(const std::string formName);
         void informRobotomized() const;
         bool execute(const Bureaucrat &executor) const;
+        static AForm *clone(const std::string &target);
 };
 
 #endif

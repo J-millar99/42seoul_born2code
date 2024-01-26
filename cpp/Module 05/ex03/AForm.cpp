@@ -82,3 +82,9 @@ const char *AForm::FormHighException::what() const throw()
 {
     return "FormHighException";
 }
+
+AForm *AForm::nullForm(std::string &target)
+{
+    (void) target;
+    return NULL;
+}
