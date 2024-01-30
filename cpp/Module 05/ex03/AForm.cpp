@@ -81,4 +81,8 @@ const char *AForm::FormLowException::what() const throw()
 const char *AForm::FormHighException::what() const throw()
 {
     return "FormHighException";
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4d5ecd54aeb9273abe4f31da99b2753c8f924e16
