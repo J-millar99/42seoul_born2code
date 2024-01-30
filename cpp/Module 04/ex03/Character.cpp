@@ -14,7 +14,6 @@ Character::Character(std::string const &name)
 
 Character::Character(const Character &ref)
 {
-    std::cout << "hi\n";
     inventoryClear();
     this->name = ref.name;
     inventoryCopy(ref.inventory);
