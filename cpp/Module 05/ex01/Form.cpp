@@ -17,13 +17,9 @@ Form &Form::operator=(const Form &ref)
 Form::Form(const std::string _name, const unsigned int _gradeToSign, const unsigned int _gradeToExecute)
 : name(_name), sign(false), gradeToSign(_gradeToSign), gradeToExecute(_gradeToExecute)
 {
-    if (_gradeToSign < 1)
+    if (_gradeToSign < 1 || _gradeToExecute < 1)
         GradeTooHighException();
-    else if (_gradeToSign > 150)
-        GradeTooLowException();
-    if (_gradeToExecute < 1)
-        GradeTooHighException();
-    else if (_gradeToExecute > 150)
+    else if (_gradeToSign > 150 || _gradeToExecute > 150)
         GradeTooLowException();
 }
 
@@ -33,7 +29,6 @@ void Form::beSigned(const Bureaucrat &ref)
 {
     if (ref.getGrade() > gradeToSign)
         GradeTooLowException();
-    ref.signForm(*this);
     sign = true;
 }
 

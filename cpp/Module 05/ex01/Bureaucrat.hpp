@@ -29,7 +29,7 @@ class Bureaucrat
         void increaseGrade();
         void decreaseGrade();
     
-        void signForm(const Form &ref) const;
+        void signForm(Form &ref);
         class BureaucratLowException : public std::exception
         {
             public:

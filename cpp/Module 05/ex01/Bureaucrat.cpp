@@ -45,25 +45,25 @@ unsigned int Bureaucrat::getGrade() const
 
 void Bureaucrat::increaseGrade()
 {
-    if (grade >= 150)
-        GradeTooLowException();
-    else
-        ++grade;
-}
-
-void Bureaucrat::decreaseGrade()
-{
     if (grade <= 1)
         GradeTooHighException();
     else
         --grade;
 }
 
-void Bureaucrat::signForm(const Form &ref) const
+void Bureaucrat::decreaseGrade()
 {
-    ref.getSign() ? 
+    if (grade >= 150)
+        GradeTooLowException();
+    else
+        ++grade;
+}
+
+void Bureaucrat::signForm(Form &ref)
+{
+    ref.getSign() ?
     std::cout << name + " couldn't sign " + ref.getName() + " because " + "already signed\n" :
-    std::cout << name + " singed " + ref.getName() << std::endl;
+    (ref.beSigned(*this), std::cout << name + " singed " + ref.getName() << std::endl);
 }
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat& ref)
