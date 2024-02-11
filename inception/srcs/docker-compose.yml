@@ -1,0 +1,142 @@
+version: '3.9'
+
+services:
+
+  mariadb:
+    build:
+      context: ./requirements/mariadb/
+      dockerfile: Dockerfile
+    networks:
+      inception_network:
+        aliases:
+          - db
+    env_file:
+      - .env
+    volumes:
+      - db_volume:/var/lib/mysql
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: ./requirements/nginx/
+      dockerfile: Dockerfile
+    depends_on:
+      - wordpress
+      - adminer
+      - website
+      - portainer
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+      - "9042:9042"
+    networks:
+      inception_network:
+        aliases:
+          - nginx
+    env_file:
+      - .env
+    volumes:
+      - ${CERTS_SSL}:/etc/nginx/certs/
+      - wp_volume:/var/www/html
+    restart: unless-stopped
+
+  wordpress:
+    build:
+      context: ./requirements/wordpress/
+      dockerfile: Dockerfile
+    depends_on:
+      - mariadb
+    networks:
+      inception_network:
+        aliases:
+          - wp
+    env_file:
+      - .env
+    volumes:
+      - wp_volume:/var/www/html
+    restart: unless-stopped
+
+  redis:
+    build:
+      context: ./requirements/bonus/redis
+      dockerfile: Dockerfile
+    depends_on:
+      - wordpress
+    networks:
+      inception_network:
+        aliases:
+          - rds
+    restart: unless-stopped
+
+  ftp:
+    build:
+      context: ./requirements/bonus/ftp
+      dockerfile: Dockerfile
+    depends_on:
+    - wordpress
+    ports:
+      - "21:21"
+    networks:
+      inception_network:
+        aliases:
+          - ftp
+    env_file:
+      - .env
+    volumes:
+      - wp_volume:/ftp
+    restart: unless-stopped
+
+  adminer:
+    build:
+      context: ./requirements/bonus/adminer
+      dockerfile: Dockerfile
+    depends_on:
+    - mariadb
+    networks:
+      inception_network:
+        aliases:
+          - adm
+    restart: unless-stopped
+
+  website:
+    build:
+      context: ./requirements/bonus/static_website
+      dockerfile: Dockerfile
+    networks:
+      inception_network:
+        aliases:
+          - web
+    restart: unless-stopped
+  
+  portainer:
+    build:
+      context: ./requirements/bonus/portainer
+      dockerfile: Dockerfile
+    networks:
+      inception_network:
+        aliases:
+          - portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+networks:
+  inception_network:
+
+volumes:
+  db_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "/home/${USER}/data/db_data"
+    name: "db_volume"
+
+  wp_volume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: "/home/${USER}/data/wp_data"
+    name: "wp_volume"
