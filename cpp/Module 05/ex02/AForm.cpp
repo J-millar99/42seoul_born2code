@@ -19,7 +19,6 @@ void AForm::beSigned(const Bureaucrat &ref)
 {
     if (ref.getGrade() > gradeToSign)
         GradeTooLowException();
-    ref.signForm(*this);
     sign = true;
 }
 
@@ -75,10 +74,10 @@ const char *AForm::NotSignException::what() const throw()
 
 const char *AForm::FormLowException::what() const throw()
 {
-    return "FormLowException";
+    return "GradeTooLowException";
 }
 
 const char *AForm::FormHighException::what() const throw()
 {
-    return "FormHighException";
+    return "GradeTooHighException";
 }

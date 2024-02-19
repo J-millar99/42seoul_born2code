@@ -1,4 +1,4 @@
-#include "Bureaucrat.hpp"
+ #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : name("const bureaucrat"), grade(150) { }
 
@@ -45,7 +45,7 @@ unsigned int Bureaucrat::getGrade() const
 
 void Bureaucrat::increaseGrade()
 {
-    if (grade <= 1)
+    if (grade == 1)
         GradeTooHighException();
     else
         --grade;
@@ -53,7 +53,7 @@ void Bureaucrat::increaseGrade()
 
 void Bureaucrat::decreaseGrade()
 {
-    if (grade >= 150)
+    if (grade == 150)
         GradeTooLowException();
     else
         ++grade;

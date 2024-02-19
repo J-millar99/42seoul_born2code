@@ -12,20 +12,20 @@ ShrubberyCreationForm::~ShrubberyCreationForm() { }
 ShrubberyCreationForm::ShrubberyCreationForm()
 : AForm("Shrubbery", 145, 137)
 {
-    createASCII_TreeFile();
+
 }
 
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &ref)
 : AForm(ref.getName(), ref.getGradeToSign(), ref.getGradeToExecute())
 {
-    createASCII_TreeFile();
+
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string formName)
 : AForm(formName, 145, 137)
 {
-    createASCII_TreeFile();
+
 }
 
 std::string ShrubberyCreationForm::ASCII_Tree() const
@@ -56,5 +56,6 @@ bool ShrubberyCreationForm::execute(const Bureaucrat &executor) const
         SignException();
     if (getGradeToExecute() < executor.getGrade())
         GradeTooLowException();
+    createASCII_TreeFile();
     return true;
 }

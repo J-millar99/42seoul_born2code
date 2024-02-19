@@ -42,7 +42,7 @@ void Form::GradeTooLowException() const
     throw FormLowException();
 }
 
-std::string Form::getName() const
+const std::string Form::getName() const
 {
     return name;
 }
@@ -74,10 +74,10 @@ std::ostream& operator<<(std::ostream& os, const Form &ref)
 
 const char *Form::FormLowException::what() const throw()
 {
-    return "FormLowException";
+    return "GradeTooLowException";
 }
 
 const char *Form::FormHighException::what() const throw()
 {
-    return "FormHighException";
+    return "GradeTooHighException";
 }

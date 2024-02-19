@@ -8,8 +8,8 @@ int main()
        try
        {
               Bureaucrat c("c", 1);
-              AForm *t = new ShrubberyCreationForm("test");
-              // AForm *t = new RobotomyRequestForm("test");
+              // AForm *t = new ShrubberyCreationForm("test");
+              AForm *t = new RobotomyRequestForm("test");
               // AForm *t = new PresidentialPardonForm("test");
               // c.executeForm(*t);
               t->beSigned(c);

@@ -8,8 +8,8 @@ class Bureaucrat
 {
     private:
         Bureaucrat();
-        Bureaucrat &operator=(const Bureaucrat &ref);
         Bureaucrat(const Bureaucrat &ref);
+        Bureaucrat &operator=(const Bureaucrat &ref);
         const std::string name;
         unsigned int grade; // 1 (highest) ~ 150 (lowest)
 

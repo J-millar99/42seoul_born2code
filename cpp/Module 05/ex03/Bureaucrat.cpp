@@ -49,11 +49,11 @@ void Bureaucrat::decreaseGrade()
         --grade;
 }
 
-void Bureaucrat::signForm(const AForm &ref) const
+void Bureaucrat::signForm(AForm &ref)
 {
-    ref.getSign() ? 
+    ref.getSign() ?
     std::cout << name + " couldn't sign " + ref.getName() + " because " + "already signed\n" :
-    std::cout << name + " singed " + ref.getName() << std::endl;
+    (ref.beSigned(*this), std::cout << name + " singed " + ref.getName() << std::endl);
 }
 
 void Bureaucrat::executeForm(AForm const &ref) const

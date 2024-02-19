@@ -12,7 +12,7 @@ class Form
         Form(const Form &ref);
         Form &operator=(const Form &ref);
         const std::string name;
-        bool sign; // default 0
+        bool sign; // default false(0)
         const unsigned int gradeToSign;
         const unsigned int gradeToExecute;
 
@@ -22,7 +22,7 @@ class Form
         void beSigned(const Bureaucrat &ref);
         void GradeTooHighException() const;
         void GradeTooLowException() const;
-        std::string getName() const;
+        const std::string getName() const;
         bool getSign() const;
         unsigned int getGradeToSign() const;
         unsigned int getGradeToExecute() const;

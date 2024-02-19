@@ -12,19 +12,19 @@ RobotomyRequestForm::~RobotomyRequestForm() { }
 RobotomyRequestForm::RobotomyRequestForm()
 : AForm("RobotomyRequest", 72, 45)
 {
-    informRobotomized();
+
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &ref)
 : AForm(ref.getName(), ref.getGradeToSign(), ref.getGradeToExecute())
 {
-    informRobotomized();
+
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string formName)
 : AForm(formName, 72, 45)
 {
-    informRobotomized();
+
 }
 
 void RobotomyRequestForm::informRobotomized() const
@@ -41,5 +41,6 @@ bool RobotomyRequestForm::execute(const Bureaucrat &executor) const
         SignException();
     if (getGradeToExecute() < executor.getGrade())
         GradeTooLowException();
+    informRobotomized();
     return true;
 }

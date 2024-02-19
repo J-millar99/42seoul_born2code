@@ -12,19 +12,19 @@ PresidentialPardonForm::~PresidentialPardonForm() { }
 PresidentialPardonForm::PresidentialPardonForm()
 : AForm("RobotomyRequest", 25, 5)
 {
-    informPardoned();
+
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &ref)
 : AForm(ref.getName(), ref.getGradeToSign(), ref.getGradeToExecute())
 {
-    informPardoned();
+
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string formName)
 : AForm(formName, 25, 5)
 {
-    informPardoned();
+
 }
 
 void PresidentialPardonForm::informPardoned() const
@@ -38,5 +38,6 @@ bool PresidentialPardonForm::execute(const Bureaucrat &executor) const
         SignException();
     if (getGradeToExecute() < executor.getGrade())
         GradeTooLowException();
+    informPardoned();
     return true;
 }
