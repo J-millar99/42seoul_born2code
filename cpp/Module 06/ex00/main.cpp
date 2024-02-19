@@ -8,6 +8,6 @@ int main(int argc, char *argv[])
         std::cerr << "Argument Error" << std::endl;
     else
         ScalarConverter::convert(argv[1]);
-
+    
     return 0;
 }
