@@ -12,8 +12,9 @@ class DoubleConverter
 
     public:
         ~DoubleConverter();
-        static bool checkDoubleType(const std::string &str);
-
+        static bool isDoubleType(const std::string &str);
+        static void typeOfCastingFromDouble(const std::string &type);
+        static void printDouble(double dnum);
 };
 
 #endif

@@ -12,7 +12,10 @@ class IntConverter
 
     public:
         ~IntConverter();
-        static bool checkIntType(const std::string &str);
+        static bool isIntType(const std::string &str);
+        static void typeOfCastingFromInt(const std::string &type);
+        static bool outOfIntType(long long llnum);
+        static void printInt(int inum);
 };
 
 #endif

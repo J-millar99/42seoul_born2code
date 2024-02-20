@@ -5,19 +5,20 @@
 
 int main()
 {
-       try
-       {
-              Bureaucrat c("c", 1);
-              // AForm *t = new ShrubberyCreationForm("test");
-              AForm *t = new RobotomyRequestForm("test");
-              // AForm *t = new PresidentialPardonForm("test");
-              // c.executeForm(*t);
-              t->beSigned(c);
-              c.executeForm(*t);
-              delete t;
-       }
-       catch (std::exception &e)
-       {
-              std::cerr << e.what() << std::endl;
-       }
+    AForm *form = NULL;
+    try
+    {
+        Bureaucrat man("man", 1);
+        form = new ShrubberyCreationForm("test");
+        // form = new RobotomyRequestForm("test");
+        // form = new PresidentialPardonForm("test");
+        // man.executeForm(*form);
+        form->beSigned(man);
+        man.executeForm(*form);
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+    delete form;
 }

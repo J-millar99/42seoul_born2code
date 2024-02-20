@@ -12,7 +12,11 @@ class CharConverter
 
     public:
         ~CharConverter();
-        static bool checkCharType(const std::string &str);
+        static bool isCharType(const std::string &str);
+        static void typeOfCastingFromChar(const std::string &type);
+        static bool outOfCharType(long long llnum);
+        static bool isPrintableChar(char ch);
+        static void printChar(char ch);
 };
 
 #endif

@@ -1,8 +1,8 @@
-NAME = convert
+NAME = a.out
 CPP = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp ScalarConverter.cpp CharConverter.cpp IntConverter.cpp FloatConverter.cpp DoubleConverter.cpp Converter.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o : %.cpp %.hpp
@@ -14,11 +14,11 @@ $(NAME) : $(OBJS)
 	$(CPP) $(CXXFLAGS) -o $@ $(OBJS)
 
 clean:
-	rm -rf $(OBJS)
+	@rm -rf $(OBJS)
 
 fclean:
 	make clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
 

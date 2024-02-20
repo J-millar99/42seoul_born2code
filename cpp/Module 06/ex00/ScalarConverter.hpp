@@ -7,7 +7,6 @@
 #include "FloatConverter.hpp"
 #include "DoubleConverter.hpp"
 
-
 class ScalarConverter
 {
     private:

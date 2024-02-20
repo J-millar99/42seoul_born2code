@@ -12,8 +12,9 @@ class FloatConverter
 
     public:
         ~FloatConverter();
-        static bool checkFloatType(const std::string &str);
-
+        static bool isFloatType(const std::string &str);
+        static void typeOfCastingFromFloat(const std::string &type);
+        static void printFloat(float fnum);
 };
 
 #endif

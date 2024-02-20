@@ -11,7 +11,7 @@ DoubleConverter &DoubleConverter::operator=(const DoubleConverter &ref)
     return *this;
 }
 
-bool DoubleConverter::checkDoubleType(const std::string &str)
+bool DoubleConverter::isDoubleType(const std::string &str)
 {
     size_t idx = 0;
 
@@ -32,4 +32,26 @@ bool DoubleConverter::checkDoubleType(const std::string &str)
     if (str[idx] == 0)
         return true;
     return false;
+}
+
+void DoubleConverter::typeOfCastingFromDouble(const std::string &type)
+{
+    std::istringstream iss(type);
+    double dnum;
+
+    iss >> dnum;
+    if (!CharConverter::outOfCharType(dnum))
+        CharConverter::printChar(static_cast<char>(dnum));
+    if (!IntConverter::outOfIntType(dnum))
+        IntConverter::printInt(static_cast<int>(dnum));
+    FloatConverter::printFloat(static_cast<float>(dnum));
+    DoubleConverter::printDouble(static_cast<double>(dnum));
+}
+
+void DoubleConverter::printDouble(double dnum)
+{
+    std::cout << "double: " << dnum;
+    if (std::fmod(dnum, 1.0) == 0.0)
+        std::cout << ".0";
+    std::cout << "\n";
 }
