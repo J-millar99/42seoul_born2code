@@ -1,25 +1,24 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
-#include <iostream>
-#include <exception>
+#include <stdexcept>
 
 template <typename T>
 class Array
 {
     private:
         T *elements;
-        unsigned int length;
+        unsigned int arraySize;
 
     public:
         Array();
-        Array(unsigned int n);
-        Array(const Array &ref);
-        Array &operator=(const Array &ref);
+        explicit Array(unsigned int n);
+        Array(const Array& other);
+        Array &operator=(const Array& other);
         ~Array();
-        unsigned int getLength() const;
-        T &operator[](unsigned int idx);
-        #include "Array.tpp"
+        T& operator[](unsigned int index);
+        unsigned int size() const;
 };
 
+#include "Array.tpp"
 #endif

@@ -53,7 +53,7 @@ void Bureaucrat::signForm(AForm &ref)
 {
     ref.getSign() ?
     std::cout << name + " couldn't sign " + ref.getName() + " because " + "already signed\n" :
-    (ref.beSigned(*this), std::cout << name + " singed " + ref.getName() << std::endl);
+    (ref.beSigned(*this), std::cout << name + " signed " + ref.getName() << std::endl);
 }
 
 void Bureaucrat::executeForm(AForm const &ref) const
