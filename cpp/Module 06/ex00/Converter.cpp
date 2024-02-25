@@ -16,7 +16,7 @@ bool pluralDot(const std::string &str)
     return false;
 }
 
-bool singularDot(const std::string &str)
+bool haveDot(const std::string &str)
 {
     int idx = 0;
 
@@ -63,6 +63,30 @@ bool haveDigit(const std::string &str)
     return false;
 }
 
+bool printablePrecision(const std::string &str, size_t digit)
+{
+    size_t dotIndex = str.find_last_of('.');
+    if (dotIndex != std::string::npos)
+    {
+        size_t lengthAfterDot = str.length() - dotIndex - 1;
+        return lengthAfterDot < digit + 1 ? true : false;
+    }
+    return true;
+}
+
+void argumentEmpty(const std::string &str)
+{
+    char ch = static_cast<char>(str[0]);
+    int inum = static_cast<int>(ch);
+    float fnum = static_cast<float>(ch);
+    double dnum = static_cast<double>(ch);
+
+    std::cout << "char: Non displayable" << std::endl;
+    std::cout << "int: " << inum << std::endl;
+    std::cout << std::fixed << std::setprecision(1) << "float: " << fnum << "f" << std::endl;
+    std::cout << std::fixed << std::setprecision(1) << "double: " << dnum << std::endl;
+}
+
 bool isNotANumber()
 {
     std::cout << "char: impossible" << std::endl;
@@ -97,14 +121,6 @@ bool isNegativeInfinity()
     std::cout << "float: -inff" << std::endl;
     std::cout << "double: -inf" << std::endl;
     return true;
-}
-
-bool outOfLongLongType(const std::string &type)
-{
-    std::istringstream iss(type);
-    long long lnum;
-
-    return iss >> lnum ? false : true;
 }
 
 bool pseudoLiterals(const std::string &str)

@@ -14,9 +14,10 @@ class CharConverter
         ~CharConverter();
         static bool isCharType(const std::string &str);
         static void typeOfCastingFromChar(const std::string &type);
-        static bool outOfCharType(long long llnum);
-        static bool isPrintableChar(char ch);
+        static void printCharOverflow();
         static void printChar(char ch);
+        static bool isLimit(int ret, int sign);
+        static bool isCharLimit(const std::string &str);
 };
 
 #endif

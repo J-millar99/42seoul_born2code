@@ -15,7 +15,7 @@ bool FloatConverter::isFloatType(const std::string &str)
 {
     size_t idx = 0;
 
-    if (pluralDot(str) || !singularDot(str) || !haveDigit(str))
+    if (pluralDot(str) || !haveDigit(str))
         return false;
     if (isSign(str[idx]))
     {
@@ -35,18 +35,90 @@ bool FloatConverter::isFloatType(const std::string &str)
     return false;
 }
 
+bool FloatConverter::isLimit(double ret, int sign)
+{
+    if (sign == 1)
+    {
+        if (ret > FLT_MAX)
+            return true;
+    }
+    else
+    {
+        if (ret > -FLT_MIN)
+            return true;
+    }
+    return false;
+}
+
+bool FloatConverter::isFloatLimit(const std::string &str)
+{
+    double ret = 0.0;
+    double fraction = 0.1;
+    int sign = 1;
+    size_t idx = 0;
+
+    if (!printablePrecision(str, 8))
+        return true;
+    if (isSign(str[idx]))
+    {
+        if (str[idx] == '-')
+            sign = -1;
+        ++idx;
+    }
+
+    while (isdigit(str[idx]))
+    {
+        ret *= 10.0;
+        if (isLimit(ret, sign))
+            return true;
+        ret += (str[idx] - '0');
+        if (isLimit(ret, sign))
+            return true;
+        ++idx;
+    }
+
+    if (str[idx] == '.')
+    {
+        ++idx;
+        while (isdigit(str[idx]))
+        {
+            ret += ((str[idx] - '0') * fraction);
+            if (isLimit(ret, sign))
+                return true;
+            fraction *= 0.1;
+            ++idx;
+        }
+    }
+    return false;
+}
+
 void FloatConverter::typeOfCastingFromFloat(const std::string &type)
 {
-    std::istringstream iss(type);
-    double dnum;
+    float fnum;
+    std::string str = type;
 
-    iss >> dnum;
-    if (!CharConverter::outOfCharType(dnum))
-        CharConverter::printChar(static_cast<char>(dnum));
-    if (!IntConverter::outOfIntType(dnum))
-        IntConverter::printInt(static_cast<int>(dnum));
-    FloatConverter::printFloat(static_cast<float>(dnum));
-    DoubleConverter::printDouble(static_cast<double>(dnum));
+    str[str.length() - 1] = '\0';
+    std::istringstream iss(str);
+    iss >> fnum;
+
+    if (CharConverter::isCharLimit(str))
+        std::cout << "char: impossible" << std::endl;
+    else
+        CharConverter::printChar(static_cast<char>(fnum));
+
+    if (IntConverter::isIntLimit(str))
+        std::cout << "int: impossible" << std::endl;
+    else
+        IntConverter::printInt(static_cast<int>(fnum));
+
+    if (FloatConverter::isFloatLimit(str))
+        std::cout << "float: impossible" << std::endl;
+    else
+        FloatConverter::printFloat(fnum);
+    if (DoubleConverter::isDoubleLimit(str))
+        std::cout << "double: impossible" << std::endl;
+    else
+        DoubleConverter::printDouble(static_cast<double>(fnum));
 }
 
 

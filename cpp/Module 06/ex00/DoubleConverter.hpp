@@ -15,6 +15,8 @@ class DoubleConverter
         static bool isDoubleType(const std::string &str);
         static void typeOfCastingFromDouble(const std::string &type);
         static void printDouble(double dnum);
+        static bool isLimit(double ret, int sign);
+        static bool isDoubleLimit(const std::string &str);
 };
 
 #endif

@@ -15,9 +15,9 @@ bool IntConverter::isIntType(const std::string &str)
 {
     size_t idx = 0;
 
-    if (singularDot(str) || !haveDigit(str))
+    if (haveDot(str) || !haveDigit(str))
         return false;
-    if (str[idx] == '+' || str[idx] == '-')
+    if (isSign(str[idx]))
         ++idx;
     while (isdigit(str[idx]))
         ++idx;
@@ -26,28 +26,68 @@ bool IntConverter::isIntType(const std::string &str)
     return true;
 }
 
-bool IntConverter::outOfIntType(long long llnum)
+bool IntConverter::isLimit(int ret, int sign)
 {
-    if (llnum > INT_MAX || llnum < INT_MIN)
+    if (sign == 1)
     {
-        std::cout << "int: Overflow" << std::endl;
-        return true;
+        if ((ret >= INT_MAX / 10) && ((ret % 10) > (INT_MAX % 10)))
+            return true;
+    }
+    else
+    {
+        if ((ret >= INT_MAX / 10) && ((ret % 10) > (INT_MAX % 10) + 1))
+            return true;
+    }
+    return false;
+}
+
+bool IntConverter::isIntLimit(const std::string &str)
+{
+    size_t idx = 0;
+    int sign = 1;
+    int ret = 0;
+
+    if (isSign(str[idx]))
+    {
+        if (str[idx] == '-')
+            sign = -1;
+        ++idx;
+    }
+    while (isdigit(str[idx]))
+    {
+        ret *= 10;
+        if (isLimit(ret, sign))
+            return true;
+        ret += str[idx] - '0';
+        if (isLimit(ret, sign))
+            return true;
+        ++idx;
     }
     return false;
 }
 
 void IntConverter::typeOfCastingFromInt(const std::string &type)
 {
-    std::istringstream iss(type);
-    long long llnum;
+    int inum;
 
-    iss >> llnum;
-    if (!CharConverter::outOfCharType(llnum))
-        CharConverter::printChar(static_cast<char>(llnum));
-    if (!IntConverter::outOfIntType(llnum))
-        IntConverter::printInt(static_cast<int>(llnum));
-    FloatConverter::printFloat(static_cast<float>(llnum));
-    DoubleConverter::printDouble(static_cast<double>(llnum));
+    std::istringstream iss(type);
+    iss >> inum;
+
+    if (CharConverter::isCharLimit(type))
+        std::cout << "char: impossible" << std::endl;
+    else
+        CharConverter::printChar(static_cast<char>(inum));
+
+    if (IntConverter::isIntLimit(type))
+        std::cout << "int: impossible" << std::endl;
+    else
+        IntConverter::printInt(inum);
+
+    if (FloatConverter::isFloatLimit(type))
+        std::cout << "float: impossible" << std::endl;
+    else
+        FloatConverter::printFloat(static_cast<float>(inum));
+    DoubleConverter::printDouble(static_cast<double>(inum));
 }
 
 void IntConverter::printInt(int inum)
