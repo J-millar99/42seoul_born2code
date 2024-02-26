@@ -51,8 +51,8 @@ void CharConverter::typeOfCastingFromChar(const std::string &type)
     char ch = static_cast<char>(type[0]);
     CharConverter::printChar(ch);
     IntConverter::printInt(static_cast<int>(ch));
-    FloatConverter::printFloat(static_cast<int>(ch));
-    DoubleConverter::printDouble(static_cast<int>(ch));
+    FloatConverter::printFloat(static_cast<float>(ch));
+    DoubleConverter::printDouble(static_cast<double>(ch));
 }
 
 void CharConverter::printChar(char ch)
