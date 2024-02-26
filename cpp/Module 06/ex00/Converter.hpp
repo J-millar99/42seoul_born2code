@@ -2,7 +2,7 @@
 #define CONVERTER_HPP
 
 #include <iostream>
-#include <limits>
+#include <climits>
 #include <iomanip>
 #include <sstream>
 #include <cmath>
