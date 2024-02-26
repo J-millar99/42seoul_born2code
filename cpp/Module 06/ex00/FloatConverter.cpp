@@ -35,26 +35,16 @@ bool FloatConverter::isFloatType(const std::string &str)
     return false;
 }
 
-bool FloatConverter::isLimit(double ret, int sign)
+bool FloatConverter::isLimit(double dnum)
 {
-    if (sign == 1)
-    {
-        if (ret > FLT_MAX)
-            return true;
-    }
-    else
-    {
-        if (ret > -FLT_MIN)
-            return true;
-    }
-    return false;
+    return (dnum > FLT_MAX || dnum < -FLT_MAX);
 }
 
 bool FloatConverter::isFloatLimit(const std::string &str)
 {
     double ret = 0.0;
     double fraction = 0.1;
-    int sign = 1;
+    double sign = 1.0;
     size_t idx = 0;
 
     if (!printablePrecision(str, 8))
@@ -62,17 +52,17 @@ bool FloatConverter::isFloatLimit(const std::string &str)
     if (isSign(str[idx]))
     {
         if (str[idx] == '-')
-            sign = -1;
+            sign = -1.0;
         ++idx;
     }
 
     while (isdigit(str[idx]))
     {
         ret *= 10.0;
-        if (isLimit(ret, sign))
+        if (isLimit(ret * sign))
             return true;
-        ret += (str[idx] - '0');
-        if (isLimit(ret, sign))
+        ret += str[idx] - '0';
+        if (isLimit(ret * sign))
             return true;
         ++idx;
     }
@@ -83,7 +73,7 @@ bool FloatConverter::isFloatLimit(const std::string &str)
         while (isdigit(str[idx]))
         {
             ret += ((str[idx] - '0') * fraction);
-            if (isLimit(ret, sign))
+            if (isLimit(ret * sign))
                 return true;
             fraction *= 0.1;
             ++idx;

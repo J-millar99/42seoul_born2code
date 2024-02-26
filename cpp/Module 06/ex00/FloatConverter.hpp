@@ -15,7 +15,7 @@ class FloatConverter
         static bool isFloatType(const std::string &str);
         static void typeOfCastingFromFloat(const std::string &type);
         static void printFloat(float fnum);
-        static bool isLimit(double ret, int sign);
+        static bool isLimit(double dnum);
         static bool isFloatLimit(const std::string &str);
 };
 

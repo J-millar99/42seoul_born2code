@@ -14,12 +14,14 @@ $(NAME) : $(OBJS)
 	$(CPP) $(CXXFLAGS) -o $@ $(OBJS)
 
 clean:
-	@rm -rf $(OBJS)
+	rm -rf $(OBJS)
 
 fclean:
-	make clean
-	@rm -rf $(NAME)
+	$(MAKE) clean
+	rm -rf $(NAME)
 
-re: fclean all
+re: 
+	$(MAKE) fclean 
+	$(MAKE) all
 
 .PHONY: all clean fclean re

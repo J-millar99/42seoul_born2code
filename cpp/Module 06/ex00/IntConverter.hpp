@@ -15,8 +15,7 @@ class IntConverter
         static bool isIntType(const std::string &str);
         static void typeOfCastingFromInt(const std::string &type);
         static bool isIntLimit(const std::string &str);
-        static bool isLimit(int ret, int sign);
-        static void printIntOverflow();
+        static bool isLimit(long lnum);
         static void printInt(int inum);
 };
 

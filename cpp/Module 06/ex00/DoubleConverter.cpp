@@ -34,26 +34,16 @@ bool DoubleConverter::isDoubleType(const std::string &str)
     return false;
 }
 
-bool DoubleConverter::isLimit(double ret, int sign)
+bool DoubleConverter::isLimit(long double ldnum)
 {
-    if (sign == 1)
-    {
-        if (ret > DBL_MAX)
-            return true;
-    }
-    else
-    {
-        if (ret > -DBL_MIN)
-            return true;
-    }
-    return false;
+    return (ldnum > DBL_MAX || ldnum < -DBL_MAX);
 }
 
 bool DoubleConverter::isDoubleLimit(const std::string &str)
 {
-    double ret = 0.0;
-    double fraction = 0.1;
-    int sign = 1;
+    long double ret = 0.0;
+    long double fraction = 0.1;
+    long double sign = 1.0;
     size_t idx = 0;
 
     if (!printablePrecision(str, 16))
@@ -68,10 +58,8 @@ bool DoubleConverter::isDoubleLimit(const std::string &str)
     while (isdigit(str[idx]))
     {
         ret *= 10.0;
-        if (isLimit(ret, sign))
-            return true;
         ret += (str[idx] - '0');
-        if (isLimit(ret, sign))
+        if (isLimit(ret * sign))
             return true;
         ++idx;
     }
@@ -82,7 +70,7 @@ bool DoubleConverter::isDoubleLimit(const std::string &str)
         while (isdigit(str[idx]))
         {
             ret += ((str[idx] - '0') * fraction);
-            if (isLimit(ret, sign))
+            if (isLimit(ret * sign))
                 return true;
             fraction *= 0.1;
             ++idx;

@@ -18,19 +18,9 @@ bool CharConverter::isCharType(const std::string &str)
     return true;
 }
 
-bool CharConverter::isLimit(int ret, int sign)
+bool CharConverter::isLimit(int inum)
 {
-    if (sign == 1)
-    {
-        if ((ret >= CHAR_MAX / 10) && ((ret % 10) > (CHAR_MAX % 10)))
-            return true;
-    }
-    else
-    {
-        if ((ret >= CHAR_MAX / 10) && ((ret % 10) > (CHAR_MAX % 10) + 1))
-            return true;
-    }
-    return false;
+    return (inum > CHAR_MAX || inum < CHAR_MIN);
 }
 
 bool CharConverter::isCharLimit(const std::string &str)
@@ -48,10 +38,8 @@ bool CharConverter::isCharLimit(const std::string &str)
     while (isdigit(str[idx]))
     {
         ret *= 10;
-        if (isLimit(ret, sign))
-            return true;
         ret += str[idx] - '0';
-        if (isLimit(ret, sign))
+        if (isLimit(ret * sign))
             return true;
         ++idx;
     }
