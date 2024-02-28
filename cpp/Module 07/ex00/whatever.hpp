@@ -27,10 +27,13 @@ T max(T a, T b)
 template <typename T>
 void func(T a, T b)
 {
+    std::cout << "before > ";
     ::swap(a, b);
+    std::cout << "after > ";
     std::cout << "a = " << a << ", b = " << b << std::endl;
     std::cout << "min( a, b ) = " << ::min(a, b) << std::endl;
     std::cout << "max( a, b ) = " << ::max(a, b) << std::endl;
+    std::cout << std::endl;
 }
 
 #endif

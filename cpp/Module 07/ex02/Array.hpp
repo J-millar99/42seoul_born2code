@@ -2,6 +2,7 @@
 #define ARRAY_HPP
 
 #include <stdexcept>
+#include <iostream>
 
 template <typename T>
 class Array
@@ -12,12 +13,16 @@ class Array
 
     public:
         Array();
-        explicit Array(unsigned int n);
-        Array(const Array& other);
-        Array &operator=(const Array& other);
+        Array(const Array &other);
+        Array &operator=(const Array &other);
         ~Array();
-        T& operator[](unsigned int index);
+
+        Array(unsigned int n);
+        T &operator[](unsigned int index) const;
         unsigned int size() const;
+        void iter() const;
+        void printElement(const T &element) const;
+        void printArray(std::string arrayName) const;
 };
 
 #include "Array.tpp"
