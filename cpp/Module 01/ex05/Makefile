@@ -17,9 +17,10 @@ clean:
 	rm -rf $(OBJS)
 
 fclean:
-	make clean
+	$(MAKE) clean
 	rm -rf $(NAME)
 
-re: fclean all
-
+re: 
+	$(MAKE) fclean 
+	$(MAKE) all
 .PHONY: all clean fclean re
