@@ -49,7 +49,7 @@ Array<T>::~Array()
 template <typename T>
 T &Array<T>::operator[](unsigned int index) const
 {
-    if (index >= size())
+    if (!size() || index >= size())
         throw std::out_of_range("Index out of bounds");
     return elements[index];
 }
