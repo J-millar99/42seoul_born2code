@@ -37,7 +37,7 @@ Array<T>::Array(unsigned int n) : arraySize(n)
 {
     elements = new T[size()];
     for (unsigned int i = 0; i < size(); ++i)
-        elements[i] = 0;
+        elements[i] = T();
 }
 
 template <typename T>

@@ -8,7 +8,6 @@ void iter(T *array, size_t length, Func func)
 {
     for (size_t idx = 0; idx < length; ++idx)
         func(array[idx]);
-    std::cout << std::endl;
 }
 
 template <typename T>

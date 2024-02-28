@@ -2,12 +2,15 @@
 
 int main()
 {
-    int inum = 1; // finding number
+    // You don’t have to handle associative containers.
+    // Map, Set: key, value
+    // Vector, List: index
+    int inum = -1; // finding number
     try
     {
-        int arr[] = {1, 2, 3, 4, 5};
+        int arr[] = {1, 2, 3, 3, 4};
         std::vector<int> vec(arr, arr + sizeof(arr) / sizeof(arr[0]));
-        std::vector<int>::iterator result = easyfind(vec, inum); // <<
+        std::vector<int>::iterator result = easyfind(vec, inum);
         std::cout << "Value found in vector at index: " << std::distance(vec.begin(), result) << std::endl;
     } 
     catch (const std::exception& e) 
@@ -16,9 +19,9 @@ int main()
     }
     try
     {
-        int arr[] = {1, 2, 3, 4, 5};
+        int arr[] = {1, 2, 3, 3, 4};
         std::list<int> lst(arr, arr + sizeof(arr) / sizeof(arr[0]));
-        std::list<int>::iterator result = easyfind(lst, inum); // <<
+        std::list<int>::iterator result = easyfind(lst, inum);
         std::cout << "Value found in list at index: " << std::distance(lst.begin(), result) << std::endl;
     }
     catch (const std::exception& e) 

@@ -20,7 +20,7 @@ fclean:
 	$(MAKE) clean
 	rm -rf $(NAME)
 
-re: 
+re:
 	$(MAKE) fclean 
 	$(MAKE) all
 
