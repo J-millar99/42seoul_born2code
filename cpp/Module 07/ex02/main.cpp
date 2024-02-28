@@ -17,9 +17,9 @@ int main(int, char**)
     Array<int> tmp = numbers;
     Array<int> test(tmp);
 
-    // numbers.printArray("numbers");
-    // tmp.printArray("tmp");
-    // test.printArray("test");
+    numbers.printArray("numbers");
+    tmp.printArray("tmp");
+    test.printArray("test");
 
     for (unsigned int i = 0; i < MAX_VAL; i++)
     {
