@@ -3,6 +3,7 @@
 
 #include <stdexcept>
 #include <iostream>
+#include <cstdlib>
 
 template <typename T>
 class Array
@@ -24,6 +25,6 @@ class Array
         void printElement(const T &element) const;
         void printArray(std::string arrayName) const;
 };
-
 #include "Array.tpp"
+
 #endif
