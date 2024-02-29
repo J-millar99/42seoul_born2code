@@ -42,7 +42,7 @@ void Span::addNumber(int num)
 
 unsigned int Span::shortestSpan() const
 {
-    unsigned int intSpan = UINT_MAX;
+    unsigned int intSpan;
     try
     {
         if (currentSize < 2)
