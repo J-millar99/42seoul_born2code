@@ -3,13 +3,14 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <climits>
 #include <ctime>
+#include <vector>
+#include <set>
+
 class Span
 {
-
     private:
-        int *data;
+        std::vector<int> data;
         unsigned int maxSize;
         unsigned int currentSize;       
         Span();
@@ -22,6 +23,8 @@ class Span
         void addNumber(int num);
         unsigned int shortestSpan() const;
         unsigned int longestSpan() const;
+        void printContainerElements() const;
+        void putNumber(unsigned int num);
 };
 
 #endif

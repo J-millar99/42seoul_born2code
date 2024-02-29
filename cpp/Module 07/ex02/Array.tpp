@@ -19,7 +19,7 @@ Array<T>::Array(const Array &other) : arraySize(other.arraySize)
 }
 
 template <typename T>
-Array<T>& Array<T>::operator=(const Array &other) 
+Array<T> &Array<T>::operator=(const Array &other) 
 {
     if (this != &other) 
     {
