@@ -44,38 +44,5 @@ int main()
     {
         std::cerr << "Error: " << e.what() << "(deque)" << std::endl;
     }
-
-    try
-    {
-        std::vector<const int> vector(const_arr, const_arr + sizeof(const_arr) / sizeof(const_arr[0]));
-        std::vector<const int>::const_iterator result = easyfind(vector, inum);
-        std::cout << "Value found in const vector at index: " << std::distance(vector.begin(), result) << std::endl;
-    } 
-    catch (const std::exception& e) 
-    {
-        std::cerr << "Error: " << e.what() << "(vector)" << std::endl;
-    }
-
-    try
-    {
-        std::list<const int> list(const_arr, const_arr + sizeof(const_arr) / sizeof(const_arr[0]));
-        std::list<const int>::const_iterator result = easyfind(list, inum);
-        std::cout << "Value found in const list at index: " << std::distance(list.cbegin(), result) << std::endl;
-    }
-    catch (const std::exception& e) 
-    {
-        std::cerr << "Error: " << e.what() << "(list)" << std::endl;
-    }
-
-    try
-    {
-        std::deque<const int> deque(const_arr, const_arr + sizeof(const_arr) / sizeof(const_arr[0]));
-        std::deque<const int>::const_iterator result = easyfind(deque, inum);
-        std::cout << "Value found in const deque at index: " << std::distance(deque.cbegin(), result) << std::endl;
-    }
-    catch (const std::exception& e) 
-    {
-        std::cerr << "Error: " << e.what() << "(deque)" << std::endl;
-    }
     return 0;
 }
