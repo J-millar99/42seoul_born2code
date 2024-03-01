@@ -3,6 +3,7 @@
 int main()
 {
     unsigned int num = 10000; // <<
+    std::cout << "random number : " << num << std::endl;
     Span sp = Span(num);
     sp.printContainerElements();
     sp.addNumber(6);
@@ -17,7 +18,6 @@ int main()
     sp.printContainerElements();
     std::cout << sp.shortestSpan() << std::endl;
     std::cout << sp.longestSpan() << std::endl;
-    std::cout << "random number : " << num << std::endl;
     Span sp_random(num);
     sp_random.putNumber(num);
     sp_random.printContainerElements();

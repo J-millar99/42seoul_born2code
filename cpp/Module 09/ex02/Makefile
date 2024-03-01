@@ -1,4 +1,4 @@
-NAME = a.out
+NAME = PmergeMe
 CPP = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 

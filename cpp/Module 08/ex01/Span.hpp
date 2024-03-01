@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <algorithm>
 #include <ctime>
 #include <vector>
+#include <climits>
 #include <set>
 
 class Span
@@ -14,16 +16,19 @@ class Span
         unsigned int maxSize;
         unsigned int currentSize;       
         Span();
-        
-    public:
-        ~Span();
+        struct RandomGenerator
+        {
+            int operator()() const;
+        };
+
+        public : ~Span();
         Span(const Span &ref);
         Span &operator=(const Span &ref);
         Span(unsigned int N);
         void addNumber(int num);
-        unsigned int shortestSpan() const;
-        unsigned int longestSpan() const;
-        void printContainerElements() const;
+        unsigned int shortestSpan();
+        unsigned int longestSpan();
+        void printContainerElements();
         void putNumber(unsigned int num);
 };
 
