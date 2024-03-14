@@ -12,12 +12,13 @@ class PmergeMe
 {
     private:
         std::vector<int> vec;
-        double _vecSortTime;
         std::list<int> lst;
+        double _vecSortTime;
         double _lstSortTime;
         PmergeMe();
         PmergeMe(const PmergeMe &ref);
         PmergeMe &operator=(const PmergeMe &ref);
+
     public:
         PmergeMe(char *argv[]);
         ~PmergeMe();
@@ -27,11 +28,10 @@ class PmergeMe
 
         int ft_atoi(const std::string &str);
         void insertToContainers(int value);
+    
         void FordJohnson();
 
         void sortVector();
-        void vec_bubbleSort(std::vector<int> &posVec);
-        void vec_selectionSort(std::vector<int> &posVec);
         void vec_merge(std::vector<int> &posVec, int left, int mid, int right);
         void vec_mergeSort(std::vector<int>& posVec, int left, int right);
 
