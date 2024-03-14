@@ -9,34 +9,9 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &ref)
     return *this;
 }
 
-int BitcoinExchange::ft_atoi(const std::string &str)
-{
-    long inum = 0;
-    size_t idx = 0;
-
-    if (!str[0])
-        return 0;
-    while (isdigit(str[idx]))
-    {
-        inum *= 10;
-        inum += str[idx] - '0';
-        if (inum > INT_MAX || inum < INT_MIN)
-            return -1;
-        ++idx;
-    }
-    if (str[idx])
-        return 0;
-    return static_cast<int>(inum);
-}
-
-bool BitcoinExchange::isLeapYear(int year)
-{
-    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-}
-
 bool BitcoinExchange::checkDayValidity(int year, int month, int day)
 {
-    if (year < 1 || month < 1 || month > 12 || day < 1 || day > 31)
+    if (year < 2009 || year > 2023 || month < 1 || month > 12 || day < 1 || day > 31)
         return false;
     if (month == 2) {
         if (isLeapYear(year) && day > 29)
@@ -51,7 +26,7 @@ bool BitcoinExchange::checkDayValidity(int year, int month, int day)
 
 bool BitcoinExchange::checkKeyValidity(std::string &keyStr)
 {
-    size_t first = keyStr.find_first_not_of(" \t0");
+    size_t first = keyStr.find_first_not_of(" \t");
     size_t last = keyStr.find_last_not_of(" \t");
     size_t count = std::count(keyStr.begin(), keyStr.end(), '-');
     if (count != 2)
@@ -87,11 +62,11 @@ bool BitcoinExchange::checkValueValidity(const std::string &valueStr)
 
     if (!valueStr[0])
         return false;
-    while (isdigit(valueStr[idx]))
+    while (std::isdigit(valueStr[idx]))
         ++idx;
     if ((valueStr[idx] == '.'))
         ++idx;
-    while (isdigit(valueStr[idx]))
+    while (std::isdigit(valueStr[idx]))
         ++idx;
     if (valueStr[idx])
         return false;
@@ -100,30 +75,21 @@ bool BitcoinExchange::checkValueValidity(const std::string &valueStr)
 
 void BitcoinExchange::setDB()
 {
-    std::string fileName = "data.csv";
-    std::ifstream dataFile(fileName.c_str());
+    std::ifstream dataFile("data.csv");
     std::string line;
 
     if (!dataFile.is_open())
-    {
-        std::cerr << "could not connect database" << std::endl;
-        exit(1);
-    }
+        processError("could not connect database");
+    std::getline(dataFile, line);
     while (std::getline(dataFile, line))
     {
-        if (!line[0] || !strcmp(line.c_str(), "date,exchange_rate"))
-            continue;
         std::istringstream iss(line);
         std::string dataKey;
         std::string dataValue;
         if (std::getline(iss, dataKey, ',') && iss >> dataValue)
         {
-            if (checkKeyValidity(dataKey) && checkValueValidity(dataValue))
-            {
-                float fnum = std::atof(dataValue.c_str());
-                if (!(fnum < 0 || fnum > 1000))
-                    database[dataKey] = fnum;
-            }
+            float fnum = std::atof(dataValue.c_str()); 
+            database[dataKey] = fnum;
         }
     }
     dataFile.close();
@@ -135,13 +101,13 @@ void BitcoinExchange::inputDB(std::string fileName)
     std::string line;
 
     if (!inputFile.is_open())
-    {
-        std::cerr << "could not connect database" << std::endl;
-        exit(1);
-    }
+        processError("could not connect input database");
+    std::getline(inputFile, line);
+    if (std::strcmp(line.c_str(), "date | value"))
+        processError("wrong database format");
     while (std::getline(inputFile, line))
     {
-        if (!line[0] || !strcmp(line.c_str(), "date | value"))
+        if (!line[0])
             continue;
         std::istringstream iss(line);
         std::string dataKey;

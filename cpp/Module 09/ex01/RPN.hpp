@@ -13,14 +13,14 @@ class RPN : public std::stack<int>
         RPN(const RPN &ref);
         RPN &operator=(const RPN &ref);
     public:
+        ~RPN();
         RPN(const std::string &str);
         bool isDecimal(const std::string &token) const;
         bool isOperator(const std::string &token) const;
+        static void processError(const std::string &errorStr);
+        void printRPN() const;
         void parsingRPN(const std::string &str);
         void calculateRPN(char op);
-        void processError(const std::string &errorStr) const;
-        void printRPN() const;
-        ~RPN();
 };
 
 #endif

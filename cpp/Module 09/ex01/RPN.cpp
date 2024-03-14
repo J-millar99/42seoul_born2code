@@ -9,33 +9,6 @@ RPN::RPN(const std::string &str)
     printRPN();
 }
 
-void RPN::processError(const std::string &errorStr) const
-{
-    std::cerr << errorStr << std::endl;
-    exit(1);
-}
-
-bool RPN::isDecimal(const std::string &token) const
-{
-    for (size_t idx = 0; idx < token.length(); ++idx)
-        if (!isdigit(token[idx]))
-            return false;
-    return true;
-}
-
-bool RPN::isOperator(const std::string &token) const
-{
-    return !(token[0] != '+' && token[0] != '-' && token[0] != '*' && token[0] != '/');
-}
-
-void RPN::printRPN() const
-{
-    if (_stack.size() == 1)
-        std::cout << _stack.top() << std::endl;
-    else
-        processError("impossible expression");
-}
-
 void RPN::parsingRPN(const std::string &str)
 {
     std::string::size_type start = 0;
@@ -44,7 +17,6 @@ void RPN::parsingRPN(const std::string &str)
     while (end != std::string::npos)
     {
         token = str.substr(start, end - start);
-        std::cout << "token : "+ token << std::endl;
         if (isDecimal(token))
             _stack.push(std::atoi(token.c_str()));
         else if (isOperator(token))
@@ -76,5 +48,9 @@ void RPN::calculateRPN(char op)
     else if (op == '*')
         _stack.push(first * second);
     else if (op == '/')
+    {
+        if (first == 0)
+            processError("nan");
         _stack.push(second / first);
+    }
 }

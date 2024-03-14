@@ -1,29 +1,19 @@
 #include "BitcoinExchange.hpp"
 
-bool checkFileValidity(int argc, char *argv[])
+void checkFileValidity(int argc, char *argv[])
 {
     if (argc != 2)
-    {
-        std::cerr << "could not identify the file." << std::endl;
-        return false;
-    }
+        BitcoinExchange::processError("could not identify the file.");
     std::ifstream input(argv[1]);
     if (input.is_open())
-    {
         input.close();
-        return true;
-    }
     else
-    {
-        std::cerr << "could not open file." << std::endl;
-        return false;
-    }
+        BitcoinExchange::processError("could not open file.");
 }
 
 int main(int argc, char *argv[])
 {
-    if (!checkFileValidity(argc, argv))
-        return 1;
+    checkFileValidity(argc, argv);
     BitcoinExchange _BitcoinExchange;
     _BitcoinExchange.inputDB(argv[1]);
     return 0;
