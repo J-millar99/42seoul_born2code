@@ -39,14 +39,26 @@ void RPN::calculateRPN(char op)
 {
     if (_stack.size() < 2)
         processError("impossible calculate");
-    int first = _stack.top(); _stack.pop();
-    int second = _stack.top(); _stack.pop();
-    if (op == '+')
+    long first = _stack.top(); _stack.pop();
+    long second = _stack.top(); _stack.pop();
+    if (op == '+') {
+        long ret = first + second;
+        if (ret > INT_MAX)
+            processError("out of Int");
         _stack.push(first + second);
-    else if (op == '-')
+    }
+    else if (op == '-') {
+        long ret = second - first;
+        if (ret < INT_MIN)
+            processError("out of Int");
         _stack.push(second - first);
-    else if (op == '*')
+    }
+    else if (op == '*') {
+        long ret = first * second;
+        if (ret > INT_MAX)
+            processError("out of Int");
         _stack.push(first * second);
+    }
     else if (op == '/')
     {
         if (first == 0)

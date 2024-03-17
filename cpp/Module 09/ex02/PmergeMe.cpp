@@ -37,14 +37,14 @@ void PmergeMe::FordJohnson()
 
 void PmergeMe::sortVector()
 {
-    int n = vec.size();
-    std::vector<int> posVec;
-    for (int i = 0; i < n; ++i)
-        if (vec[i] > 0)
-            posVec.push_back(vec[i]);
+    // int n = vec.size();
+    std::vector<int> posVec(vec);
+    // for (int i = 0; i < n; ++i)
+    //     if (vec[i] > 0)
+    //         posVec.push_back(vec[i]);
     vec_mergeSort(posVec, 0, posVec.size() - 1);
     int j = 0;
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < vec.size(); ++i)
     {
         if (vec[i] > 0)
         {

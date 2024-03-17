@@ -1,5 +1,16 @@
 #include "PmergeMe.hpp"
 
+void PmergeMe::vec_mergeSort(std::vector<int> &posVec, int left, int right)
+{
+    if (left < right)
+    {
+        int mid = left + (right - left) / 2;
+        vec_mergeSort(posVec, left, mid);
+        vec_mergeSort(posVec, mid + 1, right);
+        vec_merge(posVec, left, mid, right);
+    }
+}
+
 void PmergeMe::vec_merge(std::vector<int> &posVec, int left, int mid, int right)
 {
     int n1 = mid - left + 1;
@@ -41,13 +52,3 @@ void PmergeMe::vec_merge(std::vector<int> &posVec, int left, int mid, int right)
     }
 }
 
-void PmergeMe::vec_mergeSort(std::vector<int> &posVec, int left, int right)
-{
-    if (left < right)
-    {
-        int mid = left + (right - left) / 2;
-        vec_mergeSort(posVec, left, mid);
-        vec_mergeSort(posVec, mid + 1, right);
-        vec_merge(posVec, left, mid, right);
-    }
-}
