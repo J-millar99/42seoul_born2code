@@ -7,6 +7,7 @@
 #include <climits>
 #include <ctime>
 #include <iomanip>
+#include <algorithm>
 
 class PmergeMe
 {
@@ -30,14 +31,12 @@ class PmergeMe
         void insertToContainers(int value);
     
         void FordJohnson();
+    
+        int vec_binarySearch(std::vector<int> &_vec, int target);
+        std::vector<int> vec_mergeInsertionSort(std::vector<int> X);
 
-        void sortVector();
-        void vec_merge(std::vector<int> &posVec, int left, int mid, int right);
-        void vec_mergeSort(std::vector<int>& posVec, int left, int right);
-
-        void sortlist();
-        void lst_merge(std::list<int> &posLst, std::list<int> &left, std::list<int> &right);
-        void lst_mergeSort(std::list<int> &posLst);
+        std::list<int>::iterator lst_binarySearch(std::list<int> &_lst, int key);
+        std::list<int> lst_mergeInsertionSort(std::list<int> &X);
 
         void showStatusContainer(const std::string &status);
         void showTime();

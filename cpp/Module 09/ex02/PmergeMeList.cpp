@@ -1,54 +1,51 @@
 #include "PmergeMe.hpp"
 
-void PmergeMe::lst_merge(std::list<int> &posLst, std::list<int> &left, std::list<int> &right)
+std::list<int>::iterator PmergeMe::lst_binarySearch(std::list<int> &_lst, int key)
 {
-    std::list<int>::iterator leftIt = left.begin();
-    std::list<int>::iterator rightIt = right.begin();
-
-    while (leftIt != left.end() && rightIt != right.end())
-    {
-        if (*leftIt <= *rightIt)
-        {
-            posLst.push_back(*leftIt);
-            ++leftIt;
-        }
-        else
-        {
-            posLst.push_back(*rightIt);
-            ++rightIt;
-        }
+    std::list<int>::iterator it = _lst.begin();
+    while (it != _lst.end() && *it < key) {
+        ++it;
     }
-    while (leftIt != left.end())
-    {
-        posLst.push_back(*leftIt);
-        ++leftIt;
-    }
-    while (rightIt != right.end())
-    {
-        posLst.push_back(*rightIt);
-        ++rightIt;
-    }
+    return it;
 }
 
-void PmergeMe::lst_mergeSort(std::list<int> &posLst)
+std::list<int> PmergeMe::lst_mergeInsertionSort(std::list<int> &X)
 {
-    if (posLst.size() <= 1)
-        return;
-    std::list<int> left, right;
-    int middle = posLst.size() / 2;
-    std::list<int>::iterator it = posLst.begin();
-    for (int i = 0; i < middle; ++i)
+    if (X.size() <= 1)
+        return X;
+    std::list<int> S;
+    std::list<int>::iterator it = X.begin();
+    while (it != X.end())
     {
-        left.push_back(*it);
+        int first = *it;
         ++it;
+        if (it == X.end())
+        {
+            S.push_back(first);
+            break;
+        }
+        int second = *it;
+        ++it;
+        if (first > second)
+        {
+            S.push_back(first);
+            first = second;
+        }
+        else
+            S.push_back(second);
     }
-    for (size_t i = middle; i < posLst.size(); ++i)
+    S = lst_mergeInsertionSort(S);
+    for (std::list<int>::iterator it = X.begin(); it != X.end();)
     {
-        right.push_back(*it);
-        ++it;
+        if (*it == S.front())
+            it = X.erase(it);
+        else
+            ++it;
     }
-    lst_mergeSort(left);
-    lst_mergeSort(right);
-    posLst.clear();
-    lst_merge(posLst, left, right);
+    for (std::list<int>::iterator it = X.begin(); it != X.end(); ++it)
+    {
+        std::list<int>::iterator insert_pos = lst_binarySearch(S, *it);
+        S.insert(insert_pos, *it);
+    }
+    return S;
 }
