@@ -1,54 +1,79 @@
 #include "PmergeMe.hpp"
 
-void PmergeMe::lst_merge(std::list<int> &posLst, std::list<int> &left, std::list<int> &right)
+void PmergeMe::mergeInsertSortList(std::list<int>::iterator start, std::list<int>::iterator end)
 {
-    std::list<int>::iterator leftIt = left.begin();
-    std::list<int>::iterator rightIt = right.begin();
+    std::list<int>::iterator newEnd;
 
-    while (leftIt != left.end() && rightIt != right.end())
+    if (start != end)
     {
-        if (*leftIt <= *rightIt)
-        {
-            posLst.push_back(*leftIt);
-            ++leftIt;
-        }
+        if (std::distance(start, end) < 42)
+            insertSortList(start, end);
         else
         {
-            posLst.push_back(*rightIt);
-            ++rightIt;
+            newEnd = start;
+            std::advance(newEnd, std::distance(start, end) / 2);
+            mergeInsertSortList(start, newEnd);
+            mergeInsertSortList(++newEnd, end);
+            mergeSortList(start, newEnd, end);
         }
-    }
-    while (leftIt != left.end())
-    {
-        posLst.push_back(*leftIt);
-        ++leftIt;
-    }
-    while (rightIt != right.end())
-    {
-        posLst.push_back(*rightIt);
-        ++rightIt;
     }
 }
 
-void PmergeMe::lst_mergeSort(std::list<int> &posLst)
+void PmergeMe::mergeSortList(std::list<int>::iterator start, std::list<int>::iterator mid, std::list<int>::iterator end)
 {
-    if (posLst.size() <= 1)
-        return;
-    std::list<int> left, right;
-    int middle = posLst.size() / 2;
-    std::list<int>::iterator it = posLst.begin();
-    for (int i = 0; i < middle; ++i)
+    std::list<int> left(start, mid);
+    std::list<int> right(++mid, end);
+    std::list<int>::iterator leftIter = left.begin();
+    std::list<int>::iterator rightIter = right.begin();
+    std::list<int>::iterator listIter = start;
+
+    while (leftIter != left.end() && rightIter != right.end())
     {
-        left.push_back(*it);
-        ++it;
+        if (*leftIter <= *rightIter)
+        {
+            *listIter = *leftIter;
+            ++leftIter;
+        }
+        else
+        {
+            *listIter = *rightIter;
+            ++rightIter;
+        }
+        ++listIter;
     }
-    for (size_t i = middle; i < posLst.size(); ++i)
+
+    while (leftIter != left.end())
     {
-        right.push_back(*it);
-        ++it;
+        *listIter = *leftIter;
+        ++leftIter;
+        ++listIter;
     }
-    lst_mergeSort(left);
-    lst_mergeSort(right);
-    posLst.clear();
-    lst_merge(posLst, left, right);
+    while (rightIter != right.end())
+    {
+        *listIter = *rightIter;
+        ++rightIter;
+        ++listIter;
+    }
+}
+
+void PmergeMe::insertSortList(std::list<int>::iterator start, std::list<int>::iterator end)
+{
+    for (std::list<int>::iterator index = start; index != end; ++index)
+    {
+        int hold = *index;
+        std::list<int>::iterator j = index;
+        --j;
+        while (j != start && *j > hold)
+        {
+            *std::next(j) = *j;
+            --j;
+        }
+        if (*j > hold)
+        {
+            *std::next(j) = *j;
+            *j = hold;
+        }
+        else
+            *std::next(j) = hold;
+    }
 }

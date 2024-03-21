@@ -31,13 +31,13 @@ class PmergeMe
     
         void FordJohnson();
 
-        void sortVector();
-        void vec_merge(std::vector<int> &posVec, int left, int mid, int right);
-        void vec_mergeSort(std::vector<int>& posVec, int left, int right);
+        void mergeInsertSortVector(std::vector<int> &vector, int start, int end);
+        void mergeSortVector(std::vector<int> &vector, int start, int mid, int end);
+        void insertSortVector(std::vector<int> &vector, int start, int end);
 
-        void sortlist();
-        void lst_merge(std::list<int> &posLst, std::list<int> &left, std::list<int> &right);
-        void lst_mergeSort(std::list<int> &posLst);
+        void mergeInsertSortList(std::list<int>::iterator start, std::list<int>::iterator end);
+        void mergeSortList(std::list<int>::iterator start, std::list<int>::iterator mid, std::list<int>::iterator end);
+        void insertSortList(std::list<int>::iterator start, std::list<int>::iterator end);
 
         void showStatusContainer(const std::string &status);
         void showTime();
