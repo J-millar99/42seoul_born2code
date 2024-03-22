@@ -1,7 +1,7 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
-#define INITSIZE 2
+#define INITSIZE 1
 #include <iostream>
 #include <vector>
 #include <list>
@@ -48,8 +48,9 @@ class PmergeMe
         int Jacobsthal(int num);
         void GetJacobsthal(std::vector<int> &Jacob, size_t JacobSize);
         void GroupMainSubChain(std::vector<int> &MainChain, std::vector<int> &SubChain, size_t pre_size);
+        int GetJacobsthalLimit(std::vector<int> Jacob, size_t idx);
+        int BinarySearch(std::vector<int> MainChain, int target, size_t size);
         void BinarySearchInsertion(std::vector<int> &MainChain, std::vector<int> &SubChain, std::vector<int> &Jacob, size_t pre_size);
-        int GetJacobsthalLimit(std::vector<int> &Jacob, size_t idx);
         //  List
 
         //  List Jacobsthal
