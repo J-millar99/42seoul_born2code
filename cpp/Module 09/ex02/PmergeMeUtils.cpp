@@ -1,26 +1,26 @@
 #include "PmergeMe.hpp"
 
-void PmergeMe::processError(const std::string &errorStr)
+void PmergeMe::ProcessError(const std::string &errorStr)
 {
     std::cout << errorStr << std::endl;
     std::exit(1);
 }
 
-void PmergeMe::isDecimal(const std::string token)
+void PmergeMe::IsDecimal(const std::string token)
 {
     if (token.size() == 0)
-        processError("Argument Error");
+        ProcessError("Argument Error");
     for (size_t idx = 0; idx < token.length(); ++idx)
         if (!std::isdigit(token[idx]))
-            processError("\"" + token + "\" is not a positive number");
+            ProcessError("\"" + token + "\" is not a positive number");
 }
 
-void PmergeMe::checkArgumentsValidity(int argc, char *argv[])
+void PmergeMe::CheckArgumentsValidity(int argc, char *argv[])
 {
     if (argc == 1)
-        processError("Argument Error");
+        ProcessError("Argument Error");
     for (int idx = 1; idx < argc; ++idx)
-        isDecimal(argv[idx]);
+        IsDecimal(argv[idx]);
 }
 
 int PmergeMe::ft_atoi(const std::string &str)
@@ -39,7 +39,7 @@ int PmergeMe::ft_atoi(const std::string &str)
     return static_cast<int>(inum);
 }
 
-void PmergeMe::insertToContainers(int value)
+void PmergeMe::InsertToContainers(int value)
 {
     std::vector<int>::iterator it = std::find(vec.begin(), vec.end(), value);
     if (it == vec.end())
@@ -47,11 +47,11 @@ void PmergeMe::insertToContainers(int value)
         vec.push_back(value);
         lst.push_back(value);
     }
-    else
-        processError("duplicated number");
+    // else
+    //     processError("duplicated number");
 }
 
-void PmergeMe::showStatusContainer(const std::string &status)
+void PmergeMe::ShowStatusContainer(const std::string &status)
 {
     std::cout << status;
     for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it)
@@ -59,7 +59,15 @@ void PmergeMe::showStatusContainer(const std::string &status)
     std::cout << std::endl;
 }
 
-void PmergeMe::showTime()
+void PmergeMe::show(std::vector<int> _vec, std::string _name)
+{
+    std::cout << _name + " : ";
+    for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); ++it)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+}
+
+void PmergeMe::ShowTime()
 {
     std::cout << std::fixed << std::setprecision(5);
     std::cout   << "Time to process a range of " \
