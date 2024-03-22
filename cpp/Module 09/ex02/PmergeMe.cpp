@@ -26,11 +26,11 @@ void PmergeMe::FordJohnson()
 {
     clock_t start, end;
     start = clock();
-    mergeInsertSortVector(vec, 0, vec.size() - 1);
+    mergeInsertionSort(vec);
     end = clock();
     _vecSortTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
     start = clock();
-    mergeInsertSortList(lst.begin(), lst.end());
+    mergeInsertionSort(lst);
     end = clock();
     _lstSortTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
 }

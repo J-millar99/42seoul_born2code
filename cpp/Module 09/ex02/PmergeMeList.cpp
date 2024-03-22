@@ -1,79 +1,53 @@
 #include "PmergeMe.hpp"
 
-void PmergeMe::mergeInsertSortList(std::list<int>::iterator start, std::list<int>::iterator end)
+// Recursive function that sorts a list using the merge-insertion sort algorithm
+void PmergeMe::mergeInsertionSort(std::list<int> &_lst)
 {
-    std::list<int>::iterator newEnd;
-
-    if (start != end)
-    {
-        if (std::distance(start, end) < 42)
-            insertSortList(start, end);
-        else
-        {
-            newEnd = start;
-            std::advance(newEnd, std::distance(start, end) / 2);
-            mergeInsertSortList(start, newEnd);
-            mergeInsertSortList(++newEnd, end);
-            mergeSortList(start, newEnd, end);
-        }
-    }
-}
-
-void PmergeMe::mergeSortList(std::list<int>::iterator start, std::list<int>::iterator mid, std::list<int>::iterator end)
-{
-    std::list<int> left(start, mid);
-    std::list<int> right(++mid, end);
-    std::list<int>::iterator leftIter = left.begin();
-    std::list<int>::iterator rightIter = right.begin();
-    std::list<int>::iterator listIter = start;
-
-    while (leftIter != left.end() && rightIter != right.end())
-    {
-        if (*leftIter <= *rightIter)
-        {
-            *listIter = *leftIter;
-            ++leftIter;
-        }
-        else
-        {
-            *listIter = *rightIter;
-            ++rightIter;
-        }
-        ++listIter;
+    // Base case: if the _lst has 1 or 0 elements, it is already sorted
+    if (_lst.size() <= 1) {
+        return;
     }
 
-    while (leftIter != left.end())
-    {
-        *listIter = *leftIter;
-        ++leftIter;
-        ++listIter;
+    // Divide the _lst into two halves
+    std::list<int> left, right;
+    int middle = _lst.size() / 2;
+    for (std::list<int>::iterator it = _lst.begin(); it != _lst.end(); ++it) {
+        // Add each element to the left or right half depending on its position
+        if (std::distance(_lst.begin(), it) < middle) {
+            left.push_back(*it);
+        } else {
+            right.push_back(*it);
+        }
     }
-    while (rightIter != right.end())
-    {
-        *listIter = *rightIter;
-        ++rightIter;
-        ++listIter;
-    }
-}
 
-void PmergeMe::insertSortList(std::list<int>::iterator start, std::list<int>::iterator end)
-{
-    for (std::list<int>::iterator index = start; index != end; ++index)
-    {
-        int hold = *index;
-        std::list<int>::iterator j = index;
-        --j;
-        while (j != start && *j > hold)
-        {
-            *std::next(j) = *j;
-            --j;
+    // Sort the left and right halves recursively
+    mergeInsertionSort(left);
+    mergeInsertionSort(right);
+
+    // Clear the input _lst to merge the two halves
+    _lst.clear();
+
+    // Merge the two sorted halves
+    std::list<int>::iterator it_left = left.begin();
+    std::list<int>::iterator it_right = right.begin();
+    while (it_left != left.end() && it_right != right.end()) {
+        if (*it_left < *it_right) {
+            _lst.push_back(*it_left);
+            ++it_left;
+        } else {
+            _lst.push_back(*it_right);
+            ++it_right;
         }
-        if (*j > hold)
-        {
-            *std::next(j) = *j;
-            *j = hold;
-        }
-        else
-            *std::next(j) = hold;
+    }
+
+    // Append any remaining elements from the left or right halves
+    while (it_left != left.end()) {
+        _lst.push_back(*it_left);
+        ++it_left;
+    }
+
+    while (it_right != right.end()) {
+        _lst.push_back(*it_right);
+        ++it_right;
     }
 }

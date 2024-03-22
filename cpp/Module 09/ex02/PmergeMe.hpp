@@ -28,17 +28,9 @@ class PmergeMe
 
         int ft_atoi(const std::string &str);
         void insertToContainers(int value);
-    
+        void mergeInsertionSort(std::vector<int> &_vec);
+        void mergeInsertionSort(std::list<int> &_lst);
         void FordJohnson();
-
-        void mergeInsertSortVector(std::vector<int> &vector, int start, int end);
-        void mergeSortVector(std::vector<int> &vector, int start, int mid, int end);
-        void insertSortVector(std::vector<int> &vector, int start, int end);
-
-        void mergeInsertSortList(std::list<int>::iterator start, std::list<int>::iterator end);
-        void mergeSortList(std::list<int>::iterator start, std::list<int>::iterator mid, std::list<int>::iterator end);
-        void insertSortList(std::list<int>::iterator start, std::list<int>::iterator end);
-
         void showStatusContainer(const std::string &status);
         void showTime();
 };
