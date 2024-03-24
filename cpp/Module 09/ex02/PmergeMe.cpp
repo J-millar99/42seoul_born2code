@@ -16,9 +16,9 @@ PmergeMe::PmergeMe(char *argv[])
         InsertToContainers(num);
         idx++;
     }
-    ShowStatusContainer("Before: ");
+    ShowStatusContainer("====== Before ======");
     FordJohnsonAlgorithm();
-    ShowStatusContainer("After: ");
+    ShowStatusContainer("====== After ======");
     ShowTime();
 }
 
@@ -26,11 +26,11 @@ void PmergeMe::FordJohnsonAlgorithm()
 {
     clock_t start, end;
     start = clock();
-    MargeInsertionSortVector(INITSIZE);
+    MergeInsertionSortVector(INITSIZE);
     end = clock();
     _vecSortTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
-    // start = clock();
-    // lst_sort(lst, 0, lst.size());
-    // end = clock();
-    // _lstSortTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
+    start = clock();
+    MergeInsertionSortList(INITSIZE);
+    end = clock();
+    _lstSortTime = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
 }

@@ -43,18 +43,28 @@ class PmergeMe
 
         //  Algorithm
         void FordJohnsonAlgorithm();
-        //  Vector
-        void MargeInsertionSortVector(size_t pre_size);
-        int Jacobsthal(int num);
-        void GetJacobsthal(std::vector<int> &Jacob, size_t JacobSize);
-        void GroupMainSubChain(std::vector<int> &MainChain, std::vector<int> &SubChain, size_t pre_size);
+        size_t Jacobsthal(int num);
         int GetJacobsthalLimit(std::vector<int> Jacob, size_t idx);
+        void GetJacobsthal(std::vector<int> &Jacob, size_t JacobSize);
+        //  Vector
+        void MergeInsertionSortVector(size_t pre_size);
+        void GroupMainSubChain(std::vector<int> &MainChain, std::vector<int> &SubChain, size_t pre_size);
         int BinarySearch(std::vector<int> MainChain, int target, size_t size);
         void BinarySearchInsertion(std::vector<int> &MainChain, std::vector<int> &SubChain, std::vector<int> &Jacob, size_t pre_size);
         //  List
-
+        void MergeInsertionSortList(size_t pre_size);
+        void GroupMainSubChain(std::list<int> &MainChain, std::list<int> &SubChain, size_t pre_size);
+        int BinarySearch(std::list<int> MainChain, int target, size_t size);
+        void BinarySearchInsertion(std::list<int> &MainChain, std::list<int> &SubChain, std::vector<int> &Jacob, size_t pre_size);
         //  List Jacobsthal
-        void show(std::vector<int> _vec, std::string _name);
+        template <typename T>
+        void show(T _con, std::string _name)
+        {
+            std::cout << _name + " : ";
+            for (typename T::iterator it = _con.begin(); it != _con.end(); ++it)
+                std::cout << *it << " ";
+            std::cout << std::endl;
+        }
 };
 
 #endif

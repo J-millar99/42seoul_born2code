@@ -53,16 +53,13 @@ void PmergeMe::InsertToContainers(int value)
 
 void PmergeMe::ShowStatusContainer(const std::string &status)
 {
-    std::cout << status;
+    std::cout << status << std::endl;
+    std::cout << "Vector:   ";
     for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it)
         std::cout << *it << " ";
     std::cout << std::endl;
-}
-
-void PmergeMe::show(std::vector<int> _vec, std::string _name)
-{
-    std::cout << _name + " : ";
-    for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); ++it)
+    std::cout << "List:     ";
+    for (std::list<int>::iterator it = lst.begin(); it != lst.end(); ++it)
         std::cout << *it << " ";
     std::cout << std::endl;
 }
