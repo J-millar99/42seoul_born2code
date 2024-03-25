@@ -71,10 +71,10 @@ void PmergeMe::ShowTime()
                 << vec.size() \
                 << " elements with std::vector : " \
                 << _vecSortTime
-                << " us\n";
+                << " ms\n";
     std::cout   << "Time to process a range of " \
                 << lst.size() \
                 << " elements with std::list : " \
                 << _lstSortTime
-                << " us\n";
+                << " ms\n";
 }
