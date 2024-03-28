@@ -14,6 +14,7 @@ void RPN::parsingRPN(const std::string &str)
     std::string::size_type start = 0;
     std::string::size_type end = str.find(' ');
     std::string token;
+
     while (end != std::string::npos)
     {
         token = str.substr(start, end - start);
@@ -23,7 +24,9 @@ void RPN::parsingRPN(const std::string &str)
             calculateRPN(token[0]);
         else
             processError("undefined token : " + token);
-        start = end + 1;
+        while (str[end] == ' ')
+            end++;
+        start = end;
         end = str.find(' ', start);
     }
     token = str.substr(start);
