@@ -1,24 +1,11 @@
-FROM debian:bookworm
+FROM debian:11
+EXPOSE 3306
 
-# Install MariaDB server and client
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    mariadb-server \
-    mariadb-client \
-    && rm -rf /var/lib/apt/lists/*
+RUN	apt-get update && apt-get install -y mariadb-server
 
-# Copy MariaDB configuration file
-COPY conf/my.cnf /etc/mysql/my.cnf
+COPY	conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
-# Copy start script
-COPY tools/start.sh /db/start.sh
+COPY	tools/setup.sh /bin/
+RUN		chmod +x /bin/setup.sh
 
-# Create necessary directories and set ownership
-RUN mkdir -p /run/mysqld /var/log/mysql && \
-    chown -R mysql:mysql /var/lib/mysql /run/mysqld /var/log/mysql
-
-# Switch to the mysql user
-USER mysql
-
-# Command to run on container startup
-CMD ["/db/start.sh"]
+ENTRYPOINT	["setup.sh", "mysqld_safe"]

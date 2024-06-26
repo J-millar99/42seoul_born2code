@@ -1,31 +1,25 @@
-FROM debian:bookworm
+FROM debian:11
+EXPOSE	9000
 
-# Install required packages
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    php8.2 \
-    php8.2-fpm \
-    php8.2-mysql \
-    php8.2-phar \
-    php8.2-mbstring \
-    php8.2-redis \
-    php8.2-ctype \
-    gettext \
-    wget \
-    && rm -rf /var/lib/apt/lists/*
+RUN		apt update && apt install -y ca-certificates \
+		php7.4-fpm php7.4-mysql \
+		mariadb-client wget tar
 
-# Download and install wp-cli
-RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-    && chmod +x wp-cli.phar \
-    && mv wp-cli.phar /usr/local/bin/wp
+RUN	wget https://wordpress.org/wordpress-6.3.1.tar.gz -P /var/www
+RUN	cd /var/www && tar -xzf wordpress-6.3.1.tar.gz && rm wordpress-6.3.1.tar.gz
 
-# Copy configuration files
-COPY conf/php.ini /etc/php/8.2/conf.d/50-setting.ini
-COPY conf/wp-config.php /
-COPY tools/wp_init.sh /
+COPY	./conf/wp-config.php /var/www/wordpress/
 
-# Set the working directory
-WORKDIR /
+RUN	chown -R root:root /var/www/wordpress
 
-# Command to run on container startup
-CMD ["./wp_init.sh"]
+COPY	./conf/www.conf /etc/php/7.4/fpm/pool.d/
+RUN	mkdir -p /run/php
+
+RUN	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN	chmod +x wp-cli.phar
+RUN	mv wp-cli.phar /usr/local/bin/wp
+
+COPY	./tools/setup.sh /bin/
+RUN	chmod +x /bin/setup.sh
+
+ENTRYPOINT ["/bin/setup.sh"]

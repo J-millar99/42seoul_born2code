@@ -1,14 +1,16 @@
-FROM debian:bookworm
+FROM debian:11
+EXPOSE 443
 
-# Install required packages
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    nginx \
-    openssl \
-    && rm -rf /var/lib/apt/lists/*
+RUN	apt update && apt install -y nginx openssl
+RUN mkdir -p /etc/nginx/certs/ && \
+	openssl req -newkey rsa:4096 -x509 -sha256 -nodes \
+    -out /etc/nginx/certs/jaehyji.42.fr.crt \
+    -keyout /etc/nginx/certs/jaehyji.42.fr.key \
+    -subj "/C=KR/ST=Seoul/L=Gaepo/O=42/OU=Ecole/CN=jaehyji.42.fr"
 
-# Copy Nginx configuration file
-COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/nginx.conf /etc/nginx/
 
-# Command to run on container startup
-CMD ["nginx", "-g", "daemon off;"]
+RUN chmod 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
