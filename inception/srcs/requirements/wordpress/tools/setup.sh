@@ -1,4 +1,4 @@
-sleep 3
+sleep 5
 
 wp core install --url="$WP_URL" \
     --title="$WP_TITLE" \

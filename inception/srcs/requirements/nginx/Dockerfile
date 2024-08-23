@@ -1,7 +1,7 @@
 FROM debian:11
 EXPOSE 443
 
-RUN	apt update && apt install -y nginx openssl
+RUN	apt-get update && apt-get install -y nginx openssl tini
 RUN mkdir -p /etc/nginx/certs/ && \
 	openssl req -newkey rsa:4096 -x509 -sha256 -nodes \
     -out /etc/nginx/certs/jaehyji.42.fr.crt \
@@ -13,4 +13,5 @@ COPY ./conf/nginx.conf /etc/nginx/
 RUN chmod 755 /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/usr/bin/tini", "--"]
+CMD [ "nginx", "-g", "daemon off;"]

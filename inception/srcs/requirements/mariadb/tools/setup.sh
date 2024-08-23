@@ -8,7 +8,7 @@ GRANT ALL PRIVILEGES ON $DB_NAME.* TO 'root'@'%' IDENTIFIED BY '$DB_PASS_ROOT';
 SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$DB_PASS_ROOT');
 EOF
 
-sleep 2
+sleep 5
 
 service mariadb stop
 
