@@ -22,6 +22,6 @@ RUN	mv wp-cli.phar /usr/local/bin/wp
 COPY	./tools/setup.sh /bin/
 RUN	chmod +x /bin/setup.sh
 
-ENTRYPOINT ["/usr/bin/tini", "--"]
+# ENTRYPOINT ["/usr/bin/tini", "--"]
 
 CMD ["/bin/setup.sh"]

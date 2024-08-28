@@ -5,7 +5,7 @@ COMPOSE = ./srcs/docker-compose.yml
 all:	conf up
 
 conf:
-	mkdir -p /home/jaehyji/data/mariadb /home/jaehyji/data/wordpress
+	mkdir -p /home/jaehyji/Desktop/data/mariadb /home/jaehyji/Desktop/data/wordpress
 	sudo sed -i '/^127.0.0.1/ {/jaehyji.42.fr/! s/localhost/localhost jaehyji.42.fr/}' /etc/hosts
 
 up:	
