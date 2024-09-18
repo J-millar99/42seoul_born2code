@@ -14,6 +14,7 @@ void RPN::parsingRPN(const std::string &str)
     std::string::size_type start = 0;
     std::string::size_type end = str.find(' ');
     std::string token;
+
     while (end != std::string::npos)
     {
         token = str.substr(start, end - start);
@@ -23,7 +24,9 @@ void RPN::parsingRPN(const std::string &str)
             calculateRPN(token[0]);
         else
             processError("undefined token : " + token);
-        start = end + 1;
+        while (str[end] == ' ')
+            end++;
+        start = end;
         end = str.find(' ', start);
     }
     token = str.substr(start);
@@ -39,26 +42,14 @@ void RPN::calculateRPN(char op)
 {
     if (_stack.size() < 2)
         processError("impossible calculate");
-    long first = _stack.top(); _stack.pop();
-    long second = _stack.top(); _stack.pop();
-    if (op == '+') {
-        long ret = first + second;
-        if (ret > INT_MAX)
-            processError("out of Int");
+    int first = _stack.top(); _stack.pop();
+    int second = _stack.top(); _stack.pop();
+    if (op == '+')
         _stack.push(first + second);
-    }
-    else if (op == '-') {
-        long ret = second - first;
-        if (ret < INT_MIN)
-            processError("out of Int");
+    else if (op == '-')
         _stack.push(second - first);
-    }
-    else if (op == '*') {
-        long ret = first * second;
-        if (ret > INT_MAX)
-            processError("out of Int");
+    else if (op == '*')
         _stack.push(first * second);
-    }
     else if (op == '/')
     {
         if (first == 0)
