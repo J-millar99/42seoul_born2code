@@ -19,7 +19,7 @@
 # define ESC 53
 
 /*	includes	*/
-# include "../minilibx_mms_20210621/mlx.h"
+# include "../mlx/mlx.h"
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 # include <stdio.h>

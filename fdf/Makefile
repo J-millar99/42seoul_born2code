@@ -15,9 +15,8 @@ GCC = gcc
 RM = rm -rf
 FLAGS = -Wall -Wextra -Werror
 LIBFTDIR = libft
-MLXDIR = minilibx_mms_20210621
-LIBFT = -L ./libft
-MLX = -L ./minilibx_mms_20210621
+MLXDIR = mlx
+MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework Appkit -Imlx
 
 INCS_M = mandatory/fdf.h
 INCS_B = bonus/fdf_bonus.h
@@ -77,8 +76,8 @@ $(NAME): $(OBJS_ALL) $(INCS)
 	@$(RM) $(OBJS_EXCEPT)
 	make -C $(LIBFTDIR)
 	make -C $(MLXDIR)
-	$(GCC) $(FLAGS) $(LIBFT) $(MLX) -o $(NAME) $(OBJS_ALL) -lft -lmlx
-	@cd ./$(MLXDIR) ; mv libmlx.dylib ../
+	$(GCC) $(FLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJS_ALL) libft/libft.a
+	install_name_tool -change libmlx.dylib mlx/libmlx.dylib $@
 
 all: $(NAME)
 
